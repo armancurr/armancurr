@@ -1,6 +1,9 @@
-<p align="center"><samp> ~
-   <a href="https://www.linkedin.com/in/armancurr" target="_blank">linkedin</a>
-   ·
-   <a href="https://x.com/rrucnamra" target="_blank">twitter</a>
-   ~ </samp><br><br>
-</p>
+arman := Human{
+	Name:    "Arman Kar",
+	Title:   "Computer Science Student",
+	Job:     "2nd Year Undergraduate",
+	Hobbies: []string{"programming", "basketball"},
+	Dream:   "Build blazing fast web tools for the general populus and developers",
+	Website: "https://armancurr.me",
+	SideProject: "https://comet-speed.com",
+}
