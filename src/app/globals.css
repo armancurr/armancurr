@@ -45,24 +45,32 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --foreground: #d4d4d8;
+  --background: #0a0a0a;
+  --card: #111111;
+  --card-foreground: #d4d4d8;
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --primary: #0070f3;
+  --primary-foreground: #ffffff;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #d4d4d8;
+  --muted: #262626;
+  --muted-foreground: #a1a1a1;
+  --accent: #262626;
+  --accent-foreground: #d4d4d8;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #262626;
+  --input: #262626;
+  --ring: #0070f3;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --terminal-green: #22c55e;
+  --terminal-blue: #3b82f6;
+  --terminal-violet: #8b5cf6;
+  --terminal-rose: #f43f5e;
+  --terminal-neutral: #d4d4d8;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -115,8 +123,80 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    border-color: hsl(var(--border));
   }
   body {
     @apply bg-background text-foreground;
+    color: var(--foreground);
+    background: var(--background);
+    font-family: "JetBrains Mono", "Fira Code", "Monaco", "Menlo", monospace;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "JetBrains Mono", "Fira Code", "Monaco", "Menlo", monospace;
+    font-weight: 600;
+  }
+
+  code {
+    font-family: "JetBrains Mono", "Fira Code", "Monaco", "Menlo", monospace;
+  }
+}
+
+@layer components {
+  .terminal-cursor {
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    51%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .terminal-line {
+    font-family: "JetBrains Mono", "Fira Code", "Monaco", "Menlo", monospace;
+    line-height: 1.5;
+  }
+
+  .syntax-keyword {
+    color: var(--terminal-violet);
+  }
+
+  .syntax-string {
+    color: var(--terminal-green);
+  }
+
+  .syntax-number {
+    color: var(--terminal-blue);
+  }
+
+  .syntax-comment {
+    color: var(--muted-foreground);
+    font-style: italic;
+  }
+
+  .syntax-error {
+    color: #ef4444;
+  }
+
+  .syntax-success {
+    color: var(--terminal-green);
+  }
+
+  .syntax-warning {
+    color: var(--warning);
+  }
+
+  .syntax-info {
+    color: var(--terminal-blue);
   }
 }
