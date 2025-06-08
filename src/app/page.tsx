@@ -1,3 +1,9 @@
+import { Terminal } from "@/components/terminal/terminal";
+
 export default function Home() {
-  return <div>Hello World</div>;
+  return (
+    <main className="min-h-screen">
+      <Terminal />
+    </main>
+  );
 }
