@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Funnel_Sans, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const funnelSans = Funnel_Sans({
+  variable: "--font-funnel-sans",
   subsets: ["latin"],
 });
 
@@ -20,26 +20,6 @@ export const metadata: Metadata = {
   },
   description:
     "Interactive terminal-based portfolio showcasing full-stack development skills, projects, and experience. Navigate like a pro with command-line interface.",
-  keywords: [
-    "portfolio",
-    "terminal",
-    "developer",
-    "full-stack",
-    "react",
-    "typescript",
-    "next.js",
-  ],
-  authors: [{ name: "Arman" }],
-  openGraph: {
-    title: "Arman's Terminal Portfolio",
-    description: "Interactive terminal-based portfolio - Navigate like a pro!",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Arman's Terminal Portfolio",
-    description: "Interactive terminal-based portfolio - Navigate like a pro!",
-  },
 };
 
 export default function RootLayout({
@@ -50,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-950`}
+        className={`${funnelSans.variable} ${geistMono.variable} antialiased bg-neutral-950 text-neutral-100`}
       >
         {children}
       </body>
