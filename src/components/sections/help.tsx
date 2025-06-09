@@ -1,111 +1,135 @@
 "use client";
-import {
-  User,
-  Wrench,
-  FolderOpen,
-  At,
-  Broom,
-  ClockCounterClockwise,
-  ArrowUp,
-  ArrowDown,
-  Keyboard,
-  X,
-} from "@phosphor-icons/react";
-import type React from "react";
 
-interface HelpItem {
-  command: string;
+import { User, Folders, At, SprayBottle } from "@phosphor-icons/react";
+import type React from "react";
+import { useState } from "react";
+
+interface CommandItem {
+  name: string;
   description: string;
   icon: React.ComponentType<any>;
+  color: string;
 }
 
 export const Help = () => {
-  // Merge all actions (commands and navigation/shortcuts) into one array
-  const allHelpData: HelpItem[] = [
+  const [copiedCommand, setCopiedCommand] = useState<string | null>(null);
+
+  const commands: CommandItem[] = [
     {
-      command: "about",
-      description: "Discover the essence of my journey",
+      name: "ls",
+      description: "List directory contents. Use 'ls -a' to show hidden files.",
+      icon: Folders,
+      color: "text-amber-400",
+    },
+    {
+      name: "cd <dir>",
+      description: "Change directory. Use 'cd ..' to go back, 'cd /' for root.",
+      icon: Folders,
+      color: "text-blue-400",
+    },
+    {
+      name: "cat <file>",
+      description: "Display file contents. Perfect for reading documentation.",
       icon: User,
+      color: "text-green-400",
     },
     {
-      command: "skills",
-      description: "Unveil the arsenal of my expertise",
-      icon: Wrench,
+      name: "tree",
+      description: "Show directory structure in a beautiful tree format.",
+      icon: Folders,
+      color: "text-purple-400",
     },
     {
-      command: "projects",
-      description: "Witness the manifestation of my craft",
-      icon: FolderOpen,
+      name: "pwd",
+      description: "Print current working directory path.",
+      icon: Folders,
+      color: "text-cyan-400",
     },
     {
-      command: "contact",
-      description: "Establish a pathway to communication",
+      name: "find <pattern>",
+      description: "Search for files matching the given pattern.",
+      icon: User,
+      color: "text-orange-400",
+    },
+    {
+      name: "about",
+      description: "Hand typed paragraph that supposedly describes me.",
+      icon: User,
+      color: "text-sky-400",
+    },
+    {
+      name: "projects",
+      description:
+        "Take a guided tour through the work that speaks louder than words.",
+      icon: Folders,
+      color: "text-amber-400",
+    },
+    {
+      name: "contact",
+      description: "When you're ready to talk, I'm all ears. Let's connect.",
       icon: At,
+      color: "text-emerald-400",
     },
     {
-      command: "clear",
-      description: "Purge the terminal of all traces",
-      icon: Broom,
+      name: "history",
+      description: "Show command history for this session.",
+      icon: User,
+      color: "text-gray-400",
     },
     {
-      command: "history",
-      description: "View your previous commands",
-      icon: ClockCounterClockwise,
+      name: "whoami",
+      description: "Display the current user. Spoiler: it's armancurr.",
+      icon: User,
+      color: "text-indigo-400",
     },
     {
-      command: "↑",
-      description: "Navigate command history backwards",
-      icon: ArrowUp,
-    },
-    {
-      command: "↓",
-      description: "Navigate command history forwards",
-      icon: ArrowDown,
-    },
-    {
-      command: "Tab",
-      description: "Auto-complete your command",
-      icon: Keyboard,
+      name: "clear",
+      description: "Wipe the slate clean — because clutter is for amateurs.",
+      icon: SprayBottle,
+      color: "text-rose-400",
     },
   ];
 
   const handleCommandClick = (command: string) => {
-    navigator.clipboard
-      .writeText(command)
-      .then(() => {
-        // Optional: Show a "Copied!" toast notification
-      })
-      .catch((err) => {
-        console.error("Failed to copy: ", err);
-      });
+    navigator.clipboard.writeText(command).then(() => {
+      setCopiedCommand(command);
+      setTimeout(() => setCopiedCommand(null), 1500);
+    });
   };
 
   return (
-    <div className="w-full max-w-4xl py-4">
-      <div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {allHelpData.map((item, index) => {
-            const IconComponent = item.icon;
-            return (
-              <div
-                key={index}
-                className="group relative rounded-md overflow-hidden cursor-pointer transform transition-all duration-200"
-                onClick={() => handleCommandClick(item.command)}
-                title={`Click to copy "${item.command}"`}
-              >
-                <div className="relative h-36 flex flex-col justify-center p-12 bg-transparent">
-                  <div className="flex items-center gap-2 mb-1">
-                    <IconComponent size={16} weight="fill" />
-                    <h3 className="text-md font-sans">{item.command}</h3>
-                  </div>
-                  <p className="text-sm text-neutral-400 leading-relaxed font-sans">
-                    {item.description}
-                  </p>
+    <div className="w-full max-w-6xl py-4">
+      {/* main grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {commands.map((item) => {
+          const IconComponent = item.icon;
+          return (
+            <div
+              key={item.name}
+              className="group relative rounded-md bg-neutral-900/50 hover:bg-neutral-800/50 transition-colors duration-200 overflow-hidden cursor-pointer transform transition-all duration-200"
+              onClick={() => handleCommandClick(item.name)}
+              title={`Click to copy "${item.name}"`}
+            >
+              {/* card with content */}
+              <div className="relative h-36 flex flex-col justify-center p-12">
+                <div className="flex items-center gap-2 mb-1">
+                  <IconComponent
+                    size={16}
+                    weight="fill"
+                    className={item.color}
+                  />
+                  <h3 className="text-md font-sans text-white">{item.name}</h3>
+                  {copiedCommand === item.name && (
+                    <span className="text-xs text-green-400">Copied!</span>
+                  )}
                 </div>
+                <p className="text-sm text-neutral-400 leading-relaxed font-sans">
+                  {item.description}
+                </p>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

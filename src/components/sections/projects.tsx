@@ -12,6 +12,7 @@ interface Project {
   description: string;
   demo: string;
   icon: React.ComponentType<any>;
+  color: string; // New property for the icon color class
 }
 export const Projects = () => {
   const projectsData: Project[] = [
@@ -19,15 +20,17 @@ export const Projects = () => {
       title: "Content Summarizer",
       description:
         "A Gemini wrapper for summarizing articles, documents, and YouTube videos.",
-      demo: "https://shop.armancurr.dev",
+      demo: "https://sumanize.vercel.app",
       icon: ChatCircle,
+      color: "text-blue-50",
     },
     {
       title: "File Converter",
       description:
         "An image converter tool that transforms images from one format to another.",
-      demo: "https://tasks.armancurr.dev",
+      demo: "https://test-file-converter.vercel.app",
       icon: ImageSquare,
+      color: "text-lime-400",
     },
     {
       title: "Comet Generator",
@@ -35,13 +38,15 @@ export const Projects = () => {
         "A CLI tool for scaffolding TypeScript projects with ready-to-use configurations.",
       demo: "https://armancurr.dev",
       icon: TerminalWindow,
+      color: "text-purple-400",
     },
     {
       title: "Comet Press",
       description:
         "A tool that measures your clicks-per-second in a timed challenge.",
-      demo: "https://api.armancurr.dev",
+      demo: "https://comet-generator-template.vercel.app",
       icon: CursorClick,
+      color: "text-indigo-400",
     },
   ];
   const handleProjectClick = (project: Project) => {
@@ -56,23 +61,27 @@ export const Projects = () => {
   };
   return (
     <div className="w-full max-w-4xl py-4">
-      {/* Projects Grid */}
+      {/* main grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projectsData.map((project, index) => {
           const IconComponent = project.icon;
           return (
             <div
               key={index}
-              className="group relative rounded-md overflow-hidden cursor-pointer transform transition-all duration-200"
+              className="group relative rounded-md bg-neutral-900/50 hover:bg-neutral-800/50 transition-colors duration-200 overflow-hidden cursor-pointer transform transition-all duration-200"
               onClick={() => handleProjectClick(project)}
             >
-              {/* Plain transparent background, no image */}
-              <div className="relative h-36 flex flex-col justify-center p-12 bg-transparent">
+              {/* card with content */}
+              <div className="relative h-36 flex flex-col justify-center p-12">
                 <div className="flex items-center gap-2 mb-1">
-                  <IconComponent size={16} weight="fill" />
+                  <IconComponent
+                    size={16}
+                    weight="fill"
+                    className={project.color}
+                  />
                   <h3 className="text-md font-sans">{project.title}</h3>
                 </div>
-                <p className="text-sm text-neutral-200 leading-relaxed font-sans">
+                <p className="text-sm text-neutral-400 leading-relaxed font-sans">
                   {project.description}
                 </p>
               </div>

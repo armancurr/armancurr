@@ -4,16 +4,15 @@ import { useState, useEffect, useRef } from "react";
 import type React from "react";
 import type { JSX } from "react/jsx-runtime";
 import { About } from "../sections/about";
-import { Skills } from "../sections/skills";
 import { Projects } from "../sections/projects";
 import { Contact } from "../sections/contact";
 import { Help } from "../sections/help";
-import { FileSystem } from "../sections/file-system";
-import { Figlet } from "../sections/figlet";
+import { FileSystemManager } from "../sections/file-system";
+import { ProjectDetail } from "../sections/project-detail";
 
 interface Message {
   type: "command" | "response" | "system";
-  content: string | JSX.Element;
+  content: string | JSX.Element | React.ReactNode;
   timestamp: Date;
   id: string;
 }
@@ -22,7 +21,7 @@ export const Terminal: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       type: "system",
-      content: <Figlet />,
+      content: "Welcome to the terminal. Type 'help' to get started.",
       timestamp: new Date(),
       id: "welcome-1",
     },
@@ -34,20 +33,104 @@ export const Terminal: React.FC = () => {
   const [autoCompleteOptions, setAutoCompleteOptions] = useState<string[]>([]);
   const [showTopShadow, setShowTopShadow] = useState(false);
   const [showBottomShadow, setShowBottomShadow] = useState(false);
+  const [fileSystem] = useState(() => new FileSystemManager());
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
 
-  const commands: Record<string, () => string | JSX.Element> = {
+  const commands: Record<
+    string,
+    (args?: string[]) => string | JSX.Element | React.ReactNode
+  > = {
     help: () => <Help />,
     about: () => <About />,
-    skills: () => <Skills />,
     projects: () => <Projects />,
     contact: () => <Contact />,
-    ls: FileSystem.ls,
     whoami: () => "armancurr",
     date: () => new Date().toLocaleString(),
+    pwd: () => fileSystem.getCurrentPathString(),
+    ls: (args) => {
+      const showHidden =
+        args?.includes("-a") || args?.includes("-la") || args?.includes("-al");
+      return fileSystem.listDirectory(showHidden);
+    },
+    ll: () => fileSystem.listDirectory(true),
+    tree: () => fileSystem.generateTree(),
+    cd: (args) => {
+      if (!args || args.length === 0) {
+        try {
+          return fileSystem.changeDirectory("/");
+        } catch (error) {
+          return `cd: ${(error as Error).message}`;
+        }
+      }
+
+      const path = args[0];
+      try {
+        const newPath = fileSystem.changeDirectory(path);
+
+        // Check if we're in a project directory and show project detail
+        const currentPath = fileSystem.getCurrentPath();
+        if (currentPath.length === 2 && currentPath[0] === "projects") {
+          const projectName = currentPath[1];
+          return <ProjectDetail projectName={projectName} />;
+        }
+
+        return `${newPath}`;
+      } catch (error) {
+        return `cd: ${(error as Error).message}`;
+      }
+    },
+    cat: (args) => {
+      if (!args || args.length === 0) {
+        return "cat: missing file operand";
+      }
+
+      const filename = args[0];
+      try {
+        return fileSystem.readFile(filename);
+      } catch (error) {
+        return `cat: ${(error as Error).message}`;
+      }
+    },
+    find: (args) => {
+      if (!args || args.length === 0) {
+        return "find: missing search pattern";
+      }
+
+      const pattern = args[0];
+      const results = fileSystem.findFiles(pattern);
+
+      if (results.length === 0) {
+        return `find: no files matching '${pattern}' found`;
+      }
+
+      return results.join("\n");
+    },
+    grep: (args) => {
+      if (!args || args.length < 2) {
+        return "grep: usage: grep <pattern> <file>";
+      }
+
+      const [pattern, filename] = args;
+      try {
+        const content = fileSystem.readFile(filename);
+        if (typeof content === "string") {
+          const lines = content.split("\n");
+          const matches = lines.filter((line) =>
+            line.toLowerCase().includes(pattern.toLowerCase()),
+          );
+          return matches.length > 0
+            ? matches.join("\n")
+            : `grep: no matches found for '${pattern}'`;
+        } else {
+          return "grep: cannot search in non-text file";
+        }
+      } catch (error) {
+        return `grep: ${(error as Error).message}`;
+      }
+    },
     history: () => {
       if (commandHistory.length === 0) {
         return "No commands in history";
@@ -56,6 +139,18 @@ export const Terminal: React.FC = () => {
         .map((cmd, index) => `${index + 1}  ${cmd}`)
         .join("\n");
     },
+    uname: () => "Portfolio Terminal v1.0.0 (armancurr)",
+    env: () => `USER=armancurr
+HOME=/
+PWD=${fileSystem.getCurrentPathString()}
+SHELL=/bin/bash
+TERM=xterm-256color`,
+    alias: () => `Available aliases:
+ll='ls -la'
+la='ls -a'
+projects='cd projects && ls'
+resume='cat about/profile.txt'
+skills='cat about/skills.json'`,
   };
 
   const generateId = () => Math.random().toString(36).substr(2, 9);
@@ -64,12 +159,40 @@ export const Terminal: React.FC = () => {
   const getAutoCompleteOptions = (currentInput: string): string[] => {
     if (!currentInput.trim()) return [];
 
-    const availableCommands = Object.keys(commands);
-    const matches = availableCommands.filter((cmd) =>
-      cmd.toLowerCase().startsWith(currentInput.toLowerCase()),
-    );
+    const parts = currentInput.split(" ");
+    const firstPart = parts[0].toLowerCase();
 
-    return matches;
+    // If we're still typing the command name
+    if (parts.length === 1) {
+      const availableCommands = Object.keys(commands);
+      const matches = availableCommands.filter((cmd) =>
+        cmd.toLowerCase().startsWith(firstPart),
+      );
+      return matches;
+    }
+
+    // If we're typing arguments for specific commands
+    if (parts.length > 1) {
+      const command = firstPart;
+      const currentArg = parts[parts.length - 1];
+
+      if (command === "cd" || command === "cat" || command === "ls") {
+        // Get current directory contents for file/folder completion
+        try {
+          const current = fileSystem.getCurrentNode();
+          if (current.type === "directory" && current.children) {
+            const items = Object.keys(current.children);
+            return items.filter((item) =>
+              item.toLowerCase().startsWith(currentArg.toLowerCase()),
+            );
+          }
+        } catch {
+          return [];
+        }
+      }
+    }
+
+    return [];
   };
 
   // Handle keyboard events for history navigation and auto-completion
@@ -158,8 +281,10 @@ export const Terminal: React.FC = () => {
     e.preventDefault();
     if (!input.trim()) return;
 
-    const command = input.trim().toLowerCase();
     const userInput = input.trim();
+    const parts = userInput.split(" ");
+    const command = parts[0].toLowerCase();
+    const args = parts.slice(1);
 
     // Add command to history (avoid duplicates and don't save clear command)
     if (
@@ -193,8 +318,8 @@ export const Terminal: React.FC = () => {
       setMessages([]);
       setCommandHistory([]);
       setHistoryIndex(-1);
-    } else if (command.startsWith("echo ")) {
-      const echoText = command.substring(5);
+    } else if (command === "echo") {
+      const echoText = args.join(" ");
       setMessages((prev) => [
         ...prev,
         {
@@ -205,22 +330,34 @@ export const Terminal: React.FC = () => {
         },
       ]);
     } else if (commands[command]) {
-      const result = commands[command]();
-      setMessages((prev) => [
-        ...prev,
-        {
-          type: "response",
-          content: result,
-          timestamp: new Date(),
-          id: generateId(),
-        },
-      ]);
+      try {
+        const result = commands[command](args);
+        setMessages((prev) => [
+          ...prev,
+          {
+            type: "response",
+            content: result,
+            timestamp: new Date(),
+            id: generateId(),
+          },
+        ]);
+      } catch (error) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            type: "response",
+            content: `Error: ${(error as Error).message}`,
+            timestamp: new Date(),
+            id: generateId(),
+          },
+        ]);
+      }
     } else {
       setMessages((prev) => [
         ...prev,
         {
           type: "response",
-          content: `command not found: ${command}`,
+          content: `command not found: ${command}. Type 'help' for available commands.`,
           timestamp: new Date(),
           id: generateId(),
         },
@@ -319,10 +456,11 @@ export const Terminal: React.FC = () => {
                     <div className="flex">
                       <span className="text-green-400 mr-2">➔</span>
                       <span className="text-blue-400 mr-2">armancurr</span>
-                      <span className="text-green-400">git:(</span>
-                      <span className="text-pink-400">main</span>
-                      <span className="text-green-400 mr-2">)</span>
-                      <span className="text-green-400 mr-2">➔</span>
+                      <span className="text-green-400">@</span>
+                      <span className="text-purple-400">portfolio</span>
+                      <span className="text-green-400">:</span>
+                      <span className="text-yellow-400">~</span>
+                      <span className="text-green-400 mr-2">$</span>
                       <span className="">{message.content}</span>
                     </div>
                   )}
@@ -365,10 +503,13 @@ export const Terminal: React.FC = () => {
             <form onSubmit={handleSubmit} className="flex items-center">
               <span className="text-green-400 mr-2">➔</span>
               <span className="text-blue-400 mr-2">armancurr</span>
-              <span className="text-green-400">git:(</span>
-              <span className="text-pink-400">main</span>
-              <span className="text-green-400 mr-2">)</span>
-              <span className="text-green-400 mr-2">➔</span>
+              <span className="text-green-400">@</span>
+              <span className="text-purple-400">portfolio</span>
+              <span className="text-green-400">:</span>
+              <span className="text-yellow-400">
+                {fileSystem.getCurrentPathString()}
+              </span>
+              <span className="text-green-400 mr-2">$</span>
               <input
                 ref={inputRef}
                 type="text"
