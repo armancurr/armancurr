@@ -11,10 +11,16 @@ const welcomeBanner = `
 
 export const Figlet: React.FC = () => {
   return (
-    // The leading newline in the template literal adds some space, which is nice.
-    // The <pre> tag preserves the whitespace and formatting.
-    <pre className="text-green-400 font-mono text-xs leading-tight">
-      {welcomeBanner}
-    </pre>
+    <div>
+      <pre className="text-green-400 font-mono text-xs leading-tight">
+        {welcomeBanner}
+      </pre>
+      <div className="text-neutral-400 text-sm mt-2 font-sans">
+        Welcome to the interactive portfolio terminal
+      </div>
+      <div className="text-neutral-500 text-xs mt-1 font-sans">
+        Type 'help' to get started
+      </div>
+    </div>
   );
 };

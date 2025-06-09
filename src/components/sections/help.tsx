@@ -1,3 +1,4 @@
+"use client";
 import {
   User,
   Wrench,
@@ -5,78 +6,106 @@ import {
   At,
   Broom,
   ClockCounterClockwise,
-  Terminal,
+  ArrowUp,
+  ArrowDown,
+  Keyboard,
+  X,
 } from "@phosphor-icons/react";
+import type React from "react";
+
+interface HelpItem {
+  command: string;
+  description: string;
+  icon: React.ComponentType<any>;
+}
 
 export const Help = () => {
+  // Merge all actions (commands and navigation/shortcuts) into one array
+  const allHelpData: HelpItem[] = [
+    {
+      command: "about",
+      description: "Discover the essence of my journey",
+      icon: User,
+    },
+    {
+      command: "skills",
+      description: "Unveil the arsenal of my expertise",
+      icon: Wrench,
+    },
+    {
+      command: "projects",
+      description: "Witness the manifestation of my craft",
+      icon: FolderOpen,
+    },
+    {
+      command: "contact",
+      description: "Establish a pathway to communication",
+      icon: At,
+    },
+    {
+      command: "clear",
+      description: "Purge the terminal of all traces",
+      icon: Broom,
+    },
+    {
+      command: "history",
+      description: "View your previous commands",
+      icon: ClockCounterClockwise,
+    },
+    {
+      command: "↑",
+      description: "Navigate command history backwards",
+      icon: ArrowUp,
+    },
+    {
+      command: "↓",
+      description: "Navigate command history forwards",
+      icon: ArrowDown,
+    },
+    {
+      command: "Tab",
+      description: "Auto-complete your command",
+      icon: Keyboard,
+    },
+  ];
+
+  const handleCommandClick = (command: string) => {
+    navigator.clipboard
+      .writeText(command)
+      .then(() => {
+        // Optional: Show a "Copied!" toast notification
+      })
+      .catch((err) => {
+        console.error("Failed to copy: ", err);
+      });
+  };
+
   return (
-    <div className="space-y-2 font-mono">
-      <div className="mb-2 mt-2">Available commands:</div>
-
-      <div className="flex items-center gap-3">
-        <User size={16} className="text-blue-400" />
-        <span className="text-yellow-400">about</span>
-        <span className="text-gray-300">
-          - Discover the essence of my journey
-        </span>
-      </div>
-
-      <div className="flex items-center gap-3">
-        <Wrench size={16} className="text-orange-400" />
-        <span className="text-yellow-400">skills</span>
-        <span className="text-gray-300">
-          - Unveil the arsenal of my expertise
-        </span>
-      </div>
-
-      <div className="flex items-center gap-3">
-        <FolderOpen size={16} className="text-purple-400" />
-        <span className="text-yellow-400">projects</span>
-        <span className="text-gray-300">
-          - Witness the manifestation of my craft
-        </span>
-      </div>
-
-      <div className="flex items-center gap-3">
-        <At size={16} className="text-green-400" />
-        <span className="text-yellow-400">contact</span>
-        <span className="text-gray-300">
-          - Establish a pathway to communication
-        </span>
-      </div>
-
-      <div className="flex items-center gap-3">
-        <Broom size={16} className="text-red-400" />
-        <span className="text-yellow-400">clear</span>
-        <span className="text-gray-300">
-          - Purge the terminal of all traces
-        </span>
-      </div>
-
-      <div className="flex items-center gap-3">
-        <ClockCounterClockwise size={16} className="text-cyan-400" />
-        <span className="text-yellow-400">history</span>
-        <span className="text-gray-300">- View command history</span>
-      </div>
-
-      <div className="mt-8 mb-2">Navigation shortcuts:</div>
-
-      <div className="flex items-center gap-3">
-        <Terminal size={16} className="text-gray-400" />
-        <span className="text-yellow-400">↑ / ↓</span>
-        <span className="text-gray-300">- Navigate command history</span>
-      </div>
-
-      <div className="flex items-center gap-3">
-        <Terminal size={16} className="text-gray-400" />
-        <span className="text-yellow-400">Tab</span>
-        <span className="text-gray-300">- Auto-complete commands</span>
-      </div>
-
-      <div className="flex items-center gap-3">
-        <Terminal size={16} className="text-gray-400" />
-        <span className="text-yellow-400">Esc</span>
-        <span className="text-gray-300">- Hide auto-complete suggestions</span>
+    <div className="w-full max-w-4xl py-4">
+      <div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {allHelpData.map((item, index) => {
+            const IconComponent = item.icon;
+            return (
+              <div
+                key={index}
+                className="group relative rounded-md overflow-hidden cursor-pointer transform transition-all duration-200"
+                onClick={() => handleCommandClick(item.command)}
+                title={`Click to copy "${item.command}"`}
+              >
+                <div className="relative h-36 flex flex-col justify-center p-12 bg-transparent">
+                  <div className="flex items-center gap-2 mb-1">
+                    <IconComponent size={16} weight="fill" />
+                    <h3 className="text-md font-sans">{item.command}</h3>
+                  </div>
+                  <p className="text-sm text-neutral-400 leading-relaxed font-sans">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
