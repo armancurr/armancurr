@@ -14,14 +14,13 @@ export default function Portfolio() {
         return <Home setActiveTab={setActiveTab} />;
       case "projects":
         return <Projects />;
-      // Add other cases here
       default:
         return <Home setActiveTab={setActiveTab} />;
     }
   };
 
   return (
-    <div className="bg-nord-1200 min-h-screen">
+    <div className="bg-[#EEEEEE] min-h-screen">
       <main className="max-w-2xl mx-auto p-4 sm:p-6 flex flex-col min-h-screen">
         <Header activeTab={activeTab} setActiveTab={setActiveTab} />
         <div className="mt-6 flex-grow flex flex-col">{renderContent()}</div>

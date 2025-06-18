@@ -1,39 +1,12 @@
-// app/components/Projects.jsx
 import { ArrowRight } from "lucide-react";
 import { useEffect, useRef } from "react";
 
-// The new, self-contained card for each project in the feed.
 const ProjectDetailCard = ({ project, projectRef }) => (
   <div
     ref={projectRef}
-    className="p-6 bg-zinc-900 rounded-2xl border border-zinc-800 space-y-6"
+    className="p-4 bg-[#EEEEEE] rounded-2xl space-y-6"
   >
-    {/* --- Metadata Box --- */}
-    <div className="bg-zinc-800/50 p-4 rounded-lg space-y-2 text-sm">
-      <div className="flex justify-between">
-        <span className="text-zinc-400">Client</span>
-        <span className="text-white font-medium">{project.client}</span>
-      </div>
-      <div className="flex justify-between">
-        <span className="text-zinc-400">Project Type</span>
-        <span className="text-white font-medium">{project.projectType}</span>
-      </div>
-      <div className="flex justify-between">
-        <span className="text-zinc-400">Year</span>
-        <span className="text-white font-medium">{project.year}</span>
-      </div>
-    </div>
-
-    {/* --- Main Project Info --- */}
-    <div className="flex items-center gap-4">
-      <div
-        className={`w-14 h-14 flex items-center justify-center rounded-full text-2xl font-bold text-white ${project.logoColor}`}
-      >
-        {project.logo}
-      </div>
-      <h2 className="text-3xl font-bold text-white">{project.title}</h2>
-    </div>
-    <p className="text-zinc-400">{project.longDescription}</p>
+    <p className="text-[#373A40]">{project.longDescription}</p>
     <a
       href={project.websiteUrl}
       target="_blank"
@@ -47,8 +20,8 @@ const ProjectDetailCard = ({ project, projectRef }) => (
     <div>
       <img
         src={project.imageUrl}
-        alt={`${project.title} screenshot`}
-        className="w-full rounded-lg border border-zinc-800"
+        alt={`screenshot`}
+        className="w-full rounded-lg"
       />
     </div>
   </div>

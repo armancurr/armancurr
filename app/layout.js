@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${funnelSans.variable} antialiased bg-nord-1200 text-nord-300 font-mono`}
+        className={`${funnelSans.variable} antialiased bg-[#EEEEEE] text-[#EEEEEE]`}
       >
         {children}
       </body>

@@ -26,97 +26,90 @@ export default function Home({ setActiveTab }) {
       id: 1,
       title: "Rectangle",
       projectType: "Product design, Icon design",
-      imageUrl: "/sumanize.png", // Placeholder image
+      imageUrl: "/sumanize.png",
     },
     {
       id: 2,
       title: "Morva labs",
       projectType: "Visual design, Branding",
-      imageUrl: "/cometerm.png", // Placeholder image
+      imageUrl: "/cometerm.png",
     },
     {
       id: 3,
       title: "Flowkit",
       projectType: "Design System, UI Kit",
-      imageUrl: "/sumanize.png", // Placeholder image
+      imageUrl: "/sumanize.png",
     },
     {
       id: 4,
       title: "Portfolio",
       projectType: "Web Development",
-      imageUrl: "/file.png", // Placeholder image
+      imageUrl: "/file.png",
     },
     {
       id: 5,
       title: "E-commerce",
       projectType: "Full Stack Development",
-      imageUrl: "/cometerm.png", // Placeholder image
+      imageUrl: "/cometerm.png",
     },
   ];
 
-  // Handle project click - navigate to projects tab and scroll to specific project
   const handleProjectClick = (project) => {
     try {
-      // Store the project ID in sessionStorage so the Projects component can scroll to it
       sessionStorage.setItem("scrollToProject", project.id.toString());
       setActiveTab("projects");
     } catch (error) {
-      // If sessionStorage is not available, still navigate to projects tab
       console.log("SessionStorage not available:", error);
       setActiveTab("projects");
     }
   };
 
-  // Create duplicated array for infinite scroll effect
   const duplicatedProjects = [...projectData, ...projectData];
 
   return (
-    // Added flex-grow and flex-col to make this card fill the available space
-    <div className="p-4 bg-nord-1000 rounded-2xl border border-nord-950 flex flex-col flex-grow">
-      {/* --- Intro & About Section --- */}
-      <div className="mb-8">
-        {/* --- Location Map Section --- */}
-        <div className="mb-6">
-          <LocationMap />
-        </div>
-
-        {/* --- Centered About Me section --- */}
-        <div className="flex flex-col items-center justify-center text-center gap-4 mt-4">
-          <div className="flex flex-col items-center justify-center">
-            <h1 className="text-3xl font-bold text-white">
+    <div className="p-4 bg-[#373A40] rounded-2xl flex flex-col flex-grow">
+      {/* Card for Map, Description, and Socials */}
+      <div className="mb-4">
+        <div className="bg-[#EEEEEE] rounded-xl p-4 shadow-lg max-w-xl mx-auto w-full">
+          {/* Map */}
+          <div className="mb-20 w-full h-48">
+            <LocationMap />
+          </div>
+          {/* Description and Socials */}
+          <div className="flex flex-col items-center text-center gap-4 mt-4 w-full">
+            <h1 className="text-3xl font-bold">
               {/* Hey, I'm Arman 👋
               <span className="text-md text-zinc-400">
                 <br />
                 (urrman)
               </span> */}
             </h1>
-            <p className="mt-4 text-zinc-400 max-w-md">
+            <p className="mt-4 text-[#373A40] max-w-md">
               I'm a full-stack developer and a software enginnering student. I
               like to build blazing fast tools and products.
             </p>
-            {/* --- Social Links --- */}
             <div className="flex items-center justify-center gap-2 mt-4">
               <a
                 href="#"
-                className="p-2 bg-zinc-800 rounded-full hover:bg-zinc-700"
+                className="p-2 bg-[#686D76] rounded-full hover:bg-[#373A40]"
               >
                 <TwitterLogo size={18} />
               </a>
               <a
                 href="#"
-                className="p-2 bg-zinc-800 rounded-full hover:bg-zinc-700"
+                className="p-2 bg-[#686D76] rounded-full hover:bg-[#373A40]"
               >
                 <GithubLogo size={18} />
               </a>
               <a
                 href="#"
-                className="p-2 bg-zinc-800 rounded-full hover:bg-zinc-700"
+                className="p-2 bg-[#686D76] rounded-full hover:bg-[#373A40]"
               >
                 <LinkedinLogo size={18} />
               </a>
               <a
                 href="#"
-                className="p-2 bg-zinc-800 rounded-full hover:bg-zinc-700"
+                className="p-2 bg-[#686D76] rounded-full hover:bg-[#373A40]"
               >
                 <EnvelopeSimple size={18} />
               </a>
@@ -125,7 +118,7 @@ export default function Home({ setActiveTab }) {
         </div>
       </div>
 
-      {/* --- Project Preview Section --- */}
+      {/* Projects Section */}
       <div className="space-y-4">
         <div className="flex justify-between items-center">
           <h2 className="font-semibold text-white">
@@ -140,7 +133,6 @@ export default function Home({ setActiveTab }) {
           </button>
         </div>
 
-        {/* Infinite Scrolling Carousel */}
         <div className="relative overflow-hidden carousel-container">
           <div className="gap-4 project-carousel">
             {duplicatedProjects.map((project, index) => (
@@ -154,7 +146,6 @@ export default function Home({ setActiveTab }) {
         </div>
       </div>
 
-      {/* This spacer will grow and push content to fill remaining space */}
       <div className="flex-grow"></div>
     </div>
   );
