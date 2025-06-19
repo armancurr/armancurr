@@ -1,3 +1,4 @@
+```go
 arman := Human{
     Name:    "Arman Kar",
     Title:   "Software Engineering Student",
@@ -7,3 +8,4 @@ arman := Human{
     Website: "https://armancurr.vercel.app",
     SideProject: "https://sumanize.vercel.app",
 }
+```
