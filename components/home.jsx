@@ -5,18 +5,24 @@ import {
   LinkedinLogo,
   EnvelopeSimple,
 } from "@phosphor-icons/react";
+import Image from "next/image";
 import LocationMap from "./location-map";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import TechStack from "./tech-stack";
 
 const ProjectPreviewCard = ({ project, onClick }) => (
   <div
-    className="bg-zinc-900 p-3 rounded-xl border border-zinc-800 space-y-3 hover:bg-zinc-800 transition-colors cursor-pointer flex-shrink-0 w-56"
+    className="p-3 rounded-2xl bg-[#C0C9EE] space-y-3 hover:bg-[#FFF2E0] transition-colors duration-200 cursor-pointer flex-shrink-0 w-96"
     onClick={() => onClick(project)}
   >
-    <img
-      src={project.imageUrl}
-      alt={`${project.title} preview`}
-      className="w-full aspect-square object-cover rounded-lg border border-zinc-800"
-    />
+    <div className="w-full aspect-square overflow-hidden rounded-xl relative">
+      <Image
+        src={project.imageUrl}
+        alt={project.title}
+        fill
+        className="object-cover"
+      />
+    </div>
   </div>
 );
 
@@ -24,33 +30,21 @@ export default function Home({ setActiveTab }) {
   const projectData = [
     {
       id: 1,
-      title: "Rectangle",
+      title: "Sumanize",
       projectType: "Product design, Icon design",
-      imageUrl: "/sumanize.png",
+      imageUrl: "/sumanize-app.png",
     },
     {
       id: 2,
-      title: "Morva labs",
+      title: "File Converter",
       projectType: "Visual design, Branding",
-      imageUrl: "/cometerm.png",
+      imageUrl: "/file-converter.png",
     },
     {
-      id: 3,
-      title: "Flowkit",
-      projectType: "Design System, UI Kit",
-      imageUrl: "/sumanize.png",
-    },
-    {
-      id: 4,
-      title: "Portfolio",
-      projectType: "Web Development",
-      imageUrl: "/file.png",
-    },
-    {
-      id: 5,
-      title: "E-commerce",
-      projectType: "Full Stack Development",
-      imageUrl: "/cometerm.png",
+      id: 2,
+      title: "Typepot",
+      projectType: "Visual design, Branding",
+      imageUrl: "/typepoo.png",
     },
   ];
 
@@ -67,86 +61,112 @@ export default function Home({ setActiveTab }) {
   const duplicatedProjects = [...projectData, ...projectData];
 
   return (
-    <div className="p-4 bg-[#373A40] rounded-2xl flex flex-col flex-grow">
-      {/* Card for Map, Description, and Socials */}
-      <div className="mb-4">
-        <div className="bg-[#EEEEEE] rounded-xl p-4 shadow-lg max-w-xl mx-auto w-full">
-          {/* Map */}
-          <div className="mb-20 w-full h-48">
-            <LocationMap />
-          </div>
-          {/* Description and Socials */}
-          <div className="flex flex-col items-center text-center gap-4 mt-4 w-full">
-            <h1 className="text-3xl font-bold">
-              {/* Hey, I'm Arman 👋
-              <span className="text-md text-zinc-400">
+    <TooltipProvider>
+      <div className="p-6 bg-[#FFF2E0] border-4 border-[#C0C9EE] rounded-3xl flex flex-col flex-grow">
+        <div className="mb-6">
+          <div className="bg-[#898AC4] border-4 border-[#C0C9EE] rounded-2xl p-4 max-w-xl mx-auto w-full">
+            <div className="p-2 w-full h-64">
+              <LocationMap />
+            </div>
+            <div className="flex flex-col items-center text-center gap-4 w-full">
+              <h1 className="text-3xl text-[#FFF2E0] font-bold">
+                Hey, I'm Arman
                 <br />
-                (urrman)
-              </span> */}
-            </h1>
-            <p className="mt-4 text-[#373A40] max-w-md">
-              I'm a full-stack developer and a software enginnering student. I
-              like to build blazing fast tools and products.
-            </p>
-            <div className="flex items-center justify-center gap-2 mt-4">
-              <a
-                href="#"
-                className="p-2 bg-[#686D76] rounded-full hover:bg-[#373A40]"
-              >
-                <TwitterLogo size={18} />
-              </a>
-              <a
-                href="#"
-                className="p-2 bg-[#686D76] rounded-full hover:bg-[#373A40]"
-              >
-                <GithubLogo size={18} />
-              </a>
-              <a
-                href="#"
-                className="p-2 bg-[#686D76] rounded-full hover:bg-[#373A40]"
-              >
-                <LinkedinLogo size={18} />
-              </a>
-              <a
-                href="#"
-                className="p-2 bg-[#686D76] rounded-full hover:bg-[#373A40]"
-              >
-                <EnvelopeSimple size={18} />
-              </a>
+                <span className="text-sm text-[#C0C9EE]">-urrman-</span>
+              </h1>
+              <p className="text-[#FFF2E0] text-md font-medium max-w-md">
+                I'm a full-stack developer and a software engineering student. I
+                specialize in UI design with great attention to detail and I
+                like to build blazing fast tools.
+              </p>
+              <div className="flex items-center justify-center gap-2 mt-2 mb-2">
+                <a
+                  href="https://github.com/armancurr"
+                  target="_blank"
+                  className="p-3 rounded-full bg-[#A2AADB] hover:bg-[#898AC4] transition-colors duration-200"
+                >
+                  <GithubLogo
+                    size={18}
+                    weight="fill"
+                    className="text-[#FFF2E0]"
+                  />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/armancurr"
+                  target="_blank"
+                  className="p-3 rounded-full bg-[#A2AADB] hover:bg-[#898AC4] transition-colors duration-200"
+                >
+                  <LinkedinLogo
+                    size={18}
+                    weight="fill"
+                    className="text-[#FFF2E0]"
+                  />
+                </a>
+                <a
+                  href="https://x.com/rrucnamra"
+                  target="_blank"
+                  className="p-3 rounded-full bg-[#A2AADB] hover:bg-[#898AC4] transition-colors duration-200"
+                >
+                  <TwitterLogo
+                    size={18}
+                    weight="fill"
+                    className="text-[#FFF2E0]"
+                  />
+                </a>
+
+                <a
+                  href="mailto:armancurr@proton.me"
+                  target="_blank"
+                  className="p-3 rounded-full bg-[#A2AADB] hover:bg-[#898AC4] transition-colors duration-200"
+                >
+                  <EnvelopeSimple
+                    size={18}
+                    weight="fill"
+                    className="text-[#FFF2E0]"
+                  />
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Projects Section */}
-      <div className="space-y-4">
-        <div className="flex justify-between items-center">
-          <h2 className="font-semibold text-white">
-            <span className="text-zinc-500 mr-2">●</span>
-            Projects
-          </h2>
-          <button
-            onClick={() => setActiveTab("projects")}
-            className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-1"
-          >
-            View All <ArrowRight size={14} />
-          </button>
-        </div>
-
-        <div className="relative overflow-hidden carousel-container">
-          <div className="gap-4 project-carousel">
-            {duplicatedProjects.map((project, index) => (
-              <ProjectPreviewCard
-                key={`${project.id}-${index}`}
-                project={project}
-                onClick={handleProjectClick}
-              />
-            ))}
+        <div className="mb-6">
+          <div className="bg-[#898AC4] border-4 border-[#C0C9EE] rounded-2xl p-4 max-w-xl mx-auto w-full">
+            <TechStack />
           </div>
         </div>
-      </div>
 
-      <div className="flex-grow"></div>
-    </div>
+        <div className="">
+          <div className="bg-[#898AC4] border-4 border-[#C0C9EE] rounded-2xl p-4 max-w-xl mx-auto w-full">
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <h2 className="font-semibold text-[#FFF2E0]">
+                  Recent Projects
+                </h2>
+                <button
+                  onClick={() => setActiveTab("projects")}
+                  className="text-sm text-[#FFF2E0] hover:text-[#373A40] transition-colors flex items-center gap-1"
+                >
+                  View All <ArrowRight size={14} />
+                </button>
+              </div>
+              <div className="relative overflow-hidden carousel-container">
+                <div className="gap-4 project-carousel">
+                  {duplicatedProjects.map((project, index) => (
+                    <ProjectPreviewCard
+                      key={`${project.id}-${index}`}
+                      project={project}
+                      onClick={handleProjectClick}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex-grow"></div>
+      </div>
+    </TooltipProvider>
   );
 }

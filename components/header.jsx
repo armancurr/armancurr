@@ -1,74 +1,49 @@
-import {
-  HouseSimple,
-  SuitcaseSimple,
-  DownloadSimple,
-} from "@phosphor-icons/react";
-import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { House, FolderOpen, DownloadSimple } from "@phosphor-icons/react";
 
-const NavItem = ({ icon: Icon, tabId, activeTab, setActiveTab, tooltip }) => (
-  <Tooltip>
-    <TooltipTrigger asChild>
-      <Button
-        variant={activeTab === tabId ? "secondary" : "ghost"}
-        size="icon"
-        onClick={() => setActiveTab(tabId)}
-        className={`rounded-lg transition-colors duration-200 cursor-pointer ${
-          activeTab === tabId
-            ? "bg-[#DC5F00] text-[#EEEEEE]"
-            : "hover:bg-[#DC5F00] text-[#D1D8BE]"
-        }`}
-        aria-label={tooltip}
-      >
-        <Icon size={20} weight="fill" />
-      </Button>
-    </TooltipTrigger>
-    <TooltipContent side="bottom" className="ml-2 bg-[#686D76] text-[#EEEEEE]">{tooltip}</TooltipContent>
-  </Tooltip>
-);
+export default function Header({ setActiveTab, activeTab }) {
+  const getButtonClass = (tabName) => {
+    const baseClass =
+      "flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-colors duration-200 font-medium cursor-pointer";
+    const activeClass = "bg-[#898AC4] text-[#FFF2E0]";
+    const inactiveClass =
+      "bg-[#FFF2E0] hover:bg-[#A2AADB] hover:text-[#FFF2E0] text-[#898AC4]";
 
-export default function Header({ activeTab, setActiveTab }) {
+    return `${baseClass} ${activeTab === tabName ? activeClass : inactiveClass}`;
+  };
+
   return (
-    <TooltipProvider>
-      <header className="flex items-center justify-between bg-[#373A40] backdrop-blur-sm p-4 rounded-xl sticky top-4 z-10">
+    <header className="bg-[#FFF2E0] border-4 border-[#C0C9EE] rounded-2xl p-4 mb-6">
+      <div className="flex items-center justify-between">
         <nav className="flex items-center gap-2">
-          <NavItem
-            icon={HouseSimple}
-            tabId="home"
-            activeTab={activeTab}
-            setActiveTab={setActiveTab}
-            tooltip="Home"
-          />
-          <NavItem
-            icon={SuitcaseSimple}
-            tabId="projects"
-            activeTab={activeTab}
-            setActiveTab={setActiveTab}
-            tooltip="Projects"
-          />
+          <button
+            onClick={() => setActiveTab("home")}
+            className={getButtonClass("home")}
+            aria-label="Home"
+          >
+            <House size={16} weight="bold" />
+            <span className="text-sm">Home</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab("projects")}
+            className={getButtonClass("projects")}
+            aria-label="Projects"
+          >
+            <FolderOpen size={16} weight="bold" />
+            <span className="text-sm">Projects</span>
+          </button>
+
+          <a
+            href="/resume.pdf"
+            download
+            className="flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-[#FFF2E0] hover:bg-[#A2AADB] text-[#898AC4] hover:text-[#FFF2E0] transition-colors font-medium cursor-pointer"
+            aria-label="Download Resume"
+          >
+            <DownloadSimple size={16} weight="bold" />
+            <span className="text-sm">Resume</span>
+          </a>
         </nav>
-        <div className="flex items-center gap-2">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                onClick={() => setActiveTab("contact")}
-                variant="secondary"
-                className="flex items-center gap-2 bg-[#DC5F00] text-[#EEEEEE] text-sm py-2 px-4 rounded-lg cursor-pointer"
-                aria-label="Download Resume"
-              >
-                <DownloadSimple size={16} />
-                Resume
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent side="right" className="ml-2 bg-[#686D76] text-[#EEEEEE]">Download Resume</TooltipContent>
-          </Tooltip>
-        </div>
-      </header>
-    </TooltipProvider>
+      </div>
+    </header>
   );
 }

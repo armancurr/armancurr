@@ -6,7 +6,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-funnel-sans);
+  --font-sans: var(--font-anybody);
 
   /* Nord Color Family */
   --color-nord-50: #f8f9fb;
@@ -157,10 +157,9 @@
 }
 
 body {
-  font-family: var(--font-funnel-sans), sans-serif;
+  font-family: var(--font-anybody), sans-serif;
 }
 
-/* Custom styles for project carousel */
 .project-carousel {
   display: flex;
   animation: scroll-left 30s linear infinite;
@@ -168,7 +167,7 @@ body {
 }
 
 .project-carousel:hover {
-  animation-play-state: running; /* Keep animation running even on hover */
+  animation-play-state: running;
 }
 
 .carousel-container {
@@ -191,8 +190,8 @@ body {
   left: 0;
   background: linear-gradient(
     to right,
-    rgba(41, 46, 57, 1),
-    rgba(41, 46, 57, 0)
+    rgba(137, 138, 196, 1),
+    rgba(137, 138, 196, 0)
   );
 }
 
@@ -200,8 +199,8 @@ body {
   right: 0;
   background: linear-gradient(
     to left,
-    rgba(41, 46, 57, 1),
-    rgba(41, 46, 57, 0)
+    rgba(137, 138, 196, 1),
+    rgba(137, 138, 196, 0)
   );
 }
 
