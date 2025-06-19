@@ -86,7 +86,8 @@ export default function Projects() {
       longDescription:
         "A comprehensive product design and icon design project for Sumanize, focusing on creating an intuitive user experience.",
       websiteUrl: "https://sumanize.vercel.app",
-      githubUrl: "https://github.com/kalviumcommunity/S65_Arman_Capstone_Sumanize.git",
+      githubUrl:
+        "https://github.com/kalviumcommunity/S65_Arman_Capstone_Sumanize.git",
     },
     {
       id: 2,
