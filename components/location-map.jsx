@@ -281,7 +281,7 @@ export default function LocationMap() {
   }, []);
 
   return (
-    <div className="relative rounded-2xl overflow-hidden h-64">
+    <div className="relative rounded-xl border-4 border-[#C0C9EE] overflow-hidden h-56">
       <div
         ref={mapRef}
         className="absolute inset-0 w-full h-full"

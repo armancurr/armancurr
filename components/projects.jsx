@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 const ProjectDetailCard = ({ project, projectRef }) => (
   <div
     ref={projectRef}
-    className="p-4 bg-[#EEEEEE] rounded-2xl space-y-6"
+    className="p-6 bg-[#A2AADB] border-4 border-[#C0C9EE] rounded-2xl space-y-6 flex-shrink-0"
   >
     <p className="text-[#373A40]">{project.longDescription}</p>
     <a
@@ -21,7 +21,7 @@ const ProjectDetailCard = ({ project, projectRef }) => (
       <img
         src={project.imageUrl}
         alt={`screenshot`}
-        className="w-full rounded-lg"
+        className="w-full aspect-video object-cover rounded-lg"
       />
     </div>
   </div>
@@ -34,67 +34,27 @@ export default function Projects() {
   const projectData = [
     {
       id: 1,
-      logo: "R",
-      logoColor: "bg-indigo-500",
-      title: "Rectangle",
-      longDescription:
-        "A complete design system and component library built to streamline product development. Focused on accessibility, scalability, and a world-class developer experience.",
-      client: "Internal Project",
-      projectType: "Product Design, Icon Design",
-      year: "2024",
-      imageUrl: "/sumanize.png", // Replace with actual screenshot
+      title: "Sumanize",
+      projectType: "Product design, Icon design",
+      imageUrl: "/sumanize-app.png",
+      longDescription: "A product design and icon design project for Sumanize.",
       websiteUrl: "#",
     },
     {
       id: 2,
-      logo: "M",
-      logoColor: "bg-slate-700",
-      title: "Morva labs",
-      longDescription:
-        "Enhance your company's workforce management with a cutting-edge website. Enjoy seamless user experience, efficient employee management, and a competitive edge.",
-      client: "Nur Praditya",
+      title: "File Converter",
       projectType: "Visual design, Branding",
-      year: "2023",
-      imageUrl: "/sumanize.png", // Placeholder screenshot
+      imageUrl: "/file-converter.png",
+      longDescription:
+        "A visual design and branding project for File Converter.",
       websiteUrl: "#",
     },
     {
       id: 3,
-      logo: "F",
-      logoColor: "bg-green-600",
-      title: "Flowkit",
-      longDescription:
-        "A comprehensive design system and UI kit that provides developers and designers with a consistent set of components and guidelines for building modern applications.",
-      client: "Open Source",
-      projectType: "Design System, UI Kit",
-      year: "2024",
-      imageUrl: "/sumanize.png",
-      websiteUrl: "#",
-    },
-    {
-      id: 4,
-      logo: "P",
-      logoColor: "bg-purple-600",
-      title: "Portfolio",
-      longDescription:
-        "A modern, responsive portfolio website built with Next.js and Tailwind CSS. Features smooth animations, dark mode support, and optimized performance.",
-      client: "Personal Project",
-      projectType: "Web Development",
-      year: "2024",
-      imageUrl: "/sumanize.png",
-      websiteUrl: "#",
-    },
-    {
-      id: 5,
-      logo: "E",
-      logoColor: "bg-orange-600",
-      title: "E-commerce",
-      longDescription:
-        "A full-stack e-commerce platform with advanced features including payment integration, inventory management, and real-time analytics dashboard.",
-      client: "Startup Client",
-      projectType: "Full Stack Development",
-      year: "2024",
-      imageUrl: "/sumanize.png",
+      title: "Typepot",
+      projectType: "Visual design, Branding",
+      imageUrl: "/typepoo.png",
+      longDescription: "A visual design and branding project for Typepot.",
       websiteUrl: "#",
     },
   ];
@@ -120,23 +80,26 @@ export default function Projects() {
         }, 100);
       }
     } catch (error) {
-      // Handle case where sessionStorage is not available (e.g., in SSR)
       console.log("SessionStorage not available:", error);
     }
   }, []);
 
   return (
-    // The entire project feed is now wrapped in a single container card.
-    <div className="p-4 bg-nord-1000 rounded-2xl border border-nord-950">
-      {/* This container creates the "feed" effect with spacing between cards. */}
-      <div className="space-y-6">
-        {projectData.map((project) => (
-          <ProjectDetailCard
-            key={project.id}
-            project={project}
-            projectRef={(el) => (projectRefs.current[project.id] = el)}
-          />
-        ))}
+    <div className="p-6 bg-[#FFF2E0] border-4 border-[#C0C9EE] rounded-3xl flex flex-col flex-grow">
+      {/* Projects Card with Fixed Height and Scrollable Content */}
+      <div className="flex-grow">
+        <div className="bg-[#898AC4] border-4 border-[#C0C9EE] rounded-2xl p-6 max-w-xl mx-auto w-full h-full flex flex-col">
+          {/* Scrollable Content */}
+          <div className="flex-grow overflow-y-auto space-y-6 pr-2">
+            {projectData.map((project) => (
+              <ProjectDetailCard
+                key={project.id}
+                project={project}
+                projectRef={(el) => (projectRefs.current[project.id] = el)}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
