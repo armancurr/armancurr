@@ -4,4 +4,4 @@ dist
 .next
 .env.local
 .env.production
-.vercel
+*.vercel

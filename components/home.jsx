@@ -4,27 +4,25 @@ import {
   GithubLogo,
   LinkedinLogo,
   EnvelopeSimple,
-  DownloadSimple,
 } from "@phosphor-icons/react";
+import Image from "next/image";
 import LocationMap from "./location-map";
-import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import TechStack from "./tech-stack";
 
 const ProjectPreviewCard = ({ project, onClick }) => (
   <div
-    className="bg-[#C0C9EE] p-2 rounded-xl space-y-3 transition-colors cursor-pointer flex-shrink-0 w-96"
+    className="p-3 rounded-2xl bg-[#C0C9EE] space-y-3 hover:bg-[#FFF2E0] transition-colors duration-200 cursor-pointer flex-shrink-0 w-96"
     onClick={() => onClick(project)}
   >
-    <img
-      src={project.imageUrl}
-      alt={`${project.title} preview`}
-      className="w-full aspect-video object-cover rounded-lg border border-zinc-800"
-    />
+    <div className="w-full aspect-square overflow-hidden rounded-xl relative">
+      <Image
+        src={project.imageUrl}
+        alt={project.title}
+        fill
+        className="object-cover"
+      />
+    </div>
   </div>
 );
 
@@ -67,72 +65,79 @@ export default function Home({ setActiveTab }) {
       <div className="p-6 bg-[#FFF2E0] border-4 border-[#C0C9EE] rounded-3xl flex flex-col flex-grow">
         <div className="mb-6">
           <div className="bg-[#898AC4] border-4 border-[#C0C9EE] rounded-2xl p-4 max-w-xl mx-auto w-full">
-            <div className="p-2 w-full h-48">
+            <div className="p-2 w-full h-64">
               <LocationMap />
             </div>
-            <div className="flex justify-center mb-4">
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    onClick={() => setActiveTab("contact")}
-                    variant="secondary"
-                    className="flex items-center gap-2 bg-[#DC5F00] text-[#EEEEEE] text-sm py-2 px-4 rounded-lg cursor-pointer hover:bg-[#DC5F00]"
-                    aria-label="Download Resume"
-                  >
-                    <DownloadSimple size={16} />
-                    Resume
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent
-                  side="bottom"
-                  className="bg-[#686D76] text-[#EEEEEE]"
-                >
-                  Download Resume
-                </TooltipContent>
-              </Tooltip>
-            </div>
             <div className="flex flex-col items-center text-center gap-4 w-full">
-              <h1 className="text-3xl font-bold">
-                {/* Hey, I'm Arman 👋 */}
-                {/* <span className="text-md text-zinc-400"><br/>(urrman)</span> */}
+              <h1 className="text-3xl text-[#FFF2E0] font-bold">
+                Hey, I'm Arman
+                <br />
+                <span className="text-sm text-[#C0C9EE]">-urrman-</span>
               </h1>
-              <p className="text-[#FFF2E0] max-w-md">
-                I'm a full-stack developer and a software enginnering student. I
-                like to build blazing fast tools and products.
+              <p className="text-[#FFF2E0] text-md font-medium max-w-md">
+                I'm a full-stack developer and a software engineering student. I
+                specialize in UI design with great attention to detail and I
+                like to build blazing fast tools.
               </p>
               <div className="flex items-center justify-center gap-2 mt-2 mb-2">
                 <a
-                  href="#"
-                  className="p-2 bg-[#C0C9EE] rounded-full hover:bg-[#373A40]"
+                  href="https://github.com/armancurr"
+                  target="_blank"
+                  className="p-3 rounded-full bg-[#A2AADB] hover:bg-[#898AC4] transition-colors duration-200"
                 >
-                  <TwitterLogo size={18} />
+                  <GithubLogo
+                    size={18}
+                    weight="fill"
+                    className="text-[#FFF2E0]"
+                  />
                 </a>
                 <a
-                  href="#"
-                  className="p-2 bg-[#C0C9EE] rounded-full hover:bg-[#373A40]"
+                  href="https://www.linkedin.com/in/armancurr"
+                  target="_blank"
+                  className="p-3 rounded-full bg-[#A2AADB] hover:bg-[#898AC4] transition-colors duration-200"
                 >
-                  <GithubLogo size={18} />
+                  <LinkedinLogo
+                    size={18}
+                    weight="fill"
+                    className="text-[#FFF2E0]"
+                  />
                 </a>
                 <a
-                  href="#"
-                  className="p-2 bg-[#C0C9EE] rounded-full hover:bg-[#373A40]"
+                  href="https://x.com/rrucnamra"
+                  target="_blank"
+                  className="p-3 rounded-full bg-[#A2AADB] hover:bg-[#898AC4] transition-colors duration-200"
                 >
-                  <LinkedinLogo size={18} />
+                  <TwitterLogo
+                    size={18}
+                    weight="fill"
+                    className="text-[#FFF2E0]"
+                  />
                 </a>
+
                 <a
-                  href="#"
-                  className="p-2 bg-[#C0C9EE] rounded-full hover:bg-[#373A40]"
+                  href="mailto:armancurr@proton.me"
+                  target="_blank"
+                  className="p-3 rounded-full bg-[#A2AADB] hover:bg-[#898AC4] transition-colors duration-200"
                 >
-                  <EnvelopeSimple size={18} />
+                  <EnvelopeSimple
+                    size={18}
+                    weight="fill"
+                    className="text-[#FFF2E0]"
+                  />
                 </a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Card 2: Projects */}
+        <div className="mb-6">
+          <div className="bg-[#898AC4] border-4 border-[#C0C9EE] rounded-2xl p-4 max-w-xl mx-auto w-full">
+            <TechStack />
+          </div>
+        </div>
+
         <div className="">
-          <div className="bg-[#898AC4] border-4 border-[#C0C9EE] rounded-2xl p-4 shadow-lg max-w-xl mx-auto w-full">
+          <div className="bg-[#898AC4] border-4 border-[#C0C9EE] rounded-2xl p-4 max-w-xl mx-auto w-full">
             <div className="space-y-4">
               <div className="flex justify-between items-center">
                 <h2 className="font-semibold text-[#FFF2E0]">

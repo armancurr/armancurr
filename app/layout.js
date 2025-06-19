@@ -1,8 +1,8 @@
-import { Funnel_Sans } from "next/font/google";
+import { Anybody } from "next/font/google";
 import "./globals.css";
 
-const funnelSans = Funnel_Sans({
-  variable: "--font-funnel-sans",
+const anybody = Anybody({
+  variable: "--font-anybody",
   subsets: ["latin"],
 });
 
@@ -14,7 +14,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${funnelSans.variable} antialiased bg-[#898AC4]`}>
+      <body className={`${anybody.variable} antialiased bg-[#898AC4]`}>
         {children}
       </body>
     </html>
