@@ -130,13 +130,13 @@ export default function Home({ setActiveTab }) {
           </div>
         </div>
 
-        <div className="mb-6">
+        <div className="">
           <div className="bg-[#898AC4] border-4 border-[#C0C9EE] rounded-2xl p-4 max-w-xl mx-auto w-full">
             <TechStack />
           </div>
         </div>
 
-        <div className="">
+        {/* <div className="">
           <div className="bg-[#898AC4] border-4 border-[#C0C9EE] rounded-2xl p-4 max-w-xl mx-auto w-full">
             <div className="space-y-4">
               <div className="flex justify-between items-center">
@@ -163,7 +163,7 @@ export default function Home({ setActiveTab }) {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="flex-grow"></div>
       </div>
