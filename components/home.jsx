@@ -1,65 +1,14 @@
 import {
-  ArrowRight,
   TwitterLogo,
   GithubLogo,
   LinkedinLogo,
   EnvelopeSimple,
 } from "@phosphor-icons/react";
-import Image from "next/image";
 import LocationMap from "./location-map";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import TechStack from "./tech-stack";
 
-const ProjectPreviewCard = ({ project, onClick }) => (
-  <div
-    className="p-3 rounded-2xl bg-[#C0C9EE] space-y-3 hover:bg-[#FFF2E0] transition-colors duration-200 cursor-pointer flex-shrink-0 w-96"
-    onClick={() => onClick(project)}
-  >
-    <div className="w-full aspect-square overflow-hidden rounded-xl relative">
-      <Image
-        src={project.imageUrl}
-        alt={project.title}
-        fill
-        className="object-cover"
-      />
-    </div>
-  </div>
-);
-
-export default function Home({ setActiveTab }) {
-  const projectData = [
-    {
-      id: 1,
-      title: "Sumanize",
-      projectType: "Product design, Icon design",
-      imageUrl: "/sumanize-app.png",
-    },
-    {
-      id: 2,
-      title: "File Converter",
-      projectType: "Visual design, Branding",
-      imageUrl: "/file-converter.png",
-    },
-    {
-      id: 2,
-      title: "Typepot",
-      projectType: "Visual design, Branding",
-      imageUrl: "/typepoo.png",
-    },
-  ];
-
-  const handleProjectClick = (project) => {
-    try {
-      sessionStorage.setItem("scrollToProject", project.id.toString());
-      setActiveTab("projects");
-    } catch (error) {
-      console.log("SessionStorage not available:", error);
-      setActiveTab("projects");
-    }
-  };
-
-  const duplicatedProjects = [...projectData, ...projectData];
-
+export default function Home() {
   return (
     <TooltipProvider>
       <div className="p-6 bg-[#FFF2E0] border-4 border-[#C0C9EE] rounded-3xl flex flex-col flex-grow">
@@ -72,7 +21,7 @@ export default function Home({ setActiveTab }) {
               <h1 className="text-3xl text-[#FFF2E0] font-bold">
                 Hey, I'm Arman
                 <br />
-                <span className="text-sm text-[#C0C9EE]">-urrman-</span>
+                <span className="text-sm text-[#C0C9EE]">(urr-man)</span>
               </h1>
               <p className="text-[#FFF2E0] text-md font-medium max-w-md">
                 I'm a full-stack developer and a software engineering student. I

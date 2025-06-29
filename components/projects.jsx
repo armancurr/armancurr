@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import { GlobeSimple, GithubLogo } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -91,13 +90,13 @@ export default function Projects() {
     },
     {
       id: 2,
-      title: "Image Converter",
+      title: "Imaverter",
       projectType: ["converter", "image"],
       imageUrl: "/file.png",
       longDescription:
         "Complete visual design and branding solution for File Converter, emphasizing clean aesthetics and functionality.",
-      websiteUrl: "https://test-file-converter.vercel.app",
-      githubUrl: "https://github.com/armancurr/file-converter.git",
+      websiteUrl: "https://imaverter.vercel.app",
+      githubUrl: "https://github.com/armancurr/imaverter.git",
     },
     {
       id: 3,
@@ -107,7 +106,7 @@ export default function Projects() {
       longDescription:
         "Visual design and branding project for Typepot, creating a cohesive brand identity and user interface.",
       websiteUrl: "https://typepoo.vercel.app",
-      githubUrl: "https://github.com/cometerm/comet-typepoo.git",
+      githubUrl: "https://github.com/cometerm/typepoo.git",
     },
   ];
 
