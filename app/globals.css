@@ -6,39 +6,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-anybody);
-
-  /* Nord Color Family */
-  --color-nord-50: #f8f9fb;
-  --color-nord-100: #eceff4;
-  --color-nord-200: #e5e9f0;
-  --color-nord-300: #d8dee9;
-  --color-nord-400: #c4cdd9;
-  --color-nord-500: #9aa4b5;
-  --color-nord-600: #6e7887;
-  --color-nord-700: #4c566a;
-  --color-nord-800: #434c5e;
-  --color-nord-900: #3b4252;
-  --color-nord-950: #2e3440;
-  --color-nord-1000: #292e39;
-  --color-nord-1050: #242933;
-  --color-nord-1100: #20242c;
-  --color-nord-1150: #1b1f26;
-  --color-nord-1200: #171920;
-  --color-nord-1250: #121419;
-  --color-nord-1300: #0d0f13;
-  /* Frost Colors */
-  --color-frost-mint: #8fbcbb;
-  --color-frost-blue: #88c0d0;
-  --color-frost-ice: #81a1c1;
-  --color-frost-polar: #5e81ac;
-
-  /* Aurora Colors */
-  --color-aurora-red: #bf616a;
-  --color-aurora-orange: #d08770;
-  --color-aurora-yellow: #ebcb8b;
-  --color-aurora-green: #a3be8c;
-  --color-aurora-purple: #b48ead;
+  --font-sans: var(--font-funnel-sans);
 
   /* Existing theme colors */
   --color-sidebar-ring: var(--sidebar-ring);
@@ -153,55 +121,8 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-funnel-sans), sans-serif;
   }
-}
-
-body {
-  font-family: var(--font-anybody), sans-serif;
-}
-
-.project-carousel {
-  display: flex;
-  animation: scroll-left 30s linear infinite;
-  width: max-content;
-}
-
-.project-carousel:hover {
-  animation-play-state: running;
-}
-
-.carousel-container {
-  position: relative;
-  width: 100%;
-}
-
-.carousel-container::before,
-.carousel-container::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 2rem;
-  z-index: 10;
-  pointer-events: none;
-}
-
-.carousel-container::before {
-  left: 0;
-  background: linear-gradient(
-    to right,
-    rgba(137, 138, 196, 1),
-    rgba(137, 138, 196, 0)
-  );
-}
-
-.carousel-container::after {
-  right: 0;
-  background: linear-gradient(
-    to left,
-    rgba(137, 138, 196, 1),
-    rgba(137, 138, 196, 0)
-  );
 }
 
 @keyframes scroll-left {
