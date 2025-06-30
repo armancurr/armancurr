@@ -1,9 +1,9 @@
 ```ts
 const arman: Human = {
-    name:      "Arman Kar",
-    title:     "Software Engineering Student",
+    name:      "arman kar",
+    title:     "software engineering student",
     hobbies:   ["philosophy", "basketball", "programming"],
-    plan:      "Ship fast and useful developer tools, and contribute to open-source ones.",
+    plan:      "ship fast and useful developer tools, and contribute to open-source ones.",
     portfolio: "https://armancurr.vercel.app",
 }
 ```
