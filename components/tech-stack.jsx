@@ -57,9 +57,9 @@ export default function TechStack() {
         {technologies.map((tech, index) => (
           <div
             key={index}
-            className="flex flex-col items-center justify-center p-4 hover:bg-[#A2AADB] rounded-xl transition-colors duration-200 text-[#FFF2E0]"
+            className="flex flex-col items-center justify-center p-4 hover:bg-zinc-800/20 rounded-xl transition-colors duration-200 text-zinc-100"
           >
-            <div className="flex items-center bg-[#FFF2E0] p-2 rounded-full justify-center mb-3">
+            <div className="flex items-center bg-zinc-200 p-2 rounded-full justify-center mb-3">
               {tech.icon}
             </div>
             <p className="text-xs font-medium text-center line-clamp-3 leading-relaxed">

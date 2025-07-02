@@ -20,7 +20,7 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="bg-[#898AC4] min-h-screen">
+    <div className="bg-zinc-900 min-h-screen">
       <main className="max-w-2xl mx-auto sm:p-6 flex flex-col min-h-screen">
         <Header setActiveTab={setActiveTab} activeTab={activeTab} />
         <div className="flex-grow flex flex-col">{renderContent()}</div>

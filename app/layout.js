@@ -18,7 +18,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${funnel_sans.variable} antialiased bg-[#898AC4]`}>
+      <body className={`${funnel_sans.variable} antialiased bg-zinc-900`}>
         {children}
       </body>
     </html>
