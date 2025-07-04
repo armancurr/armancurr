@@ -3,16 +3,17 @@ import { House, FolderOpen, DownloadSimple } from "@phosphor-icons/react";
 export default function Header({ setActiveTab, activeTab }) {
   const getButtonClass = (tabName) => {
     const baseClass =
-      "flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-colors duration-200 font-medium cursor-pointer";
-    const activeClass = "bg-[#898AC4] text-[#FFF2E0]";
+      "flex items-center justify-center gap-2 px-6 py-2 rounded-lg transition-colors duration-200 font-medium cursor-pointer";
+    const activeClass =
+      "bg-gradient-to-b from-zinc-700 to-zinc-800 border-2 border-zinc-700 hover:bg-gradient-to-b hover:from-zinc-800 hover:to-zinc-900 text-zinc-100";
     const inactiveClass =
-      "bg-[#FFF2E0] hover:bg-[#A2AADB] hover:text-[#FFF2E0] text-[#898AC4]";
+      "bg-gradient-to-b from-zinc-700 to-zinc-800 border-2 border-zinc-700 hover:bg-gradient-to-b hover:from-zinc-800 hover:to-zinc-900 hover:text-zinc-100 text-zinc-100";
 
     return `${baseClass} ${activeTab === tabName ? activeClass : inactiveClass}`;
   };
 
   return (
-    <header className="bg-[#FFF2E0] border-4 border-[#C0C9EE] rounded-2xl p-4 mb-6">
+    <header className="bg-zinc-900 border-2 border-zinc-700 rounded-2xl p-4 mb-6">
       <div className="flex items-center justify-between">
         <nav className="flex items-center gap-2">
           <button
@@ -36,7 +37,7 @@ export default function Header({ setActiveTab, activeTab }) {
           <a
             href="/resume.pdf"
             download
-            className="flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-[#FFF2E0] hover:bg-[#A2AADB] text-[#898AC4] hover:text-[#FFF2E0] transition-colors font-medium cursor-pointer"
+            className="flex items-center justify-center gap-2 px-6 py-2 rounded-lg bg-gradient-to-b from-zinc-700 to-zinc-800 border-2 border-zinc-700 hover:bg-gradient-to-b hover:from-zinc-800 hover:to-zinc-900 text-zinc-100 hover:text-zinc-100 transition-colors font-medium cursor-pointer"
             aria-label="Download Resume"
           >
             <DownloadSimple size={16} weight="bold" />

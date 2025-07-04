@@ -1,22 +1,21 @@
 import { useState, useEffect, useRef } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
 import { Spinner } from "@phosphor-icons/react";
+import { motion, AnimatePresence } from "motion/react";
 
 export default function LocationMap() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const mapRef = useRef(null);
-  const googleMapRef = useRef(null);
 
-  const westBengalLocation = {
+  const kolkataLocation = {
     lat: 22.5726,
     lng: 88.3639,
   };
 
   useEffect(() => {
     const initializeMap = async () => {
-      const apiKey =
-        process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "your_api_key_here";
+      const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
       if (apiKey === "your_api_key_here") {
         setError(
@@ -30,103 +29,123 @@ export default function LocationMap() {
         const loader = new Loader({
           apiKey: apiKey,
           version: "weekly",
-          libraries: ["places", "geometry"],
         });
 
         const google = await loader.load();
 
         if (mapRef.current) {
           const map = new google.maps.Map(mapRef.current, {
-            center: westBengalLocation,
-            zoom: 5,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            center: kolkataLocation,
+            zoom: 6,
             disableDefaultUI: true,
+            keyboardShortcuts: false,
+            mapTypeControl: false,
+            zoomControl: false,
+            streetViewControl: false,
+            scaleControl: false,
+            rotateControl: false,
+            fullscreenControl: false,
+            disableDoubleClickZoom: false,
             styles: [
+              { elementType: "geometry", stylers: [{ color: "#18181b" }] },
               {
-                featureType: "landscape",
-                elementType: "geometry.fill",
-                stylers: [{ color: "#FFF2E0" }],
+                elementType: "labels.text.stroke",
+                stylers: [{ color: "#18181b" }],
               },
               {
-                featureType: "water",
-                elementType: "geometry.fill",
-                stylers: [{ color: "#A2AADB" }],
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#a1a1aa" }],
+              },
+              {
+                featureType: "administrative.locality",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#e4e4e7" }],
+              },
+              {
+                featureType: "poi",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#a1a1aa" }],
+              },
+              {
+                featureType: "poi.park",
+                elementType: "geometry",
+                stylers: [{ color: "#27272a" }],
               },
               {
                 featureType: "road",
                 elementType: "geometry",
-                stylers: [{ color: "#A2AADB" }, { lightness: 50 }],
+                stylers: [{ color: "#3f3f46" }],
               },
               {
-                featureType: "administrative",
+                featureType: "road",
+                elementType: "geometry.stroke",
+                stylers: [{ color: "#27272a" }],
+              },
+              {
+                featureType: "road.highway",
                 elementType: "geometry",
-                stylers: [{ color: "#A2AADB" }],
+                stylers: [{ color: "#52525b" }],
               },
               {
-                featureType: "poi",
-                elementType: "geometry.fill",
-                stylers: [{ color: "#FFF2E0" }],
-              },
-              {
-                featureType: "transit",
-                elementType: "all",
-                stylers: [{ visibility: "off" }],
-              },
-              {
-                featureType: "poi.business",
-                elementType: "labels",
-                stylers: [{ visibility: "off" }],
-              },
-              {
-                featureType: "all",
-                elementType: "labels.icon",
-                stylers: [{ visibility: "off" }],
-              },
-              {
-                featureType: "all",
-                elementType: "labels.text.fill",
-                stylers: [{ color: "#A2AADB" }],
-              },
-              {
-                featureType: "all",
-                elementType: "labels.text.stroke",
-                stylers: [{ color: "#FFF2E0" }],
+                featureType: "water",
+                elementType: "geometry",
+                stylers: [{ color: "#09090b" }],
               },
             ],
           });
 
-          const marker = new google.maps.Marker({
-            position: westBengalLocation,
+          new google.maps.Marker({
+            position: kolkataLocation,
             map: map,
             title: "West Bengal, India",
             icon: {
               url:
                 "data:image/svg+xml;charset=UTF-8," +
                 encodeURIComponent(`
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="20" cy="20" r="8" fill="#bf616a" stroke="#FFF2E0" stroke-width="2"/>
-                    <circle cx="20" cy="20" r="3" fill="#FFF2E0"/>
-                  </svg>
-                `),
-              scaledSize: new google.maps.Size(40, 40),
-              anchor: new google.maps.Point(20, 20),
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="8" fill="#18181b" stroke="#e4e4e7" stroke-width="2"/>
+                  <circle cx="12" cy="12" r="3" fill="#e4e4e7"/>
+                </svg>
+              `),
+              scaledSize: new google.maps.Size(24, 24),
+              anchor: new google.maps.Point(12, 12),
             },
           });
 
-          const infoWindow = new google.maps.InfoWindow({
-            content: `
-              <div style="padding: 10px; font-family: Arial, sans-serif;">
-                <h3 style="margin: 0 0 5px 0; color: #333;">West Bengal</h3>
-                <p style="margin: 0; color: #666; font-size: 14px;">India</p>
-              </div>
-            `,
-          });
+          const hideElements = () => {
+            const mapContainer = mapRef.current;
+            if (mapContainer) {
+              const style = document.createElement("style");
+              style.textContent = `
+                .gm-style-cc,
+                .gm-style .gm-style-cc,
+                .gm-style-mtc,
+                .gm-bundled-control,
+                .gm-fullscreen-control,
+                .gmnoprint,
+                .gm-style-cc a,
+                .gm-style-cc span,
+                .gm-style-cc div,
+                [title="Open this area in Google Maps (opens a new window)"],
+                [title="Click to toggle between metric and imperial units"],
+                [title="Map Data"],
+                [title="Keyboard shortcuts"],
+                [title="Terms of Use"] {
+                  display: none !important;
+                }
+                .gm-style .gm-style-iw-c {
+                  display: none !important;
+                }
+                .gm-style .gm-style-iw-t::after {
+                  display: none !important;
+                }
+              `;
+              document.head.appendChild(style);
+            }
+          };
 
-          marker.addListener("click", () => {
-            infoWindow.open(map, marker);
-          });
+          setTimeout(hideElements, 1000);
 
-          googleMapRef.current = map;
           setIsLoading(false);
         }
       } catch (err) {
@@ -140,37 +159,57 @@ export default function LocationMap() {
   }, []);
 
   return (
-    <div className="relative rounded-xl border-4 border-[#C0C9EE] overflow-hidden h-56">
-      <div
+    <div className="relative rounded-xl border border-zinc-700 overflow-hidden h-56">
+      {/* Map container - always present for Google Maps to attach to */}
+      <motion.div
         ref={mapRef}
-        className="absolute inset-0 w-full h-full"
-        style={{ minHeight: "100%" }}
+        className="w-full h-full"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isLoading || error ? 0 : 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       />
 
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-nord-200 text-sm">
-            <Spinner size={24} className="animate-spin" />
-          </div>
-        </div>
-      )}
+      {/* Loading spinner */}
+      <AnimatePresence>
+        {isLoading && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute inset-0 flex items-center justify-center bg-zinc-900"
+          >
+            <Spinner size={20} className="animate-spin text-zinc-400" />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {error && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-          <div className="text-red-600 text-sm text-center px-4">
-            {error}
-            <br />
-            <span className="text-xs text-gray-500">
-              Get your API key from Google Cloud Console
-            </span>
-          </div>
-        </div>
-      )}
+      {/* Error state */}
+      <AnimatePresence>
+        {error && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute inset-0 flex items-center justify-center bg-zinc-900"
+          >
+            <div className="text-zinc-400 text-sm text-center px-4">
+              {error}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      <div className="absolute top-4 left-4 bg-neutral-800/50 backdrop-blur-sm rounded-lg px-3 py-2">
+      {/* Location label */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isLoading || error ? 0 : 1 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="absolute top-4 left-4 bg-zinc-800/50 backdrop-blur-sm rounded-lg px-3 py-2"
+      >
         <div className="text-white text-sm font-medium">West Bengal</div>
         <div className="text-white/80 text-xs">India</div>
-      </div>
+      </motion.div>
     </div>
   );
 }

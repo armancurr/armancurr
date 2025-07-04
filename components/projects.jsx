@@ -6,38 +6,41 @@ import { Badge } from "@/components/ui/badge";
 const ProjectCard = ({ project, projectRef }) => (
   <div
     ref={projectRef}
-    className="bg-[#898AC4] border-4 border-[#C0C9EE] rounded-2xl p-6 space-y-4"
+    className="bg-zinc-900 border-2 border-zinc-600 rounded-2xl p-6 space-y-4"
   >
     <div className="space-y-3">
       <div className="flex items-center gap-3">
-        <h3 className="text-2xl font-semibold text-[#FFF2E0]">
+        <h3 className="text-2xl font-semibold text-zinc-200">
           {project.title}
         </h3>
       </div>
       <div className="flex flex-wrap gap-2">
         {project.projectType.map((type, idx) => (
-          <Badge key={idx} className="text-sm bg-[#C0C9EE] text-[#898AC4]">
+          <Badge
+            key={idx}
+            className="text-xs bg-gradient-to-b from-zinc-700 to-zinc-800 border-2 border-zinc-700 text-zinc-100"
+          >
             {type}
           </Badge>
         ))}
       </div>
-      <p className="text-[#FFF2E0] text-sm leading-relaxed">
+      <p className="text-zinc-200 text-sm leading-relaxed">
         {project.longDescription}
       </p>
     </div>
 
-    <div className="flex gap-3 justify-end">
+    <div className="flex gap-3 w-full">
       <Button
         asChild
         variant="default"
-        size="lg"
-        className="bg-[#FFF2E0] rounded-lg text-[#373A40] hover:bg-[#C0C9EE] transition-colors duration-200"
+        size="sm"
+        className="bg-gradient-to-b from-zinc-200 to-zinc-500 rounded-lg text-zinc-950 bg-gradient-to-b from-zinc-200 to-zinc-500 hover:bg-gradient-to-b hover:from-zinc-300 hover:to-zinc-600 transition-colors duration-200 flex-1"
       >
         <a
           href={project.websiteUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2"
+          className="inline-flex items-center gap-2 justify-center"
         >
           <GlobeSimple size={14} weight="bold" /> Visit Website
         </a>
@@ -46,14 +49,14 @@ const ProjectCard = ({ project, projectRef }) => (
       <Button
         asChild
         variant="default"
-        size="lg"
-        className="bg-[#FFF2E0] rounded-lg text-[#373A40] hover:bg-[#C0C9EE] transition-colors duration-200"
+        size="sm"
+        className="bg-gradient-to-b from-zinc-200 to-zinc-500 rounded-lg text-zinc-950 bg-gradient-to-b from-zinc-200 to-zinc-500 hover:bg-gradient-to-b hover:from-zinc-300 hover:to-zinc-600 transition-colors duration-200 flex-1"
       >
         <a
           href={project.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2"
+          className="inline-flex items-center gap-2 justify-center"
         >
           <GithubLogo size={14} weight="bold" /> View Source
         </a>
@@ -133,7 +136,7 @@ export default function Projects() {
   }, []);
 
   return (
-    <div className="p-6 bg-[#FFF2E0] border-4 border-[#C0C9EE] rounded-3xl flex flex-col flex-grow">
+    <div className="p-6 bg-zinc-900 border-2 border-zinc-600 rounded-3xl flex flex-col flex-grow">
       <div className="space-y-6 overflow-y-auto max-w-2xl mx-auto w-full">
         {projectData.map((project) => (
           <ProjectCard
