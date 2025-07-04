@@ -18,7 +18,7 @@ export default function Home() {
               <LocationMap />
             </div>
             <div className="flex flex-col items-start pl-2 gap-4 w-full">
-              <h1 className="text-2xl text-zinc-100 font-bold mb-2">
+              <h1 className="text-2xl text-zinc-100 font-bold mt-2">
                 Hey, I'm Arman{" "}
                 <span className="text-sm text-zinc-400">(urr-maan)</span>
               </h1>
@@ -26,11 +26,11 @@ export default function Home() {
                 I'm a full-stack developer and a software engineering student. I
                 specialize in UI design with great attention to detail.
               </p>
-              <div className="flex items-start justify-end gap-2 mb-4 pr-2 self-end">
+              <div className="flex items-start justify-end gap-2 mb-4 pr-2">
                 <a
                   href="https://github.com/armancurr"
                   target="_blank"
-                  className="p-3 rounded-full bg-zinc-800 hover:bg-zinc-900 transition-colors duration-200"
+                  className="p-3 rounded-full bg-gradient-to-b from-zinc-700 to-zinc-800 border-2 border-zinc-700 hover:bg-gradient-to-b hover:from-zinc-800 hover:to-zinc-900 transition-colors duration-200"
                 >
                   <GithubLogo
                     size={18}
@@ -41,7 +41,7 @@ export default function Home() {
                 <a
                   href="https://www.linkedin.com/in/armancurr"
                   target="_blank"
-                  className="p-3 rounded-full bg-zinc-800 hover:bg-zinc-900 transition-colors duration-200"
+                  className="p-3 rounded-full bg-gradient-to-b from-zinc-700 to-zinc-800 border-2 border-zinc-700 hover:bg-gradient-to-b hover:from-zinc-800 hover:to-zinc-900 transition-colors duration-200"
                 >
                   <LinkedinLogo
                     size={18}
@@ -52,7 +52,7 @@ export default function Home() {
                 <a
                   href="https://x.com/rrucnamra"
                   target="_blank"
-                  className="p-3 rounded-full bg-zinc-800 hover:bg-zinc-900 transition-colors duration-200"
+                  className="p-3 rounded-full bg-gradient-to-b from-zinc-700 to-zinc-800 border-2 border-zinc-700 hover:bg-gradient-to-b hover:from-zinc-800 hover:to-zinc-900 transition-colors duration-200"
                 >
                   <TwitterLogo
                     size={18}
@@ -64,7 +64,7 @@ export default function Home() {
                 <a
                   href="mailto:armancurr@proton.me"
                   target="_blank"
-                  className="p-3 rounded-full bg-zinc-800 hover:bg-zinc-900 transition-colors duration-200"
+                  className="p-3 rounded-full bg-gradient-to-b from-zinc-700 to-zinc-800 border-2 border-zinc-700 hover:bg-gradient-to-b hover:from-zinc-800 hover:to-zinc-900 transition-colors duration-200"
                 >
                   <EnvelopeSimple
                     size={18}

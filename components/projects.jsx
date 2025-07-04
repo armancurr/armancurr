@@ -16,7 +16,10 @@ const ProjectCard = ({ project, projectRef }) => (
       </div>
       <div className="flex flex-wrap gap-2">
         {project.projectType.map((type, idx) => (
-          <Badge key={idx} className="text-sm bg-zinc-300 text-zinc-800">
+          <Badge
+            key={idx}
+            className="text-xs bg-gradient-to-b from-zinc-700 to-zinc-800 border-2 border-zinc-700 text-zinc-100"
+          >
             {type}
           </Badge>
         ))}
@@ -31,7 +34,7 @@ const ProjectCard = ({ project, projectRef }) => (
         asChild
         variant="default"
         size="sm"
-        className="bg-zinc-200 rounded-lg text-zinc-900 hover:bg-zinc-200 transition-colors duration-200 flex-1"
+        className="bg-gradient-to-b from-zinc-200 to-zinc-500 rounded-lg text-zinc-950 bg-gradient-to-b from-zinc-200 to-zinc-500 hover:bg-gradient-to-b hover:from-zinc-300 hover:to-zinc-600 transition-colors duration-200 flex-1"
       >
         <a
           href={project.websiteUrl}
@@ -47,7 +50,7 @@ const ProjectCard = ({ project, projectRef }) => (
         asChild
         variant="default"
         size="sm"
-        className="bg-zinc-200 rounded-lg text-zinc-900 hover:bg-zinc-200 transition-colors duration-200 flex-1"
+        className="bg-gradient-to-b from-zinc-200 to-zinc-500 rounded-lg text-zinc-950 bg-gradient-to-b from-zinc-200 to-zinc-500 hover:bg-gradient-to-b hover:from-zinc-300 hover:to-zinc-600 transition-colors duration-200 flex-1"
       >
         <a
           href={project.githubUrl}

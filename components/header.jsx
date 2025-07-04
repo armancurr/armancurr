@@ -4,9 +4,10 @@ export default function Header({ setActiveTab, activeTab }) {
   const getButtonClass = (tabName) => {
     const baseClass =
       "flex items-center justify-center gap-2 px-6 py-2 rounded-lg transition-colors duration-200 font-medium cursor-pointer";
-    const activeClass = "bg-zinc-800 text-zinc-100";
+    const activeClass =
+      "bg-gradient-to-b from-zinc-700 to-zinc-800 border-2 border-zinc-700 hover:bg-gradient-to-b hover:from-zinc-800 hover:to-zinc-900 text-zinc-100";
     const inactiveClass =
-      "bg-zinc-800 hover:bg-zinc-900 hover:text-zinc-100 text-zinc-100";
+      "bg-gradient-to-b from-zinc-700 to-zinc-800 border-2 border-zinc-700 hover:bg-gradient-to-b hover:from-zinc-800 hover:to-zinc-900 hover:text-zinc-100 text-zinc-100";
 
     return `${baseClass} ${activeTab === tabName ? activeClass : inactiveClass}`;
   };
@@ -36,7 +37,7 @@ export default function Header({ setActiveTab, activeTab }) {
           <a
             href="/resume.pdf"
             download
-            className="flex items-center justify-center gap-2 px-6 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-900 text-zinc-100 hover:text-zinc-100 transition-colors font-medium cursor-pointer"
+            className="flex items-center justify-center gap-2 px-6 py-2 rounded-lg bg-gradient-to-b from-zinc-700 to-zinc-800 border-2 border-zinc-700 hover:bg-gradient-to-b hover:from-zinc-800 hover:to-zinc-900 text-zinc-100 hover:text-zinc-100 transition-colors font-medium cursor-pointer"
             aria-label="Download Resume"
           >
             <DownloadSimple size={16} weight="bold" />

@@ -59,7 +59,7 @@ export default function TechStack() {
             key={index}
             className="flex flex-col items-center justify-center p-4 hover:bg-zinc-800/20 rounded-xl transition-colors duration-200 text-zinc-100"
           >
-            <div className="flex items-center bg-zinc-200 p-2 rounded-full justify-center mb-3">
+            <div className="flex items-center bg-gradient-to-b from-zinc-300 to-zinc-500 p-2 rounded-full justify-center mb-3">
               {tech.icon}
             </div>
             <p className="text-xs font-medium text-center line-clamp-3 leading-relaxed">
