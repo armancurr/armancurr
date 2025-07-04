@@ -86,7 +86,7 @@ export default function Projects() {
       projectType: ["summarizer", "chatbot"],
       imageUrl: "/sumanize.png",
       longDescription:
-        "A comprehensive product design and icon design project for Sumanize, focusing on creating an intuitive user experience.",
+        "A Gemini wrapper that takes large articles or documents and gives you clear, concise or descriptive summaries.",
       websiteUrl: "https://sumanize.vercel.app",
       githubUrl:
         "https://github.com/kalviumcommunity/S65_Arman_Capstone_Sumanize.git",
@@ -97,7 +97,7 @@ export default function Projects() {
       projectType: ["converter", "image"],
       imageUrl: "/file.png",
       longDescription:
-        "Complete visual design and branding solution for File Converter, emphasizing clean aesthetics and functionality.",
+        "An all-in-one image utility tool for format conversion, corner cropping, compression, and color palette extraction.",
       websiteUrl: "https://imaverter.vercel.app",
       githubUrl: "https://github.com/armancurr/imaverter.git",
     },
@@ -107,7 +107,7 @@ export default function Projects() {
       projectType: ["typing", "speed-test"],
       imageUrl: "/cometerm.png",
       longDescription:
-        "Visual design and branding project for Typepot, creating a cohesive brand identity and user interface.",
+        "A typing speed test that tracks WPM and accuracy, features typing goals based on experience level, and includes speed leaderboards.",
       websiteUrl: "https://typepoo.vercel.app",
       githubUrl: "https://github.com/cometerm/typepoo.git",
     },
