@@ -1,5 +1,4 @@
 ---
-import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
 import experienceData from "../../data/experience.json";
 
 interface Experience {
@@ -12,45 +11,38 @@ interface Experience {
 }
 ---
 
-<section class="py-24 lg:py-32">
-  <div class="container px-4 md:px-6">
-    <div
-      class="flex flex-col items-center justify-center space-y-4 text-center"
-    >
-      <div class="space-y-2">
-        <h2 class="text-3xl font-bold tracking-tighter md:text-4xl">
-          Experience
-        </h2>
-        <p class="text-muted-foreground max-w-[900px] md:text-xl">
-          My professional journey and key accomplishments
-        </p>
-      </div>
-    </div>
+<section class="border-t border-neutral-700/50 px-6 py-12">
+  <div class="space-y-8">
+    <h2 class="text-center text-xl font-semibold text-neutral-100">
+      EXPERIENCE
+    </h2>
 
-    <div class="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:gap-12">
+    <div class="space-y-8">
       {
         experienceData.map((exp: Experience) => (
-          <Card key={exp.id} className="relative" client:load>
-            <CardHeader>
-              <div class="flex items-start justify-between">
-                <div>
-                  <CardTitle className="text-xl">{exp.position}</CardTitle>
-                  <p class="text-primary text-lg font-medium">{exp.company}</p>
-                  <p class="text-muted-foreground text-sm">{exp.duration}</p>
+          <div class="space-y-4">
+            <div class="flex items-start justify-between">
+              <div class="text-sm text-neutral-400">{exp.duration}</div>
+              <div class="flex-1 space-y-1 text-right">
+                <div class="text-sm font-medium text-neutral-100">
+                  {exp.position}
                 </div>
+                <div class="text-sm text-neutral-300">{exp.company}</div>
               </div>
-            </CardHeader>
-            <CardContent>
-              <p class="text-muted-foreground mb-4">{exp.description}</p>
-              <div class="flex flex-wrap gap-2">
-                {exp.technologies.map((tech: string) => (
-                  <span class="border-border inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+            </div>
+
+            <div class="text-sm leading-relaxed text-neutral-400">
+              {exp.description}
+            </div>
+
+            <div class="flex flex-wrap justify-end gap-2">
+              {exp.technologies.map((tech: string) => (
+                <span class="inline-flex items-center rounded border border-neutral-600/50 bg-neutral-700/50 px-2 py-1 text-xs font-medium text-neutral-300">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
         ))
       }
     </div>

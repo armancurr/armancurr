@@ -1,35 +1,43 @@
 ---
+import { Button } from "../ui/button";
+
 const currentPath = Astro.url.pathname;
 ---
 
 <nav class="flex w-full items-center justify-between">
-  <div class="flex items-center space-x-2">
-    <span class="text-xl font-bold">armancurr</span>
-  </div>
-
-  <div class="flex items-center space-x-8">
-    <a
-      href="/"
-      class={`text-sm font-medium transition-colors hover:text-primary ${
-        currentPath === "/" ? "text-primary" : "text-muted-foreground"
-      }`}
-    >
-      Home
-    </a>
-    <a
-      href="/projects"
-      class={`text-sm font-medium transition-colors hover:text-primary ${
-        currentPath === "/projects" ? "text-primary" : "text-muted-foreground"
-      }`}
-    >
-      Projects
-    </a>
-    <a
-      href="/resume.pdf"
-      download
-      class="hover:text-primary text-muted-foreground text-sm font-medium transition-colors"
-    >
-      Resume
-    </a>
+  <div class="flex items-center space-x-6">
+    <button>
+      <a
+        href="/"
+        class={`px-6 py-1 bg-gradient-to-b from-neutral-800 to-neutral-900 border-2 border-neutral-700/50 rounded-md font-medium transition-colors duration-200 ${
+          currentPath === "/"
+            ? "text-neutral-200"
+            : "text-neutral-400 hover:text-neutral-200"
+        }`}
+      >
+        Home
+      </a>
+    </button>
+    <button>
+      <a
+        href="/projects"
+        class={`font-medium transition-colors duration-200 ${
+          currentPath === "/projects"
+            ? "text-neutral-100"
+            : "text-neutral-400 hover:text-neutral-200"
+        }`}
+      >
+        Projects
+      </a>
+    </button>
+    <button>
+      <a
+        href="/resume.pdf"
+        download
+        class="font-medium text-neutral-400 transition-colors duration-200 hover:text-neutral-200"
+      >
+        Resume
+      </a>
+    </button>
   </div>
 </nav>

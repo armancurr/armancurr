@@ -1,7 +1,4 @@
 ---
-import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
-import { Badge } from "../ui/badge";
-
 export interface Props {
   project: {
     id: string;
@@ -17,35 +14,48 @@ export interface Props {
 const { project } = Astro.props;
 ---
 
-<Card className="group transition-shadow hover:shadow-lg" client:load>
-  <div class="aspect-video overflow-hidden rounded-t-lg">
-    <img
-      src={project.image}
-      alt={project.title}
-      class="h-full w-full object-cover transition-transform group-hover:scale-105"
-    />
+<div
+  class="group overflow-hidden rounded-xl border border-neutral-600/30 bg-neutral-700/30 transition-all duration-300 hover:border-neutral-600/50 hover:bg-neutral-700/50"
+>
+  <!-- Project Image -->
+  <div class="aspect-video overflow-hidden bg-neutral-600/50">
+    <div
+      class="flex h-full w-full items-center justify-center bg-gradient-to-br from-neutral-500 to-neutral-600"
+    >
+      <span class="text-sm text-neutral-400">Project Image</span>
+    </div>
   </div>
-  <CardHeader>
-    <CardTitle className="text-xl">{project.title}</CardTitle>
-  </CardHeader>
-  <CardContent>
-    <p class="text-muted-foreground mb-4">{project.description}</p>
-    <div class="mb-4 flex flex-wrap gap-2">
+
+  <!-- Project Content -->
+  <div class="space-y-4 p-6">
+    <div class="space-y-2">
+      <h3 class="text-lg font-semibold text-neutral-100">
+        {project.title}
+      </h3>
+      <p class="text-sm leading-relaxed text-neutral-400">
+        {project.description}
+      </p>
+    </div>
+
+    <!-- Technologies -->
+    <div class="flex flex-wrap gap-2">
       {
         project.technologies.map((tech: string) => (
-          <Badge key={tech} variant="secondary">
+          <span class="inline-flex items-center rounded border border-neutral-500/50 bg-neutral-600/50 px-2 py-1 text-xs font-medium text-neutral-300">
             {tech}
-          </Badge>
+          </span>
         ))
       }
     </div>
-    <div class="flex space-x-4">
+
+    <!-- Links -->
+    <div class="flex space-x-4 pt-2">
       {
         project.github && (
           <a
             href={project.github}
             target="_blank"
-            class="text-muted-foreground hover:text-primary text-sm font-medium transition-colors"
+            class="text-sm font-medium text-neutral-400 underline underline-offset-2 transition-colors duration-200 hover:text-neutral-200"
           >
             GitHub
           </a>
@@ -56,12 +66,12 @@ const { project } = Astro.props;
           <a
             href={project.demo}
             target="_blank"
-            class="text-muted-foreground hover:text-primary text-sm font-medium transition-colors"
+            class="text-sm font-medium text-neutral-400 underline underline-offset-2 transition-colors duration-200 hover:text-neutral-200"
           >
             Live Demo
           </a>
         )
       }
     </div>
-  </CardContent>
-</Card>
+  </div>
+</div>

@@ -13,6 +13,16 @@ interface Project {
 }
 ---
 
-<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-  {projectsData.map((project: Project) => <ProjectCard project={project} />)}
+<div class="px-6 py-12">
+  <div class="space-y-8">
+    <h2 class="text-center text-xl font-semibold text-neutral-100">PROJECTS</h2>
+
+    <div class="grid gap-6 md:grid-cols-1 lg:grid-cols-1">
+      {
+        projectsData.map((project: Project) => (
+          <ProjectCard project={project} />
+        ))
+      }
+    </div>
+  </div>
 </div>
