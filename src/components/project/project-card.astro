@@ -1,0 +1,67 @@
+---
+import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
+import { Badge } from "../ui/badge";
+
+export interface Props {
+  project: {
+    id: string;
+    title: string;
+    description: string;
+    image: string;
+    technologies: string[];
+    github?: string;
+    demo?: string;
+  };
+}
+
+const { project } = Astro.props;
+---
+
+<Card className="group transition-shadow hover:shadow-lg" client:load>
+  <div class="aspect-video overflow-hidden rounded-t-lg">
+    <img
+      src={project.image}
+      alt={project.title}
+      class="h-full w-full object-cover transition-transform group-hover:scale-105"
+    />
+  </div>
+  <CardHeader>
+    <CardTitle className="text-xl">{project.title}</CardTitle>
+  </CardHeader>
+  <CardContent>
+    <p class="text-muted-foreground mb-4">{project.description}</p>
+    <div class="mb-4 flex flex-wrap gap-2">
+      {
+        project.technologies.map((tech: string) => (
+          <Badge key={tech} variant="secondary">
+            {tech}
+          </Badge>
+        ))
+      }
+    </div>
+    <div class="flex space-x-4">
+      {
+        project.github && (
+          <a
+            href={project.github}
+            target="_blank"
+            class="text-muted-foreground hover:text-primary text-sm font-medium transition-colors"
+          >
+            GitHub
+          </a>
+        )
+      }
+      {
+        project.demo && (
+          <a
+            href={project.demo}
+            target="_blank"
+            class="text-muted-foreground hover:text-primary text-sm font-medium transition-colors"
+          >
+            Live Demo
+          </a>
+        )
+      }
+    </div>
+  </CardContent>
+</Card>

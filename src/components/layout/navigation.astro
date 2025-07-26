@@ -1,0 +1,35 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="flex w-full items-center justify-between">
+  <div class="flex items-center space-x-2">
+    <span class="text-xl font-bold">armancurr</span>
+  </div>
+
+  <div class="flex items-center space-x-8">
+    <a
+      href="/"
+      class={`text-sm font-medium transition-colors hover:text-primary ${
+        currentPath === "/" ? "text-primary" : "text-muted-foreground"
+      }`}
+    >
+      Home
+    </a>
+    <a
+      href="/projects"
+      class={`text-sm font-medium transition-colors hover:text-primary ${
+        currentPath === "/projects" ? "text-primary" : "text-muted-foreground"
+      }`}
+    >
+      Projects
+    </a>
+    <a
+      href="/resume.pdf"
+      download
+      class="hover:text-primary text-muted-foreground text-sm font-medium transition-colors"
+    >
+      Resume
+    </a>
+  </div>
+</nav>

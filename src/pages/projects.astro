@@ -1,0 +1,26 @@
+---
+import Main from "../layouts/main.astro";
+import Header from "../components/layout/header.astro";
+import ProjectGrid from "../components/project/project-grid.astro";
+---
+
+<Main title="Projects - Your Name">
+  <Header />
+  <main class="py-24 lg:py-32">
+    <div class="container px-4 md:px-6">
+      <div
+        class="mb-12 flex flex-col items-center justify-center space-y-4 text-center"
+      >
+        <div class="space-y-2">
+          <h1 class="text-3xl font-bold tracking-tighter md:text-4xl">
+            Projects
+          </h1>
+          <p class="text-muted-foreground max-w-[900px] md:text-xl">
+            A showcase of my recent work and side projects
+          </p>
+        </div>
+      </div>
+      <ProjectGrid />
+    </div>
+  </main>
+</Main>

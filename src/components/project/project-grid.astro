@@ -1,0 +1,18 @@
+---
+import ProjectCard from "./project-card.astro";
+import projectsData from "../../data/projects.json";
+
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  technologies: string[];
+  github?: string;
+  demo?: string;
+}
+---
+
+<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+  {projectsData.map((project: Project) => <ProjectCard project={project} />)}
+</div>

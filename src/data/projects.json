@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1",
+    "title": "E-commerce Platform",
+    "description": "Full-featured e-commerce application with payment integration, admin dashboard, and real-time inventory management.",
+    "image": "/images/projects/ecommerce.jpg",
+    "technologies": ["Next.js", "Stripe", "Prisma", "PostgreSQL"],
+    "github": "https://github.com/yourusername/ecommerce",
+    "demo": "https://ecommerce-demo.com"
+  },
+  {
+    "id": "2",
+    "title": "Task Management App",
+    "description": "Collaborative task management tool with real-time updates, team collaboration features, and progress tracking.",
+    "image": "/images/projects/taskapp.jpg",
+    "technologies": ["React", "Node.js", "Socket.io", "MongoDB"],
+    "github": "https://github.com/yourusername/taskapp",
+    "demo": "https://taskapp-demo.com"
+  },
+  {
+    "id": "3",
+    "title": "Weather Dashboard",
+    "description": "Modern weather application with location-based forecasts, interactive maps, and weather alerts.",
+    "image": "/images/projects/weather.jpg",
+    "technologies": ["Vue.js", "OpenWeather API", "Chart.js"],
+    "github": "https://github.com/yourusername/weather",
+    "demo": "https://weather-demo.com"
+  }
+]

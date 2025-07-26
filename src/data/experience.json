@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "position": "Senior Full Stack Developer",
+    "company": "Tech Company",
+    "duration": "2022 - Present",
+    "description": "Led development of scalable web applications using React, Node.js, and cloud technologies. Mentored junior developers and implemented best practices.",
+    "technologies": ["React", "Node.js", "TypeScript", "AWS", "PostgreSQL"]
+  },
+  {
+    "id": "2",
+    "position": "Full Stack Developer",
+    "company": "Startup Inc",
+    "duration": "2020 - 2022",
+    "description": "Built and maintained multiple client projects from conception to deployment. Collaborated with design team to create user-centric applications.",
+    "technologies": ["Vue.js", "Express.js", "MongoDB", "Docker"]
+  }
+]

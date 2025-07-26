@@ -1,0 +1,51 @@
+---
+import { Badge } from "../ui/badge";
+import skillsData from "../../data/skills.json";
+
+interface SkillCategory {
+  category: string;
+  skills: Skill[];
+}
+
+interface Skill {
+  name: string;
+  icon: string;
+}
+---
+
+<section class="py-24 lg:py-32">
+  <div class="container px-4 md:px-6">
+    <div
+      class="flex flex-col items-center justify-center space-y-4 text-center"
+    >
+      <div class="space-y-2">
+        <h2 class="text-3xl font-bold tracking-tighter md:text-4xl">
+          Tech Stack
+        </h2>
+        <p class="text-muted-foreground max-w-[900px] md:text-xl">
+          Technologies and tools I work with
+        </p>
+      </div>
+    </div>
+
+    <div class="mx-auto max-w-5xl py-12">
+      {
+        skillsData.map((category: SkillCategory) => (
+          <div class="mb-12">
+            <h3 class="mb-6 text-center text-xl font-semibold">
+              {category.category}
+            </h3>
+            <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+              {category.skills.map((skill: Skill) => (
+                <div class="border-border hover:bg-muted/20 flex items-center space-x-3 rounded-lg border p-4 transition-colors">
+                  <img src={skill.icon} alt={skill.name} class="h-8 w-8" />
+                  <span class="font-medium">{skill.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
