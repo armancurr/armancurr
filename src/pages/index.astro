@@ -3,16 +3,14 @@ import Main from "../layouts/main.astro";
 import Header from "../components/layout/header.astro";
 import Hero from "../components/sections/hero.astro";
 import Experience from "../components/sections/experience.astro";
-import Testimonials from "../components/sections/testimonials.astro";
 import TechStack from "../components/sections/tech-stack.astro";
 ---
 
-<Main title="Keshav Bagaade - Design Engineer">
-  <Header />
+<Main title="armancurr - personal website">
+  <Header slot="header" />
   <main>
     <Hero />
-    <Experience />
+    <!-- <Experience /> -->
     <TechStack />
-    <Testimonials />
   </main>
 </Main>

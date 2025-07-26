@@ -1,26 +1,22 @@
 [
   {
     "id": "1",
-    "name": "John Smith",
-    "position": "CTO",
-    "company": "Tech Startup",
-    "content": "Exceptional developer with great attention to detail. Delivered our project on time and exceeded expectations.",
-    "avatar": "/images/testimonials/john.jpg"
+    "name": "Shashwat Mahendra",
+    "position": "Back-end Developer",
+    "company": "Plugseal",
+    "avatar": "/images/avatars/john-smith.jpg",
+    "content": "Arman excelled in front-end development, adopting cutting-edge technologies early. His websites are efficient and visually appealing.",
+    "linkedinUrl": "https://www.linkedin.com/in/shashwat-mahendra-214598163",
+    "companyLinkedinUrl": "https://www.linkedin.com/company/plugseal"
   },
   {
     "id": "2",
-    "name": "Sarah Johnson",
-    "position": "Product Manager",
-    "company": "Digital Agency",
-    "content": "Great communication skills and technical expertise. A pleasure to work with on complex projects.",
-    "avatar": "/images/testimonials/sarah.jpg"
-  },
-  {
-    "id": "3",
-    "name": "Mike Wilson",
-    "position": "Founder",
-    "company": "E-commerce Co",
-    "content": "Transformed our vision into a beautiful, functional application. Highly recommended!",
-    "avatar": "/images/testimonials/mike.jpg"
+    "name": "Gurpreet Singh Ghuman",
+    "position": "Technical Apprentice",
+    "company": "Morgan Stanley",
+    "avatar": "/images/avatars/sarah-johnson.jpg",
+    "content": "Arman quickly grasped core DevOps practices, including automation, CI/CD, and deployments. He approached infrastructure with a clear, practical mindset.",
+    "linkedinUrl": "https://www.linkedin.com/in/gurpreet-singh-ghuman-67363820a",
+    "companyLinkedinUrl": "https://www.linkedin.com/company/morgan-stanley"
   }
 ]

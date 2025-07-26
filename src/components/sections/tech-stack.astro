@@ -2,43 +2,44 @@
 import skillsData from "../../data/skills.json";
 
 interface SkillCategory {
-    category: string;
-    skills: Skill[];
+  category: string;
+  skills: Skill[];
 }
 
 interface Skill {
-    name: string;
-    icon: string;
+  name: string;
+  icon: string;
 }
 ---
 
-<section class="px-6 py-12 border-t border-neutral-700/50">
-    <div class="space-y-8">
-        <h2 class="text-xl font-semibold text-neutral-100 text-center">
-            TECH STACK
-        </h2>
+<section class="border-t border-neutral-700/50 px-6 py-12">
+  <div class="space-y-8">
+    <h2 class="text-center text-xl font-semibold text-neutral-100">
+      TECH STACK
+    </h2>
 
-        <div class="space-y-10">
-            {skillsData.map((category: SkillCategory) => (
-                <div class="space-y-4">
-                    <h3 class="text-sm font-medium text-neutral-300 text-center uppercase tracking-wider">
-                        {category.category}
-                    </h3>
-                    <div class="grid grid-cols-2 gap-3">
-                        {category.skills.map((skill: Skill) => (
-                            <div class="flex items-center space-x-3 p-3 bg-neutral-700/30 border border-neutral-600/30 rounded-lg hover:bg-neutral-700/50 hover:border-neutral-600/50 transition-all duration-200">
-                                <div class="flex-shrink-0 w-6 h-6 bg-neutral-600 rounded flex items-center justify-center">
-                                    <!-- Icon placeholder - you can replace with actual icons -->
-                                    <div class="w-4 h-4 bg-neutral-400 rounded-sm"></div>
-                                </div>
-                                <span class="text-sm font-medium text-neutral-200">
-                                    {skill.name}
-                                </span>
-                            </div>
-                        ))}
-                    </div>
+    <div class="space-y-10">
+      {
+        skillsData.map((category: SkillCategory) => (
+          <div class="space-y-4">
+            <h3 class="text-center text-sm font-medium tracking-wider text-neutral-300 uppercase">
+              {category.category}
+            </h3>
+            <div class="grid grid-cols-2 gap-3">
+              {category.skills.map((skill: Skill) => (
+                <div class="flex items-center space-x-3 rounded-lg border border-neutral-600/30 bg-neutral-700/30 p-3 transition-all duration-200 hover:border-neutral-600/50 hover:bg-neutral-700/50">
+                  <div class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded bg-neutral-600">
+                    <div class="h-4 w-4 rounded-sm bg-neutral-400" />
+                  </div>
+                  <span class="text-sm font-medium text-neutral-200">
+                    {skill.name}
+                  </span>
                 </div>
-            ))}
-        </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
     </div>
+  </div>
 </section>

@@ -1,0 +1,56 @@
+---
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  PhGithubLogo,
+  PhLinkedinLogo,
+  PhTwitterLogo,
+  PhEnvelopeOpen,
+} from "phosphor-icons-astro";
+---
+
+<Card
+  className="border-2 border-neutral-800 bg-neutral-950 transition-colors duration-200 hover:border-neutral-700"
+>
+  <CardContent className="p-2">
+    <div class="flex flex-col items-center justify-center space-y-2 px-4">
+      <a
+        href="https://github.com/armancurr"
+        target="_blank"
+        class="flex w-full flex-col items-center justify-center rounded-lg p-3 text-neutral-400 transition-all duration-200 hover:text-neutral-200"
+        aria-label="GitHub"
+      >
+        <PhGithubLogo size={24} weight="fill" class="mb-2" />
+        <span class="text-center text-xs">absolute goldmine of projects</span>
+      </a>
+
+      <a
+        href="https://www.linkedin.com/in/armancurr"
+        target="_blank"
+        class="flex w-full flex-col items-center justify-center rounded-lg p-3 text-neutral-400 transition-all duration-200 hover:text-neutral-200"
+        aria-label="LinkedIn"
+      >
+        <PhLinkedinLogo size={24} weight="fill" class="mb-2" />
+        <span class="text-center text-xs">monthly slop post game is game</span>
+      </a>
+
+      <a
+        href="https://x.com/rrucnamra"
+        target="_blank"
+        class="flex w-full flex-col items-center justify-center rounded-lg p-3 text-neutral-400 transition-all duration-200 hover:text-neutral-200"
+        aria-label="Twitter"
+      >
+        <PhTwitterLogo size={24} weight="fill" class="mb-2" />
+        <span class="text-center text-xs">legendary shitposting tune in</span>
+      </a>
+
+      <a
+        href="mailto:armancurr@gmail.com"
+        class="flex w-full flex-col items-center justify-center rounded-lg p-3 text-neutral-400 transition-all duration-200 hover:text-neutral-200"
+        aria-label="Email"
+      >
+        <PhEnvelopeOpen size={24} weight="fill" class="mb-2" />
+        <span class="text-center text-xs">contact upfront to collaborate</span>
+      </a>
+    </div>
+  </CardContent>
+</Card>

@@ -1,0 +1,76 @@
+---
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  PhDownload,
+  PhPenNib,
+  PhBracketsCurly,
+  PhDatabase,
+  PhSpeedometer,
+  PhGitFork,
+} from "phosphor-icons-astro";
+---
+
+<Card
+  className="border-2 border-neutral-800 bg-neutral-950 transition-colors duration-200 hover:border-neutral-700 md:col-span-2 lg:col-span-2"
+>
+  <CardContent className="p-8">
+    <div class="space-y-4">
+      <div class="flex items-start justify-between">
+        <div class="space-y-4">
+          <img
+            src="/images/luca-giordano.jpg"
+            alt="Profile"
+            class="h-20 w-20 rounded-md border-2 border-neutral-700"
+          />
+          <h1 class="text-4xl font-bold text-neutral-100">
+            <span class="text-lg text-neutral-500">(uhrr-maan curr)</span>
+          </h1>
+        </div>
+      </div>
+      <div class="space-y-8">
+        <p class="leading-relaxed text-neutral-300">
+          I'm a software developer specializing in detailed UI design to deliver
+          fast, smooth, and engaging experiences.
+        </p>
+        <div class="flex flex-wrap items-center gap-2">
+          <Badge
+            variant="secondary"
+            className="flex items-center gap-2 rounded-md border-2 border-neutral-800 bg-neutral-950 p-2 text-neutral-400"
+          >
+            <PhBracketsCurly size={16} weight="bold" />
+            Full-stack Development
+          </Badge>
+          <Badge
+            variant="secondary"
+            className="flex items-center gap-2 rounded-md border-2 border-neutral-800 bg-neutral-950 p-2 text-neutral-400"
+          >
+            <PhPenNib size={16} weight="bold" />
+            User Interface Design
+          </Badge>
+          <Badge
+            variant="secondary"
+            className="flex items-center gap-2 rounded-md border-2 border-neutral-800 bg-neutral-950 p-2 text-neutral-400"
+          >
+            <PhDatabase size={16} weight="bold" />
+            DevOps
+          </Badge>
+          <Badge
+            variant="secondary"
+            className="flex items-center gap-2 rounded-md border-2 border-neutral-800 bg-neutral-950 p-2 text-neutral-400"
+          >
+            <PhSpeedometer size={16} weight="bold" />
+            Web Performance
+          </Badge>
+          <Badge
+            variant="secondary"
+            className="flex items-center gap-2 rounded-md border-2 border-neutral-800 bg-neutral-950 p-2 text-neutral-400"
+          >
+            <PhGitFork size={16} weight="bold" />
+            Open Source Contributions
+          </Badge>
+        </div>
+      </div>
+    </div>
+  </CardContent>
+</Card>
