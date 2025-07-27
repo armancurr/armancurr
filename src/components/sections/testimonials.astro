@@ -1,5 +1,4 @@
 ---
-import { Card, CardContent } from "@/components/ui/card";
 import testimonialsData from "../../data/testimonials.json";
 
 interface Testimonial {
@@ -11,56 +10,60 @@ interface Testimonial {
   linkedinUrl: string;
   companyLinkedinUrl: string;
 }
+
+const getInitials = (name: string) => {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .slice(0, 2);
+};
+
+const firstTwoTestimonials = testimonialsData.slice(0, 2);
 ---
 
-<Card
-  className="col-span-1 border-2 border-neutral-800 bg-neutral-950 transition-colors duration-200 hover:border-neutral-700 md:col-span-2 lg:col-span-2"
+<div
+  class="col-span-1 rounded-lg border-2 border-neutral-800 bg-neutral-950 transition-colors duration-200 hover:border-neutral-700 md:col-span-2 lg:col-span-2"
 >
-  <CardContent className="p-4">
+  <div class="p-6">
     <div class="space-y-6">
-      <div class="grid gap-4 md:grid-rows-2">
-        {
-          testimonialsData.slice(0, 2).map((testimonial: Testimonial) => (
-            <div class="cursor-default space-y-4 rounded-lg p-4 transition-all duration-200 hover:border-neutral-700">
-              <div class="flex items-center space-x-3">
-                <div class="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-700 bg-neutral-800">
-                  <span class="text-xs font-medium text-neutral-300">
-                    {testimonial.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")
-                      .slice(0, 2)}
-                  </span>
-                </div>
-                <div class="space-y-1">
+      {
+        firstTwoTestimonials.map((testimonial: Testimonial, index: number) => (
+          <div class="space-y-3 rounded-lg border border-neutral-800/50 p-4 transition-all duration-200 hover:bg-neutral-900/30">
+            <div class="flex items-center gap-3">
+              <div class="flex h-10 w-10 items-center justify-center rounded-md border-2 border-neutral-700 bg-neutral-800">
+                <span class="text-xs font-medium text-neutral-300">
+                  {getInitials(testimonial.name)}
+                </span>
+              </div>
+              <div class="flex-1">
+                <a
+                  href={testimonial.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block text-sm font-medium text-neutral-200 transition-colors hover:text-neutral-100"
+                >
+                  {testimonial.name}
+                </a>
+                <div class="text-xs text-neutral-500">
+                  {testimonial.position} at{" "}
                   <a
-                    href={testimonial.linkedinUrl}
+                    href={testimonial.companyLinkedinUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="cursor-pointer text-sm font-medium text-neutral-200 transition-colors hover:text-neutral-100"
+                    class="text-neutral-400 transition-colors hover:text-neutral-300"
                   >
-                    {testimonial.name}
+                    {testimonial.company}
                   </a>
-                  <div class="text-xs text-neutral-500">
-                    {testimonial.position} at{" "}
-                    <a
-                      href={testimonial.companyLinkedinUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="text-neutral-400 transition-colors hover:text-neutral-300"
-                    >
-                      {testimonial.company}
-                    </a>
-                  </div>
                 </div>
               </div>
-              <blockquote class="text-sm leading-relaxed text-neutral-400 transition-colors duration-200 hover:text-neutral-100">
-                "{testimonial.content}"
-              </blockquote>
             </div>
-          ))
-        }
-      </div>
+            <blockquote class="pl-0 text-sm leading-relaxed text-neutral-400">
+              "{testimonial.content}"
+            </blockquote>
+          </div>
+        ))
+      }
     </div>
-  </CardContent>
-</Card>
+  </div>
+</div>

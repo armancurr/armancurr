@@ -1,48 +1,64 @@
 ---
 import {
   PhHouseSimple,
-  PhFolderOpen,
+  PhFolders,
+  PhCalendarBlank,
   PhDownloadSimple,
 } from "phosphor-icons-astro";
 
 const currentPath = Astro.url.pathname;
 ---
 
-<nav
-  class="flex items-center justify-start space-x-3 overflow-x-auto py-2 whitespace-nowrap"
->
-  <a
-    href="/"
-    class={`flex items-center gap-2 transition-colors duration-200 border-2 border-neutral-800 hover:border-neutral-700 rounded-md px-6 py-2 text-sm font-mono ${
-      currentPath === "/"
-        ? "border-neutral-700 text-neutral-200"
-        : "text-neutral-400 hover:text-neutral-200"
-    }`}
+<header class="rounded-2xl border-2 border-neutral-800 px-3 py-2">
+  <nav
+    class="flex items-center justify-start space-x-3 overflow-x-auto py-2 whitespace-nowrap"
   >
-    <PhHouseSimple size={16} weight="bold" />
-    <span>Home</span>
-  </a>
-  <a
-    href="/projects"
-    class={`flex items-center gap-2 transition-colors duration-200 border-2 border-neutral-800 hover:border-neutral-700 rounded-md px-6 py-2 text-sm font-mono ${
-      currentPath === "/projects"
-        ? "border-neutral-700 text-neutral-200"
-        : "text-neutral-400 hover:text-neutral-200"
-    }`}
-  >
-    <PhFolderOpen size={16} weight="bold" />
-    <span>Projects</span>
-  </a>
-  <a
-    href="/resume.pdf"
-    download
-    class={`flex items-center gap-2 transition-colors duration-200 border-2 border-neutral-800 hover:border-neutral-700 rounded-md px-6 py-2 text-sm font-mono ${
-      currentPath === "/resume.pdf"
-        ? "border-neutral-700 text-neutral-200"
-        : "text-neutral-400 hover:text-neutral-200"
-    }`}
-  >
-    <PhDownloadSimple size={16} weight="bold" />
-    <span>Resume</span>
-  </a>
-</nav>
+    <button
+      onclick="window.location.href='/'"
+      class={`flex items-center gap-2 transition-colors duration-200 border-2 border-neutral-800 hover:border-neutral-700 rounded-md px-6 py-2 text-sm cursor-pointer ${
+        currentPath === "/"
+          ? "border-neutral-700 text-neutral-200"
+          : "text-neutral-400 hover:text-neutral-200"
+      }`}
+    >
+      <PhHouseSimple size={16} weight="fill" />
+      <span>Home</span>
+    </button>
+
+    <button
+      onclick="window.location.href='/projects'"
+      class={`flex items-center gap-2 transition-colors duration-200 border-2 border-neutral-800 hover:border-neutral-700 rounded-md px-6 py-2 text-sm cursor-pointer ${
+        currentPath === "/projects"
+          ? "border-neutral-700 text-neutral-200"
+          : "text-neutral-400 hover:text-neutral-200"
+      }`}
+    >
+      <PhFolders size={16} weight="fill" />
+      <span>Projects</span>
+    </button>
+
+    <button
+      onclick="window.location.href='/journey'"
+      class={`flex items-center gap-2 transition-colors duration-200 border-2 border-neutral-800 hover:border-neutral-700 rounded-md px-6 py-2 text-sm cursor-pointer ${
+        currentPath === "/journey"
+          ? "border-neutral-700 text-neutral-200"
+          : "text-neutral-400 hover:text-neutral-200"
+      }`}
+    >
+      <PhCalendarBlank size={16} weight="fill" />
+      <span>Journey</span>
+    </button>
+
+    <button
+      onclick="window.open('/resume.pdf', '_blank')"
+      class={`flex items-center gap-2 transition-colors duration-200 border-2 border-neutral-800 hover:border-neutral-700 rounded-md px-6 py-2 text-sm cursor-pointer ${
+        currentPath === "/resume"
+          ? "border-neutral-700 text-neutral-200"
+          : "text-neutral-400 hover:text-neutral-200"
+      }`}
+    >
+      <PhDownloadSimple size={16} weight="fill" />
+      <span>Resume</span>
+    </button>
+  </nav>
+</header>
