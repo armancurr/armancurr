@@ -23,6 +23,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.525.0",
+    "motion": "^12.23.9",
     "phosphor-icons-astro": "^2.1.1-17042025",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",

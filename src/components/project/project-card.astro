@@ -7,7 +7,7 @@ export interface Props {
   project: {
     id: string;
     title: string;
-    subtitle?: string;
+    subtitle: string;
     description: string;
     technologies: string[];
     github?: string;
@@ -16,6 +16,24 @@ export interface Props {
 }
 
 const { project } = Astro.props;
+
+function getProjectColor(tech: string): string {
+  const projectMap: Record<string, string> = {
+    Summarization: "bg-teal-950 border-teal-800 text-teal-300",
+    Chatbot: "bg-teal-950 border-teal-800 text-teal-300",
+    Research: "bg-teal-950 border-teal-800 text-teal-300",
+    "Image Processing": "bg-lime-950 border-lime-800 text-lime-300",
+    "Image Upscaling": "bg-lime-950 border-lime-800 text-lime-300",
+    "Image Conversion": "bg-lime-950 border-lime-800 text-lime-300",
+    "Command Line": "bg-indigo-950 border-indigo-800 text-indigo-300",
+    Automation: "bg-indigo-950 border-indigo-800 text-indigo-300",
+    "Food Recommendation": "bg-orange-950 border-orange-800 text-orange-300",
+    Gamification: "bg-orange-950 border-orange-800 text-orange-300",
+    "Personal Finance": "bg-orange-950 border-orange-800 text-orange-300",
+    default: "bg-neutral-950 border-neutral-800 text-neutral-300",
+  };
+  return projectMap[tech] || projectMap["default"];
+}
 ---
 
 <Card
@@ -24,42 +42,40 @@ const { project } = Astro.props;
   <CardContent className="space-y-4 p-8">
     <div class="flex items-center gap-3">
       <h1 class="text-2xl font-semibold text-neutral-200">
-        {project.title} -
+        {project.title} - <span class="text-sm font-medium text-neutral-400"
+          >{project.subtitle}</span
+        >
       </h1>
-      {
-        project.subtitle && (
-          <span class="text-md font-medium text-neutral-300">
-            {project.subtitle}
-          </span>
-        )
-      }
     </div>
+
     <div class="flex flex-wrap gap-2">
       {
         project.technologies.map((tech: string) => (
           <Badge
             variant="secondary"
-            className="flex items-center gap-2 rounded-md border-2 border-neutral-800 bg-neutral-950 p-2 text-neutral-400"
+            className={`flex items-center gap-2 rounded-md border-2 px-3 py-1.5 ${getProjectColor(tech)}`}
           >
             {tech}
           </Badge>
         ))
       }
     </div>
+
     <p class="text-md leading-relaxed text-neutral-400">
       {project.description}
     </p>
-    <div class="flex w-full gap-2 pt-2">
+
+    <div class="flex w-full gap-3 pt-2">
       {
         project.github && (
           <a
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            class="flex w-1/2 items-center justify-center rounded-md border-2 border-neutral-800 bg-gradient-to-b from-neutral-300 to-neutral-500 px-6 py-1 font-medium text-neutral-950 hover:border-neutral-700"
+            class="group flex flex-1 items-center justify-center rounded-lg border-2 border-neutral-700 bg-neutral-900 px-4 py-3 font-medium text-neutral-200 transition-all duration-200 hover:border-neutral-600 hover:bg-neutral-800 hover:text-white"
           >
             <PhGithubLogo class="mr-2 h-4 w-4" />
-            View Source Code
+            Source Code
           </a>
         )
       }
@@ -69,10 +85,10 @@ const { project } = Astro.props;
             href={project.demo}
             target="_blank"
             rel="noopener noreferrer"
-            class="flex w-1/2 items-center justify-center rounded-md border-2 border-neutral-800 bg-gradient-to-b from-neutral-300 to-neutral-500 px-6 py-1 font-medium text-neutral-950 hover:border-neutral-700"
+            class="group flex flex-1 items-center justify-center rounded-lg border-2 border-neutral-600 bg-neutral-200 px-4 py-3 font-medium text-neutral-900 transition-all duration-200 hover:border-neutral-500 hover:bg-white hover:shadow-lg"
           >
             <PhGlobeSimple class="mr-2 h-4 w-4" />
-            View Demo Site
+            Live Demo
           </a>
         )
       }

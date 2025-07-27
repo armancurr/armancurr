@@ -1,26 +1,29 @@
 ---
 import ProjectCard from "./project-card.astro";
 import projectsData from "../../data/projects.json";
+import PageTransition from "../ui/page-transition.tsx";
 
 interface Project {
   id: string;
   title: string;
+  subtitle: string;
   description: string;
-  image: string;
   technologies: string[];
   github?: string;
   demo?: string;
 }
 ---
 
-<div class="px-6 py-6">
-  <div class="space-y-8">
-    <div class="grid gap-6 md:grid-cols-1 lg:grid-cols-1">
-      {
-        projectsData.map((project: Project) => (
-          <ProjectCard project={project} />
-        ))
-      }
+<PageTransition client:load>
+  <div class="px-6 py-6">
+    <div class="space-y-8">
+      <div class="grid gap-6 md:grid-cols-1 lg:grid-cols-1">
+        {
+          projectsData.map((project: Project) => (
+            <ProjectCard project={project} />
+          ))
+        }
+      </div>
     </div>
   </div>
-</div>
+</PageTransition>
