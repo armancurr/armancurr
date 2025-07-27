@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Astro",
+    "description": "Static site generator with component islands architecture for fast, modern web development",
+    "icon": "astro"
+  },
+  {
+    "name": "Next.js",
+    "description": "Production-ready React framework with hybrid static & server rendering, smart bundling and more",
+    "icon": "nextjs"
+  },
+  {
+    "name": "Tailwind CSS",
+    "description": "Utility-first CSS framework for rapidly building custom user interfaces with low-level utility classes",
+    "icon": "tailwind"
+  },
+  {
+    "name": "Python",
+    "description": "A versatile programming language that is powerful and easy to learn",
+    "icon": "python"
+  },
+  {
+    "name": "Node.js",
+    "description": "JavaScript runtime built on Chrome's V8 engine for building scalable network applications",
+    "icon": "nodejs"
+  },
+  {
+    "name": "Bun",
+    "description": "A fast, modern JavaScript runtime with a focus on developer experience",
+    "icon": "bun"
+  },
+  {
+    "name": "Supabase",
+    "description": "Open source Firebase alternative with instant APIs, real-time subscriptions, and built-in authentication",
+    "icon": "supabase"
+  },
+  {
+    "name": "Vercel",
+    "description": "The platform for frontend developers to build, deploy, and scale modern web applications",
+    "icon": "vercel"
+  },
+  {
+    "name": "Git",
+    "description": "Distributed version control system for tracking changes in source code during software development",
+    "icon": "git"
+  }
+]

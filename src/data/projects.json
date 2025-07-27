@@ -1,29 +1,38 @@
 [
   {
     "id": "1",
-    "title": "E-commerce Platform",
-    "description": "Full-featured e-commerce application with payment integration, admin dashboard, and real-time inventory management.",
-    "image": "/images/projects/ecommerce.jpg",
-    "technologies": ["Next.js", "Stripe", "Prisma", "PostgreSQL"],
-    "github": "https://github.com/yourusername/ecommerce",
-    "demo": "https://ecommerce-demo.com"
+    "title": "Sumanize",
+    "subtitle": "AI-powered music recommendation app",
+    "description": "AI-powered music recommendation app that uses your Spotify listening history to suggest songs you'll love.",
+    "technologies": ["Summarization", "Chatbot", "Research"],
+    "github": "https://github.com/armancurr/sumaniz.git",
+    "demo": "https://sumanize.vercel.app"
   },
   {
     "id": "2",
-    "title": "Task Management App",
-    "description": "Collaborative task management tool with real-time updates, team collaboration features, and progress tracking.",
-    "image": "/images/projects/taskapp.jpg",
-    "technologies": ["React", "Node.js", "Socket.io", "MongoDB"],
-    "github": "https://github.com/yourusername/taskapp",
-    "demo": "https://taskapp-demo.com"
+    "title": "Vizum",
+    "subtitle": "Image processing tool",
+    "description": "Convert images to different formats, smartly crop corners, compress for reduced file size, upscale photos with advanced AI enhancement, and extract dominant color palettes, all in one streamlined tool.",
+    "technologies": ["Image Processing", "Image Upscaling", "Image Conversion"],
+    "github": "https://github.com/armancurr/vizum.git",
+    "demo": "https://vizum.vercel.app"
   },
   {
     "id": "3",
-    "title": "Weather Dashboard",
-    "description": "Modern weather application with location-based forecasts, interactive maps, and weather alerts.",
-    "image": "/images/projects/weather.jpg",
-    "technologies": ["Vue.js", "OpenWeather API", "Chart.js"],
-    "github": "https://github.com/yourusername/weather",
-    "demo": "https://weather-demo.com"
+    "title": "Cumauto",
+    "subtitle": "CLI tool for easy commit automation",
+    "description": "CLI tool that looks at your code changes and automatically makes commit messages and PR descriptions. The name comes from blending 'cum' (Latin for 'with') and 'auto' for easy commit automation.",
+    "technologies": ["Command Line", "Automation"],
+    "github": "https://github.com/armancurr/cumauto.git",
+    "demo": "https://cumauto.vercel.app"
+  },
+  {
+    "id": "4",
+    "title": "Coinsavor",
+    "subtitle": "Mobile-first gamified food budgeting app",
+    "description": "Mobile-first gamified food budgeting app that provides you randomized daily meal plans, streak tracking, and monthly spending limits so your broke ass don't get broker.",
+    "technologies": ["Food Recommendation", "Gamification", "Personal Finance"],
+    "github": "https://github.com/armancurr/coinsavor.git",
+    "demo": "https://coinsavor.vercel.app"
   }
 ]
