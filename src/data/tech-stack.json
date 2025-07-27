@@ -1,47 +1,42 @@
 [
   {
     "name": "Astro",
-    "description": "Static site generator with component islands architecture for fast, modern web development",
+    "description": "Simple and fast way to build static websites",
     "icon": "astro"
   },
   {
     "name": "Next.js",
-    "description": "Production-ready React framework with hybrid static & server rendering, smart bundling and more",
+    "description": "Framework of choice to build web applications",
     "icon": "nextjs"
   },
   {
     "name": "Tailwind CSS",
-    "description": "Utility-first CSS framework for rapidly building custom user interfaces with low-level utility classes",
+    "description": "I dont think there exists a better alternative",
     "icon": "tailwind"
   },
   {
     "name": "Python",
-    "description": "A versatile programming language that is powerful and easy to learn",
+    "description": "Language of choice for AI and Data Structures",
     "icon": "python"
   },
   {
     "name": "Node.js",
-    "description": "JavaScript runtime built on Chrome's V8 engine for building scalable network applications",
+    "description": "There is no way around Node.js, you have to use it",
     "icon": "nodejs"
   },
   {
     "name": "Bun",
-    "description": "A fast, modern JavaScript runtime with a focus on developer experience",
+    "description": "Runtime and package manager of choice",
     "icon": "bun"
   },
   {
     "name": "Supabase",
-    "description": "Open source Firebase alternative with instant APIs, real-time subscriptions, and built-in authentication",
+    "description": "Simple way to spin up a postgres database",
     "icon": "supabase"
   },
   {
-    "name": "Vercel",
-    "description": "The platform for frontend developers to build, deploy, and scale modern web applications",
-    "icon": "vercel"
-  },
-  {
     "name": "Git",
-    "description": "Distributed version control system for tracking changes in source code during software development",
+    "description": "If you suck at git, then you are retarded",
     "icon": "git"
   }
 ]

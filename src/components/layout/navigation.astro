@@ -8,7 +8,9 @@ import {
 const currentPath = Astro.url.pathname;
 ---
 
-<nav class="flex items-center justify-start space-x-3 py-2">
+<nav
+  class="flex items-center justify-start space-x-3 overflow-x-auto py-2 whitespace-nowrap"
+>
   <a
     href="/"
     class={`flex items-center gap-2 transition-colors duration-200 border-2 border-neutral-800 hover:border-neutral-700 rounded-md px-6 py-2 text-sm font-mono ${

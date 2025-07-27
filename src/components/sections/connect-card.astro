@@ -6,50 +6,72 @@ import {
   PhTwitterLogo,
   PhEnvelopeOpen,
 } from "phosphor-icons-astro";
+import connectData from "@/data/connect.json";
 ---
 
 <Card
   className="border-2 border-neutral-800 bg-neutral-950 transition-colors duration-200 hover:border-neutral-700"
 >
   <CardContent className="p-2">
-    <div class="flex flex-col items-center justify-center space-y-2 px-4">
+    <div class="flex flex-col items-center justify-center space-y-4 px-4">
       <a
-        href="https://github.com/armancurr"
+        href={connectData.socialLinks[0].url}
         target="_blank"
-        class="flex w-full flex-col items-center justify-center rounded-lg p-3 text-neutral-400 transition-all duration-200 hover:text-neutral-200"
-        aria-label="GitHub"
+        class="flex w-full flex-col items-center justify-center rounded-lg p-3 text-neutral-400 transition-colors duration-200 hover:text-neutral-200"
+        aria-label={connectData.socialLinks[0].ariaLabel}
       >
-        <PhGithubLogo size={24} weight="fill" class="mb-2" />
-        <span class="text-center text-xs">absolute goldmine of projects</span>
+        <PhGithubLogo
+          size={24}
+          weight="fill"
+          class={`mb-4 ${connectData.socialLinks[0].iconColor}`}
+        />
+        <span class="text-center text-xs"
+          >{connectData.socialLinks[0].description}</span
+        >
       </a>
-
       <a
-        href="https://www.linkedin.com/in/armancurr"
+        href={connectData.socialLinks[1].url}
         target="_blank"
-        class="flex w-full flex-col items-center justify-center rounded-lg p-3 text-neutral-400 transition-all duration-200 hover:text-neutral-200"
-        aria-label="LinkedIn"
+        class="flex w-full flex-col items-center justify-center rounded-lg p-3 text-neutral-400 transition-colors duration-200 hover:text-neutral-200"
+        aria-label={connectData.socialLinks[1].ariaLabel}
       >
-        <PhLinkedinLogo size={24} weight="fill" class="mb-2" />
-        <span class="text-center text-xs">monthly slop post game is game</span>
+        <PhLinkedinLogo
+          size={24}
+          weight="fill"
+          class={`mb-4 ${connectData.socialLinks[1].iconColor}`}
+        />
+        <span class="text-center text-xs"
+          >{connectData.socialLinks[1].description}</span
+        >
       </a>
-
       <a
-        href="https://x.com/rrucnamra"
+        href={connectData.socialLinks[2].url}
         target="_blank"
-        class="flex w-full flex-col items-center justify-center rounded-lg p-3 text-neutral-400 transition-all duration-200 hover:text-neutral-200"
-        aria-label="Twitter"
+        class="flex w-full flex-col items-center justify-center rounded-lg p-3 text-neutral-400 transition-colors duration-200 hover:text-neutral-200"
+        aria-label={connectData.socialLinks[2].ariaLabel}
       >
-        <PhTwitterLogo size={24} weight="fill" class="mb-2" />
-        <span class="text-center text-xs">legendary shitposting tune in</span>
+        <PhTwitterLogo
+          size={24}
+          weight="fill"
+          class={`mb-4 ${connectData.socialLinks[2].iconColor}`}
+        />
+        <span class="text-center text-xs"
+          >{connectData.socialLinks[2].description}</span
+        >
       </a>
-
       <a
-        href="mailto:armancurr@gmail.com"
-        class="flex w-full flex-col items-center justify-center rounded-lg p-3 text-neutral-400 transition-all duration-200 hover:text-neutral-200"
-        aria-label="Email"
+        href={connectData.socialLinks[3].url}
+        class="flex w-full flex-col items-center justify-center rounded-lg p-3 text-neutral-400 transition-colors duration-200 hover:text-neutral-200"
+        aria-label={connectData.socialLinks[3].ariaLabel}
       >
-        <PhEnvelopeOpen size={24} weight="fill" class="mb-2" />
-        <span class="text-center text-xs">contact upfront to collaborate</span>
+        <PhEnvelopeOpen
+          size={24}
+          weight="fill"
+          class={`mb-4 ${connectData.socialLinks[3].iconColor}`}
+        />
+        <span class="text-center text-xs"
+          >{connectData.socialLinks[3].description}</span
+        >
       </a>
     </div>
   </CardContent>
