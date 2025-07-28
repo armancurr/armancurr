@@ -5,8 +5,8 @@ import {
   PhTwitterLogo,
   PhEnvelopeOpen,
 } from "phosphor-icons-astro";
-import connectData from "@/data/connect.json";
 
+import connectData from "@/data/connect.json";
 const iconMap = {
   GitHub: PhGithubLogo,
   LinkedIn: PhLinkedinLogo,
@@ -16,10 +16,12 @@ const iconMap = {
 ---
 
 <div
-  class="rounded-lg border-2 border-neutral-800 bg-neutral-950 transition-colors duration-200 hover:border-neutral-700"
+  class="rounded-xl border-3 border-neutral-800 bg-neutral-950 transition-colors duration-200 hover:border-neutral-700"
 >
-  <div class="p-2">
-    <div class="flex flex-col items-center justify-center space-y-2 px-3">
+  <div class="p-4">
+    <div
+      class="grid grid-cols-2 gap-2 px-3 sm:flex sm:flex-col sm:items-center sm:justify-center sm:gap-0 sm:space-y-2"
+    >
       {
         connectData.socialLinks.map((link) => {
           const IconComponent = iconMap[link.name as keyof typeof iconMap];
@@ -31,7 +33,7 @@ const iconMap = {
               class="flex w-full flex-col items-center justify-center rounded-lg p-3 text-neutral-400 transition-colors duration-200 hover:text-neutral-200"
               aria-label={link.ariaLabel}
             >
-              <div class="mb-2 flex items-center justify-center rounded-full bg-neutral-800 p-2">
+              <div class="mb-2 flex items-center justify-center rounded-full border-3 border-dashed border-neutral-700 p-2">
                 <IconComponent size={24} weight="fill" class={link.iconColor} />
               </div>
               <span class="text-center text-sm leading-tight">

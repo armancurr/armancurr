@@ -23,15 +23,15 @@ const firstTwoTestimonials = testimonialsData.slice(0, 2);
 ---
 
 <div
-  class="col-span-1 cursor-default rounded-lg border-2 border-neutral-800 bg-neutral-950 transition-colors duration-200 hover:border-neutral-700 md:col-span-2 lg:col-span-2"
+  class="col-span-1 cursor-default rounded-xl border-3 border-neutral-800 bg-neutral-950 transition-colors duration-200 hover:border-neutral-700 md:col-span-2 lg:col-span-2"
 >
   <div class="p-6">
     <div class="space-y-6">
       {
         firstTwoTestimonials.map((testimonial: Testimonial, index: number) => (
-          <div class="space-y-3 rounded-lg border border-neutral-800/50 p-4 transition-all duration-200 hover:bg-neutral-900/30">
+          <div class="space-y-3 p-2">
             <div class="flex items-center gap-3">
-              <div class="flex h-10 w-10 items-center justify-center rounded-md border-2 border-neutral-700 bg-neutral-800">
+              <div class="flex h-10 w-10 items-center justify-center rounded-md border-3 border-neutral-800 bg-neutral-900">
                 <span class="text-xs font-medium text-neutral-300">
                   {getInitials(testimonial.name)}
                 </span>
@@ -45,7 +45,7 @@ const firstTwoTestimonials = testimonialsData.slice(0, 2);
                 >
                   {testimonial.name}
                 </a>
-                <div class="text-xs text-neutral-500">
+                <div class="text-sm text-neutral-500">
                   {testimonial.position} at{" "}
                   <a
                     href={testimonial.companyLinkedinUrl}

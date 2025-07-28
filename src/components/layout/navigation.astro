@@ -5,60 +5,68 @@ import {
   PhCalendarBlank,
   PhDownloadSimple,
 } from "phosphor-icons-astro";
-
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="rounded-2xl border-3 border-neutral-800 px-4 py-2">
-  <nav
-    class="flex items-center justify-start space-x-3 overflow-x-auto py-2 whitespace-nowrap"
-  >
-    <button
-      onclick="window.location.href='/'"
-      class={`flex items-center gap-2 transition-colors duration-200 border-3 border-neutral-800 hover:border-neutral-700 rounded-md px-5 py-2 text-sm cursor-pointer ${
-        currentPath === "/"
-          ? "border-neutral-700 text-neutral-200"
-          : "text-neutral-400 hover:text-neutral-200"
-      }`}
+<header class="rounded-2xl border-3 border-neutral-800 px-6 py-4">
+  <nav class="flex items-center justify-start space-x-3 py-2">
+    <div
+      class="scrollbar-hide flex min-w-0 flex-1 items-center space-x-3 overflow-x-auto"
     >
-      <PhHouseSimple size={16} weight="fill" />
-      <span>Home</span>
-    </button>
-
-    <button
-      onclick="window.location.href='/projects'"
-      class={`flex items-center gap-2 transition-colors duration-200 border-3 border-neutral-800 hover:border-neutral-700 rounded-md px-5 py-2 text-sm cursor-pointer ${
-        currentPath === "/projects"
-          ? "border-neutral-700 text-neutral-200"
-          : "text-neutral-400 hover:text-neutral-200"
-      }`}
-    >
-      <PhFolders size={16} weight="fill" />
-      <span>Projects</span>
-    </button>
-
-    <!-- <button
-      onclick="window.location.href='/journey'"
-      class={`flex items-center gap-2 transition-colors duration-200 border-2 border-neutral-800 hover:border-neutral-700 rounded-md px-6 py-2 text-sm cursor-pointer ${
-        currentPath === "/journey"
-          ? "border-neutral-700 text-neutral-200"
-          : "text-neutral-400 hover:text-neutral-200"
-      }`}
-    >
-      <PhCalendarBlank size={16} weight="fill" />
-      <span>Journey</span>
-    </button> -->
-
-    <button
-      onclick="window.open('/armankar.pdf', '_blank')"
-      class={`flex items-center gap-2 transition-colors duration-200 border-3 border-neutral-800 hover:border-neutral-700 rounded-md px-5 py-2 text-sm cursor-pointer ${
-        currentPath === "/resume"
-          ? "border-neutral-700 text-neutral-200"
-          : "text-neutral-400 hover:text-neutral-200"
-      }`}
-    >
-      <PhDownloadSimple size={16} weight="fill" />
-      <span>Resume</span>
-    </button>
+      <button
+        onclick="window.location.href='/'"
+        class={`flex flex-shrink-0 items-center gap-2 transition-colors duration-200 border-3 border-neutral-800 hover:border-neutral-700 rounded-lg px-6 py-2 text-sm cursor-pointer ${
+          currentPath === "/"
+            ? "border-neutral-700 text-neutral-200"
+            : "text-neutral-400 hover:text-neutral-200"
+        }`}
+      >
+        <PhHouseSimple size={16} weight="fill" />
+        <span>Home</span>
+      </button>
+      <button
+        onclick="window.location.href='/projects'"
+        class={`flex flex-shrink-0 items-center gap-2 transition-colors duration-200 border-3 border-neutral-800 hover:border-neutral-700 rounded-md px-6 py-2 text-sm cursor-pointer ${
+          currentPath === "/projects"
+            ? "border-neutral-700 text-neutral-200"
+            : "text-neutral-400 hover:text-neutral-200"
+        }`}
+      >
+        <PhFolders size={16} weight="fill" />
+        <span>Projects</span>
+      </button>
+      <!-- <button
+       onclick="window.location.href='/journey'"
+       class={`flex flex-shrink-0 items-center gap-2 transition-colors duration-200 border-2 border-neutral-800 hover:border-neutral-700 rounded-md px-6 py-2 text-sm cursor-pointer ${
+         currentPath === "/journey"
+           ? "border-neutral-700 text-neutral-200"
+           : "text-neutral-400 hover:text-neutral-200"
+       }`}
+     >
+       <PhCalendarBlank size={16} weight="fill" />
+       <span>Journey</span>
+     </button> -->
+      <button
+        onclick="window.open('/armankar.pdf', '_blank')"
+        class={`flex flex-shrink-0 items-center gap-2 transition-colors duration-200 border-3 border-neutral-800 hover:border-neutral-700 rounded-md px-6 py-2 text-sm cursor-pointer ${
+          currentPath === "/resume"
+            ? "border-neutral-700 text-neutral-200"
+            : "text-neutral-400 hover:text-neutral-200"
+        }`}
+      >
+        <PhDownloadSimple size={16} weight="fill" />
+        <span>Resume</span>
+      </button>
+    </div>
   </nav>
 </header>
+
+<style>
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+</style>
