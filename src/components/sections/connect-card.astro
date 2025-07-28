@@ -19,7 +19,7 @@ const iconMap = {
   class="rounded-lg border-2 border-neutral-800 bg-neutral-950 transition-colors duration-200 hover:border-neutral-700"
 >
   <div class="p-2">
-    <div class="flex flex-col items-center justify-center space-y-4 px-3">
+    <div class="flex flex-col items-center justify-center space-y-2 px-3">
       {
         connectData.socialLinks.map((link) => {
           const IconComponent = iconMap[link.name as keyof typeof iconMap];
@@ -31,10 +31,10 @@ const iconMap = {
               class="flex w-full flex-col items-center justify-center rounded-lg p-3 text-neutral-400 transition-colors duration-200 hover:text-neutral-200"
               aria-label={link.ariaLabel}
             >
-              <div class="mb-2 flex items-center justify-center">
+              <div class="mb-2 flex items-center justify-center bg-neutral-800 p-2 rounded-full">
                 <IconComponent size={24} weight="fill" class={link.iconColor} />
               </div>
-              <span class="text-center text-xs leading-tight">
+              <span class="text-center text-sm leading-tight">
                 {link.description}
               </span>
             </a>

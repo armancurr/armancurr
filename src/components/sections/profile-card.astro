@@ -1,54 +1,72 @@
 ---
 import {
-  PhPenNib,
-  PhBracketsCurly,
-  PhDatabase,
-  PhSpeedometer,
-  PhGitFork,
+ PhPenNib,
+ PhBracketsCurly,
+ PhDatabase,
+ PhSpeedometer,
+ PhGitFork,
 } from "phosphor-icons-astro";
-
 const skills = [
-  { icon: PhBracketsCurly, label: "Full-stack Development" },
-  { icon: PhPenNib, label: "UI Design" },
-  { icon: PhDatabase, label: "DevOps" },
-  { icon: PhSpeedometer, label: "Web Performance" },
-  { icon: PhGitFork, label: "Open Source Contributions" },
+ { 
+   icon: PhBracketsCurly, 
+   label: "Full-stack Development",
+   color: "bg-indigo-950 border-indigo-800 text-indigo-300"
+ },
+ { 
+   icon: PhPenNib, 
+   label: "UI Design",
+   color: "bg-teal-950 border-teal-800 text-teal-300"
+ },
+ { 
+   icon: PhDatabase, 
+   label: "DevOps",
+   color: "bg-rose-950 border-rose-800 text-rose-300"
+ },
+ { 
+   icon: PhSpeedometer, 
+   label: "Web Performance",
+   color: "bg-lime-950 border-lime-800 text-lime-300"
+ },
+ { 
+   icon: PhGitFork, 
+   label: "Open Source Contributions",
+   color: "bg-cyan-950 border-cyan-800 text-cyan-300"
+ },
 ];
 ---
-
 <div
-  class="rounded-lg border-2 border-neutral-800 bg-neutral-950 transition-colors duration-200 hover:border-neutral-700 md:col-span-2 lg:col-span-2"
+ class="rounded-lg border-2 border-neutral-800 bg-neutral-950 transition-colors duration-200 hover:border-neutral-700 md:col-span-2 lg:col-span-2 cursor-default"
 >
-  <div class="p-8">
-    <div class="space-y-4">
-      <div class="flex items-start justify-between">
-        <div class="space-y-4">
-          <img
-            src="/images/luca-giordano.jpg"
-            alt="Profile"
-            class="h-20 w-20 rounded-md border-2 border-neutral-700"
-          />
-          <h1 class="text-4xl font-semibold text-neutral-200">
-            arman <span class="text-sm text-neutral-500">(uhrr-maan curr)</span>
-          </h1>
-        </div>
-      </div>
-      <div class="space-y-8">
-        <p class="text-lg leading-relaxed text-neutral-200">
-          I'm a software developer specializing in detailed UI design to deliver
-          fast, smooth, and engaging experiences.
-        </p>
-        <div class="flex cursor-default flex-wrap items-center gap-2">
-          {
-            skills.map(({ icon: Icon, label }) => (
-              <div class="flex items-center gap-2 rounded-md border-2 border-neutral-800 bg-neutral-950 px-3 py-2 text-sm font-medium text-neutral-400 transition-colors duration-200 hover:bg-neutral-900">
-                <Icon size={16} weight="bold" />
-                {label}
-              </div>
-            ))
-          }
-        </div>
-      </div>
-    </div>
-  </div>
+ <div class="p-8">
+   <div class="space-y-4">
+     <div class="flex items-start justify-between">
+       <div class="space-y-4">
+         <img
+           src="/images/luca-giordano.jpg"
+           alt="Profile"
+           class="h-20 w-20 rounded-md border-2 border-neutral-700"
+         />
+         <h1 class="text-4xl font-semibold text-neutral-200">
+           arman <span class="text-sm text-neutral-500">(uhrr-maan curr)</span>
+         </h1>
+       </div>
+     </div>
+     <div class="space-y-8">
+       <p class="text-lg leading-relaxed text-neutral-200">
+         I'm a software developer specializing in detailed UI design to deliver
+         fast, smooth, and engaging experiences.
+       </p>
+       <div class="flex cursor-default flex-wrap items-center gap-2">
+         {
+           skills.map(({ icon: Icon, label, color }) => (
+             <div class={`flex items-center gap-2 rounded-md border-2 px-3 py-2 text-sm font-medium transition-all duration-200 hover:brightness-110 ${color}`}>
+               <Icon size={16} weight="bold" />
+               {label}
+             </div>
+           ))
+         }
+       </div>
+     </div>
+   </div>
+ </div>
 </div>

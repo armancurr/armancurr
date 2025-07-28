@@ -1,42 +1,42 @@
 [
   {
     "name": "Astro",
-    "description": "Simple and fast way to build static websites",
+    "description": "Astro - lightweight static websites",
     "icon": "astro"
   },
   {
     "name": "Next.js",
-    "description": "Framework of choice to build web applications",
+    "description": "Next.js - Framework to build React apps",
     "icon": "nextjs"
   },
   {
     "name": "Tailwind CSS",
-    "description": "I dont think there exists a better alternative",
+    "description": "Tailwind - I can't be bothered to write CSS",
     "icon": "tailwind"
   },
   {
     "name": "Python",
-    "description": "Language of choice for AI and Data Structures",
+    "description": "Python - For AI and minute Data Structures",
     "icon": "python"
   },
   {
     "name": "Node.js",
-    "description": "There is no way around Node.js, you have to use it",
+    "description": "Node.js - Runtime and package manager",
     "icon": "nodejs"
   },
   {
     "name": "Bun",
-    "description": "Runtime and package manager of choice",
+    "description": "Bun - The superior runtime and package manager",
     "icon": "bun"
   },
   {
     "name": "Supabase",
-    "description": "Simple way to spin up a postgres database",
+    "description": "Supabase - To spin up Postgres databases",
     "icon": "supabase"
   },
   {
     "name": "Git",
-    "description": "If you suck at git, then you are retarded",
+    "description": "Git - Version control system - Just use it",
     "icon": "git"
   }
 ]

@@ -4,21 +4,21 @@
       "name": "GitHub",
       "url": "https://github.com/armancurr",
       "iconColor": "text-neutral-50",
-      "description": "Absolute goldmine of projects",
+      "description": "View projects and experiments",
       "ariaLabel": "Visit GitHub profile"
     },
     {
       "name": "LinkedIn",
       "url": "https://www.linkedin.com/in/armancurr",
       "iconColor": "text-blue-500",
-      "description": "Monthly slop post game is strong",
+      "description": "Connect with me on LinkedIn",
       "ariaLabel": "Visit LinkedIn profile"
     },
     {
       "name": "Twitter",
       "url": "https://x.com/rrucnamra",
       "iconColor": "text-sky-400",
-      "description": "Generational shitposting tune in",
+      "description": "Follow me on Twitter",
       "ariaLabel": "Visit Twitter profile"
     },
     {
