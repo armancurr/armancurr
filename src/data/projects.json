@@ -6,7 +6,7 @@
     "subtitle": "Content Summarization Tool",
     "description": "A Gemini wrapper that processes long-form articles or documents and delivers clear, concise, or richly descriptive summaries tailored to your needs, for rapid understanding, deep dives, or quick overviews.",
     "topics": ["Summarization", "Chatbot"],
-    "github": "https://github.com/armancurr/sumaniz.git",
+    "github": "https://github.com/kalviumcommunity/S65_Arman_Capstone_Sumanize.git",
     "demo": "https://sumanize.vercel.app"
   },
   {
