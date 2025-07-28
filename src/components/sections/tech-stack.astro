@@ -89,8 +89,8 @@ const getIcon = (iconName: string): string | null => {
           techStackData.map((tech: TechItem) => (
             <div class="group">
               <div class="p-2">
-                <div class="flex flex-col items-center space-y-3 p-1 cursor-default">
-                  <div class="flex h-12 w-12 items-center justify-center p-1 rounded-full bg-neutral-800">
+                <div class="flex cursor-default flex-col items-center space-y-3 p-1">
+                  <div class="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-800 p-1">
                     {getIcon(tech.icon.toLowerCase()) ? (
                       <div
                         class="h-6 w-6"
@@ -103,7 +103,7 @@ const getIcon = (iconName: string): string | null => {
                     )}
                   </div>
                   <div class="text-center">
-                    <p class="line-clamp-3 text-sm text-neutral-400 hover:text-neutral-200 transition-colors duration-200">
+                    <p class="line-clamp-3 text-sm text-neutral-400 transition-colors duration-200 hover:text-neutral-200">
                       {tech.description}
                     </p>
                   </div>
