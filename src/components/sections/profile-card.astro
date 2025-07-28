@@ -6,6 +6,8 @@ import {
   PhSpeedometer,
   PhGitFork,
 } from "phosphor-icons-astro";
+import { Image } from "astro:assets";
+import profileImage from "@/assets/luca-giordano.jpg";
 
 const skills = [
   {
@@ -43,10 +45,15 @@ const skills = [
     <div class="space-y-4">
       <div class="flex items-start justify-between">
         <div class="space-y-4">
-          <img
-            src="/images/luca-giordano.jpg"
+          <Image
+            src={profileImage}
             alt="Profile"
+            width={192}
+            height={192}
             class="h-20 w-20 rounded-md border-3 border-neutral-800 transition-colors duration-200 hover:border-neutral-700"
+            loading="eager"
+            quality={100}
+            densities={[1, 2]}
           />
           <h1 class="text-4xl font-semibold text-neutral-200">
             arman <span class="text-sm text-neutral-500">(uhrr-maan curr)</span>
