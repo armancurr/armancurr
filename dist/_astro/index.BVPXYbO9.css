@@ -6,6 +6,11 @@
     :before,
     :after,
     ::backdrop {
+      --tw-rotate-x: initial;
+      --tw-rotate-y: initial;
+      --tw-rotate-z: initial;
+      --tw-skew-x: initial;
+      --tw-skew-y: initial;
       --tw-space-y-reverse: 0;
       --tw-space-x-reverse: 0;
       --tw-border-style: solid;
@@ -25,6 +30,9 @@
       --tw-drop-shadow-alpha: 100%;
       --tw-drop-shadow-size: initial;
       --tw-duration: initial;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-scale-z: 1;
       --tw-animation-delay: 0s;
       --tw-animation-direction: normal;
       --tw-animation-duration: initial;
@@ -80,6 +88,7 @@
     --color-neutral-950: oklch(14.5% 0 0);
     --color-white: #fff;
     --spacing: 0.25rem;
+    --container-md: 28rem;
     --container-2xl: 42rem;
     --container-4xl: 56rem;
     --text-xs: 0.75rem;
@@ -90,6 +99,8 @@
     --text-base--line-height: 1.5;
     --text-lg: 1.125rem;
     --text-lg--line-height: calc(1.75 / 1.125);
+    --text-xl: 1.25rem;
+    --text-xl--line-height: calc(1.75 / 1.25);
     --text-2xl: 1.5rem;
     --text-2xl--line-height: calc(2 / 1.5);
     --text-4xl: 2.25rem;
@@ -374,6 +385,9 @@
   .visible {
     visibility: visible;
   }
+  .relative {
+    position: relative;
+  }
   .static {
     position: static;
   }
@@ -385,6 +399,9 @@
   }
   .mx-auto {
     margin-inline: auto;
+  }
+  .mt-4 {
+    margin-top: calc(var(--spacing) * 4);
   }
   .mr-2 {
     margin-right: calc(var(--spacing) * 2);
@@ -416,6 +433,9 @@
   .inline-flex {
     display: inline-flex;
   }
+  .aspect-\[8\.5\/11\] {
+    aspect-ratio: 8.5/11;
+  }
   .h-3 {
     height: calc(var(--spacing) * 3);
   }
@@ -440,6 +460,9 @@
   .h-full {
     height: 100%;
   }
+  .min-h-\[240px\] {
+    min-height: 240px;
+  }
   .min-h-screen {
     min-height: 100vh;
   }
@@ -461,6 +484,9 @@
   .w-20 {
     width: calc(var(--spacing) * 20);
   }
+  .w-fit {
+    width: fit-content;
+  }
   .w-full {
     width: 100%;
   }
@@ -470,6 +496,9 @@
   .max-w-4xl {
     max-width: var(--container-4xl);
   }
+  .max-w-md {
+    max-width: var(--container-md);
+  }
   .min-w-0 {
     min-width: calc(var(--spacing) * 0);
   }
@@ -478,6 +507,10 @@
   }
   .flex-shrink-0 {
     flex-shrink: 0;
+  }
+  .transform {
+    transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,)
+      var(--tw-skew-x,) var(--tw-skew-y,);
   }
   .cursor-default {
     cursor: default;
@@ -537,6 +570,15 @@
     );
     margin-block-end: calc(
       calc(var(--spacing) * 1) * calc(1 - var(--tw-space-y-reverse))
+    );
+  }
+  :where(.space-y-2 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(
+      calc(var(--spacing) * 2) * var(--tw-space-y-reverse)
+    );
+    margin-block-end: calc(
+      calc(var(--spacing) * 2) * calc(1 - var(--tw-space-y-reverse))
     );
   }
   :where(.space-y-3 > :not(:last-child)) {
@@ -620,21 +662,9 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
-  .border-2 {
-    border-style: var(--tw-border-style);
-    border-width: 2px;
-  }
-  .border-3 {
-    border-style: var(--tw-border-style);
-    border-width: 3px;
-  }
   .border-t {
     border-top-style: var(--tw-border-style);
     border-top-width: 1px;
-  }
-  .border-dashed {
-    --tw-border-style: dashed;
-    border-style: dashed;
   }
   .border-cyan-800 {
     border-color: var(--color-cyan-800);
@@ -675,6 +705,9 @@
   .border-neutral-800 {
     border-color: var(--color-neutral-800);
   }
+  .border-neutral-900 {
+    border-color: var(--color-neutral-900);
+  }
   .border-orange-800 {
     border-color: var(--color-orange-800);
   }
@@ -704,6 +737,9 @@
         transparent
       );
     }
+  }
+  .bg-neutral-800 {
+    background-color: var(--color-neutral-800);
   }
   .bg-neutral-900 {
     background-color: var(--color-neutral-900);
@@ -802,6 +838,10 @@
   .text-sm {
     font-size: var(--text-sm);
     line-height: var(--tw-leading, var(--text-sm--line-height));
+  }
+  .text-xl {
+    font-size: var(--text-xl);
+    line-height: var(--tw-leading, var(--text-xl--line-height));
   }
   .text-xs {
     font-size: var(--text-xs);
@@ -939,8 +979,23 @@
     animation-play-state: running;
   }
   @media (hover: hover) {
+    .group-hover\:text-neutral-300:is(:where(.group):hover *) {
+      color: var(--color-neutral-300);
+    }
     .hover\:border-neutral-700:hover {
       border-color: var(--color-neutral-700);
+    }
+    .hover\:bg-neutral-800\/50:hover {
+      background-color: #26262680;
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .hover\:bg-neutral-800\/50:hover {
+        background-color: color-mix(
+          in oklab,
+          var(--color-neutral-800) 50%,
+          transparent
+        );
+      }
     }
     .hover\:bg-neutral-900:hover {
       background-color: var(--color-neutral-900);
@@ -961,6 +1016,12 @@
         var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
     }
   }
+  .active\:scale-95:active {
+    --tw-scale-x: 95%;
+    --tw-scale-y: 95%;
+    --tw-scale-z: 95%;
+    scale: var(--tw-scale-x) var(--tw-scale-y);
+  }
   @media (min-width: 40rem) {
     .sm\:block {
       display: block;
@@ -973,6 +1034,9 @@
     }
     .sm\:h-24 {
       height: calc(var(--spacing) * 24);
+    }
+    .sm\:min-h-\[280px\] {
+      min-height: 280px;
     }
     .sm\:w-24 {
       width: calc(var(--spacing) * 24);
@@ -1016,6 +1080,9 @@
   @media (min-width: 48rem) {
     .md\:col-span-2 {
       grid-column: span 2 / span 2;
+    }
+    .md\:min-h-\[320px\] {
+      min-height: 320px;
     }
     .md\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1177,6 +1244,26 @@
   --sidebar-border: oklch(100% 0 0/0.1);
   --sidebar-ring: oklch(55.6% 0 0);
 }
+@property --tw-rotate-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-rotate-y {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-rotate-z {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-y {
+  syntax: "*";
+  inherits: false;
+}
 @property --tw-space-y-reverse {
   syntax: "*";
   inherits: false;
@@ -1256,6 +1343,21 @@
 @property --tw-duration {
   syntax: "*";
   inherits: false;
+}
+@property --tw-scale-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
 }
 .scrollbar-hide[data-astro-cid-yu3cdcui] {
   -ms-overflow-style: none;

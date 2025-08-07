@@ -77,7 +77,7 @@ function getTopicIcon(topic: string) {
       <div class="space-y-6">
         {
           projectsData.map((project: Project) => (
-            <div class="cursor-default overflow-hidden rounded-xl border-3 border-neutral-800 transition-colors duration-200 hover:border-neutral-700">
+            <div class="cursor-default overflow-hidden rounded-xl border border-neutral-900 transition-colors duration-200">
               <div class="space-y-4 p-4 sm:p-8">
                 <div class="flex items-start gap-4">
                   <Image
@@ -85,7 +85,7 @@ function getTopicIcon(topic: string) {
                     alt={project.title}
                     width={192}
                     height={192}
-                    class="h-20 w-20 flex-shrink-0 rounded-md border-3 border-neutral-800 object-cover transition-colors duration-200 hover:border-neutral-700 sm:h-24 sm:w-24"
+                    class="h-20 w-20 flex-shrink-0 rounded-md border border-neutral-800 object-cover transition-colors duration-200 hover:border-neutral-700 sm:h-24 sm:w-24"
                     loading="eager"
                     quality={100}
                     densities={[1, 2]}
@@ -100,7 +100,7 @@ function getTopicIcon(topic: string) {
                           const IconComponent = getTopicIcon(topic);
                           return (
                             <span
-                              class={`inline-flex items-center justify-center gap-1 rounded-md border-3 px-2 py-2 text-xs font-medium transition-all duration-200 hover:brightness-110 ${getProjectColor(topic)}`}
+                              class={`inline-flex items-center justify-center gap-1 rounded-md border px-2 py-2 text-xs font-medium transition-all duration-200 hover:brightness-110 ${getProjectColor(topic)}`}
                             >
                               <IconComponent
                                 weight="fill"
@@ -118,7 +118,7 @@ function getTopicIcon(topic: string) {
                           const IconComponent = getTopicIcon(topic);
                           return (
                             <span
-                              class={`inline-flex items-center gap-2 rounded-md border-3 px-3 py-2 text-sm font-medium transition-all duration-200 hover:brightness-110 ${getProjectColor(topic)}`}
+                              class={`inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition-all duration-200 hover:brightness-110 ${getProjectColor(topic)}`}
                             >
                               <IconComponent weight="fill" class="h-3 w-3" />
                               {topic}
@@ -136,7 +136,7 @@ function getTopicIcon(topic: string) {
                   {project.github && (
                     <button
                       onclick={`window.open('${project.github}', '_blank', 'noopener,noreferrer')`}
-                      class="group flex flex-1 cursor-pointer items-center justify-center rounded-lg border-3 border-neutral-800 px-4 py-3 text-sm font-medium text-neutral-200 transition-colors duration-200 hover:border-neutral-700 hover:bg-neutral-900"
+                      class="group flex flex-1 transform cursor-pointer items-center justify-center rounded-lg border border-neutral-900 px-4 py-3 text-sm font-medium text-neutral-200 transition-all duration-200 hover:border-neutral-700 hover:bg-gradient-to-b hover:from-neutral-950 hover:to-neutral-800 active:scale-95"
                     >
                       <PhGithubLogo weight="fill" class="mr-2 h-4 w-4" />
                       View Code
@@ -145,7 +145,7 @@ function getTopicIcon(topic: string) {
                   {project.demo && (
                     <button
                       onclick={`window.open('${project.demo}', '_blank', 'noopener,noreferrer')`}
-                      class="group flex flex-1 cursor-pointer items-center justify-center rounded-lg border-3 border-neutral-800 px-4 py-3 text-sm font-medium text-neutral-200 transition-colors duration-200 hover:border-neutral-700 hover:bg-neutral-900"
+                      class="group flex flex-1 transform cursor-pointer items-center justify-center rounded-lg border border-neutral-900 px-4 py-3 text-sm font-medium text-neutral-200 transition-all duration-200 hover:border-neutral-700 hover:bg-gradient-to-b hover:from-neutral-950 hover:to-neutral-800 active:scale-95"
                     >
                       <PhGlobe weight="fill" class="mr-2 h-4 w-4" />
                       View Site

@@ -2,14 +2,17 @@
 <html lang="en" data-astro-cid-yu3cdcui>
   <head>
     <meta charset="utf-8" />
-    <meta name="description" />
+    <meta
+      name="description"
+      content="Arman Kar's portfolio showcasing projects and skills"
+    />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link
       href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700&family=Geist+Mono:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <title>arman kar - personal website</title>
+    <title>Portfolio - Arman Kar</title>
     <vercel-analytics
       data-props="{&#34;data-astro-cid-yu3cdcui&#34;:true}"
       data-params="{}"
@@ -146,15 +149,24 @@
         },
       );
     </script>
-    <link rel="stylesheet" href="/_astro/index.BfrQUXnZ.css" />
+    <link rel="stylesheet" href="/_astro/index.BVPXYbO9.css" />
   </head>
   <body
-    class="flex min-h-screen flex-col items-center justify-center bg-neutral-950 p-4 text-neutral-200 sm:p-6 lg:p-8"
+    class="relative flex min-h-screen flex-col items-center justify-center p-4 text-neutral-200 sm:p-6 lg:p-8"
+    style="
+      background:
+        radial-gradient(
+          ellipse 80% 60% at 50% 0%,
+          rgba(255, 80, 120, 0.25),
+          transparent 70%
+        ),
+        #000000;
+    "
     data-astro-cid-yu3cdcui
   >
     <div class="w-full max-w-2xl space-y-6" data-astro-cid-yu3cdcui>
       <header
-        class="rounded-2xl border-3 border-neutral-800 px-6 py-4"
+        class="rounded-2xl border border-neutral-800 bg-neutral-950 px-6 py-4"
         data-astro-cid-jaiqm7ao
       >
         <nav
@@ -167,7 +179,7 @@
           >
             <button
               onclick="window.location.href='/'"
-              class="flex flex-shrink-0 cursor-pointer items-center gap-2 rounded-lg border-3 border-neutral-700 border-neutral-800 px-6 py-2 text-sm text-neutral-200 transition-colors duration-200 hover:border-neutral-700"
+              class="flex flex-shrink-0 transform cursor-pointer items-center gap-2 rounded-lg border border-neutral-700 border-neutral-800 px-6 py-2 text-sm text-neutral-200 transition-all duration-200 hover:border-neutral-700 active:scale-95"
               data-astro-cid-jaiqm7ao
             >
               <svg
@@ -187,7 +199,7 @@
             </button>
             <button
               onclick="window.location.href='/projects'"
-              class="flex flex-shrink-0 cursor-pointer items-center gap-2 rounded-md border-3 border-neutral-800 px-6 py-2 text-sm text-neutral-400 transition-colors duration-200 hover:border-neutral-700 hover:text-neutral-200"
+              class="flex flex-shrink-0 cursor-pointer items-center gap-2 rounded-md border border-neutral-800 px-6 py-2 text-sm text-neutral-400 transition-colors duration-200 hover:border-neutral-700 hover:text-neutral-200"
               data-astro-cid-jaiqm7ao
             >
               <svg
@@ -207,7 +219,7 @@
             </button>
             <!-- <button
        onclick="window.location.href='/journey'"
-       class={`flex flex-shrink-0 items-center gap-2 transition-colors duration-200 border-2 border-neutral-800 hover:border-neutral-700 rounded-md px-6 py-2 text-sm cursor-pointer ${
+       class={`flex flex-shrink-0 items-center gap-2 transition-colors duration-200 border   border-neutral-800 hover:border-neutral-700 rounded-md px-6 py-2 text-sm cursor-pointer ${
          currentPath === "/journey"
            ? "border-neutral-700 text-neutral-200"
            : "text-neutral-400 hover:text-neutral-200"
@@ -217,8 +229,8 @@
        <span>Journey</span>
      </button> -->
             <button
-              onclick="window.open('/armankar.pdf', '_blank')"
-              class="flex flex-shrink-0 cursor-pointer items-center gap-2 rounded-md border-3 border-neutral-800 px-6 py-2 text-sm text-neutral-400 transition-colors duration-200 hover:border-neutral-700 hover:text-neutral-200"
+              onclick="window.location.href='/resume'"
+              class="flex flex-shrink-0 cursor-pointer items-center gap-2 rounded-md border border-neutral-800 px-6 py-2 text-sm text-neutral-400 transition-colors duration-200 hover:border-neutral-700 hover:text-neutral-200"
               data-astro-cid-jaiqm7ao
             >
               <svg
@@ -231,7 +243,7 @@
                 data-astro-cid-jaiqm7ao="true"
               >
                 <path
-                  d="M224,144v64a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V144a8,8,0,0,1,16,0v56H208V144a8,8,0,0,1,16,0Zm-101.66,5.66a8,8,0,0,0,11.32,0l40-40A8,8,0,0,0,168,96H136V32a8,8,0,0,0-16,0V96H88a8,8,0,0,0-5.66,13.66Z"
+                  d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM152,88V44l44,44Z"
                 />
               </svg>
               <span data-astro-cid-jaiqm7ao>Resume</span>
@@ -240,14 +252,14 @@
         </nav>
       </header>
       <div
-        class="overflow-hidden rounded-2xl border-3 border-neutral-800 bg-neutral-950"
+        class="overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-950"
         data-astro-cid-yu3cdcui
       >
         <div
           class="scrollbar-hide h-[78vh] overflow-y-auto"
           data-astro-cid-yu3cdcui
         >
-          <main>
+          <main class="space-y-6">
             <style>
               astro-island,
               astro-slot,
@@ -469,9 +481,9 @@
               })();
             </script>
             <astro-island
-              uid="gamt3"
+              uid="3Snjq"
               prefix="r1"
-              component-url="/_astro/page-transition.DV0uhOYl.js"
+              component-url="/_astro/page-transition.BHPoTJ5_.js"
               component-export="default"
               renderer-url="/_astro/client.Ck978YHi.js"
               props="{}"
@@ -487,7 +499,7 @@
                         class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
                       >
                         <div
-                          class="cursor-default rounded-xl border-3 border-neutral-800 bg-neutral-950 transition-colors duration-200 hover:border-neutral-700 md:col-span-2 lg:col-span-2"
+                          class="cursor-default rounded-xl border border-neutral-800 bg-neutral-950 transition-colors duration-200 hover:border-neutral-700 md:col-span-2 lg:col-span-2"
                         >
                           <div class="p-8">
                             <div class="space-y-4">
@@ -505,7 +517,7 @@
                                     fetchpriority="auto"
                                     width="192"
                                     height="192"
-                                    class="h-20 w-20 rounded-md border-3 border-neutral-800 transition-colors duration-200 hover:border-neutral-700"
+                                    class="h-20 w-20 rounded-md border border-neutral-800 transition-colors duration-200 hover:border-neutral-700"
                                   />
                                   <h1
                                     class="text-4xl font-semibold text-neutral-200"
@@ -529,7 +541,7 @@
                                   class="flex cursor-default flex-wrap items-center gap-2"
                                 >
                                   <div
-                                    class="flex items-center gap-2 rounded-md border-3 border-indigo-800 bg-indigo-950 px-3 py-2 text-sm font-medium text-indigo-300 transition-all duration-200 hover:brightness-110"
+                                    class="flex items-center gap-2 rounded-md border border-indigo-800 bg-indigo-950 px-3 py-2 text-sm font-medium text-indigo-300 transition-all duration-200 hover:brightness-110"
                                   >
                                     <svg
                                       xmlns="http://www.w3.org/2000/svg"
@@ -546,7 +558,7 @@
                                     Full-stack Development
                                   </div>
                                   <div
-                                    class="flex items-center gap-2 rounded-md border-3 border-teal-800 bg-teal-950 px-3 py-2 text-sm font-medium text-teal-300 transition-all duration-200 hover:brightness-110"
+                                    class="flex items-center gap-2 rounded-md border border-teal-800 bg-teal-950 px-3 py-2 text-sm font-medium text-teal-300 transition-all duration-200 hover:brightness-110"
                                   >
                                     <svg
                                       xmlns="http://www.w3.org/2000/svg"
@@ -563,7 +575,7 @@
                                     UI Design
                                   </div>
                                   <div
-                                    class="flex items-center gap-2 rounded-md border-3 border-rose-800 bg-rose-950 px-3 py-2 text-sm font-medium text-rose-300 transition-all duration-200 hover:brightness-110"
+                                    class="flex items-center gap-2 rounded-md border border-rose-800 bg-rose-950 px-3 py-2 text-sm font-medium text-rose-300 transition-all duration-200 hover:brightness-110"
                                   >
                                     <svg
                                       xmlns="http://www.w3.org/2000/svg"
@@ -580,7 +592,7 @@
                                     DevOps
                                   </div>
                                   <div
-                                    class="flex items-center gap-2 rounded-md border-3 border-lime-800 bg-lime-950 px-3 py-2 text-sm font-medium text-lime-300 transition-all duration-200 hover:brightness-110"
+                                    class="flex items-center gap-2 rounded-md border border-lime-800 bg-lime-950 px-3 py-2 text-sm font-medium text-lime-300 transition-all duration-200 hover:brightness-110"
                                   >
                                     <svg
                                       xmlns="http://www.w3.org/2000/svg"
@@ -597,7 +609,7 @@
                                     Web Performance
                                   </div>
                                   <div
-                                    class="flex items-center gap-2 rounded-md border-3 border-cyan-800 bg-cyan-950 px-3 py-2 text-sm font-medium text-cyan-300 transition-all duration-200 hover:brightness-110"
+                                    class="flex items-center gap-2 rounded-md border border-cyan-800 bg-cyan-950 px-3 py-2 text-sm font-medium text-cyan-300 transition-all duration-200 hover:brightness-110"
                                   >
                                     <svg
                                       xmlns="http://www.w3.org/2000/svg"
@@ -619,7 +631,7 @@
                           </div>
                         </div>
                         <div
-                          class="rounded-xl border-3 border-neutral-800 bg-neutral-950 transition-colors duration-200 hover:border-neutral-700"
+                          class="rounded-xl border border-neutral-800 bg-neutral-950 transition-colors duration-200 hover:border-neutral-700"
                         >
                           <div class="p-4">
                             <div
@@ -633,7 +645,7 @@
                                 aria-label="Visit GitHub profile"
                               >
                                 <div
-                                  class="mb-2 flex items-center justify-center rounded-full border-3 border-dashed border-neutral-700 p-2"
+                                  class="mb-2 flex items-center justify-center p-2"
                                 >
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -660,7 +672,7 @@
                                 aria-label="Visit LinkedIn profile"
                               >
                                 <div
-                                  class="mb-2 flex items-center justify-center rounded-full border-3 border-dashed border-neutral-700 p-2"
+                                  class="mb-2 flex items-center justify-center p-2"
                                 >
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -687,7 +699,7 @@
                                 aria-label="Visit Twitter profile"
                               >
                                 <div
-                                  class="mb-2 flex items-center justify-center rounded-full border-3 border-dashed border-neutral-700 p-2"
+                                  class="mb-2 flex items-center justify-center p-2"
                                 >
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -712,7 +724,7 @@
                                 aria-label="Send email"
                               >
                                 <div
-                                  class="mb-2 flex items-center justify-center rounded-full border-3 border-dashed border-neutral-700 p-2"
+                                  class="mb-2 flex items-center justify-center p-2"
                                 >
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -735,15 +747,40 @@
                             </div>
                           </div>
                         </div>
+                        <a
+                          href="https://arcun.site"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Open arcun.site"
+                          class="group block h-full w-full"
+                        >
+                          <div
+                            class="flex h-full min-h-[240px] transform cursor-default items-center justify-center rounded-xl border border-neutral-800 bg-neutral-950 transition-all duration-200 hover:border-neutral-700 active:scale-95 sm:min-h-[280px] md:min-h-[320px]"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 256 256"
+                              width="48"
+                              height="48"
+                              fill="currentColor"
+                              transform
+                              class="text-neutral-400 transition-colors duration-200 group-hover:text-neutral-300"
+                            >
+                              <path
+                                d="M128,120a44,44,0,1,1,44-44A44.05,44.05,0,0,1,128,120Zm60,8a44,44,0,1,0,44,44A44.05,44.05,0,0,0,188,128ZM68,128a44,44,0,1,0,44,44A44.05,44.05,0,0,0,68,128Z"
+                              />
+                            </svg>
+                          </div>
+                        </a>
                         <div
-                          class="col-span-1 cursor-default rounded-xl border-3 border-neutral-800 bg-neutral-950 transition-colors duration-200 hover:border-neutral-700 md:col-span-2 lg:col-span-2"
+                          class="col-span-1 cursor-default rounded-xl border border-neutral-800 bg-neutral-950 transition-colors duration-200 hover:border-neutral-700 md:col-span-2 lg:col-span-2"
                         >
                           <div class="p-6">
                             <div class="space-y-6">
                               <div class="space-y-3 p-2">
                                 <div class="flex items-center gap-3">
                                   <div
-                                    class="flex h-10 w-10 items-center justify-center rounded-md border-3 border-neutral-800 bg-neutral-900"
+                                    class="flex h-10 w-10 items-center justify-center rounded-md border border-neutral-800 bg-neutral-900"
                                   >
                                     <span
                                       class="text-xs font-medium text-neutral-300"
@@ -784,7 +821,7 @@
                               <div class="space-y-3 p-2">
                                 <div class="flex items-center gap-3">
                                   <div
-                                    class="flex h-10 w-10 items-center justify-center rounded-md border-3 border-neutral-800 bg-neutral-900"
+                                    class="flex h-10 w-10 items-center justify-center rounded-md border border-neutral-800 bg-neutral-900"
                                   >
                                     <span
                                       class="text-xs font-medium text-neutral-300"
@@ -833,10 +870,10 @@
               </div>
               <!--astro:end--></astro-island
             >
-            <section class="px-6 py-6">
+            <section class="px-6">
               <div class="mx-auto max-w-4xl">
                 <div
-                  class="rounded-xl border-3 border-neutral-800 bg-neutral-950 p-8 transition-colors duration-200 hover:border-neutral-700"
+                  class="rounded-xl border border-neutral-800 bg-neutral-950 p-8 transition-colors duration-200 hover:border-neutral-700"
                 >
                   <div class="grid grid-cols-2 gap-2 md:grid-cols-4">
                     <div class="group">
@@ -845,7 +882,7 @@
                           class="flex cursor-default flex-col items-center space-y-3 p-1"
                         >
                           <div
-                            class="flex h-12 w-12 items-center justify-center rounded-full border-3 border-dashed border-neutral-700 p-2"
+                            class="flex h-12 w-12 items-center justify-center rounded-full p-2"
                           >
                             <div class="h-6 w-6">
                               <svg
@@ -898,7 +935,7 @@
                           class="flex cursor-default flex-col items-center space-y-3 p-1"
                         >
                           <div
-                            class="flex h-12 w-12 items-center justify-center rounded-full border-3 border-dashed border-neutral-700 p-2"
+                            class="flex h-12 w-12 items-center justify-center rounded-full p-2"
                           >
                             <div class="h-6 w-6">
                               <svg
@@ -942,7 +979,7 @@
                           class="flex cursor-default flex-col items-center space-y-3 p-1"
                         >
                           <div
-                            class="flex h-12 w-12 items-center justify-center rounded-full border-3 border-dashed border-neutral-700 p-2"
+                            class="flex h-12 w-12 items-center justify-center rounded-full p-2"
                           >
                             <div class="h-6 w-6">
                               <svg
@@ -982,7 +1019,7 @@
                           class="flex cursor-default flex-col items-center space-y-3 p-1"
                         >
                           <div
-                            class="flex h-12 w-12 items-center justify-center rounded-full border-3 border-dashed border-neutral-700 p-2"
+                            class="flex h-12 w-12 items-center justify-center rounded-full p-2"
                           >
                             <div class="h-6 w-6">
                               <svg
@@ -1065,7 +1102,7 @@
                           class="flex cursor-default flex-col items-center space-y-3 p-1"
                         >
                           <div
-                            class="flex h-12 w-12 items-center justify-center rounded-full border-3 border-dashed border-neutral-700 p-2"
+                            class="flex h-12 w-12 items-center justify-center rounded-full p-2"
                           >
                             <div class="h-6 w-6">
                               <svg
@@ -1109,7 +1146,7 @@
                           class="flex cursor-default flex-col items-center space-y-3 p-1"
                         >
                           <div
-                            class="flex h-12 w-12 items-center justify-center rounded-full border-3 border-dashed border-neutral-700 p-2"
+                            class="flex h-12 w-12 items-center justify-center rounded-full p-2"
                           >
                             <div class="h-6 w-6">
                               <svg
@@ -1226,7 +1263,7 @@
                           class="flex cursor-default flex-col items-center space-y-3 p-1"
                         >
                           <div
-                            class="flex h-12 w-12 items-center justify-center rounded-full border-3 border-dashed border-neutral-700 p-2"
+                            class="flex h-12 w-12 items-center justify-center rounded-full p-2"
                           >
                             <div class="h-6 w-6">
                               <svg
@@ -1291,7 +1328,7 @@
                           class="flex cursor-default flex-col items-center space-y-3 p-1"
                         >
                           <div
-                            class="flex h-12 w-12 items-center justify-center rounded-full border-3 border-dashed border-neutral-700 p-2"
+                            class="flex h-12 w-12 items-center justify-center rounded-full p-2"
                           >
                             <div class="h-6 w-6">
                               <svg
