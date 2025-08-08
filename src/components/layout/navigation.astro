@@ -10,7 +10,7 @@ const currentPath = Astro.url.pathname;
     >
       <button
         onclick="window.location.href='/'"
-        class={`flex flex-shrink-0 items-center gap-2 transition-all duration-200 border border-neutral-900 hover:border-neutral-700 rounded-sm px-6 py-2 text-sm cursor-pointer active:scale-90 transform ${
+        class={`flex flex-shrink-0 items-center gap-2 transition-all duration-200 border border-neutral-900 hover:border-neutral-700 hover:bg-gradient-to-b hover:from-neutral-900 hover:to-neutral-950 rounded-sm px-6 py-2 text-sm cursor-pointer active:scale-90 transform ${
           currentPath === "/"
             ? "border-neutral-700 text-neutral-200"
             : "text-neutral-400 hover:text-neutral-200"
@@ -21,7 +21,7 @@ const currentPath = Astro.url.pathname;
       </button>
       <button
         onclick="window.location.href='/projects'"
-        class={`flex flex-shrink-0 items-center gap-2 transition-all duration-200 border border-neutral-900 hover:border-neutral-700 rounded-sm px-6 py-2 text-sm cursor-pointer active:scale-90 transform ${
+        class={`flex flex-shrink-0 items-center gap-2 transition-all duration-200 border border-neutral-900 hover:border-neutral-700 hover:bg-gradient-to-b hover:from-neutral-900 hover:to-neutral-950 rounded-sm px-6 py-2 text-sm cursor-pointer active:scale-90 transform ${
           currentPath === "/projects"
             ? "border-neutral-700 text-neutral-200"
             : "text-neutral-400 hover:text-neutral-200"
@@ -32,7 +32,7 @@ const currentPath = Astro.url.pathname;
       </button>
       <!-- <button
        onclick="window.location.href='/journey'"
-       class={`flex flex-shrink-0 items-center gap-2 transition-all duration-200 border   border-neutral-900 hover:border-neutral-700 rounded-sm px-6 py-2 text-sm cursor-pointer active:scale-90 transform ${
+       class={`flex flex-shrink-0 items-center gap-2 transition-all duration-200 border   border-neutral-900 hover:border-neutral-700 hover:bg-gradient-to-b hover:from-neutral-900 hover:to-neutral-950 rounded-sm px-6 py-2 text-sm cursor-pointer active:scale-90 transform ${
          currentPath === "/journey"
            ? "border-neutral-700 text-neutral-200"
            : "text-neutral-400 hover:text-neutral-200"
@@ -43,7 +43,7 @@ const currentPath = Astro.url.pathname;
      </button> -->
       <button
         onclick="window.location.href='/resume'"
-        class={`flex flex-shrink-0 items-center gap-2 transition-all duration-200 border border-neutral-900 hover:border-neutral-700 rounded-sm px-6 py-2 text-sm cursor-pointer active:scale-90 transform ${
+        class={`flex flex-shrink-0 items-center gap-2 transition-all duration-200 border border-neutral-900 hover:border-neutral-700 hover:bg-gradient-to-b hover:from-neutral-900 hover:to-neutral-950 rounded-sm px-6 py-2 text-sm cursor-pointer active:scale-90 transform ${
           currentPath === "/resume"
             ? "border-neutral-700 text-neutral-200"
             : "text-neutral-400 hover:text-neutral-200"
