@@ -15,7 +15,21 @@ const iconMap = {
 };
 ---
 
-<div class="rounded-xl border border-neutral-900 bg-black">
+<div
+  class="group relative overflow-hidden rounded-sm border border-neutral-900 bg-black transition-colors duration-200"
+>
+  <span
+    class="absolute top-0 left-0 h-6 w-6 origin-top-left scale-0 transform rounded-tl-sm border-2 border-neutral-300 border-r-transparent border-b-transparent transition-transform duration-200 group-hover:scale-100"
+  ></span>
+  <span
+    class="absolute top-0 right-0 h-6 w-6 origin-top-right scale-0 transform rounded-tr-sm border-2 border-neutral-300 border-b-transparent border-l-transparent transition-transform duration-200 group-hover:scale-100"
+  ></span>
+  <span
+    class="absolute bottom-0 left-0 h-6 w-6 origin-bottom-left scale-0 transform rounded-bl-sm border-2 border-neutral-300 border-t-transparent border-r-transparent transition-transform duration-200 group-hover:scale-100"
+  ></span>
+  <span
+    class="absolute right-0 bottom-0 h-6 w-6 origin-bottom-right scale-0 transform rounded-br-sm border-2 border-neutral-300 border-t-transparent border-l-transparent transition-transform duration-200 group-hover:scale-100"
+  ></span>
   <div class="p-4">
     <div
       class="grid grid-cols-2 gap-2 px-3 sm:flex sm:flex-col sm:items-center sm:justify-center sm:gap-0 sm:space-y-2"

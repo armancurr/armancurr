@@ -10,8 +10,20 @@ import { PhCirclesThree } from "phosphor-icons-astro";
   class="group block h-full w-full"
 >
   <div
-    class="flex h-full min-h-[240px] transform cursor-default cursor-pointer items-center justify-center rounded-xl border border-neutral-900 bg-black transition-all duration-200 active:scale-95 sm:min-h-[280px] md:min-h-[320px]"
+    class="relative flex h-full min-h-[240px] transform cursor-default cursor-pointer items-center justify-center overflow-hidden rounded-sm border border-neutral-900 bg-black transition-all duration-200 active:scale-95 sm:min-h-[280px] md:min-h-[320px]"
   >
+    <span
+      class="absolute top-0 left-0 h-6 w-6 origin-top-left scale-0 transform rounded-tl-sm border-2 border-neutral-300 border-r-transparent border-b-transparent transition-transform duration-200 group-hover:scale-100"
+    ></span>
+    <span
+      class="absolute top-0 right-0 h-6 w-6 origin-top-right scale-0 transform rounded-tr-sm border-2 border-neutral-300 border-b-transparent border-l-transparent transition-transform duration-200 group-hover:scale-100"
+    ></span>
+    <span
+      class="absolute bottom-0 left-0 h-6 w-6 origin-bottom-left scale-0 transform rounded-bl-sm border-2 border-neutral-300 border-t-transparent border-r-transparent transition-transform duration-200 group-hover:scale-100"
+    ></span>
+    <span
+      class="absolute right-0 bottom-0 h-6 w-6 origin-bottom-right scale-0 transform rounded-br-sm border-2 border-neutral-300 border-t-transparent border-l-transparent transition-transform duration-200 group-hover:scale-100"
+    ></span>
     <PhCirclesThree
       size={48}
       weight="fill"
