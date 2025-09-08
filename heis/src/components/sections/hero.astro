@@ -1,0 +1,20 @@
+---
+import ProfileCard from "./profile-card.astro";
+import ConnectCard from "./connect-card.astro";
+import ArcunsiteCard from "./arcunsite-card.astro";
+import Testimonials from "./testimonials.astro";
+import PageTransition from "../ui/page-transition.tsx";
+---
+
+<PageTransition client:load>
+  <section class="px-6 py-6">
+    <div class="mx-auto max-w-4xl">
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <ProfileCard />
+        <ConnectCard />
+        <ArcunsiteCard />
+        <Testimonials />
+      </div>
+    </div>
+  </section>
+</PageTransition>

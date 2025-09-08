@@ -1,0 +1,170 @@
+---
+import {
+  PhGithubLogo,
+  PhGlobe,
+  PhFile,
+  PhRobot,
+  PhImage,
+  PhArrowsOutSimple,
+  PhArrowsClockwise,
+  PhTerminal,
+  PhGear,
+  PhBowlFood,
+  PhGameController,
+  PhCurrencyDollar,
+} from "phosphor-icons-astro";
+import { Image } from "astro:assets";
+import projectsData from "@/data/projects.json";
+import PageTransition from "@/components/ui/page-transition.tsx";
+import sumanizeImage from "@/assets/sumanize.png";
+import vizumImage from "@/assets/vizum.png";
+import cumautoImage from "@/assets/cumauto.png";
+import coinsavorImage from "@/assets/coinsavor.png";
+
+interface Project {
+  id: string;
+  image: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  topics: string[];
+  github?: string;
+  demo?: string;
+}
+
+const imageMap: Record<string, any> = {
+  "/images/sumanize.png": sumanizeImage,
+  "/images/vizum.png": vizumImage,
+  "/images/cumauto.png": cumautoImage,
+  "/images/coinsavor.png": coinsavorImage,
+};
+
+function getProjectColor(tech: string): string {
+  const projectMap: Record<string, string> = {
+    Summarization: "bg-teal-950 border-teal-800 text-teal-300",
+    Chatbot: "bg-teal-950 border-teal-800 text-teal-300",
+    "Image Compression": "bg-lime-950 border-lime-800 text-lime-300",
+    "Format Conversion": "bg-lime-950 border-lime-800 text-lime-300",
+    "Command Line": "bg-indigo-950 border-indigo-800 text-indigo-300",
+    Automation: "bg-indigo-950 border-indigo-800 text-indigo-300",
+    "Food Recommendation": "bg-orange-950 border-orange-800 text-orange-300",
+    "Personal Finance": "bg-orange-950 border-orange-800 text-orange-300",
+    default: "bg-neutral-950 border-neutral-800 text-neutral-300",
+  };
+  return projectMap[tech] || projectMap["default"];
+}
+
+function getTopicIcon(topic: string) {
+  const iconMap: Record<string, any> = {
+    Summarization: PhFile,
+    Chatbot: PhRobot,
+    "Image Compression": PhImage,
+    "AI Upscale": PhArrowsOutSimple,
+    "Format Conversion": PhArrowsClockwise,
+    "Command Line": PhTerminal,
+    Automation: PhGear,
+    "Food Recommendation": PhBowlFood,
+    Gamification: PhGameController,
+    Finance: PhCurrencyDollar,
+  };
+  return iconMap[topic] || PhGear;
+}
+---
+
+<PageTransition client:load>
+  <div class="px-6 py-6">
+    <div class="space-y-8">
+      <div class="space-y-6">
+        {
+          projectsData.map((project: Project) => (
+            <div class="group relative cursor-default overflow-hidden rounded-sm border border-neutral-900 transition-colors duration-200">
+              <span class="absolute top-0 left-0 h-6 w-6 origin-top-left scale-0 transform rounded-tl-sm border-2 border-neutral-300 border-r-transparent border-b-transparent transition-transform duration-200 group-hover:scale-100" />
+
+              <span class="absolute top-0 right-0 h-6 w-6 origin-top-right scale-0 transform rounded-tr-sm border-2 border-neutral-300 border-b-transparent border-l-transparent transition-transform duration-200 group-hover:scale-100" />
+
+              <span class="absolute bottom-0 left-0 h-6 w-6 origin-bottom-left scale-0 transform rounded-bl-sm border-2 border-neutral-300 border-t-transparent border-r-transparent transition-transform duration-200 group-hover:scale-100" />
+
+              <span class="absolute right-0 bottom-0 h-6 w-6 origin-bottom-right scale-0 transform rounded-br-sm border-2 border-neutral-300 border-t-transparent border-l-transparent transition-transform duration-200 group-hover:scale-100" />
+
+              <div class="space-y-4 p-4 sm:p-8">
+                <div class="flex items-start gap-4">
+                  <Image
+                    src={imageMap[project.image]}
+                    alt={project.title}
+                    width={192}
+                    height={192}
+                    class="h-20 w-20 flex-shrink-0 rounded-md border border-neutral-800 object-cover transition-colors duration-200 hover:border-neutral-700 sm:h-24 sm:w-24"
+                    loading="eager"
+                    quality={100}
+                    densities={[1, 2]}
+                  />
+                  <div class="min-w-0 flex-1">
+                    <h1 class="mb-3 text-2xl font-semibold text-neutral-200 sm:text-4xl">
+                      {project.title}
+                    </h1>
+                    <div class="sm:hidden">
+                      <div class="grid grid-cols-2 gap-2">
+                        {project.topics.map((topic) => {
+                          const IconComponent = getTopicIcon(topic);
+                          return (
+                            <span
+                              class={`inline-flex items-center justify-center gap-1 rounded-md border px-2 py-2 text-xs font-medium transition-all duration-200 hover:brightness-110 ${getProjectColor(topic)}`}
+                            >
+                              <IconComponent
+                                weight="fill"
+                                class="h-3 w-3 flex-shrink-0"
+                              />
+                              <span class="truncate">{topic}</span>
+                            </span>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    <div class="hidden sm:block">
+                      <div class="flex flex-wrap gap-2">
+                        {project.topics.map((topic) => {
+                          const IconComponent = getTopicIcon(topic);
+                          return (
+                            <span
+                              class={`inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition-all duration-200 hover:brightness-110 ${getProjectColor(topic)}`}
+                            >
+                              <IconComponent weight="fill" class="h-3 w-3" />
+                              {topic}
+                            </span>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <p class="text-base leading-relaxed text-neutral-200 sm:text-lg">
+                  {project.description}
+                </p>
+                <div class="flex w-full gap-3 pt-2">
+                  {project.github && (
+                    <button
+                      onclick={`window.open('${project.github}', '_blank', 'noopener,noreferrer')`}
+                      class="group flex flex-1 transform cursor-pointer items-center justify-center rounded-md border border-neutral-900 px-4 py-3 text-sm font-medium text-neutral-200 transition-all duration-200 hover:border-neutral-700 hover:bg-gradient-to-b hover:from-neutral-900 hover:to-neutral-950 active:scale-95"
+                    >
+                      <PhGithubLogo weight="fill" class="mr-2 h-4 w-4" />
+                      View Code
+                    </button>
+                  )}
+                  {project.demo && (
+                    <button
+                      onclick={`window.open('${project.demo}', '_blank', 'noopener,noreferrer')`}
+                      class="group flex flex-1 transform cursor-pointer items-center justify-center rounded-md border border-neutral-900 px-4 py-3 text-sm font-medium text-neutral-200 transition-all duration-200 hover:border-neutral-700 hover:bg-gradient-to-b hover:from-neutral-900 hover:to-neutral-950 active:scale-95"
+                    >
+                      <PhGlobe weight="fill" class="mr-2 h-4 w-4" />
+                      View Site
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</PageTransition>

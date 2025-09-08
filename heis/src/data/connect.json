@@ -1,0 +1,32 @@
+{
+  "socialLinks": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/armancurr",
+      "iconColor": "text-neutral-50",
+      "description": "View projects and experiments",
+      "ariaLabel": "Visit GitHub profile"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/armancurr",
+      "iconColor": "text-blue-500",
+      "description": "Connect with me on LinkedIn",
+      "ariaLabel": "Visit LinkedIn profile"
+    },
+    {
+      "name": "Twitter",
+      "url": "https://x.com/rrucnamra",
+      "iconColor": "text-sky-400",
+      "description": "Follow me on Twitter",
+      "ariaLabel": "Visit Twitter profile"
+    },
+    {
+      "name": "Email",
+      "url": "mailto:armancurr@proton.me",
+      "iconColor": "text-indigo-500",
+      "description": "Contact upfront to collaborate",
+      "ariaLabel": "Send email"
+    }
+  ]
+}

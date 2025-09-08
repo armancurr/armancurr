@@ -1,0 +1,25 @@
+---
+import { PhDownloadSimple, PhArrowSquareOut } from "phosphor-icons-astro";
+---
+
+<div class="space-y-4">
+  <div class="flex items-center justify-between">
+    <div class="flex flex-col">
+      <h1 class="text-xl font-semibold text-neutral-200">Resume</h1>
+      <p class="text-sm text-neutral-400">
+        View my professional experience and qualifications
+      </p>
+    </div>
+
+    <div class="flex gap-3">
+      <button
+        type="button"
+        onclick="window.open('/armankar.pdf', '_blank')"
+        class="flex cursor-pointer items-center gap-2 rounded-md border border-neutral-800 px-4 py-2 text-sm font-medium text-neutral-200 transition-colors hover:border-neutral-700 hover:bg-gradient-to-b hover:from-neutral-800 hover:to-neutral-950"
+      >
+        <PhDownloadSimple size={16} weight="fill" />
+        Download
+      </button>
+    </div>
+  </div>
+</div>

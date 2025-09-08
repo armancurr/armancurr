@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Astro",
+    "description": "Astro - lightweight static websites",
+    "icon": "astro"
+  },
+  {
+    "name": "Next.js",
+    "description": "Next.js - Framework to build React apps",
+    "icon": "nextjs"
+  },
+  {
+    "name": "Tailwind CSS",
+    "description": "Tailwind - I can't be bothered to write CSS",
+    "icon": "tailwind"
+  },
+  {
+    "name": "Python",
+    "description": "Python - For AI and minute Data Structures",
+    "icon": "python"
+  },
+  {
+    "name": "Node.js",
+    "description": "Node.js - Runtime and package manager",
+    "icon": "nodejs"
+  },
+  {
+    "name": "Bun",
+    "description": "Bun - The superior runtime and package manager",
+    "icon": "bun"
+  },
+  {
+    "name": "Supabase",
+    "description": "Supabase - To spin up Postgres databases",
+    "icon": "supabase"
+  },
+  {
+    "name": "Git",
+    "description": "Git - Version control system - Just use it",
+    "icon": "git"
+  }
+]

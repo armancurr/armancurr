@@ -1,0 +1,17 @@
+---
+import Main from "../layouts/main.astro";
+import Navigation from "../components/layout/navigation.astro";
+import Hero from "../components/sections/hero.astro";
+import TechStack from "../components/sections/tech-stack.astro";
+---
+
+<Main
+  title="Portfolio - Arman Kar"
+  description="Arman Kar's portfolio showcasing projects and skills"
+>
+  <Navigation slot="header" />
+  <main class="space-y-6">
+    <Hero />
+    <TechStack />
+  </main>
+</Main>

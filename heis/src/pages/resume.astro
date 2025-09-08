@@ -1,0 +1,21 @@
+---
+import Main from "../layouts/main.astro";
+import Navigation from "../components/layout/navigation.astro";
+import ResumeHeader from "../components/resume/resume-header.astro";
+import PdfViewer from "../components/resume/pdf-viewer.astro";
+import PageTransition from "../components/ui/page-transition.tsx";
+---
+
+<Main
+  title="Resume - Arman Kar"
+  description="View and download Arman Kar's resume"
+>
+  <Navigation slot="header" />
+
+  <PageTransition client:load>
+    <main class="space-y-6 p-6">
+      <ResumeHeader />
+      <PdfViewer />
+    </main>
+  </PageTransition>
+</Main>

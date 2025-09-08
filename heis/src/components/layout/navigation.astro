@@ -1,0 +1,67 @@
+---
+import { PhHouseSimple, PhFolders, PhFile } from "phosphor-icons-astro";
+const currentPath = Astro.url.pathname;
+---
+
+<header class="rounded-md border border-neutral-900 bg-black px-6 py-4">
+  <nav class="flex items-center justify-start space-x-3 py-2">
+    <div
+      class="scrollbar-hide flex min-w-0 flex-1 items-center space-x-3 overflow-x-auto"
+    >
+      <button
+        onclick="window.location.href='/'"
+        class={`flex flex-shrink-0 items-center gap-2 transition-all duration-200 border border-neutral-900 hover:border-neutral-700 hover:bg-gradient-to-b hover:from-neutral-900 hover:to-neutral-950 rounded-sm px-6 py-2 text-sm cursor-pointer active:scale-90 transform ${
+          currentPath === "/"
+            ? "border-neutral-700 text-neutral-200"
+            : "text-neutral-400 hover:text-neutral-200"
+        }`}
+      >
+        <PhHouseSimple size={16} weight="fill" />
+        <span>Home</span>
+      </button>
+      <button
+        onclick="window.location.href='/projects'"
+        class={`flex flex-shrink-0 items-center gap-2 transition-all duration-200 border border-neutral-900 hover:border-neutral-700 hover:bg-gradient-to-b hover:from-neutral-900 hover:to-neutral-950 rounded-sm px-6 py-2 text-sm cursor-pointer active:scale-90 transform ${
+          currentPath === "/projects"
+            ? "border-neutral-700 text-neutral-200"
+            : "text-neutral-400 hover:text-neutral-200"
+        }`}
+      >
+        <PhFolders size={16} weight="fill" />
+        <span>Projects</span>
+      </button>
+      <!-- <button
+       onclick="window.location.href='/journey'"
+       class={`flex flex-shrink-0 items-center gap-2 transition-all duration-200 border   border-neutral-900 hover:border-neutral-700 hover:bg-gradient-to-b hover:from-neutral-900 hover:to-neutral-950 rounded-sm px-6 py-2 text-sm cursor-pointer active:scale-90 transform ${
+         currentPath === "/journey"
+           ? "border-neutral-700 text-neutral-200"
+           : "text-neutral-400 hover:text-neutral-200"
+       }`}
+     >
+       <PhCalendarBlank size={16} weight="fill" />
+       <span>Journey</span>
+     </button> -->
+      <button
+        onclick="window.location.href='/resume'"
+        class={`flex flex-shrink-0 items-center gap-2 transition-all duration-200 border border-neutral-900 hover:border-neutral-700 hover:bg-gradient-to-b hover:from-neutral-900 hover:to-neutral-950 rounded-sm px-6 py-2 text-sm cursor-pointer active:scale-90 transform ${
+          currentPath === "/resume"
+            ? "border-neutral-700 text-neutral-200"
+            : "text-neutral-400 hover:text-neutral-200"
+        }`}
+      >
+        <PhFile size={16} weight="fill" />
+        <span>Resume</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+</style>

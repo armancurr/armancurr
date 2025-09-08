@@ -1,0 +1,46 @@
+---
+import experienceData from "../../data/experience.json";
+
+interface Experience {
+  id: string;
+  position: string;
+  company: string;
+  duration: string;
+  description: string;
+  technologies: string[];
+}
+---
+
+<section class="border-t border-neutral-700/50 px-6 py-12">
+  <div class="space-y-8">
+    <div class="space-y-8">
+      {
+        experienceData.map((exp: Experience) => (
+          <div class="space-y-4">
+            <div class="flex items-start justify-between">
+              <div class="text-sm text-neutral-400">{exp.duration}</div>
+              <div class="flex-1 space-y-1 text-right">
+                <div class="text-sm font-medium text-neutral-100">
+                  {exp.position}
+                </div>
+                <div class="text-sm text-neutral-300">{exp.company}</div>
+              </div>
+            </div>
+
+            <div class="text-sm leading-relaxed text-neutral-400">
+              {exp.description}
+            </div>
+
+            <div class="flex flex-wrap justify-end gap-2">
+              {exp.technologies.map((tech: string) => (
+                <span class="inline-flex items-center rounded border border-neutral-600/50 bg-neutral-700/50 px-2 py-1 text-xs font-medium text-neutral-300">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

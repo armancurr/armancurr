@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "image": "/images/sumanize.png",
+    "title": "sumanize",
+    "subtitle": "Content Summarization Tool",
+    "description": "A Gemini wrapper that processes long-form articles or documents and delivers clear, concise, or richly descriptive summaries tailored to your needs, for rapid understanding, deep dives, or quick overviews.",
+    "topics": ["Summarization", "Chatbot"],
+    "github": "https://github.com/kalviumcommunity/S65_Arman_Capstone_Sumanize.git",
+    "demo": "https://sumanize.vercel.app"
+  },
+  {
+    "id": "2",
+    "image": "/images/vizum.png",
+    "title": "vizum",
+    "subtitle": "Image Processing Tool",
+    "description": "Convert images to different formats, smartly crop corners, compress for reduced file size, upscale photos with advanced AI enhancement, and extract dominant color palettes, all in one streamlined tool.",
+    "topics": ["Image Compression", "Format Conversion"],
+    "github": "https://github.com/armancurr/vizum.git",
+    "demo": "https://vizum.vercel.app"
+  },
+  {
+    "id": "3",
+    "image": "/images/cumauto.png",
+    "title": "cumauto",
+    "subtitle": "Commit/PR Automation Tool",
+    "description": "CLI tool that looks at your code changes and automatically makes commit messages and PR descriptions. The name comes from blending 'cum' (Latin for 'with') and 'auto' for easy commit automation.",
+    "topics": ["Command Line", "Automation"],
+    "github": "https://github.com/armancurr/cumauto.git",
+    "demo": "https://cumauto.vercel.app"
+  },
+  {
+    "id": "4",
+    "image": "/images/coinsavor.png",
+    "title": "coinsavor",
+    "subtitle": "Food Budgeting App",
+    "description": "Mobile-first gamified food budgeting app that provides you randomized daily meal plans, streak tracking, and monthly spending limits so your broke ass don't get broker.",
+    "topics": ["Food Recommendation", "Personal Finance"],
+    "github": "https://github.com/armancurr/coinsavor.git",
+    "demo": "https://coinsavor.vercel.app"
+  }
+]

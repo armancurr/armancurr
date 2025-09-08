@@ -1,0 +1,95 @@
+---
+import {
+  PhPenNib,
+  PhBracketsCurly,
+  PhDatabase,
+  PhSpeedometer,
+  PhGitFork,
+} from "phosphor-icons-astro";
+import { Image } from "astro:assets";
+import profileImage from "@/assets/luca-giordano.jpg";
+
+const skills = [
+  {
+    icon: PhBracketsCurly,
+    label: "Full-stack Development",
+    color: "bg-indigo-950 border-indigo-800 text-indigo-300",
+  },
+  {
+    icon: PhPenNib,
+    label: "UI Design",
+    color: "bg-teal-950 border-teal-800 text-teal-300",
+  },
+  {
+    icon: PhDatabase,
+    label: "DevOps",
+    color: "bg-rose-950 border-rose-800 text-rose-300",
+  },
+  {
+    icon: PhSpeedometer,
+    label: "Web Performance",
+    color: "bg-lime-950 border-lime-800 text-lime-300",
+  },
+  {
+    icon: PhGitFork,
+    label: "Open Source Contributions",
+    color: "bg-cyan-950 border-cyan-800 text-cyan-300",
+  },
+];
+---
+
+<div
+  class="group relative cursor-default overflow-hidden rounded-sm border border-neutral-900 bg-black transition-colors duration-200 md:col-span-2 lg:col-span-2"
+>
+  <span
+    class="absolute top-0 left-0 h-6 w-6 origin-top-left scale-0 transform rounded-tl-sm border-2 border-neutral-300 border-r-transparent border-b-transparent transition-transform duration-200 group-hover:scale-100"
+  ></span>
+  <span
+    class="absolute top-0 right-0 h-6 w-6 origin-top-right scale-0 transform rounded-tr-sm border-2 border-neutral-300 border-b-transparent border-l-transparent transition-transform duration-200 group-hover:scale-100"
+  ></span>
+  <span
+    class="absolute bottom-0 left-0 h-6 w-6 origin-bottom-left scale-0 transform rounded-bl-sm border-2 border-neutral-300 border-t-transparent border-r-transparent transition-transform duration-200 group-hover:scale-100"
+  ></span>
+  <span
+    class="absolute right-0 bottom-0 h-6 w-6 origin-bottom-right scale-0 transform rounded-br-sm border-2 border-neutral-300 border-t-transparent border-l-transparent transition-transform duration-200 group-hover:scale-100"
+  ></span>
+  <div class="p-8">
+    <div class="space-y-4">
+      <div class="flex items-start justify-between">
+        <div class="space-y-4">
+          <Image
+            src={profileImage}
+            alt="Profile"
+            width={192}
+            height={192}
+            class="h-20 w-20 rounded-md border border-neutral-800 transition-colors duration-200 hover:border-neutral-700"
+            loading="eager"
+            quality={100}
+            densities={[1, 2]}
+          />
+          <h1 class="text-4xl font-semibold text-neutral-200">
+            arman <span class="text-sm text-neutral-500">(uhrr-maan curr)</span>
+          </h1>
+        </div>
+      </div>
+      <div class="space-y-8">
+        <p class="text-lg leading-relaxed text-neutral-200">
+          I'm a software developer specializing in detailed UI design to deliver
+          fast, smooth, and engaging experiences.
+        </p>
+        <div class="flex cursor-default flex-wrap items-center gap-2">
+          {
+            skills.map(({ icon: Icon, label, color }) => (
+              <div
+                class={`flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition-all duration-200 hover:brightness-110 ${color}`}
+              >
+                <Icon size={16} weight="bold" />
+                {label}
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

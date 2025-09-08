@@ -1,0 +1,81 @@
+---
+import testimonialsData from "../../data/testimonials.json";
+
+interface Testimonial {
+  id: string;
+  name: string;
+  position: string;
+  company: string;
+  content: string;
+  linkedinUrl: string;
+  companyLinkedinUrl: string;
+}
+
+const getInitials = (name: string) => {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .slice(0, 2);
+};
+
+const firstTwoTestimonials = testimonialsData.slice(0, 2);
+---
+
+<div
+  class="group relative col-span-1 cursor-default overflow-hidden rounded-sm border border-neutral-900 bg-black transition-colors duration-200 md:col-span-2 lg:col-span-2"
+>
+  <span
+    class="absolute top-0 left-0 h-6 w-6 origin-top-left scale-0 transform rounded-tl-sm border-2 border-neutral-300 border-r-transparent border-b-transparent transition-transform duration-200 group-hover:scale-100"
+  ></span>
+  <span
+    class="absolute top-0 right-0 h-6 w-6 origin-top-right scale-0 transform rounded-tr-sm border-2 border-neutral-300 border-b-transparent border-l-transparent transition-transform duration-200 group-hover:scale-100"
+  ></span>
+  <span
+    class="absolute bottom-0 left-0 h-6 w-6 origin-bottom-left scale-0 transform rounded-bl-sm border-2 border-neutral-300 border-t-transparent border-r-transparent transition-transform duration-200 group-hover:scale-100"
+  ></span>
+  <span
+    class="absolute right-0 bottom-0 h-6 w-6 origin-bottom-right scale-0 transform rounded-br-sm border-2 border-neutral-300 border-t-transparent border-l-transparent transition-transform duration-200 group-hover:scale-100"
+  ></span>
+  <div class="p-6">
+    <div class="space-y-6">
+      {
+        firstTwoTestimonials.map((testimonial: Testimonial) => (
+          <div class="space-y-3 p-2">
+            <div class="flex items-center gap-3">
+              <div class="flex h-10 w-10 items-center justify-center rounded-md border border-neutral-800 bg-neutral-900">
+                <span class="text-xs font-medium text-neutral-300">
+                  {getInitials(testimonial.name)}
+                </span>
+              </div>
+              <div class="flex-1">
+                <a
+                  href={testimonial.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block text-sm font-medium text-neutral-200 transition-colors hover:text-neutral-100"
+                >
+                  {testimonial.name}
+                </a>
+                <div class="text-sm text-neutral-500">
+                  {testimonial.position} at{" "}
+                  <a
+                    href={testimonial.companyLinkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-neutral-400 transition-colors hover:text-neutral-300"
+                  >
+                    {testimonial.company}
+                  </a>
+                </div>
+              </div>
+            </div>
+            <blockquote class="text-md pl-0 leading-relaxed text-neutral-400">
+              "{testimonial.content}"
+            </blockquote>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>

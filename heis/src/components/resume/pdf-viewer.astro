@@ -1,0 +1,30 @@
+---
+import PdfFallback from "./pdf-fallback.astro";
+---
+
+<div
+  class="relative overflow-hidden rounded-sm border border-neutral-900 bg-neutral-900"
+>
+  <div class="aspect-[8.5/11] w-full">
+    <iframe
+      src="/armankar.pdf#view=FitH"
+      class="h-full w-full"
+      style="border: none;"
+      title="Resume PDF Preview"
+    >
+      <PdfFallback />
+    </iframe>
+  </div>
+</div>
+
+<style>
+  iframe {
+    min-height: 600px;
+  }
+
+  @media (max-width: 768px) {
+    iframe {
+      min-height: 500px;
+    }
+  }
+</style>

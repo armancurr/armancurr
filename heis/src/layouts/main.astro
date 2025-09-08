@@ -1,0 +1,48 @@
+---
+import Analytics from "@vercel/analytics/astro";
+import "../styles/global.css";
+export interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300;400;500;600;700&family=Geist+Mono:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+    <Analytics />
+  </head>
+  <body
+    class="relative flex min-h-screen flex-col items-center justify-center p-4 text-neutral-100 sm:p-6 lg:p-8"
+    style="background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 80, 120, 0.25), transparent 70%), #000000;"
+  >
+    <div class="w-full max-w-2xl space-y-6">
+      <slot name="header" />
+      <div
+        class="overflow-hidden rounded-md border border-neutral-900 bg-black"
+      >
+        <div class="scrollbar-hide h-[78vh] overflow-y-auto">
+          <slot />
+        </div>
+      </div>
+    </div>
+    <style>
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+  </body>
+</html>

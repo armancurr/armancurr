@@ -1,0 +1,60 @@
+---
+import {
+  PhGithubLogo,
+  PhLinkedinLogo,
+  PhTwitterLogo,
+  PhEnvelopeOpen,
+} from "phosphor-icons-astro";
+
+import connectData from "@/data/connect.json";
+const iconMap = {
+  GitHub: PhGithubLogo,
+  LinkedIn: PhLinkedinLogo,
+  Twitter: PhTwitterLogo,
+  Email: PhEnvelopeOpen,
+};
+---
+
+<div
+  class="group relative overflow-hidden rounded-sm border border-neutral-900 bg-black transition-colors duration-200"
+>
+  <span
+    class="absolute top-0 left-0 h-6 w-6 origin-top-left scale-0 transform rounded-tl-sm border-2 border-neutral-300 border-r-transparent border-b-transparent transition-transform duration-200 group-hover:scale-100"
+  ></span>
+  <span
+    class="absolute top-0 right-0 h-6 w-6 origin-top-right scale-0 transform rounded-tr-sm border-2 border-neutral-300 border-b-transparent border-l-transparent transition-transform duration-200 group-hover:scale-100"
+  ></span>
+  <span
+    class="absolute bottom-0 left-0 h-6 w-6 origin-bottom-left scale-0 transform rounded-bl-sm border-2 border-neutral-300 border-t-transparent border-r-transparent transition-transform duration-200 group-hover:scale-100"
+  ></span>
+  <span
+    class="absolute right-0 bottom-0 h-6 w-6 origin-bottom-right scale-0 transform rounded-br-sm border-2 border-neutral-300 border-t-transparent border-l-transparent transition-transform duration-200 group-hover:scale-100"
+  ></span>
+  <div class="p-4">
+    <div
+      class="grid grid-cols-2 gap-2 px-3 sm:flex sm:flex-col sm:items-center sm:justify-center sm:gap-0 sm:space-y-2"
+    >
+      {
+        connectData.socialLinks.map((link) => {
+          const IconComponent = iconMap[link.name as keyof typeof iconMap];
+          return (
+            <a
+              href={link.url}
+              target={link.name !== "Email" ? "_blank" : undefined}
+              rel={link.name !== "Email" ? "noopener noreferrer" : undefined}
+              class="flex w-full transform flex-col items-center justify-center rounded-lg p-3 text-neutral-400 transition-colors duration-200 hover:text-neutral-200 active:scale-95"
+              aria-label={link.ariaLabel}
+            >
+              <div class="mb-2 flex items-center justify-center p-2">
+                <IconComponent size={24} weight="fill" class={link.iconColor} />
+              </div>
+              <span class="text-center text-sm leading-tight">
+                {link.description}
+              </span>
+            </a>
+          );
+        })
+      }
+    </div>
+  </div>
+</div>
