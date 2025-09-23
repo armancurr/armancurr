@@ -6,7 +6,7 @@ const currentProjects = [
   {
     name: "pazman",
     url: "https://github.com/armancurr/pazman.git",
-    description: "quickly fetch your passwords in your terminal"
+    description: "quickly fetch your passwords from your terminal"
   },
   {
     name: "openmerge",
@@ -54,7 +54,6 @@ const socials = [
 	<body class="bg-[#191724] min-h-screen flex flex-col items-center justify-center p-8">
       <div id="portfolio-container" class="flex flex-col max-w-2xl w-full gap-12">
         
-        <!-- intro -->
         <section class="transition-all duration-700 ease-out will-change-transform opacity-0 translate-y-3">
           <h1 class="text-[#e0def4] text-2xl font-medium">
             <span class="text-[#9ccfd8] text-md ml-1">~</span>
@@ -62,14 +61,13 @@ const socials = [
             arman
           </h1>
           <p class="text-[#e0def4] text-lg">
-            I like to build software that feels good to use, makes people's lives easier, and I'm always on the lookout for open source contributions.
+            I like to build command-line and web tools that feels good to use, makes people's lives easier, and I'm always on the lookout for open source contributions.
           </p>
         </section>
 
-        <!-- what im working on? -->
         <section class="flex flex-col gap-4 transition-all duration-700 ease-out will-change-transform opacity-0 translate-y-3">
           <label class="text-[#6e6a86] text-sm">
-            what im working on?
+            cli tools i built and use
           </label>
           {currentProjects.map((project) => (
             <div>
@@ -90,10 +88,9 @@ const socials = [
           ))}
         </section>
 
-        <!-- things i have built -->
         <section class="flex flex-col gap-4 transition-all duration-700 ease-out will-change-transform opacity-0 translate-y-3">
           <label class="text-[#6e6a86] text-sm">
-            things i have built
+            web apps i've built
           </label>
           {completedProjects.map((project) => (
             <div>
