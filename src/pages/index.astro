@@ -2,7 +2,7 @@
 import "../global.css";
 import { PhArrowUpRight } from 'phosphor-icons-astro';
 
-const currentProjects = [
+const cli = [
   {
     name: "pazman",
     url: "https://github.com/armancurr/pazman.git",
@@ -15,7 +15,7 @@ const currentProjects = [
   }
 ];
 
-const completedProjects = [
+const web = [
   {
     name: "vizum",
     url: "https://github.com/armancurr/vizum.git",
@@ -61,7 +61,7 @@ const socials = [
             arman
           </h1>
           <p class="text-[#e0def4] text-lg">
-            I like to build command-line and web tools that feels good to use, makes people's lives easier, and I'm always on the lookout for open source contributions.
+            I like to build command-line and web tools that feels good to use and I'm always on the lookout for open source contributions.
           </p>
         </section>
 
@@ -69,7 +69,7 @@ const socials = [
           <label class="text-[#6e6a86] text-sm">
             cli tools i built and use
           </label>
-          {currentProjects.map((project) => (
+          {cli.map((project) => (
             <div>
               <div class="flex items-center justify-between">
                 <a href={project.url} target="_blank">
@@ -92,7 +92,7 @@ const socials = [
           <label class="text-[#6e6a86] text-sm">
             web apps i've built
           </label>
-          {completedProjects.map((project) => (
+          {web.map((project) => (
             <div>
               <div class="flex items-center justify-between">
                 <a href={project.url} target="_blank">
@@ -111,7 +111,6 @@ const socials = [
           ))}
         </section>
         
-        <!-- socials -->
         <section class="flex flex-row items-start justify-start gap-4 text-md text-[#6e6a86] transition-all duration-700 ease-out will-change-transform opacity-0 translate-y-3">
           {socials.map((social) => (
             <a href={social.url} target="_blank" class="flex items-center gap-2 hover:text-[#c4a7e7] transition-colors duration-200">
