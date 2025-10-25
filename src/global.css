@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
 * {
-	font-family: 'Funnel Sans', sans-serif;
+  font-family: "Funnel Sans", sans-serif;
+}
+
+:root {
+  --background: #101010;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-muted: #8b8b8b;
+  --text-accent: #ffc799;
+  --background-hover: rgba(255, 255, 255, 0.1);
 }

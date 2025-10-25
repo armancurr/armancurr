@@ -1,149 +1,194 @@
 ---
 import "../global.css";
-import { PhArrowUpRight } from 'phosphor-icons-astro';
+import { PhArrowUpRight } from "phosphor-icons-astro";
 
 const cli = [
   {
     name: "pazman",
     url: "https://github.com/armancurr/pazman.git",
-    description: "quickly fetch your passwords from your terminal"
+    description: "quickly fetch your passwords from your terminal",
   },
   {
     name: "openmerge",
     url: "https://github.com/armancurr/openmerge.git",
-    description: "automate your pull requests while never leaving the terminal"
-  }
+    description: "automate your pull requests while never leaving the terminal",
+  },
 ];
 
 const web = [
   {
     name: "vizum",
     url: "https://github.com/armancurr/vizum.git",
-    description: "image utility tool to compress, convert, and resize images"
+    description: "image utility tool to compress, convert, and resize images",
   },
   {
     name: "coinsavor",
     url: "https://github.com/armancurr/coinsavor.git",
-    description: "it helps you save money by giving you meal plans that you should not ignore"
-  }
+    description:
+      "it helps you save money by giving you meal plans that you should not ignore",
+  },
 ];
 
 const socials = [
   {
     name: "follow me on twitter",
-    url: "https://github.com/armancurr"
+    url: "https://github.com/armancurr",
   },
   {
     name: "collaborate on github",
-    url: "https://x.com/rrucnamra"
-  }
+    url: "https://x.com/rrucnamra",
+  },
 ];
-
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>armancurr - personal website</title>
-		<link href="https://fonts.googleapis.com/css2?family=Funnel+Sans&display=swap" rel="stylesheet">
-		<script src="https://cdn.jsdelivr.net/npm/framer-motion@10.16.4/dist/framer-motion.min.js"></script>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>armancurr - personal website</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Funnel+Sans&display=swap"
+      rel="stylesheet"
+    />
   </head>
-	<body class="bg-[#191724] min-h-screen flex flex-col items-center justify-center p-8">
-      <div id="portfolio-container" class="flex flex-col max-w-2xl w-full gap-12">
-        
-        <section class="transition-all duration-700 ease-out will-change-transform opacity-0 translate-y-3">
-          <h1 class="text-[#e0def4] text-2xl font-medium">
-            <span class="text-[#9ccfd8] text-md ml-1">~</span>
-            <span class="text-[#31748f] text-md ml-1 mr-3">❯</span>
-            arman
-          </h1>
-          <p class="text-[#e0def4] text-lg">
-            I like to build command-line and web tools that feels good to use and I'm always on the lookout for open source contributions.
-          </p>
-        </section>
+  <body
+    class="bg-[var(--background)] min-h-screen flex flex-col items-center justify-center p-8"
+  >
+    <div id="portfolio-container" class="flex flex-col max-w-2xl w-full gap-12">
+      <section
+        class="transition-all duration-700 ease-out will-change-transform opacity-0 translate-y-3"
+      >
+        <h1 class="text-[var(--text-secondary)] text-2xl font-medium">
+          <span class="text-[var(--text-primary)] text-md ml-1">~</span>
+          <span class="text-[var(--text-accent)] text-md ml-1 mr-3">❯</span>
+          arman
+        </h1>
+        <p class="text-[var(--text-secondary)] text-lg">
+          I like to build command-line and web tools that feels good to use and
+          I'm always on the lookout for open source contributions.
+        </p>
+      </section>
 
-        <section class="flex flex-col gap-4 transition-all duration-700 ease-out will-change-transform opacity-0 translate-y-3">
-          <label class="text-[#6e6a86] text-sm">
-            cli tools i built and use
-          </label>
-          {cli.map((project) => (
+      <section
+        class="flex flex-col gap-4 transition-all duration-700 ease-out will-change-transform opacity-0 translate-y-3"
+      >
+        <label class="text-[var(--text-muted)] text-sm">
+          cli tools i built and use
+        </label>
+        {
+          cli.map((project) => (
             <div>
               <div class="flex items-center justify-between">
                 <a href={project.url} target="_blank">
-                  <h2 class="text-[#e0def4] hover:text-[#c4a7e7] text-lg font-medium transition-colors duration-200">
+                  <h2 class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] text-lg font-medium transition-colors duration-200">
                     {project.name}
                   </h2>
                 </a>
-                <a href={project.url} target="_blank" class="p-2 -m-2 hover:bg-[#c4a7e7]/10 rounded transition-colors duration-200">
-                  <PhArrowUpRight size={18} weight="bold" class="text-[#e0def4]"/>
+                <a
+                  href={project.url}
+                  target="_blank"
+                  class="p-2 -m-2 hover:bg-[var(--background-hover)] rounded transition-colors duration-200"
+                >
+                  <PhArrowUpRight
+                    size={18}
+                    weight="bold"
+                    class="text-[var(--text-secondary)]"
+                  />
                 </a>
               </div>
-              <p class="text-[#6e6a86] text-md">
+              <p class="text-[var(--text-muted)] text-md">
                 {project.description}
               </p>
             </div>
-          ))}
-        </section>
+          ))
+        }
+      </section>
 
-        <section class="flex flex-col gap-4 transition-all duration-700 ease-out will-change-transform opacity-0 translate-y-3">
-          <label class="text-[#6e6a86] text-sm">
-            web apps i've built
-          </label>
-          {web.map((project) => (
+      <section
+        class="flex flex-col gap-4 transition-all duration-700 ease-out will-change-transform opacity-0 translate-y-3"
+      >
+        <label class="text-[var(--text-muted)] text-sm">
+          web apps i've built
+        </label>
+        {
+          web.map((project) => (
             <div>
               <div class="flex items-center justify-between">
                 <a href={project.url} target="_blank">
-                  <h2 class="text-[#e0def4] hover:text-[#c4a7e7] text-lg font-medium transition-colors duration-200">
+                  <h2 class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] text-lg font-medium transition-colors duration-200">
                     {project.name}
                   </h2>
                 </a>
-                <a href={project.url} target="_blank" class="p-2 -m-2 hover:bg-[#c4a7e7]/10 rounded transition-colors duration-200">
-                  <PhArrowUpRight size={18} weight="bold" class="text-[#e0def4]"/>
+                <a
+                  href={project.url}
+                  target="_blank"
+                  class="p-2 -m-2 hover:bg-[var(--background-hover)] rounded transition-colors duration-200"
+                >
+                  <PhArrowUpRight
+                    size={18}
+                    weight="bold"
+                    class="text-[var(--text-secondary)]"
+                  />
                 </a>
               </div>
-              <p class="text-[#6e6a86] text-md">
+              <p class="text-[var(--text-muted)] text-md">
                 {project.description}
               </p>
             </div>
-          ))}
-        </section>
-        
-        <section class="flex flex-row items-start justify-start gap-4 text-md text-[#6e6a86] transition-all duration-700 ease-out will-change-transform opacity-0 translate-y-3">
-          {socials.map((social) => (
-            <a href={social.url} target="_blank" class="flex items-center gap-2 hover:text-[#c4a7e7] transition-colors duration-200">
-              <PhArrowUpRight size={18} weight="bold"/>
+          ))
+        }
+      </section>
+
+      <section
+        class="flex flex-row items-start justify-start gap-4 text-md text-[var(--text-muted)] transition-all duration-700 ease-out will-change-transform opacity-0 translate-y-3"
+      >
+        {
+          socials.map((social) => (
+            <a
+              href={social.url}
+              target="_blank"
+              class="flex items-center gap-2 hover:text-[var(--text-primary)] transition-colors duration-200"
+            >
+              <PhArrowUpRight size={18} weight="bold" />
               {social.name}
             </a>
-          ))}
-        </section>
-      </div>
+          ))
+        }
+      </section>
+    </div>
 
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          const sections = document.querySelectorAll('#portfolio-container section');
-          const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-          if (reduce) {
-            sections.forEach(el => {
-              el.classList.remove('opacity-0', 'translate-y-3');
-              el.classList.add('opacity-100', 'translate-y-0');
-            });
-            return;
-          }
-          const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const sections = document.querySelectorAll(
+          "#portfolio-container section",
+        );
+        const reduce = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        if (reduce) {
+          sections.forEach((el) => {
+            el.classList.remove("opacity-0", "translate-y-3");
+            el.classList.add("opacity-100", "translate-y-0");
+          });
+          return;
+        }
+        const observer = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
               if (entry.isIntersecting) {
                 const el = entry.target;
-                el.classList.remove('opacity-0', 'translate-y-3');
-                el.classList.add('opacity-100', 'translate-y-0');
+                el.classList.remove("opacity-0", "translate-y-3");
+                el.classList.add("opacity-100", "translate-y-0");
                 obs.unobserve(el);
               }
             });
-          }, { threshold: 0.12 });
-          sections.forEach(el => observer.observe(el));
-        });
-      </script>
+          },
+          { threshold: 0.12 },
+        );
+        sections.forEach((el) => observer.observe(el));
+      });
+    </script>
   </body>
 </html>
