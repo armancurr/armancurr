@@ -5,10 +5,57 @@
 }
 
 :root {
-  --background: #101010;
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
-  --text-muted: #8b8b8b;
-  --text-accent: #ffc799;
-  --background-hover: rgba(255, 255, 255, 0.1);
+  /* Mapped from Noir Poimandres Darker */
+  --background: #0f1017;
+  --text-primary: #e4f0fb;
+  --text-secondary: #a6accd;
+  --text-muted: #767c9d;
+  --text-accent: #add7ff;
+  --background-hover: #a6accd25; /* (from scrollbarSlider.hoverBackground) */
+}
+
+.prose {
+  color: var(--text-secondary);
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.prose strong {
+  color: var(--text-primary);
+}
+
+.prose a {
+  color: var(--text-accent);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.prose a:hover {
+  color: var(--text-primary);
+}
+
+.prose code {
+  color: var(--text-accent);
+  background: #ffffff05; /* (from input.background) */
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
+
+.prose pre {
+  background: #ffffff05; /* (from input.background) */
+  border: 1px solid #ffffff10; /* (from input.border) */
+}
+
+.prose blockquote {
+  border-left: 2px solid var(--text-accent);
+  color: var(--text-muted);
+  font-style: italic;
 }
