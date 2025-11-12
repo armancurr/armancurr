@@ -11,6 +11,7 @@
   "dependencies": {
     "@astrojs/mdx": "^4.3.9",
     "@tailwindcss/vite": "^4.1.12",
+    "@vercel/analytics": "^1.5.0",
     "astro": "^5.13.10",
     "phosphor-icons-astro": "2.1.1-17042025",
     "tailwindcss": "^4.1.12"

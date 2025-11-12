@@ -5,13 +5,13 @@
 }
 
 :root {
-  /* Mapped from Noir Poimandres Darker */
-  --background: #0f1017;
-  --text-primary: #e4f0fb;
-  --text-secondary: #a6accd;
-  --text-muted: #767c9d;
-  --text-accent: #add7ff;
-  --background-hover: #a6accd25; /* (from scrollbarSlider.hoverBackground) */
+  /* Mapped from mode.json */
+  --background: #151515; /* (from editor.background) */
+  --text-primary: #e7e7e7; /* (from text.accent / syntax.constant) */
+  --text-secondary: #c3c9c2; /* (from editor.foreground) */
+  --text-muted: #4a4a4a; /* (from syntax.comment) */
+  --text-accent: #a59e8a; /* (from syntax.tag) */
+  --background-hover: #252525; /* (from element.hover) */
 }
 
 .prose {
@@ -44,14 +44,14 @@
 
 .prose code {
   color: var(--text-accent);
-  background: #ffffff05; /* (from input.background) */
+  background: #1d1d1d; /* (from editor.active_line.background) */
   padding: 0.2em 0.4em;
   border-radius: 4px;
 }
 
 .prose pre {
-  background: #ffffff05; /* (from input.background) */
-  border: 1px solid #ffffff10; /* (from input.border) */
+  background: #1d1d1d; /* (from editor.active_line.background) */
+  border: 1px solid #252525; /* (from border.focused) */
 }
 
 .prose blockquote {
