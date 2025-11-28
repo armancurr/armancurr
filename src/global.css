@@ -1,17 +1,19 @@
 @import "tailwindcss";
 
 * {
-  font-family: "Funnel Sans", sans-serif;
+  font-family: "Public Sans", sans-serif;
 }
 
 :root {
-  /* Mapped from mode.json */
-  --background: #151515; /* (from editor.background) */
-  --text-primary: #e7e7e7; /* (from text.accent / syntax.constant) */
-  --text-secondary: #c3c9c2; /* (from editor.foreground) */
-  --text-muted: #4a4a4a; /* (from syntax.comment) */
-  --text-accent: #a59e8a; /* (from syntax.tag) */
-  --background-hover: #252525; /* (from element.hover) */
+  /* Vesper Color Theme */
+  --background: #101010; /* Main Background */
+  --text-primary: #ffffff; /* Editor Foreground */
+  --text-secondary: #a0a0a0; /* Comments / Sidebar Foreground */
+  --text-muted: #505050; /* Line Numbers / Subtle Text */
+  --text-accent: #ffc799; /* Vesper Peach (Links / Focus) */
+  --text-code: #99ffe4; /* Vesper Mint (Strings / Code) */
+  --background-hover: #282828; /* List Hover Background */
+  --border-subtle: #232323; /* Splitter / Widget Borders */
 }
 
 .prose {
@@ -33,29 +35,29 @@
 }
 
 .prose a {
-  color: var(--text-accent);
+  color: var(--text-accent); /* Peach */
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .prose a:hover {
-  color: var(--text-primary);
+  color: var(--text-primary); /* White on hover */
 }
 
 .prose code {
-  color: var(--text-accent);
-  background: #1d1d1d; /* (from editor.active_line.background) */
+  color: var(--text-code); /* Mint */
+  background: #1c1c1c; /* Input Background */
   padding: 0.2em 0.4em;
   border-radius: 4px;
 }
 
 .prose pre {
-  background: #1d1d1d; /* (from editor.active_line.background) */
-  border: 1px solid #252525; /* (from border.focused) */
+  background: #161616; /* Slightly lighter than main bg (Tab Active) */
+  border: 1px solid var(--border-subtle);
 }
 
 .prose blockquote {
-  border-left: 2px solid var(--text-accent);
-  color: var(--text-muted);
+  border-left: 2px solid var(--text-accent); /* Peach Border */
+  color: var(--text-secondary);
   font-style: italic;
 }

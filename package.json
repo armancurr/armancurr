@@ -9,11 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.9",
-    "@tailwindcss/vite": "^4.1.12",
+    "@astrojs/mdx": "4.3.12",
+    "@tailwindcss/vite": "^4.1.17",
     "@vercel/analytics": "^1.5.0",
-    "astro": "^5.13.10",
+    "astro": "5.16.0",
     "phosphor-icons-astro": "2.1.1-17042025",
-    "tailwindcss": "^4.1.12"
+    "tailwindcss": "^4.1.17"
   }
 }
