@@ -5,15 +5,14 @@
 }
 
 :root {
-  /* Vesper Color Theme */
-  --background: #101010; /* Main Background */
-  --text-primary: #ffffff; /* Editor Foreground */
-  --text-secondary: #a0a0a0; /* Comments / Sidebar Foreground */
-  --text-muted: #505050; /* Line Numbers / Subtle Text */
-  --text-accent: #ffc799; /* Vesper Peach (Links / Focus) */
-  --text-code: #99ffe4; /* Vesper Mint (Strings / Code) */
-  --background-hover: #282828; /* List Hover Background */
-  --border-subtle: #232323; /* Splitter / Widget Borders */
+  --background: #0f1014;
+  --text-primary: #fdfdfe;
+  --text-secondary: #a8a8b0;
+  --text-muted: #6b6c77;
+  --text-accent: #ffbb88;
+  --text-code: #8eb6f5;
+  --background-hover: #191a20;
+  --border-subtle: #282930;
 }
 
 .prose {
@@ -35,29 +34,29 @@
 }
 
 .prose a {
-  color: var(--text-accent); /* Peach */
+  color: var(--text-accent);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .prose a:hover {
-  color: var(--text-primary); /* White on hover */
+  color: var(--text-primary);
 }
 
 .prose code {
-  color: var(--text-code); /* Mint */
-  background: #1c1c1c; /* Input Background */
+  color: var(--text-code);
+  background: #15161a;
   padding: 0.2em 0.4em;
   border-radius: 4px;
 }
 
 .prose pre {
-  background: #161616; /* Slightly lighter than main bg (Tab Active) */
+  background: #111216;
   border: 1px solid var(--border-subtle);
 }
 
 .prose blockquote {
-  border-left: 2px solid var(--text-accent); /* Peach Border */
+  border-left: 2px solid var(--text-accent);
   color: var(--text-secondary);
   font-style: italic;
 }
