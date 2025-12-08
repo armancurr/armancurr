@@ -5,14 +5,14 @@
 }
 
 :root {
-  --background: #0f1014;
-  --text-primary: #fdfdfe;
-  --text-secondary: #a8a8b0;
-  --text-muted: #6b6c77;
-  --text-accent: #ffbb88;
-  --text-code: #8eb6f5;
-  --background-hover: #191a20;
-  --border-subtle: #282930;
+  --background: #101010;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-muted: #505050;
+  --text-accent: #ffc799;
+  --text-code: #99ffe4;
+  --background-hover: #1c1c1c;
+  --border-subtle: #282828;
 }
 
 .prose {
@@ -45,13 +45,13 @@
 
 .prose code {
   color: var(--text-code);
-  background: #15161a;
+  background: #1c1c1c;
   padding: 0.2em 0.4em;
   border-radius: 4px;
 }
 
 .prose pre {
-  background: #111216;
+  background: #161616;
   border: 1px solid var(--border-subtle);
 }
 
