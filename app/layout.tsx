@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Public_Sans } from "next/font/google"
 import "./globals.css"
-import { Header } from "./header"
-import { Footer } from "./footer"
+import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
 import { ThemeProvider } from "next-themes"
 
 export const viewport: Viewport = {
@@ -12,26 +12,22 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nim-fawn.vercel.app/"),
+  metadataBase: new URL("https://armancurr.vercel.app/"),
   alternates: {
     canonical: "/",
   },
   title: {
-    default: "Nim - Personal website template",
-    template: "%s | Nim",
+    default: "Arman Kar - Personal website",
+    template: "%s | Arman Kar",
   },
   description:
-    "Nim is a free and open-source personal website template built with Next.js 15, React 19 and Motion-Primitives.",
+    "Arman Kar's personal website - showcasing projects and professional experience.",
 }
 
-const geist = Geist({
-  variable: "--font-geist",
+const publicSans = Public_Sans({
+  variable: "--font-public-sans",
   subsets: ["latin"],
-})
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 })
 
 export default function RootLayout({
@@ -42,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geist.variable} ${geistMono.variable} bg-white tracking-tight antialiased dark:bg-zinc-950`}
+        className={`${publicSans.variable} bg-white tracking-tight antialiased dark:bg-zinc-950`}
       >
         <ThemeProvider
           enableSystem={true}
@@ -50,7 +46,7 @@ export default function RootLayout({
           storageKey="theme"
           defaultTheme="system"
         >
-          <div className="flex min-h-screen w-full flex-col font-[family-name:var(--font-inter-tight)]">
+          <div className="flex min-h-screen w-full flex-col font-[family-name:var(--font-public-sans)]">
             <div className="relative mx-auto w-full max-w-screen-sm flex-1 px-4 pt-20">
               <Header />
               {children}
