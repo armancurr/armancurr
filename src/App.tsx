@@ -1,6 +1,18 @@
 import {
+  BellSimple,
+  CircleWavy,
+  Cpu,
+  Disc,
   EnvelopeSimple,
+  GlobeHemisphereWest,
   GithubLogo,
+  MoonStars,
+  MusicNoteSimple,
+  SpeakerHigh,
+  SpeakerSimpleHigh,
+  Sun,
+  Wind,
+  Drop,
 } from "phosphor-solid";
 import { createSignal, onCleanup, onMount } from "solid-js";
 
@@ -12,6 +24,25 @@ import {
   type SoundPreset,
   unlockAudio,
 } from "./lib/use-sound";
+
+const presetOptions = [
+  { preset: "Soft Tap", icon: BellSimple, label: "Soft" },
+  { preset: "Glass Tick", icon: CircleWavy, label: "Glass" },
+  { preset: "Wood Knock", icon: Disc, label: "Wood" },
+  { preset: "Digital Pop", icon: Cpu, label: "Digital" },
+  { preset: "Chime Dot", icon: MusicNoteSimple, label: "Chime" },
+  { preset: "Arcade Blip", icon: SpeakerSimpleHigh, label: "Arcade" },
+  { preset: "Warm Pulse", icon: SpeakerHigh, label: "Warm" },
+  { preset: "Bright Ping", icon: Sun, label: "Bright" },
+  { preset: "Hollow Click", icon: GlobeHemisphereWest, label: "Hollow" },
+  { preset: "Orbit Drift", icon: MoonStars, label: "Orbit" },
+  { preset: "Velvet Pluck", icon: Drop, label: "Velvet" },
+  { preset: "Crystal Bloom", icon: Wind, label: "Bloom" },
+] as const satisfies ReadonlyArray<{
+  preset: SoundPreset;
+  icon: typeof BellSimple;
+  label: string;
+}>;
 
 export default function App() {
   const [selectedPreset, setSelectedPreset] =
@@ -48,12 +79,9 @@ export default function App() {
     haptics.click();
   };
 
-  const handlePresetChange = (value: string) => {
-    setSelectedPreset(value as SoundPreset);
-    void unlockAudio();
-  };
+  const handlePresetSelect = (preset: SoundPreset) => {
+    setSelectedPreset(preset);
 
-  const handlePreview = () => {
     void unlockAudio().then((ready) => {
       if (ready) playSelectedPreset();
     });
@@ -184,49 +212,27 @@ export default function App() {
           <rect width="100%" height="100%" filter="url(#n2)" />
         </svg>
 
-        <div class="h-[min(62vw,620px)] min-h-[360px]" />
-        </section>
+        <div class="absolute left-0 top-0 z-10 px-3 py-3 sm:px-4 sm:py-4">
+          <div class="flex flex-wrap items-center gap-2">
+            {presetOptions.map(({ preset, icon: Icon, label }) => {
+              const selected = () => selectedPreset() === preset;
 
-        <section class="w-full rounded-sm border border-white/10 p-4 sm:p-5">
-          <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p class="text-xs uppercase tracking-[0.2em] text-white/45">
-                interaction sound
-              </p>
-              <p class="mt-1 text-sm text-white/65">
-                Pick a hover preset for the section containers.
-              </p>
-              <p class="mt-1 text-xs text-white/45">
-                First tap/click enables browser audio, then hover will play immediately.
-              </p>
-            </div>
-
-            <div class="flex items-center gap-3 text-sm text-white/70">
-              <label class="flex items-center gap-3">
-                <span>Preset</span>
-                <select
-                  class="rounded-sm border border-white/15 bg-white/5 px-3 py-2 text-white outline-none"
-                  value={selectedPreset()}
-                  onChange={(event) => handlePresetChange(event.currentTarget.value)}
-                  onPointerDown={() => {
-                    void unlockAudio();
-                  }}
+              return (
+                <button
+                  type="button"
+                  aria-label={label}
+                  title={label}
+                  class={`inline-flex h-10 w-10 items-center justify-center rounded-sm transition-colors ${selected() ? "text-white" : "text-white/45 hover:text-white/80"}`}
+                  onPointerDown={() => handlePresetSelect(preset)}
                 >
-                  {soundPresetLabels.map((preset) => (
-                    <option value={preset}>{preset}</option>
-                  ))}
-                </select>
-              </label>
-
-              <button
-                type="button"
-                class="rounded-sm border border-white/15 bg-white/5 px-3 py-2 text-white"
-                onPointerDown={handlePreview}
-              >
-                Preview
-              </button>
-            </div>
+                  <Icon size={20} weight="regular" />
+                </button>
+              );
+            })}
           </div>
+        </div>
+
+        <div class="h-[min(62vw,620px)] min-h-[360px]" />
         </section>
 
         <section
