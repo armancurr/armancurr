@@ -1,0 +1,50 @@
+type InteractiveSectionProps = {
+  onSectionHover: () => void;
+  onSectionPress: () => void;
+};
+
+const workExperience = [
+  {
+    period: "Dec 2025 — Present",
+    title: "Full-Stack Engineer",
+    company: "OneSol AI Labs",
+    description:
+      "Leading the frontend team building design systems and component libraries. Architected the migration to a modern stack, reducing bundle sizes by 40% and improving Core Web Vitals across all properties.",
+  },
+];
+
+export function WorkSection(props: InteractiveSectionProps) {
+  return (
+    <section class="w-full">
+      <div
+        id="work"
+        class="mx-auto w-full max-w-6xl border-x border-y border-white/10 px-6 py-16 hover:bg-white/[0.03] sm:px-8 sm:py-20 md:px-10 md:py-28"
+        onPointerEnter={props.onSectionHover}
+        onPointerDown={props.onSectionPress}
+      >
+        <div class="mb-16">
+          <p class="text-sm uppercase tracking-[0.2em] text-white/50">
+            work experience
+          </p>
+        </div>
+
+        <div class="space-y-12">
+          {workExperience.map((job) => (
+            <div class="group grid gap-6 pt-8 lg:grid-cols-12">
+              <div class="lg:col-span-3">
+                <p class="text-sm text-white/40">{job.period}</p>
+              </div>
+              <div class="lg:col-span-9">
+                <h3 class="text-xl font-medium">{job.title}</h3>
+                <p class="mt-1 text-white/50">{job.company}</p>
+                <p class="mt-4 leading-relaxed text-white/70">
+                  {job.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
