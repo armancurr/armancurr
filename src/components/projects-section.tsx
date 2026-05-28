@@ -1,3 +1,7 @@
+import { CaretRight } from "phosphor-solid";
+
+import { BorderPlus } from "./border-plus";
+
 type InteractiveSectionProps = {
   onSectionHover: () => void;
   onSectionPress: () => void;
@@ -45,34 +49,33 @@ export function ProjectsSection(props: InteractiveSectionProps) {
     <section class="w-full">
       <div
         id="projects"
-        class="mx-auto w-full max-w-6xl border-x border-b border-white/10 px-6 py-16 hover:bg-white/[0.03] sm:px-8 sm:py-20 md:px-10 md:py-28"
+        class="relative mx-auto w-full max-w-6xl border-x border-b border-white/10 px-6 py-16 hover:bg-white/[0.03] sm:px-8 sm:py-20 md:px-10 md:py-28"
         onPointerEnter={props.onSectionHover}
         onPointerDown={props.onSectionPress}
       >
+        <BorderPlus edge="bottom" side="left" />
+        <BorderPlus edge="bottom" side="right" />
         <div class="mb-16">
           <p class="text-sm uppercase tracking-[0.2em] text-white/50">
             projects
           </p>
         </div>
 
-        <div class="grid gap-8 sm:grid-cols-2">
+        <div class="grid gap-12 md:grid-cols-2">
           {projects.map((project) => (
             <a
               href={project.href}
-              class="group block overflow-hidden rounded-sm border border-white/10 bg-white/5 transition-colors hover:bg-white/[0.08]"
+              class="block"
               rel="noreferrer"
               target="_blank"
             >
-              <div class="aspect-[4/3] border-b border-white/10">
-                <div class="flex h-full items-center justify-center text-white/30">
+              <div>
+                <div class="flex items-center gap-4 text-white">
                   {project.icon}
+                  <CaretRight size={18} weight="fill" />
+                  <h3 class="text-xl font-medium">{project.title}</h3>
                 </div>
-              </div>
-              <div class="p-5">
-                <h3 class="text-lg font-medium transition-colors group-hover:text-white/70">
-                  {project.title}
-                </h3>
-                <p class="mt-1 text-sm text-white/50">
+                <p class="mt-4 max-w-md leading-relaxed text-white/70">
                   {project.description}
                 </p>
               </div>

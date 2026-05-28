@@ -1,6 +1,8 @@
 import { createSignal, onCleanup, onMount } from "solid-js";
 
 import { AboutSection } from "./components/about-section";
+import { FooterSection } from "./components/footer-section";
+import { HeaderSection } from "./components/header-section";
 import { HeroSection } from "./components/hero-section";
 import { ProjectsSection } from "./components/projects-section";
 import { presetOptions } from "./components/sound-preset-options";
@@ -83,7 +85,8 @@ export default function App() {
   }
 
   return (
-    <div class="flex min-h-screen flex-col overflow-x-hidden bg-black px-4 py-24 text-white sm:px-6 sm:py-32">
+    <div class="flex min-h-screen flex-col overflow-x-hidden bg-black px-4 text-white sm:px-6">
+      <HeaderSection />
       <HeroSection />
       <AboutSection
         onSectionHover={handleSectionHover}
@@ -93,10 +96,11 @@ export default function App() {
         onSectionHover={handleSectionHover}
         onSectionPress={handleSectionPress}
       />
-      {/*<ProjectsSection
+      <ProjectsSection
         onSectionHover={handleSectionHover}
         onSectionPress={handleSectionPress}
-      />*/}
+      />
+      <FooterSection />
     </div>
   );
 }

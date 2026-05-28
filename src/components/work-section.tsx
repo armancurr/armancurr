@@ -1,3 +1,5 @@
+import { BorderPlus } from "./border-plus";
+
 type InteractiveSectionProps = {
   onSectionHover: () => void;
   onSectionPress: () => void;
@@ -18,10 +20,14 @@ export function WorkSection(props: InteractiveSectionProps) {
     <section class="w-full">
       <div
         id="work"
-        class="mx-auto w-full max-w-6xl border-x border-y border-white/10 px-6 py-16 hover:bg-white/[0.03] sm:px-8 sm:py-20 md:px-10 md:py-28"
+        class="relative mx-auto w-full max-w-6xl border-x border-y border-white/10 px-6 py-16 hover:bg-white/[0.03] sm:px-8 sm:py-20 md:px-10 md:py-28"
         onPointerEnter={props.onSectionHover}
         onPointerDown={props.onSectionPress}
       >
+        <BorderPlus edge="top" side="left" />
+        <BorderPlus edge="top" side="right" />
+        <BorderPlus edge="bottom" side="left" />
+        <BorderPlus edge="bottom" side="right" />
         <div class="mb-16">
           <p class="text-sm uppercase tracking-[0.2em] text-white/50">
             work experience

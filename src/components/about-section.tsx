@@ -1,3 +1,5 @@
+import { BorderPlus } from "./border-plus";
+
 type InteractiveSectionProps = {
   onSectionHover: () => void;
   onSectionPress: () => void;
@@ -8,10 +10,12 @@ export function AboutSection(props: InteractiveSectionProps) {
     <section class="w-full">
       <div
         id="about"
-        class="mx-auto w-full max-w-6xl border-x border-t border-white/10 px-6 py-16 hover:bg-white/[0.03] sm:px-8 sm:py-20 md:px-10 md:py-28"
+        class="relative mx-auto w-full max-w-6xl border-x border-t border-white/10 px-6 py-16 hover:bg-white/[0.03] sm:px-8 sm:py-20 md:px-10 md:py-28"
         onPointerEnter={props.onSectionHover}
         onPointerDown={props.onSectionPress}
       >
+        <BorderPlus edge="top" side="left" />
+        <BorderPlus edge="top" side="right" />
         <div class="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <p class="text-sm uppercase tracking-[0.2em] text-white/50">
@@ -20,9 +24,9 @@ export function AboutSection(props: InteractiveSectionProps) {
           </div>
           <div class="space-y-6">
             <p class="text-lg leading-relaxed text-white/80 sm:text-xl">
-              I'm a frontend developer focused on the application layer, where
-              people meet the software. I build clear, practical interfaces that
-              feel good to use.
+              I'm a developer focused on building clear, practical
+              interfaces at the application layer where people meet the
+              software.
             </p>
             <p class="text-lg leading-relaxed text-white/70 sm:text-xl">
               View my work on{" "}
