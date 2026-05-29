@@ -4,6 +4,7 @@ import { About } from "./components/about";
 import { Footer } from "./components/footer";
 import { Header } from "./components/header";
 import { Hero } from "./components/hero";
+import { Player } from "./components/player";
 import { Projects } from "./components/projects";
 import { presetOptions } from "./components/sound-preset-options";
 import { Work } from "./components/work";
@@ -12,6 +13,7 @@ import {
   isAudioReady,
   playPresetSound,
   soundPresetLabels,
+  toggleMidiFile,
   type SoundPreset,
   unlockAudio,
 } from "./lib/use-sound";
@@ -33,6 +35,8 @@ function getStoredSoundPreset(): SoundPreset {
 export default function App() {
   const [selectedPreset, setSelectedPreset] =
     createSignal<SoundPreset>(getStoredSoundPreset());
+  const [activeMidiUrl, setActiveMidiUrl] = createSignal<string | null>(null);
+  const [isMidiPlaying, setIsMidiPlaying] = createSignal(false);
   const route = window.location.pathname === "/tweaks" ? "tweaks" : "home";
 
   onMount(() => {
@@ -61,6 +65,17 @@ export default function App() {
   const handlePress = () => {
     void unlockAudio().then((ready) => {
       if (ready) playSelectedPreset();
+    });
+
+    haptics.click();
+  };
+
+  const handleMidiToggle = (url: string) => {
+    void toggleMidiFile(url, selectedPreset()).then((status) => {
+      if (status === "failed") return;
+
+      setActiveMidiUrl(url);
+      setIsMidiPlaying(status === "playing");
     });
 
     haptics.click();
@@ -95,6 +110,13 @@ export default function App() {
       <Work
         onHover={handleHover}
         onPress={handlePress}
+      />
+      <Player
+        activeTrackUrl={activeMidiUrl}
+        isPlaying={isMidiPlaying}
+        onHover={handleHover}
+        onToggleTrack={handleMidiToggle}
+        selectedPreset={selectedPreset}
       />
       <Projects
         onHover={handleHover}
