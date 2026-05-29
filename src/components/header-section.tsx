@@ -1,4 +1,4 @@
-import { For, Show, createSignal, onCleanup, onMount } from "solid-js";
+import { For, Show, createEffect, createSignal, onCleanup, onMount } from "solid-js";
 
 type BatteryManager = EventTarget & {
   charging: boolean;
@@ -31,6 +31,8 @@ export function HeaderSection() {
     charging: boolean;
     level: number;
   }>();
+  const [chargingSegments, setChargingSegments] = createSignal(0);
+  const [chargingDirection, setChargingDirection] = createSignal<1 | -1>(1);
 
   onMount(() => {
     const nav = navigator as NavigatorWithBattery;
@@ -70,6 +72,49 @@ export function HeaderSection() {
 
   const level = () => battery()?.level ?? 0;
   const litSegments = () => Math.round((level() / 100) * batterySegments.length);
+  const isCharging = () => battery()?.charging ?? false;
+
+  createEffect(() => {
+    if (!isCharging()) {
+      setChargingSegments(0);
+      setChargingDirection(1);
+      return;
+    }
+
+    const interval = window.setInterval(() => {
+      setChargingSegments((segment) => {
+        const maxSegment = litSegments();
+        const nextSegment = segment + chargingDirection();
+
+        if (nextSegment >= maxSegment) {
+          setChargingDirection(-1);
+          return maxSegment;
+        }
+
+        if (nextSegment <= 0) {
+          setChargingDirection(1);
+          return 0;
+        }
+
+        return nextSegment;
+      });
+    }, 500);
+
+    onCleanup(() => window.clearInterval(interval));
+  });
+
+  const batteryCellClass = (index: number) => {
+    const isWithinLevel = index < litSegments();
+    const isChargingActive = isCharging() && index < chargingSegments();
+
+    if (!isWithinLevel) return "bg-transparent";
+
+    const borderClass = index > 0 ? "border-l border-white/10" : "";
+
+    const fillClass = isChargingActive ? "bg-neutral-900/50" : "bg-black";
+
+    return `${fillClass} ${borderClass}`;
+  };
 
   return (
     <header class="relative z-10 w-full">
@@ -78,7 +123,7 @@ export function HeaderSection() {
 
         <Show when={battery()}>
           <div
-            aria-label={`Device battery ${level()} percent`}
+            aria-label={`Device battery ${level()} percent${isCharging() ? ", charging" : ""}`}
             class="relative h-full"
             role="status"
           >
@@ -89,13 +134,7 @@ export function HeaderSection() {
               <For each={batterySegments}>
                 {(_, index) => (
                   <div
-                    class={`transition-colors duration-500 ${
-                      index() < litSegments()
-                        ? index() % 2 === 0
-                          ? "bg-neutral-950"
-                          : "bg-[#111111]"
-                        : "bg-transparent"
-                    }`}
+                    class={batteryCellClass(index())}
                   />
                 )}
               </For>
