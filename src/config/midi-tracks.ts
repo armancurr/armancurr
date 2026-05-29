@@ -48,24 +48,6 @@ export const midiTracks = [
     fileName: "il-vento-doro.mid",
     coverFileName: "il-vento-doro.jpg",
   },
-  {
-    title: "Guren No Yumiya",
-    artist: "Linked Horizon",
-    fileName: "guren-no-yumiya.mid",
-    coverFileName: "guren-no-yumiya.jpg",
-  },
-  {
-    title: "Shinzou Wo Sasageyo",
-    artist: "Linked Horizon",
-    fileName: "shinzou-wo-sasageyo.mid",
-    coverFileName: "guren-no-yumiya.jpg",
-  },
-  {
-    title: "Hacking To The Gate",
-    artist: "Kanako Ito",
-    fileName: "hacking-to-the-gate.mid",
-    coverFileName: "hacking-to-the-gate.jpg",
-  },
 ] satisfies MidiTrack[];
 
 export function getMidiUrl(track: MidiTrack): string {
