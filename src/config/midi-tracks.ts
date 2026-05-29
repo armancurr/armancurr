@@ -13,6 +13,12 @@ export const midiTracks = [
     coverFileName: "sono-chi-no-sadame.jpg",
   },
   {
+    title: "Jonathan Theme",
+    artist: "Hayato Matsuo",
+    fileName: "jonathan-theme.mid",
+    coverFileName: "jonathan-theme.jpg",
+  },
+  {
     title: "Bloody Stream",
     artist: "Coda",
     fileName: "bloody-stream.mid",
@@ -25,6 +31,12 @@ export const midiTracks = [
     coverFileName: "stand-proud.jpg",
   },
   {
+    title: "Akuyaku Kyosokyoku",
+    artist: "Yugo Kanno",
+    fileName: "akuyaku-kyosokyoku.mid",
+    coverFileName: "akuyaku-kyosokyoku.jpg",
+  },
+  {
     title: "Sono Chi No Kioku",
     artist: "JO☆STARS",
     fileName: "sono-chi-no-kioku.mid",
@@ -35,6 +47,12 @@ export const midiTracks = [
     artist: "The DU",
     fileName: "crazy-noizy-bizarre-town.mid",
     coverFileName: "crazy-noizy-bizarre-town.jpg",
+  },
+  {
+    title: "Kira Theme",
+    artist: "Yugo Kanno",
+    fileName: "kira-theme.mid",
+    coverFileName: "kira-theme.jpg",
   },
   {
     title: "Uragirimono No Requiem",
