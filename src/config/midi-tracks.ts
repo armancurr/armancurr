@@ -13,12 +13,6 @@ export const midiTracks = [
     coverFileName: "sono-chi-no-sadame.jpg",
   },
   {
-    title: "Jonathan Theme",
-    artist: "Hayato Matsuo",
-    fileName: "jonathan-theme.mid",
-    coverFileName: "jonathan-theme.jpg",
-  },
-  {
     title: "Bloody Stream",
     artist: "Coda",
     fileName: "bloody-stream.mid",
@@ -43,18 +37,6 @@ export const midiTracks = [
     coverFileName: "sono-chi-no-kioku.jpg",
   },
   {
-    title: "Crazy Noisy Bizarre Town",
-    artist: "The DU",
-    fileName: "crazy-noizy-bizarre-town.mid",
-    coverFileName: "crazy-noizy-bizarre-town.jpg",
-  },
-  {
-    title: "Kira Theme",
-    artist: "Yugo Kanno",
-    fileName: "kira-theme.mid",
-    coverFileName: "kira-theme.jpg",
-  },
-  {
     title: "Uragirimono No Requiem",
     artist: "Daisuke Hasegawa",
     fileName: "uragirimonono-requiem.mid",
@@ -67,16 +49,22 @@ export const midiTracks = [
     coverFileName: "il-vento-doro.jpg",
   },
   {
-    title: "Stone Ocean",
-    artist: "Ichigo from Kishida Kyoudan & The Akeboshi Rockets",
-    fileName: "stone-ocean.mid",
-    coverFileName: "stone-ocean.jpg",
+    title: "Guren No Yumiya",
+    artist: "Linked Horizon",
+    fileName: "guren-no-yumiya.mid",
+    coverFileName: "guren-no-yumiya.jpg",
   },
   {
-    title: "Holy Steel",
-    artist: "Taisuke Fujigaya",
-    fileName: "holy-steel.mid",
-    coverFileName: "holy-steel.jpg",
+    title: "Shinzou Wo Sasageyo",
+    artist: "Linked Horizon",
+    fileName: "shinzou-wo-sasageyo.mid",
+    coverFileName: "guren-no-yumiya.jpg",
+  },
+  {
+    title: "Hacking To The Gate",
+    artist: "Kanako Ito",
+    fileName: "hacking-to-the-gate.mid",
+    coverFileName: "hacking-to-the-gate.jpg",
   },
 ] satisfies MidiTrack[];
 
