@@ -18,7 +18,7 @@ export function Work(props: InteractiveProps) {
     <section class="w-full">
       <div
         id="work"
-        class="relative mx-auto w-full max-w-6xl border-x border-y border-neutral-900 px-6 py-16 hover:bg-white/[0.03] sm:px-8 sm:py-20 md:px-10 md:py-28"
+        class="relative mx-auto grid h-[min(62vw,620px)] min-h-[360px] w-full max-w-6xl content-center border-x border-y border-neutral-900 px-6 hover:bg-white/[0.03] sm:px-8 md:px-10"
         onPointerEnter={props.onHover}
         onPointerDown={props.onPress}
       >
