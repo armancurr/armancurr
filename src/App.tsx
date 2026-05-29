@@ -1,12 +1,12 @@
 import { createSignal, onCleanup, onMount } from "solid-js";
 
-import { AboutSection } from "./components/about-section";
-import { FooterSection } from "./components/footer-section";
-import { HeaderSection } from "./components/header-section";
-import { HeroSection } from "./components/hero-section";
-import { ProjectsSection } from "./components/projects-section";
+import { About } from "./components/about";
+import { Footer } from "./components/footer";
+import { Header } from "./components/header";
+import { Hero } from "./components/hero";
+import { Projects } from "./components/projects";
 import { presetOptions } from "./components/sound-preset-options";
-import { WorkSection } from "./components/work-section";
+import { Work } from "./components/work";
 import { haptics } from "./lib/use-haptics";
 import {
   isAudioReady,
@@ -51,14 +51,14 @@ export default function App() {
 
   const playSelectedPreset = () => playPresetSound(selectedPreset());
 
-  const handleSectionHover = () => {
+  const handleHover = () => {
     if (!isAudioReady()) return;
 
     playSelectedPreset();
     haptics.hover();
   };
 
-  const handleSectionPress = () => {
+  const handlePress = () => {
     void unlockAudio().then((ready) => {
       if (ready) playSelectedPreset();
     });
@@ -86,21 +86,21 @@ export default function App() {
 
   return (
     <div class="flex min-h-screen flex-col overflow-x-hidden bg-black px-4 text-white sm:px-6">
-      <HeaderSection />
-      <HeroSection />
-      <AboutSection
-        onSectionHover={handleSectionHover}
-        onSectionPress={handleSectionPress}
+      <Header />
+      <Hero />
+      <About
+        onHover={handleHover}
+        onPress={handlePress}
       />
-      <WorkSection
-        onSectionHover={handleSectionHover}
-        onSectionPress={handleSectionPress}
+      <Work
+        onHover={handleHover}
+        onPress={handlePress}
       />
-      <ProjectsSection
-        onSectionHover={handleSectionHover}
-        onSectionPress={handleSectionPress}
+      <Projects
+        onHover={handleHover}
+        onPress={handlePress}
       />
-      <FooterSection />
+      <Footer />
     </div>
   );
 }

@@ -1,8 +1,8 @@
 import { CaretRight } from "phosphor-solid";
 
-type InteractiveSectionProps = {
-  onSectionHover: () => void;
-  onSectionPress: () => void;
+type InteractiveProps = {
+  onHover: () => void;
+  onPress: () => void;
 };
 
 const projects = [
@@ -42,14 +42,14 @@ const projects = [
   },
 ];
 
-export function ProjectsSection(props: InteractiveSectionProps) {
+export function Projects(props: InteractiveProps) {
   return (
     <section class="w-full">
       <div
         id="projects"
         class="relative mx-auto w-full max-w-6xl border-x border-b border-white/10 px-6 py-16 hover:bg-white/[0.03] sm:px-8 sm:py-20 md:px-10 md:py-28"
-        onPointerEnter={props.onSectionHover}
-        onPointerDown={props.onSectionPress}
+        onPointerEnter={props.onHover}
+        onPointerDown={props.onPress}
       >
         <div class="mb-16">
           <p class="text-sm uppercase tracking-[0.2em] text-white/50">
@@ -65,12 +65,12 @@ export function ProjectsSection(props: InteractiveSectionProps) {
               rel="noreferrer"
               target="_blank"
             >
-                <div>
-                  <div class="flex items-center gap-2 text-white">
-                    {project.icon}
-                    <CaretRight class="text-white/40" size={18} weight="fill" />
-                    <h3 class="text-xl font-medium">{project.title}</h3>
-                  </div>
+              <div>
+                <div class="flex items-center gap-2 text-white">
+                  {project.icon}
+                  <CaretRight class="text-white/40" size={18} weight="fill" />
+                  <h3 class="text-xl font-medium">{project.title}</h3>
+                </div>
                 <p class="mt-4 max-w-md leading-relaxed text-white/70">
                   {project.description}
                 </p>

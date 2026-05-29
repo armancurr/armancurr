@@ -1,6 +1,6 @@
-type InteractiveSectionProps = {
-  onSectionHover: () => void;
-  onSectionPress: () => void;
+type InteractiveProps = {
+  onHover: () => void;
+  onPress: () => void;
 };
 
 const workExperience = [
@@ -13,14 +13,14 @@ const workExperience = [
   },
 ];
 
-export function WorkSection(props: InteractiveSectionProps) {
+export function Work(props: InteractiveProps) {
   return (
     <section class="w-full">
       <div
         id="work"
         class="relative mx-auto w-full max-w-6xl border-x border-y border-white/10 px-6 py-16 hover:bg-white/[0.03] sm:px-8 sm:py-20 md:px-10 md:py-28"
-        onPointerEnter={props.onSectionHover}
-        onPointerDown={props.onSectionPress}
+        onPointerEnter={props.onHover}
+        onPointerDown={props.onPress}
       >
         <span aria-hidden="true" class="pointer-events-none absolute left-0 top-0 z-10">
           <span class="absolute left-[-1px] top-[-1px] h-px w-2 bg-white/40" />

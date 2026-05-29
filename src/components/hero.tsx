@@ -1,4 +1,4 @@
-export function HeroSection() {
+export function Hero() {
   return (
     <section class="w-full">
       <div class="relative mx-auto w-full max-w-6xl overflow-hidden border-x border-t border-white/10">
