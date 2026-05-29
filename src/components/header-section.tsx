@@ -106,12 +106,11 @@ export function HeaderSection() {
   const batteryCellClass = (index: number) => {
     const isWithinLevel = index < litSegments();
     const isChargingActive = isCharging() && index < chargingSegments();
+    const borderClass = index > 0 ? "border-l border-white/[0.07]" : "";
 
-    if (!isWithinLevel) return "bg-transparent";
+    if (!isWithinLevel) return `bg-transparent ${borderClass}`;
 
-    const borderClass = index > 0 ? "border-l border-white/10" : "";
-
-    const fillClass = isChargingActive ? "bg-neutral-900/50" : "bg-black";
+    const fillClass = isChargingActive || !isCharging() ? "bg-neutral-900/50" : "bg-black";
 
     return `${fillClass} ${borderClass}`;
   };
