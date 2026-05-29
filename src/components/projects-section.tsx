@@ -65,12 +65,12 @@ export function ProjectsSection(props: InteractiveSectionProps) {
               rel="noreferrer"
               target="_blank"
             >
-              <div>
-                <div class="flex items-center gap-4 text-white">
-                  {project.icon}
-                  <CaretRight size={18} weight="fill" />
-                  <h3 class="text-xl font-medium">{project.title}</h3>
-                </div>
+                <div>
+                  <div class="flex items-center gap-2 text-white">
+                    {project.icon}
+                    <CaretRight class="text-white/40" size={18} weight="fill" />
+                    <h3 class="text-xl font-medium">{project.title}</h3>
+                  </div>
                 <p class="mt-4 max-w-md leading-relaxed text-white/70">
                   {project.description}
                 </p>
