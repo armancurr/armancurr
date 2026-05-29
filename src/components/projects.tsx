@@ -51,6 +51,7 @@ export function Projects(props: InteractiveProps) {
         onPointerEnter={props.onHover}
         onPointerDown={props.onPress}
       >
+        <span aria-hidden="true" class="pointer-events-none absolute bottom-[-1px] left-1/2 h-px w-screen -translate-x-1/2 bg-neutral-900" />
         <div class="mb-16">
           <p class="text-sm uppercase tracking-[0.2em] text-white/50">
             projects

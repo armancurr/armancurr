@@ -1,6 +1,7 @@
 export function Hero() {
   return (
-    <section class="w-full">
+    <section class="relative w-full">
+      <span aria-hidden="true" class="pointer-events-none absolute left-1/2 top-[-1px] h-px w-screen -translate-x-1/2 bg-neutral-900" />
       <div class="relative mx-auto w-full max-w-6xl overflow-hidden border-x border-t border-neutral-900 bg-black">
         <span aria-hidden="true" class="pointer-events-none absolute left-0 top-0 z-10">
           <span class="absolute left-[-1px] top-[-1px] h-px w-2 bg-neutral-400" />
