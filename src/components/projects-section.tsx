@@ -1,7 +1,5 @@
 import { CaretRight } from "phosphor-solid";
 
-import { BorderPlus } from "./border-plus";
-
 type InteractiveSectionProps = {
   onSectionHover: () => void;
   onSectionPress: () => void;
@@ -53,8 +51,6 @@ export function ProjectsSection(props: InteractiveSectionProps) {
         onPointerEnter={props.onSectionHover}
         onPointerDown={props.onSectionPress}
       >
-        <BorderPlus edge="bottom" side="left" />
-        <BorderPlus edge="bottom" side="right" />
         <div class="mb-16">
           <p class="text-sm uppercase tracking-[0.2em] text-white/50">
             projects

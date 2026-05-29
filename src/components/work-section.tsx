@@ -1,5 +1,3 @@
-import { BorderPlus } from "./border-plus";
-
 type InteractiveSectionProps = {
   onSectionHover: () => void;
   onSectionPress: () => void;
@@ -24,10 +22,23 @@ export function WorkSection(props: InteractiveSectionProps) {
         onPointerEnter={props.onSectionHover}
         onPointerDown={props.onSectionPress}
       >
-        <BorderPlus edge="top" side="left" />
-        <BorderPlus edge="top" side="right" />
-        <BorderPlus edge="bottom" side="left" />
-        <BorderPlus edge="bottom" side="right" />
+        <span aria-hidden="true" class="pointer-events-none absolute left-0 top-0 z-10">
+          <span class="absolute left-[-1px] top-[-1px] h-px w-2 bg-white/40" />
+          <span class="absolute left-[-1px] top-[-8px] h-4 w-px bg-white/40" />
+        </span>
+        <span aria-hidden="true" class="pointer-events-none absolute right-0 top-0 z-10">
+          <span class="absolute right-[-1px] top-[-1px] h-px w-2 bg-white/40" />
+          <span class="absolute right-[-1px] top-[-8px] h-4 w-px bg-white/40" />
+        </span>
+        <span aria-hidden="true" class="pointer-events-none absolute bottom-0 left-0 z-10">
+          <span class="absolute bottom-[-1px] left-[-1px] h-px w-2 bg-white/40" />
+          <span class="absolute bottom-[-8px] left-[-1px] h-4 w-px bg-white/40" />
+        </span>
+        <span aria-hidden="true" class="pointer-events-none absolute bottom-0 right-0 z-10">
+          <span class="absolute bottom-[-1px] right-[-1px] h-px w-2 bg-white/40" />
+          <span class="absolute bottom-[-8px] right-[-1px] h-4 w-px bg-white/40" />
+        </span>
+
         <div class="mb-16">
           <p class="text-sm uppercase tracking-[0.2em] text-white/50">
             work experience

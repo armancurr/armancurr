@@ -1,5 +1,3 @@
-import { BorderPlus } from "./border-plus";
-
 type InteractiveSectionProps = {
   onSectionHover: () => void;
   onSectionPress: () => void;
@@ -14,8 +12,15 @@ export function AboutSection(props: InteractiveSectionProps) {
         onPointerEnter={props.onSectionHover}
         onPointerDown={props.onSectionPress}
       >
-        <BorderPlus edge="top" side="left" />
-        <BorderPlus edge="top" side="right" />
+        <span aria-hidden="true" class="pointer-events-none absolute left-0 top-0 z-10">
+          <span class="absolute left-[-1px] top-[-1px] h-px w-2 bg-white/40" />
+          <span class="absolute left-[-1px] top-[-8px] h-4 w-px bg-white/40" />
+        </span>
+        <span aria-hidden="true" class="pointer-events-none absolute right-0 top-0 z-10">
+          <span class="absolute right-[-1px] top-[-1px] h-px w-2 bg-white/40" />
+          <span class="absolute right-[-1px] top-[-8px] h-4 w-px bg-white/40" />
+        </span>
+
         <div class="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <p class="text-sm uppercase tracking-[0.2em] text-white/50">
