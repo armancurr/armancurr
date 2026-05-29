@@ -47,7 +47,7 @@ export function Projects(props: InteractiveProps) {
     <section class="w-full">
       <div
         id="projects"
-        class="relative mx-auto w-full max-w-6xl border-x border-b border-white/10 px-6 py-16 hover:bg-white/[0.03] sm:px-8 sm:py-20 md:px-10 md:py-28"
+        class="relative mx-auto w-full max-w-6xl border-x border-b border-neutral-900 px-6 py-16 hover:bg-white/[0.03] sm:px-8 sm:py-20 md:px-10 md:py-28"
         onPointerEnter={props.onHover}
         onPointerDown={props.onPress}
       >

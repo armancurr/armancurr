@@ -9,12 +9,12 @@ function HeaderCorners() {
   return (
     <>
       <span aria-hidden="true" class="pointer-events-none absolute bottom-0 left-0 z-10">
-        <span class="absolute bottom-[-1px] left-[-1px] h-px w-2 bg-white/40" />
-        <span class="absolute bottom-[-8px] left-[-1px] h-4 w-px bg-white/40" />
+        <span class="absolute bottom-[-1px] left-[-1px] h-px w-2 bg-neutral-400" />
+        <span class="absolute bottom-[-8px] left-[-1px] h-4 w-px bg-neutral-400" />
       </span>
       <span aria-hidden="true" class="pointer-events-none absolute bottom-0 right-0 z-10">
-        <span class="absolute bottom-[-1px] right-[-1px] h-px w-2 bg-white/40" />
-        <span class="absolute bottom-[-8px] right-[-1px] h-4 w-px bg-white/40" />
+        <span class="absolute bottom-[-1px] right-[-1px] h-px w-2 bg-neutral-400" />
+        <span class="absolute bottom-[-8px] right-[-1px] h-4 w-px bg-neutral-400" />
       </span>
     </>
   );
@@ -25,14 +25,14 @@ export function Header() {
   const cpu = getCpuStatus(batterySegments.length);
 
   const cpuCellClass = (index: number) => {
-    const borderClass = index > 0 ? "border-l border-white/[0.07]" : "";
+    const borderClass = index > 0 ? "border-l border-neutral-900" : "";
     return `${index < cpu.litSegments ? "bg-neutral-900/50" : "bg-transparent"} ${borderClass}`;
   };
 
   const batteryCellClass = (index: number) => {
     const isWithinLevel = index < battery.litSegments();
     const isChargingActive = battery.isCharging() && index < battery.chargingSegments();
-    const borderClass = index > 0 ? "border-l border-white/[0.07]" : "";
+    const borderClass = index > 0 ? "border-l border-neutral-900" : "";
 
     if (!isWithinLevel) return `bg-transparent ${borderClass}`;
 
@@ -43,7 +43,8 @@ export function Header() {
 
   return (
     <header class="relative z-10 w-full">
-      <div class="relative mx-auto h-24 w-full max-w-6xl overflow-visible border-x border-white/10 sm:h-32">
+      <div class="relative mx-auto h-24 w-full max-w-6xl overflow-visible border-x border-neutral-900 sm:h-32">
+        <span aria-hidden="true" class="pointer-events-none absolute bottom-[-1px] left-1/2 h-px w-screen -translate-x-1/2 bg-neutral-900" />
         <HeaderCorners />
 
         <Show

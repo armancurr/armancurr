@@ -7,12 +7,21 @@ type BatteryManager = EventTarget & {
 
 type NavigatorWithBattery = Navigator & {
   getBattery?: () => Promise<BatteryManager>;
+  userAgentData?: {
+    brands?: Array<{ brand: string }>;
+  };
 };
 
 type BatteryStatus = {
   charging: boolean;
   level: number;
 };
+
+function isGoogleChrome(nav: NavigatorWithBattery) {
+  return nav.userAgentData?.brands?.some(
+    ({ brand }) => brand === "Google Chrome",
+  ) ?? false;
+}
 
 export function createBatteryStatus(segmentCount: number) {
   const [status, setStatus] = createSignal<BatteryStatus>();
@@ -22,7 +31,7 @@ export function createBatteryStatus(segmentCount: number) {
   onMount(() => {
     const nav = navigator as NavigatorWithBattery;
 
-    if (typeof nav.getBattery !== "function") return;
+    if (!isGoogleChrome(nav) || typeof nav.getBattery !== "function") return;
 
     let manager: BatteryManager | undefined;
 

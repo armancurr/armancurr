@@ -8,17 +8,17 @@ export function About(props: InteractiveProps) {
     <section class="w-full">
       <div
         id="about"
-        class="relative mx-auto w-full max-w-6xl border-x border-t border-white/10 px-6 py-16 hover:bg-white/[0.03] sm:px-8 sm:py-20 md:px-10 md:py-28"
+        class="relative mx-auto w-full max-w-6xl border-x border-t border-neutral-900 px-6 py-16 hover:bg-white/[0.03] sm:px-8 sm:py-20 md:px-10 md:py-28"
         onPointerEnter={props.onHover}
         onPointerDown={props.onPress}
       >
         <span aria-hidden="true" class="pointer-events-none absolute left-0 top-0 z-10">
-          <span class="absolute left-[-1px] top-[-1px] h-px w-2 bg-white/40" />
-          <span class="absolute left-[-1px] top-[-8px] h-4 w-px bg-white/40" />
+          <span class="absolute left-[-1px] top-[-1px] h-px w-2 bg-neutral-400" />
+          <span class="absolute left-[-1px] top-[-8px] h-4 w-px bg-neutral-400" />
         </span>
         <span aria-hidden="true" class="pointer-events-none absolute right-0 top-0 z-10">
-          <span class="absolute right-[-1px] top-[-1px] h-px w-2 bg-white/40" />
-          <span class="absolute right-[-1px] top-[-8px] h-4 w-px bg-white/40" />
+          <span class="absolute right-[-1px] top-[-1px] h-px w-2 bg-neutral-400" />
+          <span class="absolute right-[-1px] top-[-8px] h-4 w-px bg-neutral-400" />
         </span>
 
         <div class="grid gap-12 lg:grid-cols-2 lg:gap-16">

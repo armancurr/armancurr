@@ -1,14 +1,14 @@
 export function Hero() {
   return (
     <section class="w-full">
-      <div class="relative mx-auto w-full max-w-6xl overflow-hidden border-x border-t border-white/10">
+      <div class="relative mx-auto w-full max-w-6xl overflow-hidden border-x border-t border-neutral-900 bg-black">
         <span aria-hidden="true" class="pointer-events-none absolute left-0 top-0 z-10">
-          <span class="absolute left-[-1px] top-[-1px] h-px w-2 bg-white/40" />
-          <span class="absolute left-[-1px] top-[-8px] h-4 w-px bg-white/40" />
+          <span class="absolute left-[-1px] top-[-1px] h-px w-2 bg-neutral-400" />
+          <span class="absolute left-[-1px] top-[-8px] h-4 w-px bg-neutral-400" />
         </span>
         <span aria-hidden="true" class="pointer-events-none absolute right-0 top-0 z-10">
-          <span class="absolute right-[-1px] top-[-1px] h-px w-2 bg-white/40" />
-          <span class="absolute right-[-1px] top-[-8px] h-4 w-px bg-white/40" />
+          <span class="absolute right-[-1px] top-[-1px] h-px w-2 bg-neutral-400" />
+          <span class="absolute right-[-1px] top-[-8px] h-4 w-px bg-neutral-400" />
         </span>
 
         <div
