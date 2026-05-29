@@ -18,7 +18,7 @@ export function Work(props: InteractiveProps) {
     <section class="w-full">
       <div
         id="work"
-        class="relative mx-auto grid h-[min(62vw,620px)] min-h-[360px] w-full max-w-6xl content-center border-x border-y border-neutral-900 px-6 hover:bg-white/[0.03] sm:px-8 md:px-10"
+        class="relative mx-auto grid w-full max-w-6xl content-center border-x border-y border-neutral-900 px-6 py-14 hover:bg-neutral-900/50 sm:px-8 md:h-[min(62vw,620px)] md:min-h-[360px] md:px-10 md:py-0"
         onPointerEnter={props.onHover}
         onPointerDown={props.onPress}
       >
@@ -41,7 +41,7 @@ export function Work(props: InteractiveProps) {
           <span class="absolute bottom-[-8px] right-[-1px] h-4 w-px bg-neutral-400" />
         </span>
 
-        <div class="mb-16">
+        <div class="mb-10 md:mb-16">
           <p class="text-sm uppercase tracking-[0.2em] text-white/50">
             work experience
           </p>

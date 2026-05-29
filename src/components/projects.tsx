@@ -47,18 +47,18 @@ export function Projects(props: InteractiveProps) {
     <section class="w-full">
       <div
         id="projects"
-        class="relative mx-auto grid h-[min(62vw,620px)] min-h-[360px] w-full max-w-6xl content-center border-x border-b border-neutral-900 px-6 hover:bg-white/[0.03] sm:px-8 md:px-10"
+        class="relative mx-auto grid w-full max-w-6xl content-center border-x border-b border-neutral-900 px-6 py-14 hover:bg-neutral-900/50 sm:px-8 md:h-[min(62vw,620px)] md:min-h-[360px] md:px-10 md:py-0"
         onPointerEnter={props.onHover}
         onPointerDown={props.onPress}
       >
         <span aria-hidden="true" class="pointer-events-none absolute bottom-[-1px] left-1/2 h-px w-screen -translate-x-1/2 bg-neutral-900" />
-        <div class="mb-16">
+        <div class="mb-10 md:mb-16">
           <p class="text-sm uppercase tracking-[0.2em] text-white/50">
             projects
           </p>
         </div>
 
-        <div class="grid gap-12 md:grid-cols-2">
+        <div class="grid gap-10 md:grid-cols-2 md:gap-12">
           {projects.map((project) => (
             <a
               href={project.href}
