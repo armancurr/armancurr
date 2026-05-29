@@ -33,7 +33,7 @@ export function Player(props: PlayerProps) {
         <div class="min-w-0">
           <div class="mb-10 md:mb-12">
             <p class="text-sm uppercase tracking-[0.2em] text-white/50">
-              player
+              bizarre player
             </p>
           </div>
 
@@ -45,12 +45,12 @@ export function Player(props: PlayerProps) {
                 const playing = () => active() && props.isPlaying();
 
                 return (
-                  <article class="w-[78vw] shrink-0 snap-start sm:w-80 lg:w-[348px]">
+                  <article class="group w-[78vw] shrink-0 snap-start sm:w-80 lg:w-[348px]">
                     <span class="block aspect-square overflow-hidden">
                       <img
                         src={getMidiCoverUrl(track)}
                         alt={`${track.title} cover`}
-                        class="h-full w-full object-cover"
+                        class="h-full w-full object-cover grayscale transition duration-300 group-hover:grayscale-0"
                         loading="lazy"
                       />
                     </span>

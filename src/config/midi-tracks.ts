@@ -25,6 +25,12 @@ export const midiTracks = [
     coverFileName: "stand-proud.jpg",
   },
   {
+    title: "Sono Chi No Kioku",
+    artist: "JO☆STARS",
+    fileName: "sono-chi-no-kioku.mid",
+    coverFileName: "sono-chi-no-kioku.jpg",
+  },
+  {
     title: "Crazy Noisy Bizarre Town",
     artist: "The DU",
     fileName: "crazy-noizy-bizarre-town.mid",
@@ -35,6 +41,24 @@ export const midiTracks = [
     artist: "Daisuke Hasegawa",
     fileName: "uragirimonono-requiem.mid",
     coverFileName: "uragirimonono-requiem.jpg",
+  },
+  {
+    title: "Il Vento D'oro",
+    artist: "Yugo Kanno",
+    fileName: "il-vento-doro.mid",
+    coverFileName: "il-vento-doro.jpg",
+  },
+  {
+    title: "Stone Ocean",
+    artist: "Ichigo from Kishida Kyoudan & The Akeboshi Rockets",
+    fileName: "stone-ocean.mid",
+    coverFileName: "stone-ocean.jpg",
+  },
+  {
+    title: "Holy Steel",
+    artist: "Taisuke Fujigaya",
+    fileName: "holy-steel.mid",
+    coverFileName: "holy-steel.jpg",
   },
 ] satisfies MidiTrack[];
 

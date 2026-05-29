@@ -1,7 +1,10 @@
 let ctx: AudioContext | null = null;
+let masterGainNode: GainNode | null = null;
+let masterCompressorNode: DynamicsCompressorNode | null = null;
 let resumePromise: Promise<boolean> | null = null;
 let midiSources: AudioScheduledSourceNode[] = [];
 const midiPromises = new Map<string, Promise<ParsedMidiSong | null>>();
+const MASTER_OUTPUT_GAIN = 2;
 
 interface MidiPlaybackState {
   url: string;
@@ -277,7 +280,7 @@ function scheduleMidiDrum(
   source.connect(highpass);
   highpass.connect(bandpass);
   bandpass.connect(gainNode);
-  gainNode.connect(context.destination);
+  gainNode.connect(getAudioOutput(context));
 
   source.addEventListener("ended", () => {
     source.disconnect();
@@ -325,6 +328,25 @@ function getCtx(): AudioContext | null {
   if (!ctx) ctx = new AudioContextCtor();
 
   return ctx;
+}
+
+function getAudioOutput(context: AudioContext): AudioNode {
+  if (!masterGainNode || !masterCompressorNode) {
+    masterGainNode = context.createGain();
+    masterCompressorNode = context.createDynamicsCompressor();
+
+    masterGainNode.gain.setValueAtTime(MASTER_OUTPUT_GAIN, context.currentTime);
+    masterCompressorNode.threshold.setValueAtTime(-18, context.currentTime);
+    masterCompressorNode.knee.setValueAtTime(18, context.currentTime);
+    masterCompressorNode.ratio.setValueAtTime(6, context.currentTime);
+    masterCompressorNode.attack.setValueAtTime(0.003, context.currentTime);
+    masterCompressorNode.release.setValueAtTime(0.25, context.currentTime);
+
+    masterGainNode.connect(masterCompressorNode);
+    masterCompressorNode.connect(context.destination);
+  }
+
+  return masterGainNode;
 }
 
 export function isAudioReady(): boolean {
@@ -382,7 +404,7 @@ function scheduleTone(options: ScheduledToneOptions): boolean {
   gainNode.gain.exponentialRampToValueAtTime(0.0001, now + durationSec);
 
   oscillator.connect(gainNode);
-  gainNode.connect(context.destination);
+  gainNode.connect(getAudioOutput(context));
 
   oscillator.addEventListener("ended", () => {
     oscillator.disconnect();
@@ -509,7 +531,7 @@ export async function playMidiFile(
     gainNode.gain.exponentialRampToValueAtTime(0.0001, endTime);
 
     oscillator.connect(gainNode);
-    gainNode.connect(context.destination);
+    gainNode.connect(getAudioOutput(context));
 
     oscillator.addEventListener("ended", () => {
       oscillator.disconnect();
@@ -632,7 +654,7 @@ function playNoiseTick(options: NoiseOptions = {}): boolean {
   source.connect(highpass);
   highpass.connect(bandpass);
   bandpass.connect(gainNode);
-  gainNode.connect(context.destination);
+  gainNode.connect(getAudioOutput(context));
 
   source.addEventListener("ended", () => {
     source.disconnect();
