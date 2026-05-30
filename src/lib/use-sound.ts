@@ -11,7 +11,15 @@ interface MidiPlaybackState {
   preset: SoundPreset;
   startedAt: number;
   offsetSeconds: number;
+  durationSeconds: number;
   status: "playing" | "paused";
+}
+
+export interface MidiPlaybackSnapshot {
+  url: string;
+  status: "playing" | "paused";
+  progressSeconds: number;
+  durationSeconds: number;
 }
 
 let currentMidiPlayback: MidiPlaybackState | null = null;
@@ -449,6 +457,35 @@ export function stopMidiPlayback() {
   currentMidiPlayback = null;
 }
 
+function getMidiSongDuration(song: ParsedMidiSong): number {
+  const lastNote = song.notes.reduce((latest, note) => {
+    return note.endTicks > latest.endTicks ? note : latest;
+  }, song.notes[0]);
+
+  return midiTicksToSeconds(lastNote.endTicks, song.ticksPerBeat, song.tempos);
+}
+
+export function getMidiPlaybackSnapshot(): MidiPlaybackSnapshot | null {
+  const context = getCtx();
+  if (!context || !currentMidiPlayback) return null;
+
+  const elapsedSeconds =
+    currentMidiPlayback.status === "playing"
+      ? Math.max(context.currentTime - currentMidiPlayback.startedAt, 0)
+      : 0;
+  const progressSeconds = Math.min(
+    currentMidiPlayback.offsetSeconds + elapsedSeconds,
+    currentMidiPlayback.durationSeconds,
+  );
+
+  return {
+    url: currentMidiPlayback.url,
+    status: currentMidiPlayback.status,
+    progressSeconds,
+    durationSeconds: currentMidiPlayback.durationSeconds,
+  };
+}
+
 function getPresetVoice(preset: SoundPreset): Pick<ToneOptions, "type" | "gain" | "attack" | "release" | "detune"> {
   switch (preset) {
     case "Glass Tick":
@@ -487,6 +524,7 @@ export async function playMidiFile(
   stopMidiSources();
 
   const voice = getPresetVoice(preset);
+  const durationSeconds = getMidiSongDuration(song);
   const startOffset = context.currentTime + 0.06;
   let scheduled = false;
 
@@ -550,6 +588,7 @@ export async function playMidiFile(
       preset,
       startedAt: context.currentTime,
       offsetSeconds,
+      durationSeconds,
       status: "playing",
     };
   }

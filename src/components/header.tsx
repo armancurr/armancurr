@@ -1,4 +1,4 @@
-import { For, Show } from "solid-js";
+import { For, Show, type Accessor } from "solid-js";
 
 import { createBatteryStatus } from "../lib/use-battery-status";
 import { getCpuStatus } from "../lib/use-cpu-status";
@@ -20,9 +20,16 @@ function HeaderCorners() {
   );
 }
 
-export function Header() {
+type HeaderProps = {
+  isBatteryStatusEnabled: Accessor<boolean>;
+  isCpuStatusEnabled: Accessor<boolean>;
+};
+
+export function Header(props: HeaderProps) {
   const battery = createBatteryStatus(batterySegments.length);
   const cpu = getCpuStatus(batterySegments.length);
+  const batteryStatus = () =>
+    props.isBatteryStatusEnabled() ? battery.status() : undefined;
 
   const cpuCellClass = (index: number) => {
     const borderClass = index > 0 ? "border-l border-neutral-900" : "";
@@ -48,19 +55,21 @@ export function Header() {
         <HeaderCorners />
 
         <Show
-          when={battery.status()}
+          when={batteryStatus()}
           fallback={
-            <div
-              aria-label={`${cpu.cores}-core processor`}
-              class="relative h-full"
-              role="status"
-            >
-              <div aria-hidden="true" class="grid h-full grid-cols-36">
-                <For each={batterySegments}>
-                  {(_, index) => <div class={cpuCellClass(index())} />}
-                </For>
+            <Show when={props.isCpuStatusEnabled()}>
+              <div
+                aria-label={`${cpu.cores}-core processor`}
+                class="relative h-full"
+                role="status"
+              >
+                <div aria-hidden="true" class="grid h-full grid-cols-36">
+                  <For each={batterySegments}>
+                    {(_, index) => <div class={cpuCellClass(index())} />}
+                  </For>
+                </div>
               </div>
-            </div>
+            </Show>
           }
         >
           <div
