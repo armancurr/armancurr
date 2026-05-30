@@ -1,16 +1,15 @@
-import { Show, createSignal, onCleanup, onMount } from "solid-js";
+import { createSignal, onCleanup, onMount } from "solid-js";
 
 import { About } from "./components/about";
+import { ComingSoon } from "./components/coming-soon";
 import { Footer } from "./components/footer";
 import { Header } from "./components/header";
 import { Hero } from "./components/hero";
-import { Player } from "./components/player";
 import { Projects } from "./components/projects";
 import { presetOptions } from "./components/sound-preset-options";
 import { Work } from "./components/work";
 import { getMidiUrl, midiTracks } from "./config/midi-tracks";
 import { haptics } from "./lib/use-haptics";
-import { useTweaksSecret } from "./lib/use-tweaks-secret";
 import {
   isAudioReady,
   getMidiPlaybackSnapshot,
@@ -23,7 +22,6 @@ import {
 } from "./lib/use-sound";
 
 const soundPresetStorageKey = "site:sound-preset";
-const mainPlayerStorageKey = "site:main-player-enabled";
 const compactPlayerStorageKey = "site:compact-player-enabled";
 const compactPlayerPositionStorageKey = "site:compact-player-position";
 const batteryStatusStorageKey = "site:battery-status-enabled";
@@ -64,16 +62,12 @@ function getRandomMidiUrl(): string {
 }
 
 export default function App() {
-  const initialMainPlayerEnabled = getStoredBoolean(mainPlayerStorageKey);
-  const initialCompactPlayerEnabled = !initialMainPlayerEnabled && getStoredBoolean(compactPlayerStorageKey);
+  const initialCompactPlayerEnabled = getStoredBoolean(compactPlayerStorageKey);
   const initialCompactPlayerPosition = getStoredCompactPlayerPosition();
   const isInitialCompactPlayerInHeader =
     initialCompactPlayerEnabled && initialCompactPlayerPosition === "top";
   const [selectedPreset, setSelectedPreset] =
     createSignal<SoundPreset>(getStoredSoundPreset());
-  const [isMainPlayerEnabled, setIsMainPlayerEnabled] = createSignal(
-    initialMainPlayerEnabled,
-  );
   const [isCompactPlayerEnabled, setIsCompactPlayerEnabled] = createSignal(
     initialCompactPlayerEnabled,
   );
@@ -94,13 +88,17 @@ export default function App() {
   const isCompactPlayerInFooter = () =>
     isCompactPlayerEnabled() && compactPlayerPosition() === "bottom";
 
-  useTweaksSecret();
-
   onMount(() => {
     const primeAudio = () => {
       void unlockAudio();
     };
     const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.ctrlKey && !event.altKey && !event.metaKey && event.code === "Comma") {
+        event.preventDefault();
+        window.location.href = route === "tweaks" ? "/" : "/tweaks";
+        return;
+      }
+
       const target = event.target as HTMLElement | null;
       const isTyping =
         target?.tagName === "INPUT" ||
@@ -172,27 +170,12 @@ export default function App() {
     });
   };
 
-  const handleMainPlayerToggle = () => {
-    const nextValue = !isMainPlayerEnabled();
-
-    setIsMainPlayerEnabled(nextValue);
-    window.localStorage.setItem(mainPlayerStorageKey, String(nextValue));
-    if (nextValue) {
-      setIsCompactPlayerEnabled(false);
-      window.localStorage.setItem(compactPlayerStorageKey, "false");
-    }
-    haptics.click();
-  };
-
   const handleCompactPlayerToggle = () => {
     const nextValue = !isCompactPlayerEnabled();
 
     setIsCompactPlayerEnabled(nextValue);
     window.localStorage.setItem(compactPlayerStorageKey, String(nextValue));
     if (nextValue) {
-      setIsMainPlayerEnabled(false);
-      window.localStorage.setItem(mainPlayerStorageKey, "false");
-
       if (compactPlayerPosition() === "top") {
         setIsBatteryStatusEnabled(false);
         setIsCpuStatusEnabled(false);
@@ -251,12 +234,10 @@ export default function App() {
         isCompactPlayerEnabled={isCompactPlayerEnabled}
         isCompactPlayerInHeader={() => compactPlayerPosition() === "top"}
         isCpuStatusEnabled={isCpuStatusEnabled}
-        isMainPlayerEnabled={isMainPlayerEnabled}
         onBatteryStatusToggle={handleBatteryStatusToggle}
         onCompactPlayerPositionToggle={handleCompactPlayerPositionToggle}
         onCompactPlayerToggle={handleCompactPlayerToggle}
         onCpuStatusToggle={handleCpuStatusToggle}
-        onMainPlayerToggle={handleMainPlayerToggle}
         onPresetSelect={handlePresetSelect}
         selectedPreset={selectedPreset}
       />
@@ -282,15 +263,10 @@ export default function App() {
         onHover={handleHover}
         onPress={handlePress}
       />
-      <Show when={isMainPlayerEnabled()}>
-        <Player
-          activeTrackUrl={activeMidiUrl}
-          isPlaying={isMidiPlaying}
-          onHover={handleHover}
-          onToggleTrack={handleMidiToggle}
-          selectedPreset={selectedPreset}
-        />
-      </Show>
+      <ComingSoon
+        onHover={handleHover}
+        onPress={handlePress}
+      />
       <Projects
         onHover={handleHover}
         onPress={handlePress}
@@ -307,13 +283,11 @@ export default function App() {
 
 interface TweaksPageProps {
   selectedPreset: () => SoundPreset;
-  isMainPlayerEnabled: () => boolean;
   isCompactPlayerEnabled: () => boolean;
   isCompactPlayerInHeader: () => boolean;
   isBatteryStatusEnabled: () => boolean;
   isCpuStatusEnabled: () => boolean;
   onPresetSelect: (preset: SoundPreset) => void;
-  onMainPlayerToggle: () => void;
   onCompactPlayerToggle: () => void;
   onCompactPlayerPositionToggle: () => void;
   onBatteryStatusToggle: () => void;
@@ -378,7 +352,6 @@ function TweaksPage(props: TweaksPageProps) {
 
           {(() => {
             const tiles = [
-              { title: "Show the primary music player",   enabled: props.isMainPlayerEnabled,    onToggle: props.onMainPlayerToggle    },
               { title: "Show the compact music player",  enabled: props.isCompactPlayerEnabled, onToggle: props.onCompactPlayerToggle },
               { title: "Place compact music player in the header",  enabled: props.isCompactPlayerInHeader, onToggle: props.onCompactPlayerPositionToggle },
               { title: "Show battery level (works only in Google Chrome :-|)",        enabled: props.isBatteryStatusEnabled, onToggle: props.onBatteryStatusToggle },
