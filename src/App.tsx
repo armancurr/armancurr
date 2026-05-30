@@ -314,7 +314,7 @@ function TweaksPage(props: TweaksPageProps) {
           style={sidePatternStyle}
         />
 
-        <div class="relative mx-auto flex w-full max-w-6xl flex-col border-x border-y border-neutral-900 bg-black md:min-h-[620px]">
+        <div class="relative mx-auto flex w-full max-w-6xl flex-col border-x border-y border-neutral-900 bg-black md:min-h-[660px]">
           <span aria-hidden="true" class="pointer-events-none absolute left-1/2 top-[-1px] h-px w-screen -translate-x-1/2 bg-neutral-900" />
           <span aria-hidden="true" class="pointer-events-none absolute bottom-[-1px] left-1/2 h-px w-screen -translate-x-1/2 bg-neutral-900" />
           <span aria-hidden="true" class="pointer-events-none absolute left-[-1px] top-1/2 h-screen w-px -translate-y-1/2 bg-neutral-900" />
