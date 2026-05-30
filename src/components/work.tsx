@@ -1,3 +1,5 @@
+import { CaretRight } from "phosphor-solid";
+
 type InteractiveProps = {
   onHover: () => void;
   onPress: () => void;
@@ -8,8 +10,9 @@ const workExperience = [
     period: "Dec 2025 — Present",
     title: "Full-Stack Engineer",
     company: "OneSol AI Labs",
+    companyUrl: "https://onesol.in",
     description:
-      "Leading the frontend team building design systems and component libraries. Architected the migration to a modern stack, reducing bundle sizes by 40% and improving Core Web Vitals across all properties.",
+      "Built a hiring tool built to rethink how teams discover, evaluate, and move candidates through the process. Focused on practical product flows, reliable interfaces, and the systems behind them.",
   },
 ];
 
@@ -57,25 +60,25 @@ export function Work(props: InteractiveProps) {
           <span class="absolute bottom-[-8px] right-[-1px] h-4 w-px bg-neutral-400" />
         </span>
 
-        <div class="mb-10 md:mb-16">
-          <p class="text-sm uppercase tracking-[0.2em] text-white/50">
-            work experience
-          </p>
-        </div>
-
-        <div class="space-y-12">
+        <div class="mx-auto max-w-2xl">
           {workExperience.map((job) => (
-            <div class="group grid gap-6 pt-8 lg:grid-cols-12">
-              <div class="lg:col-span-3">
-                <p class="text-sm text-white/40">{job.period}</p>
+            <div>
+              <h3 class="text-left text-xl font-medium text-white sm:text-2xl">{job.title}</h3>
+              <div class="mt-2 flex flex-wrap items-center gap-2 text-sm text-white/50">
+                <a
+                  href={job.companyUrl}
+                  class="transition-colors hover:text-white"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  {job.company}
+                </a>
+                <CaretRight class="text-white/35" size={16} weight="fill" />
+                <p>{job.period}</p>
               </div>
-              <div class="lg:col-span-9">
-                <h3 class="text-xl font-medium">{job.title}</h3>
-                <p class="mt-1 text-white/50">{job.company}</p>
-                <p class="mt-4 leading-relaxed text-white/70">
-                  {job.description}
-                </p>
-              </div>
+              <p class="mt-6 text-lg leading-relaxed text-white/75 sm:text-xl" style="text-align: justify">
+                {job.description}
+              </p>
             </div>
           ))}
         </div>

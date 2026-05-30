@@ -1,11 +1,11 @@
 import { createSignal, onCleanup, onMount } from "solid-js";
 
 import { About } from "./components/about";
-import { ComingSoon } from "./components/coming-soon";
+import { Project1 } from "./components/project-1";
+import { Project2 } from "./components/project-2";
 import { Footer } from "./components/footer";
 import { Header } from "./components/header";
 import { Hero } from "./components/hero";
-import { Projects } from "./components/projects";
 import { presetOptions } from "./components/sound-preset-options";
 import { Work } from "./components/work";
 import { getMidiUrl, midiTracks } from "./config/midi-tracks";
@@ -263,11 +263,11 @@ export default function App() {
         onHover={handleHover}
         onPress={handlePress}
       />
-      <ComingSoon
+      <Project2
         onHover={handleHover}
         onPress={handlePress}
       />
-      <Projects
+      <Project1
         onHover={handleHover}
         onPress={handlePress}
       />
@@ -369,9 +369,9 @@ function TweaksPage(props: TweaksPageProps) {
           {(() => {
             const tiles = [
               { title: "Show the compact music player",  enabled: props.isCompactPlayerEnabled, onToggle: props.onCompactPlayerToggle },
-              { title: "Place compact music player in the header",  enabled: props.isCompactPlayerInHeader, onToggle: props.onCompactPlayerPositionToggle },
-              { title: "Show battery level (works only in Google Chrome :-|)",        enabled: props.isBatteryStatusEnabled, onToggle: props.onBatteryStatusToggle },
-              { title: "Show CPU status (works in any browser other than Google Chrome :-))",       enabled: props.isCpuStatusEnabled,     onToggle: props.onCpuStatusToggle     },
+              { title: "Place compact music player up top",  enabled: props.isCompactPlayerInHeader, onToggle: props.onCompactPlayerPositionToggle },
+              { title: "Show battery level (Google Chrome only)",        enabled: props.isBatteryStatusEnabled, onToggle: props.onBatteryStatusToggle },
+              { title: "Show CPU status (not in Google Chrome)",       enabled: props.isCpuStatusEnabled,     onToggle: props.onCpuStatusToggle     },
             ];
             return (
               <div class="grid flex-1 grid-cols-2 gap-px bg-white/[0.06]">
@@ -406,7 +406,7 @@ function SettingTile(props: SettingTileProps) {
       <div class="flex justify-end">
         <SettingToggle enabled={props.enabled} onToggle={() => {}} />
       </div>
-      <p class={`text-sm font-light leading-snug tracking-wide transition-colors ${props.enabled() ? "text-white" : "text-white/50"}`}>
+      <p class={`text-base font-light leading-snug tracking-wide transition-colors sm:text-lg ${props.enabled() ? "text-white" : "text-white/50"}`}>
         {props.title}
       </p>
     </button>

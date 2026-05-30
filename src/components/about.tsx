@@ -22,19 +22,10 @@ export function About(props: InteractiveProps) {
           <span class="absolute right-[-1px] top-[-8px] h-4 w-px bg-neutral-400" />
         </span>
 
-        <div class="grid gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <p class="text-sm uppercase tracking-[0.2em] text-white/50">
-              about
-            </p>
-          </div>
-          <div class="space-y-6">
-            <p class="text-lg leading-relaxed text-white/80 sm:text-xl">
-              I'm a developer focused on building clear, practical interfaces at
-              the application layer where people meet the software.
-            </p>
-            <p class="text-lg leading-relaxed text-white/70 sm:text-xl">
-              View my work on{" "}
+        <div class="mx-auto max-w-2xl text-center">
+            <p class="text-lg leading-relaxed text-white/80 sm:text-xl" style="text-align: justify">
+              I'm Arman, a developer focused on building clear, practical interfaces at
+              the application layer where humans meet software. View my work on{" "}
               <a
                 href="https://github.com/armancurr"
                 class="inline-flex items-center gap-1 transition-colors hover:text-white"
@@ -63,7 +54,6 @@ export function About(props: InteractiveProps) {
               </a>
               .
             </p>
-          </div>
         </div>
       </div>
     </section>
