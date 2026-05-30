@@ -12,7 +12,7 @@ const workExperience = [
     company: "OneSol AI Labs",
     companyUrl: "https://onesol.in",
     description:
-      "Built a hiring tool built to rethink how teams discover, evaluate, and move candidates through the process. Focused on practical product flows, reliable interfaces, and the systems behind them.",
+      "Built a hiring tool to rethink how teams discover, evaluate, and move candidates through the process. Focused on practical product flows, reliable interfaces, and the systems behind them.",
   },
 ];
 
