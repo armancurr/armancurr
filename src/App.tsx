@@ -9,6 +9,7 @@ import { Projects } from "./components/projects";
 import { presetOptions } from "./components/sound-preset-options";
 import { Work } from "./components/work";
 import { haptics } from "./lib/use-haptics";
+import { useTweaksSecret } from "./lib/use-tweaks-secret";
 import {
   isAudioReady,
   getMidiPlaybackSnapshot,
@@ -64,6 +65,8 @@ export default function App() {
   const [playbackTick, setPlaybackTick] = createSignal(Date.now());
   const route = window.location.pathname === "/tweaks" ? "tweaks" : "home";
 
+  useTweaksSecret();
+
   onMount(() => {
     const primeAudio = () => {
       void unlockAudio();
@@ -71,6 +74,7 @@ export default function App() {
 
     window.addEventListener("pointerdown", primeAudio, { capture: true });
     window.addEventListener("keydown", primeAudio, { capture: true });
+
     const progressInterval = window.setInterval(() => {
       setPlaybackTick(Date.now());
     }, 250);
