@@ -56,7 +56,7 @@ export function Header(props: HeaderProps) {
 
   return (
     <header class="relative z-10 w-full">
-      <div class="relative mx-auto h-24 w-full max-w-6xl overflow-visible border-x border-neutral-900 sm:h-32">
+      <div class="relative mx-auto h-[max(6rem,calc((100vh-660px)/2))] w-full max-w-6xl overflow-visible border-x border-neutral-900 sm:h-[max(8rem,calc((100vh-660px)/2))]">
         <span aria-hidden="true" class="pointer-events-none absolute bottom-[-1px] left-1/2 h-px w-screen -translate-x-1/2 bg-neutral-900" />
         <HeaderCorners />
 
