@@ -1,7 +1,9 @@
 import { For, Show, type Accessor } from "solid-js";
 
+import { CompactPlayer } from "./compact-player";
 import { createBatteryStatus } from "../lib/use-battery-status";
 import { getCpuStatus } from "../lib/use-cpu-status";
+import type { MidiPlaybackSnapshot } from "../lib/use-sound";
 
 const batterySegments = Array.from({ length: 36 });
 
@@ -21,8 +23,12 @@ function HeaderCorners() {
 }
 
 type HeaderProps = {
+  activeTrackUrl: Accessor<string | null>;
+  isCompactPlayerEnabled: Accessor<boolean>;
   isBatteryStatusEnabled: Accessor<boolean>;
   isCpuStatusEnabled: Accessor<boolean>;
+  isPlaying: Accessor<boolean>;
+  midiPlayback: Accessor<MidiPlaybackSnapshot | null>;
 };
 
 export function Header(props: HeaderProps) {
@@ -55,34 +61,45 @@ export function Header(props: HeaderProps) {
         <HeaderCorners />
 
         <Show
-          when={batteryStatus()}
+          when={props.isCompactPlayerEnabled()}
           fallback={
-            <Show when={props.isCpuStatusEnabled()}>
+            <Show
+              when={batteryStatus()}
+              fallback={
+                <Show when={props.isCpuStatusEnabled()}>
+                  <div
+                    aria-label={`${cpu.cores}-core processor`}
+                    class="relative h-full"
+                    role="status"
+                  >
+                    <div aria-hidden="true" class="grid h-full grid-cols-36">
+                      <For each={batterySegments}>
+                        {(_, index) => <div class={cpuCellClass(index())} />}
+                      </For>
+                    </div>
+                  </div>
+                </Show>
+              }
+            >
               <div
-                aria-label={`${cpu.cores}-core processor`}
+                aria-label={`Device battery ${battery.level()} percent${battery.isCharging() ? ", charging" : ""}`}
                 class="relative h-full"
                 role="status"
               >
                 <div aria-hidden="true" class="grid h-full grid-cols-36">
                   <For each={batterySegments}>
-                    {(_, index) => <div class={cpuCellClass(index())} />}
+                    {(_, index) => <div class={batteryCellClass(index())} />}
                   </For>
                 </div>
               </div>
             </Show>
           }
         >
-          <div
-            aria-label={`Device battery ${battery.level()} percent${battery.isCharging() ? ", charging" : ""}`}
-            class="relative h-full"
-            role="status"
-          >
-            <div aria-hidden="true" class="grid h-full grid-cols-36">
-              <For each={batterySegments}>
-                {(_, index) => <div class={batteryCellClass(index())} />}
-              </For>
-            </div>
-          </div>
+          <CompactPlayer
+            activeTrackUrl={props.activeTrackUrl}
+            isPlaying={props.isPlaying}
+            midiPlayback={props.midiPlayback}
+          />
         </Show>
       </div>
     </header>

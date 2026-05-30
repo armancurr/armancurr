@@ -8,6 +8,7 @@ import { Player } from "./components/player";
 import { Projects } from "./components/projects";
 import { presetOptions } from "./components/sound-preset-options";
 import { Work } from "./components/work";
+import { getMidiUrl, midiTracks } from "./config/midi-tracks";
 import { haptics } from "./lib/use-haptics";
 import { useTweaksSecret } from "./lib/use-tweaks-secret";
 import {
@@ -24,8 +25,11 @@ import {
 const soundPresetStorageKey = "site:sound-preset";
 const mainPlayerStorageKey = "site:main-player-enabled";
 const compactPlayerStorageKey = "site:compact-player-enabled";
+const compactPlayerPositionStorageKey = "site:compact-player-position";
 const batteryStatusStorageKey = "site:battery-status-enabled";
 const cpuStatusStorageKey = "site:cpu-status-enabled";
+
+type CompactPlayerPosition = "top" | "bottom";
 
 function getStoredSoundPreset(): SoundPreset {
   if (typeof window === "undefined") return "Soft Tap";
@@ -45,25 +49,50 @@ function getStoredBoolean(key: string): boolean {
   return window.localStorage.getItem(key) === "true";
 }
 
+function getStoredCompactPlayerPosition(): CompactPlayerPosition {
+  if (typeof window === "undefined") return "bottom";
+
+  return window.localStorage.getItem(compactPlayerPositionStorageKey) === "top"
+    ? "top"
+    : "bottom";
+}
+
+function getRandomMidiUrl(): string {
+  const track = midiTracks[Math.floor(Math.random() * midiTracks.length)];
+
+  return getMidiUrl(track);
+}
+
 export default function App() {
+  const initialMainPlayerEnabled = getStoredBoolean(mainPlayerStorageKey);
+  const initialCompactPlayerEnabled = !initialMainPlayerEnabled && getStoredBoolean(compactPlayerStorageKey);
+  const initialCompactPlayerPosition = getStoredCompactPlayerPosition();
+  const isInitialCompactPlayerInHeader =
+    initialCompactPlayerEnabled && initialCompactPlayerPosition === "top";
   const [selectedPreset, setSelectedPreset] =
     createSignal<SoundPreset>(getStoredSoundPreset());
   const [isMainPlayerEnabled, setIsMainPlayerEnabled] = createSignal(
-    getStoredBoolean(mainPlayerStorageKey),
+    initialMainPlayerEnabled,
   );
   const [isCompactPlayerEnabled, setIsCompactPlayerEnabled] = createSignal(
-    getStoredBoolean(compactPlayerStorageKey),
+    initialCompactPlayerEnabled,
   );
+  const [compactPlayerPosition, setCompactPlayerPosition] =
+    createSignal<CompactPlayerPosition>(initialCompactPlayerPosition);
   const [isBatteryStatusEnabled, setIsBatteryStatusEnabled] = createSignal(
-    getStoredBoolean(batteryStatusStorageKey),
+    !isInitialCompactPlayerInHeader && getStoredBoolean(batteryStatusStorageKey),
   );
   const [isCpuStatusEnabled, setIsCpuStatusEnabled] = createSignal(
-    getStoredBoolean(cpuStatusStorageKey),
+    !isInitialCompactPlayerInHeader && getStoredBoolean(cpuStatusStorageKey),
   );
-  const [activeMidiUrl, setActiveMidiUrl] = createSignal<string | null>(null);
+  const [activeMidiUrl, setActiveMidiUrl] = createSignal<string | null>(getRandomMidiUrl());
   const [isMidiPlaying, setIsMidiPlaying] = createSignal(false);
   const [playbackTick, setPlaybackTick] = createSignal(Date.now());
   const route = window.location.pathname === "/tweaks" ? "tweaks" : "home";
+  const isCompactPlayerInHeader = () =>
+    isCompactPlayerEnabled() && compactPlayerPosition() === "top";
+  const isCompactPlayerInFooter = () =>
+    isCompactPlayerEnabled() && compactPlayerPosition() === "bottom";
 
   useTweaksSecret();
 
@@ -71,9 +100,23 @@ export default function App() {
     const primeAudio = () => {
       void unlockAudio();
     };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const target = event.target as HTMLElement | null;
+      const isTyping =
+        target?.tagName === "INPUT" ||
+        target?.tagName === "TEXTAREA" ||
+        target?.tagName === "SELECT" ||
+        target?.isContentEditable;
+
+      if (!isCompactPlayerEnabled() || isTyping || event.code !== "Space") return;
+
+      event.preventDefault();
+      handleMidiToggle(activeMidiUrl() ?? getMidiUrl(midiTracks[0]));
+    };
 
     window.addEventListener("pointerdown", primeAudio, { capture: true });
     window.addEventListener("keydown", primeAudio, { capture: true });
+    window.addEventListener("keydown", handleKeyDown);
 
     const progressInterval = window.setInterval(() => {
       setPlaybackTick(Date.now());
@@ -82,6 +125,7 @@ export default function App() {
     onCleanup(() => {
       window.removeEventListener("pointerdown", primeAudio, { capture: true });
       window.removeEventListener("keydown", primeAudio, { capture: true });
+      window.removeEventListener("keydown", handleKeyDown);
       window.clearInterval(progressInterval);
     });
   });
@@ -133,6 +177,10 @@ export default function App() {
 
     setIsMainPlayerEnabled(nextValue);
     window.localStorage.setItem(mainPlayerStorageKey, String(nextValue));
+    if (nextValue) {
+      setIsCompactPlayerEnabled(false);
+      window.localStorage.setItem(compactPlayerStorageKey, "false");
+    }
     haptics.click();
   };
 
@@ -141,6 +189,34 @@ export default function App() {
 
     setIsCompactPlayerEnabled(nextValue);
     window.localStorage.setItem(compactPlayerStorageKey, String(nextValue));
+    if (nextValue) {
+      setIsMainPlayerEnabled(false);
+      window.localStorage.setItem(mainPlayerStorageKey, "false");
+
+      if (compactPlayerPosition() === "top") {
+        setIsBatteryStatusEnabled(false);
+        setIsCpuStatusEnabled(false);
+        window.localStorage.setItem(batteryStatusStorageKey, "false");
+        window.localStorage.setItem(cpuStatusStorageKey, "false");
+      }
+    }
+    haptics.click();
+  };
+
+  const handleCompactPlayerPositionToggle = () => {
+    const nextPosition: CompactPlayerPosition =
+      compactPlayerPosition() === "top" ? "bottom" : "top";
+
+    setCompactPlayerPosition(nextPosition);
+    window.localStorage.setItem(compactPlayerPositionStorageKey, nextPosition);
+
+    if (nextPosition === "top" && isCompactPlayerEnabled()) {
+      setIsBatteryStatusEnabled(false);
+      setIsCpuStatusEnabled(false);
+      window.localStorage.setItem(batteryStatusStorageKey, "false");
+      window.localStorage.setItem(cpuStatusStorageKey, "false");
+    }
+
     haptics.click();
   };
 
@@ -149,6 +225,10 @@ export default function App() {
 
     setIsBatteryStatusEnabled(nextValue);
     window.localStorage.setItem(batteryStatusStorageKey, String(nextValue));
+    if (nextValue && compactPlayerPosition() === "top") {
+      setIsCompactPlayerEnabled(false);
+      window.localStorage.setItem(compactPlayerStorageKey, "false");
+    }
     haptics.click();
   };
 
@@ -157,6 +237,10 @@ export default function App() {
 
     setIsCpuStatusEnabled(nextValue);
     window.localStorage.setItem(cpuStatusStorageKey, String(nextValue));
+    if (nextValue && compactPlayerPosition() === "top") {
+      setIsCompactPlayerEnabled(false);
+      window.localStorage.setItem(compactPlayerStorageKey, "false");
+    }
     haptics.click();
   };
 
@@ -165,9 +249,11 @@ export default function App() {
       <TweaksPage
         isBatteryStatusEnabled={isBatteryStatusEnabled}
         isCompactPlayerEnabled={isCompactPlayerEnabled}
+        isCompactPlayerInHeader={() => compactPlayerPosition() === "top"}
         isCpuStatusEnabled={isCpuStatusEnabled}
         isMainPlayerEnabled={isMainPlayerEnabled}
         onBatteryStatusToggle={handleBatteryStatusToggle}
+        onCompactPlayerPositionToggle={handleCompactPlayerPositionToggle}
         onCompactPlayerToggle={handleCompactPlayerToggle}
         onCpuStatusToggle={handleCpuStatusToggle}
         onMainPlayerToggle={handleMainPlayerToggle}
@@ -181,7 +267,11 @@ export default function App() {
     <div class="flex min-h-screen flex-col overflow-x-hidden bg-black px-4 text-white sm:px-6">
       <Header
         isBatteryStatusEnabled={isBatteryStatusEnabled}
+        isCompactPlayerEnabled={isCompactPlayerInHeader}
         isCpuStatusEnabled={isCpuStatusEnabled}
+        activeTrackUrl={activeMidiUrl}
+        isPlaying={isMidiPlaying}
+        midiPlayback={midiPlayback}
       />
       <Hero />
       <About
@@ -207,10 +297,9 @@ export default function App() {
       />
       <Footer
         activeTrackUrl={activeMidiUrl}
-        isCompactPlayerEnabled={isCompactPlayerEnabled}
+        isCompactPlayerEnabled={isCompactPlayerInFooter}
         isPlaying={isMidiPlaying}
         midiPlayback={midiPlayback}
-        onToggleTrack={handleMidiToggle}
       />
     </div>
   );
@@ -220,11 +309,13 @@ interface TweaksPageProps {
   selectedPreset: () => SoundPreset;
   isMainPlayerEnabled: () => boolean;
   isCompactPlayerEnabled: () => boolean;
+  isCompactPlayerInHeader: () => boolean;
   isBatteryStatusEnabled: () => boolean;
   isCpuStatusEnabled: () => boolean;
   onPresetSelect: (preset: SoundPreset) => void;
   onMainPlayerToggle: () => void;
   onCompactPlayerToggle: () => void;
+  onCompactPlayerPositionToggle: () => void;
   onBatteryStatusToggle: () => void;
   onCpuStatusToggle: () => void;
 }
@@ -289,6 +380,7 @@ function TweaksPage(props: TweaksPageProps) {
             const tiles = [
               { title: "Show the primary music player",   enabled: props.isMainPlayerEnabled,    onToggle: props.onMainPlayerToggle    },
               { title: "Show the compact music player",  enabled: props.isCompactPlayerEnabled, onToggle: props.onCompactPlayerToggle },
+              { title: "Place compact music player in the header",  enabled: props.isCompactPlayerInHeader, onToggle: props.onCompactPlayerPositionToggle },
               { title: "Show battery level (works only in Google Chrome :-|)",        enabled: props.isBatteryStatusEnabled, onToggle: props.onBatteryStatusToggle },
               { title: "Show CPU status (works in any browser other than Google Chrome :-))",       enabled: props.isCpuStatusEnabled,     onToggle: props.onCpuStatusToggle     },
             ];
