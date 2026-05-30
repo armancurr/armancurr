@@ -1,6 +1,6 @@
 import { For, type Accessor } from "solid-js";
 
-import { getMidiCoverUrl, getMidiUrl, midiTracks } from "../config/midi-tracks";
+import { getMidiUrl, midiTracks } from "../config/midi-tracks";
 import type { MidiPlaybackSnapshot } from "../lib/use-sound";
 
 const progressSegments = Array.from({ length: 36 });
@@ -34,26 +34,13 @@ export function CompactPlayer(props: CompactPlayerProps) {
   const progressCellClass = (index: number) => {
     const isWithinProgress = index < litSegments();
     const borderClass = index > 0 ? "border-l border-neutral-900" : "";
-    const fillClass = isWithinProgress
-      ? isCurrentTrackPlaying()
-        ? "bg-neutral-900/50"
-        : "bg-black"
-      : "bg-transparent";
+    const fillClass = isWithinProgress ? "bg-neutral-900/50" : "bg-transparent";
 
     return `${fillClass} ${borderClass}`;
   };
 
   return (
-    <div class="grid h-full w-full grid-cols-[96px_1fr] sm:grid-cols-[128px_1fr]">
-      <img
-        src={getMidiCoverUrl(currentTrack())}
-        alt={`${currentTrack().title} cover`}
-        class={`h-full w-full object-cover transition duration-300 ${
-          isCurrentTrackPlaying() ? "grayscale-0" : "grayscale"
-        }`}
-        loading="lazy"
-      />
-
+    <div class="h-full w-full">
       <div
         aria-label={`Playback progress ${Math.round(progressRatio() * 100)} percent`}
         class="relative h-full"
