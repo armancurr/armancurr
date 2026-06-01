@@ -1,13 +1,5 @@
 import { createSignal, onCleanup, onMount } from "solid-js";
 
-import { About } from "./components/about";
-import { Project1 } from "./components/project-1";
-import { Project2 } from "./components/project-2";
-import { Footer } from "./components/footer";
-import { Header } from "./components/header";
-import { Hero } from "./components/hero";
-import { presetOptions } from "./components/sound-preset-options";
-import { Work } from "./components/work";
 import { getMidiUrl, midiTracks } from "./config/midi-tracks";
 import { haptics } from "./lib/use-haptics";
 import {
@@ -20,14 +12,26 @@ import {
   type SoundPreset,
   unlockAudio,
 } from "./lib/use-sound";
+import { HomePage } from "./pages/home";
+import { NotFoundPage } from "./pages/not-found";
+import { TweaksPage } from "./pages/tweaks";
 
 const soundPresetStorageKey = "site:sound-preset";
 const compactPlayerStorageKey = "site:compact-player-enabled";
 const compactPlayerPositionStorageKey = "site:compact-player-position";
 const batteryStatusStorageKey = "site:battery-status-enabled";
 const cpuStatusStorageKey = "site:cpu-status-enabled";
+const fullscreenPanelsStorageKey = "site:fullscreen-panels-enabled";
 
 type CompactPlayerPosition = "top" | "bottom";
+type AppRoute = "home" | "tweaks" | "not-found";
+
+function getRoute(pathname: string): AppRoute {
+  if (pathname === "/") return "home";
+  if (pathname === "/tweaks") return "tweaks";
+
+  return "not-found";
+}
 
 function getStoredSoundPreset(): SoundPreset {
   if (typeof window === "undefined") return "Soft Tap";
@@ -79,10 +83,13 @@ export default function App() {
   const [isCpuStatusEnabled, setIsCpuStatusEnabled] = createSignal(
     !isInitialCompactPlayerInHeader && getStoredBoolean(cpuStatusStorageKey),
   );
+  const [isFullscreenPanelsEnabled, setIsFullscreenPanelsEnabled] = createSignal(
+    getStoredBoolean(fullscreenPanelsStorageKey),
+  );
   const [activeMidiUrl, setActiveMidiUrl] = createSignal<string | null>(getRandomMidiUrl());
   const [isMidiPlaying, setIsMidiPlaying] = createSignal(false);
   const [playbackTick, setPlaybackTick] = createSignal(Date.now());
-  const route = window.location.pathname === "/tweaks" ? "tweaks" : "home";
+  const route = getRoute(window.location.pathname);
   const isCompactPlayerInHeader = () =>
     isCompactPlayerEnabled() && compactPlayerPosition() === "top";
   const isCompactPlayerInFooter = () =>
@@ -227,6 +234,14 @@ export default function App() {
     haptics.click();
   };
 
+  const handleFullscreenPanelsToggle = () => {
+    const nextValue = !isFullscreenPanelsEnabled();
+
+    setIsFullscreenPanelsEnabled(nextValue);
+    window.localStorage.setItem(fullscreenPanelsStorageKey, String(nextValue));
+    haptics.click();
+  };
+
   if (route === "tweaks") {
     return (
       <TweaksPage
@@ -234,210 +249,34 @@ export default function App() {
         isCompactPlayerEnabled={isCompactPlayerEnabled}
         isCompactPlayerInHeader={() => compactPlayerPosition() === "top"}
         isCpuStatusEnabled={isCpuStatusEnabled}
+        isFullscreenPanelsEnabled={isFullscreenPanelsEnabled}
         onBatteryStatusToggle={handleBatteryStatusToggle}
         onCompactPlayerPositionToggle={handleCompactPlayerPositionToggle}
         onCompactPlayerToggle={handleCompactPlayerToggle}
         onCpuStatusToggle={handleCpuStatusToggle}
+        onFullscreenPanelsToggle={handleFullscreenPanelsToggle}
         onPresetSelect={handlePresetSelect}
         selectedPreset={selectedPreset}
       />
     );
   }
 
-  return (
-    <div class="flex min-h-screen flex-col bg-black px-4 text-white sm:px-6">
-      <Header
-        isBatteryStatusEnabled={isBatteryStatusEnabled}
-        isCompactPlayerEnabled={isCompactPlayerInHeader}
-        isCpuStatusEnabled={isCpuStatusEnabled}
-        activeTrackUrl={activeMidiUrl}
-        isPlaying={isMidiPlaying}
-        midiPlayback={midiPlayback}
-      />
-      <Hero />
-      <About
-        onHover={handleHover}
-        onPress={handlePress}
-      />
-      <Work
-        onHover={handleHover}
-        onPress={handlePress}
-      />
-      <Project2
-        onHover={handleHover}
-        onPress={handlePress}
-      />
-      <Project1
-        onHover={handleHover}
-        onPress={handlePress}
-      />
-      <Footer
-        activeTrackUrl={activeMidiUrl}
-        isCompactPlayerEnabled={isCompactPlayerInFooter}
-        isPlaying={isMidiPlaying}
-        midiPlayback={midiPlayback}
-      />
-    </div>
-  );
-}
-
-interface TweaksPageProps {
-  selectedPreset: () => SoundPreset;
-  isCompactPlayerEnabled: () => boolean;
-  isCompactPlayerInHeader: () => boolean;
-  isBatteryStatusEnabled: () => boolean;
-  isCpuStatusEnabled: () => boolean;
-  onPresetSelect: (preset: SoundPreset) => void;
-  onCompactPlayerToggle: () => void;
-  onCompactPlayerPositionToggle: () => void;
-  onBatteryStatusToggle: () => void;
-  onCpuStatusToggle: () => void;
-}
-
-function TweaksPage(props: TweaksPageProps) {
-  const sidePatternStyle = {
-    "--s": "150px",
-    "--c1": "#000",
-    "--c2": "#0a0a0a",
-    "--_g":
-      "var(--c1) 0% 5%, var(--c2) 6% 15%, var(--c1) 16% 25%, var(--c2) 26% 35%, var(--c1) 36% 45%, var(--c2) 46% 55%, var(--c1) 56% 65%, var(--c2) 66% 75%, var(--c1) 76% 85%, var(--c2) 86% 95%, #0000 96%",
-    background:
-      "radial-gradient(50% 50% at 100% 0, var(--_g)), radial-gradient(50% 50% at 0 100%, var(--_g)), radial-gradient(50% 50%, var(--_g)), radial-gradient(50% 50%, var(--_g)) calc(var(--s) / 2) calc(var(--s) / 2), var(--c1)",
-    "background-size": "var(--s) var(--s)",
-  };
+  if (route === "not-found") {
+    return <NotFoundPage />;
+  }
 
   return (
-    <main class="relative flex min-h-screen items-center bg-black px-4 py-20 text-white sm:px-6 sm:py-28">
-      <section class="relative w-full">
-        <div
-          class="pointer-events-none absolute inset-y-0 left-1/2 w-screen -translate-x-1/2"
-          style={sidePatternStyle}
-        />
-
-        <div class="relative mx-auto flex w-full max-w-6xl flex-col border-x border-y border-neutral-900 bg-black md:min-h-[660px]">
-          <span aria-hidden="true" class="pointer-events-none absolute left-1/2 top-[-1px] h-px w-screen -translate-x-1/2 bg-neutral-900" />
-          <span aria-hidden="true" class="pointer-events-none absolute bottom-[-1px] left-1/2 h-px w-screen -translate-x-1/2 bg-neutral-900" />
-          <span aria-hidden="true" class="pointer-events-none absolute left-[-1px] top-1/2 h-screen w-px -translate-y-1/2 bg-neutral-900" />
-          <span aria-hidden="true" class="pointer-events-none absolute right-[-1px] top-1/2 h-screen w-px -translate-y-1/2 bg-neutral-900" />
-          <span aria-hidden="true" class="pointer-events-none absolute left-0 top-0 z-10">
-            <span class="absolute left-[-1px] top-[-1px] h-px w-2 bg-neutral-400" />
-            <span class="absolute left-[-1px] top-[-8px] h-4 w-px bg-neutral-400" />
-          </span>
-          <span aria-hidden="true" class="pointer-events-none absolute right-0 top-0 z-10">
-            <span class="absolute right-[-1px] top-[-1px] h-px w-2 bg-neutral-400" />
-            <span class="absolute right-[-1px] top-[-8px] h-4 w-px bg-neutral-400" />
-          </span>
-          <span aria-hidden="true" class="pointer-events-none absolute bottom-0 left-0 z-10">
-            <span class="absolute bottom-[-1px] left-[-1px] h-px w-2 bg-neutral-400" />
-            <span class="absolute bottom-[-8px] left-[-1px] h-4 w-px bg-neutral-400" />
-          </span>
-          <span aria-hidden="true" class="pointer-events-none absolute bottom-0 right-0 z-10">
-            <span class="absolute bottom-[-1px] right-[-1px] h-px w-2 bg-neutral-400" />
-            <span class="absolute bottom-[-8px] right-[-1px] h-4 w-px bg-neutral-400" />
-          </span>
-
-          <div class="flex flex-1 flex-col">
-          {/* <div class="grid items-center gap-8 lg:grid-cols-[360px_1fr] lg:gap-16">
-            <SettingHeading
-              title="Sound selection"
-              description="Pick the sound used for clicks and hovers."
-            />
-            <div class="grid w-full max-w-2xl grid-cols-6 gap-x-6 gap-y-4 justify-self-end sm:gap-x-8">
-              {presetOptions.map(({ preset, icon: Icon, label }) => {
-                const selected = () => props.selectedPreset() === preset;
-
-                return (
-                  <button
-                    type="button"
-                    aria-label={label}
-                    aria-pressed={selected()}
-                    title={label}
-                    class={`inline-flex h-12 w-12 items-center justify-center rounded-sm transition-colors ${
-                      selected()
-                        ? "bg-white/[0.14] text-white"
-                        : "text-white/45 hover:bg-white/[0.06] hover:text-white/80"
-                    }`}
-                    onPointerDown={() => props.onPresetSelect(preset)}
-                  >
-                    <Icon size={20} weight="regular" />
-                  </button>
-                );
-              })}
-            </div>
-          </div> */}
-
-          {(() => {
-            const tiles = [
-              { title: "Show the compact music player",  enabled: props.isCompactPlayerEnabled, onToggle: props.onCompactPlayerToggle },
-              { title: "Place compact music player up top",  enabled: props.isCompactPlayerInHeader, onToggle: props.onCompactPlayerPositionToggle },
-              { title: "Show battery level (Google Chrome only)",        enabled: props.isBatteryStatusEnabled, onToggle: props.onBatteryStatusToggle },
-              { title: "Show CPU status (not in Google Chrome)",       enabled: props.isCpuStatusEnabled,     onToggle: props.onCpuStatusToggle     },
-            ];
-            return (
-              <div class="grid flex-1 grid-cols-2 gap-px bg-white/[0.06]">
-                {tiles.map((tile) => (
-                  <SettingTile {...tile} />
-                ))}
-              </div>
-            );
-          })()}
-          </div>
-        </div>
-      </section>
-    </main>
-  );
-}
-
-interface SettingTileProps {
-  title: string;
-  enabled: () => boolean;
-  onToggle: () => void;
-}
-
-function SettingTile(props: SettingTileProps) {
-  return (
-    <button
-      type="button"
-      onClick={props.onToggle}
-      class={`flex flex-col justify-between p-6 text-left transition-colors sm:p-8 ${
-        props.enabled() ? "bg-white/[0.04]" : "bg-black"
-      } hover:bg-white/[0.06]`}
-    >
-      <div class="flex justify-end">
-        <SettingToggle enabled={props.enabled} onToggle={() => {}} />
-      </div>
-      <p class={`text-base font-light leading-snug tracking-wide transition-colors sm:text-lg ${props.enabled() ? "text-white" : "text-white/50"}`}>
-        {props.title}
-      </p>
-    </button>
-  );
-}
-
-interface SettingToggleProps {
-  enabled: () => boolean;
-  onToggle: () => void;
-}
-
-function SettingToggle(props: SettingToggleProps) {
-  return (
-    <button
-      type="button"
-      aria-pressed={props.enabled()}
-      aria-label={props.enabled() ? "Disable setting" : "Enable setting"}
-      class="flex justify-self-end"
-      onClick={props.onToggle}
-    >
-      <span
-        class={`relative h-6 w-11 shrink-0 border border-neutral-700 transition-colors ${
-          props.enabled() ? "bg-white/20" : "bg-transparent"
-        }`}
-      >
-        <span
-          class={`absolute left-1 top-1 h-3.5 w-3.5 bg-white transition-transform ${
-            props.enabled() ? "translate-x-5" : "translate-x-0"
-          }`}
-        />
-      </span>
-    </button>
+    <HomePage
+      activeTrackUrl={activeMidiUrl}
+      isBatteryStatusEnabled={isBatteryStatusEnabled}
+      isCompactPlayerInFooter={isCompactPlayerInFooter}
+      isCompactPlayerInHeader={isCompactPlayerInHeader}
+      isCpuStatusEnabled={isCpuStatusEnabled}
+      isFullscreenPanelsEnabled={isFullscreenPanelsEnabled}
+      isMidiPlaying={isMidiPlaying}
+      midiPlayback={midiPlayback}
+      onHover={handleHover}
+      onPress={handlePress}
+    />
   );
 }
