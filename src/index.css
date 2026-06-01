@@ -26,3 +26,26 @@ body::-webkit-scrollbar {
   background: #fff;
   color: #000;
 }
+
+.fullscreen-panel:fullscreen {
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  min-height: 100vh;
+  overflow: hidden;
+  border: 1px solid rgb(23, 23, 23);
+  background: #000;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.fullscreen-panel:fullscreen::-webkit-scrollbar {
+  display: none;
+}
+
+.fullscreen-panel:fullscreen::backdrop {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08), transparent 42%),
+    rgba(0, 0, 0, 0.94);
+}

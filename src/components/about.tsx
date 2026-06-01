@@ -1,3 +1,5 @@
+import { FullscreenPanel } from "./fullscreen-panel";
+
 type InteractiveProps = {
   onHover: () => void;
   onPress: () => void;
@@ -6,7 +8,7 @@ type InteractiveProps = {
 export function About(props: InteractiveProps) {
   return (
     <section class="w-full">
-      <div
+      <FullscreenPanel
         id="about"
         class="relative mx-auto grid w-full max-w-6xl content-center border-x border-t border-neutral-900 px-6 py-14 hover:bg-neutral-900/50 sm:px-8 md:h-[min(66vw,660px)] md:min-h-[360px] md:px-10 md:py-0"
         onPointerEnter={props.onHover}
@@ -55,7 +57,7 @@ export function About(props: InteractiveProps) {
               .
             </p>
         </div>
-      </div>
+      </FullscreenPanel>
     </section>
   );
 }

@@ -25,14 +25,6 @@ export function Hero() {
           <span class="absolute left-[-1px] top-[-1px] h-px w-2 bg-neutral-400" />
           <span class="absolute left-[-1px] top-[-8px] h-4 w-px bg-neutral-400" />
         </span>
-        <span
-          aria-hidden="true"
-          class="pointer-events-none absolute right-0 top-0 z-10"
-        >
-          <span class="absolute right-[-1px] top-[-1px] h-px w-2 bg-neutral-400" />
-          <span class="absolute right-[-1px] top-[-8px] h-4 w-px bg-neutral-400" />
-        </span>
-
         <div
           class="absolute left-1/2 top-1/2 rounded-full blur-[24px]"
           style={{

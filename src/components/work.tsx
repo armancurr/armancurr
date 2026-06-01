@@ -1,5 +1,7 @@
 import { CaretRight } from "phosphor-solid";
 
+import { FullscreenPanel } from "./fullscreen-panel";
+
 type InteractiveProps = {
   onHover: () => void;
   onPress: () => void;
@@ -35,7 +37,7 @@ export function Work(props: InteractiveProps) {
         style={sidePatternStyle}
       />
 
-      <div
+      <FullscreenPanel
         id="work"
         class="relative mx-auto grid w-full max-w-6xl content-center border-x border-y border-neutral-900 bg-black px-6 py-14 hover:bg-neutral-950 sm:px-8 md:h-[min(66vw,660px)] md:min-h-[360px] md:px-10 md:py-0"
         onPointerEnter={props.onHover}
@@ -82,7 +84,7 @@ export function Work(props: InteractiveProps) {
             </div>
           ))}
         </div>
-      </div>
+      </FullscreenPanel>
     </section>
   );
 }
