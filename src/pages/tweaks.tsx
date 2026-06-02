@@ -9,10 +9,12 @@ interface TweaksPageProps {
   isBatteryStatusEnabled: Accessor<boolean>;
   isCpuStatusEnabled: Accessor<boolean>;
   isFullscreenPanelsEnabled: Accessor<boolean>;
+  isScrollSoundEnabled: Accessor<boolean>;
   onMusicPlayerToggle: () => void;
   onBatteryStatusToggle: () => void;
   onCpuStatusToggle: () => void;
   onFullscreenPanelsToggle: () => void;
+  onScrollSoundToggle: () => void;
   onMidiTrackSelect: (url: string) => void;
 }
 
@@ -27,6 +29,7 @@ export function TweaksPage(props: TweaksPageProps) {
               { title: "Show battery level (Google Chrome only)", enabled: props.isBatteryStatusEnabled, onToggle: props.onBatteryStatusToggle },
               { title: "Show CPU status (not in Google Chrome)", enabled: props.isCpuStatusEnabled, onToggle: props.onCpuStatusToggle },
               { title: "Enable sections to go fullscreen", enabled: props.isFullscreenPanelsEnabled, onToggle: props.onFullscreenPanelsToggle },
+              { title: "Enable sound on scroll", enabled: props.isScrollSoundEnabled, onToggle: props.onScrollSoundToggle },
             ].map((tile) => (
               <SettingTile {...tile} />
             ))}

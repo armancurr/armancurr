@@ -5,6 +5,7 @@ import { haptics } from "./lib/use-haptics";
 import {
   isAudioReady,
   getMidiPlaybackSnapshot,
+  playLensScrollClick,
   playPresetSound,
   soundPresetLabels,
   toggleMidiFile,
@@ -22,6 +23,9 @@ const selectedMidiTrackStorageKey = "site:selected-midi-track";
 const batteryStatusStorageKey = "site:battery-status-enabled";
 const cpuStatusStorageKey = "site:cpu-status-enabled";
 const fullscreenPanelsStorageKey = "site:fullscreen-panels-enabled";
+const scrollSoundEnabledStorageKey = "site:scroll-sound-enabled";
+const scrollLensClickDistance = 96;
+const scrollLensClickMinInterval = 58;
 
 type AppRoute = "home" | "tweaks" | "not-found";
 
@@ -78,6 +82,9 @@ export default function App() {
   const [isFullscreenPanelsEnabled, setIsFullscreenPanelsEnabled] = createSignal(
     getStoredBoolean(fullscreenPanelsStorageKey),
   );
+  const [isScrollSoundEnabled, setIsScrollSoundEnabled] = createSignal(
+    getStoredBoolean(scrollSoundEnabledStorageKey),
+  );
   const [activeMidiUrl, setActiveMidiUrl] = createSignal<string | null>(getStoredMidiTrackUrl());
   const [isMidiPlaying, setIsMidiPlaying] = createSignal(false);
   const [playbackTick, setPlaybackTick] = createSignal(Date.now());
@@ -85,8 +92,41 @@ export default function App() {
   const isMusicPlayerInHeader = () => isMusicPlayerEnabled();
 
   onMount(() => {
+    let wheelSinceClick = 0;
+    let lastLensClickAt = 0;
+
     const primeAudio = () => {
       void unlockAudio();
+    };
+    const handleWheel = (event: WheelEvent) => {
+      const delta = event.deltaY || event.deltaX;
+      if (!delta || !isScrollSoundEnabled() || !isAudioReady()) return;
+
+      const normalizedDelta =
+        event.deltaMode === WheelEvent.DOM_DELTA_LINE
+          ? delta * 16
+          : event.deltaMode === WheelEvent.DOM_DELTA_PAGE
+            ? delta * window.innerHeight
+            : delta;
+
+      wheelSinceClick += Math.abs(normalizedDelta);
+
+      const now = performance.now();
+      if (
+        wheelSinceClick < scrollLensClickDistance ||
+        now - lastLensClickAt < scrollLensClickMinInterval
+      ) {
+        return;
+      }
+
+      const intensity = Math.min(wheelSinceClick / 420, 1);
+
+      playLensScrollClick({
+        direction: normalizedDelta > 0 ? 1 : -1,
+        intensity,
+      });
+      wheelSinceClick = 0;
+      lastLensClickAt = now;
     };
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.ctrlKey && !event.altKey && !event.metaKey && event.code === "Comma") {
@@ -111,6 +151,7 @@ export default function App() {
     window.addEventListener("pointerdown", primeAudio, { capture: true });
     window.addEventListener("keydown", primeAudio, { capture: true });
     window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("wheel", handleWheel, { passive: true });
 
     const progressInterval = window.setInterval(() => {
       setPlaybackTick(Date.now());
@@ -120,6 +161,7 @@ export default function App() {
       window.removeEventListener("pointerdown", primeAudio, { capture: true });
       window.removeEventListener("keydown", primeAudio, { capture: true });
       window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("wheel", handleWheel);
       window.clearInterval(progressInterval);
     });
   });
@@ -131,16 +173,9 @@ export default function App() {
 
   const playSelectedPreset = () => playPresetSound(selectedPreset());
 
-  const handleHover = () => {
-    if (!isAudioReady()) return;
-
-    playSelectedPreset();
-    haptics.hover();
-  };
-
   const handlePress = () => {
     void unlockAudio().then((ready) => {
-      if (ready) playSelectedPreset();
+      if (ready) playLensScrollClick({ direction: 1, intensity: 0.7 });
     });
 
     haptics.click();
@@ -218,6 +253,19 @@ export default function App() {
     haptics.click();
   };
 
+  const handleScrollSoundToggle = () => {
+    const nextValue = !isScrollSoundEnabled();
+
+    setIsScrollSoundEnabled(nextValue);
+    window.localStorage.setItem(scrollSoundEnabledStorageKey, String(nextValue));
+    if (nextValue) {
+      void unlockAudio().then((ready) => {
+        if (ready) playLensScrollClick({ direction: 1, intensity: 0.7 });
+      });
+    }
+    haptics.click();
+  };
+
   if (route === "tweaks") {
     return (
       <TweaksPage
@@ -225,10 +273,12 @@ export default function App() {
         isMusicPlayerEnabled={isMusicPlayerEnabled}
         isCpuStatusEnabled={isCpuStatusEnabled}
         isFullscreenPanelsEnabled={isFullscreenPanelsEnabled}
+        isScrollSoundEnabled={isScrollSoundEnabled}
         onBatteryStatusToggle={handleBatteryStatusToggle}
         onMusicPlayerToggle={handleMusicPlayerToggle}
         onCpuStatusToggle={handleCpuStatusToggle}
         onFullscreenPanelsToggle={handleFullscreenPanelsToggle}
+        onScrollSoundToggle={handleScrollSoundToggle}
         onMidiTrackSelect={handleMidiTrackSelect}
         selectedMidiTrackUrl={activeMidiUrl}
       />
@@ -248,7 +298,6 @@ export default function App() {
       isFullscreenPanelsEnabled={isFullscreenPanelsEnabled}
       isMidiPlaying={isMidiPlaying}
       midiPlayback={midiPlayback}
-      onHover={handleHover}
       onPress={handlePress}
     />
   );

@@ -1,10 +1,10 @@
 import type { Accessor } from "solid-js";
+import { CaretRight } from "phosphor-solid";
 
 import { FullscreenPanel } from "./fullscreen-panel";
 
 type InteractiveProps = {
   isFullscreenEnabled: Accessor<boolean>;
-  onHover: () => void;
   onPress: () => void;
 };
 
@@ -41,8 +41,7 @@ export function Work(props: InteractiveProps) {
       <FullscreenPanel
         id="work"
         isFullscreenEnabled={props.isFullscreenEnabled}
-        class="relative mx-auto grid w-full max-w-6xl content-center border-x border-y border-neutral-900 bg-black px-8 py-14 hover:bg-neutral-950 sm:px-12 md:h-[min(66vw,660px)] md:min-h-[360px] md:px-16 md:py-0"
-        onPointerEnter={props.onHover}
+        class="relative mx-auto grid w-full max-w-6xl content-center border-x border-y border-neutral-900 bg-black px-8 py-14 sm:px-12 md:h-[min(66vw,660px)] md:min-h-[360px] md:px-16 md:py-0"
         onPointerDown={props.onPress}
       >
         <span aria-hidden="true" class="pointer-events-none absolute left-1/2 top-[-1px] h-px w-screen -translate-x-1/2 bg-neutral-900" />
@@ -64,28 +63,27 @@ export function Work(props: InteractiveProps) {
           <span class="absolute bottom-[-8px] right-[-1px] h-4 w-px bg-neutral-400" />
         </span>
 
-        <div class="grid w-full gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)] md:items-start">
-          <div>
-            <a
-              href={workExperience[0].companyUrl}
-              class="block text-xl font-medium text-white transition-colors hover:text-white/80 sm:text-2xl"
-              rel="noreferrer"
-              target="_blank"
-            >
-              {workExperience[0].company}
-            </a>
-            <p class="mt-2 text-sm text-white/50">{workExperience[0].period}</p>
-          </div>
-          <div class="max-w-xl md:ml-auto">
+        <div class="mx-auto w-full max-w-xl">
           {workExperience.map((job) => (
             <div>
               <h3 class="text-left text-xl font-medium text-white sm:text-2xl">{job.title}</h3>
-              <p class="mt-6 text-lg leading-relaxed text-white/75 sm:text-xl" style="text-align: justify">
+              <div class="mt-4 flex flex-wrap items-center gap-2 text-sm text-white/50">
+                <a
+                  href={job.companyUrl}
+                  class="transition-colors hover:text-white/80"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  {job.company}
+                </a>
+                <CaretRight class="text-white/40" size={14} weight="fill" />
+                <span>{job.period}</span>
+              </div>
+              <p class="mt-10 text-lg leading-relaxed text-white/75 sm:text-xl" style="text-align: justify">
                 {job.description}
               </p>
             </div>
           ))}
-          </div>
         </div>
       </FullscreenPanel>
     </section>

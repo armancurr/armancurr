@@ -4,7 +4,6 @@ import { FullscreenPanel } from "./fullscreen-panel";
 
 type InteractiveProps = {
   isFullscreenEnabled: Accessor<boolean>;
-  onHover: () => void;
   onPress: () => void;
 };
 
@@ -14,8 +13,7 @@ export function About(props: InteractiveProps) {
       <FullscreenPanel
         id="about"
         isFullscreenEnabled={props.isFullscreenEnabled}
-        class="relative mx-auto grid w-full max-w-6xl content-center border-x border-t border-neutral-900 px-8 py-14 hover:bg-neutral-900/50 sm:px-12 md:h-[min(66vw,660px)] md:min-h-[360px] md:px-16 md:py-0"
-        onPointerEnter={props.onHover}
+        class="relative mx-auto grid w-full max-w-6xl content-center border-x border-t border-neutral-900 px-8 py-14 sm:px-12 md:h-[min(66vw,660px)] md:min-h-[360px] md:px-16 md:py-0"
         onPointerDown={props.onPress}
       >
         <span aria-hidden="true" class="pointer-events-none absolute left-1/2 top-[-1px] h-px w-screen -translate-x-1/2 bg-neutral-900" />

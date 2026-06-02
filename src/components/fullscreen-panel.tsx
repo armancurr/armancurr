@@ -6,7 +6,6 @@ type FullscreenPanelProps = {
   class: string;
   children: JSX.Element;
   isFullscreenEnabled?: Accessor<boolean>;
-  onPointerEnter?: () => void;
   onPointerDown?: () => void;
 };
 
@@ -49,7 +48,6 @@ export function FullscreenPanel(props: FullscreenPanelProps) {
       ref={panel}
       id={props.id}
       class={`${props.class} group fullscreen-panel`}
-      onPointerEnter={props.onPointerEnter}
       onPointerDown={props.onPointerDown}
     >
       <Show when={isFullscreenEnabled()}>

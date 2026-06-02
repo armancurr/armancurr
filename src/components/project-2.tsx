@@ -5,7 +5,6 @@ import { FullscreenPanel } from "./fullscreen-panel";
 
 type InteractiveProps = {
   isFullscreenEnabled: Accessor<boolean>;
-  onHover: () => void;
   onPress: () => void;
 };
 
@@ -38,8 +37,7 @@ export function Project2(props: InteractiveProps) {
       <FullscreenPanel
         id="project-2"
         isFullscreenEnabled={props.isFullscreenEnabled}
-        class="relative mx-auto grid w-full max-w-6xl content-center border-x border-b border-neutral-900 bg-black px-8 py-14 hover:bg-neutral-950 sm:px-12 md:h-[min(66vw,660px)] md:min-h-[360px] md:px-16 md:py-0"
-        onPointerEnter={props.onHover}
+        class="relative mx-auto grid w-full max-w-6xl content-center border-x border-b border-neutral-900 bg-black px-8 py-14 sm:px-12 md:h-[min(66vw,660px)] md:min-h-[360px] md:px-16 md:py-0"
         onPointerDown={props.onPress}
       >
         <span aria-hidden="true" class="pointer-events-none absolute bottom-[-1px] left-1/2 h-px w-screen -translate-x-1/2 bg-neutral-900" />
@@ -69,7 +67,7 @@ export function Project2(props: InteractiveProps) {
                 <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm4,104a12,12,0,1,1,12-12A12,12,0,0,1,132,128Zm20-36a12,12,0,1,1,12,12A12,12,0,0,1,152,92Zm20,52a12,12,0,1,1,12-12A12,12,0,0,1,172,144Z" />
               </svg>
               <CaretRight class="text-white/40" size={18} weight="fill" />
-              <h2 class="font-diner text-4xl leading-none sm:text-5xl">{project.title}</h2>
+              <h2 class="text-3xl font-medium leading-none sm:text-4xl">{project.title}</h2>
             </div>
             <p class="mt-10 text-lg leading-relaxed text-white/75 sm:text-xl" style="text-align: justify">
               {project.description}
