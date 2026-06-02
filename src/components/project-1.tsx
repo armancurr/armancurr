@@ -53,7 +53,7 @@ export function Project1(props: InteractiveProps) {
             <div class="flex items-center gap-2 text-white">
               <CatIcon size={32} color="#ffffff" weight="fill" />
               <CaretRight class="text-white/40" size={18} weight="fill" />
-              <h3 class="font-diner text-4xl leading-none sm:text-5xl">Townbase</h3>
+              <h2 class="font-diner text-4xl leading-none sm:text-5xl">Townbase</h2>
             </div>
             <p class="mt-10 text-lg leading-relaxed text-white/75 sm:text-xl" style="text-align: justify">
               {project.description}

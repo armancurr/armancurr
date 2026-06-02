@@ -66,6 +66,9 @@ export function Work(props: InteractiveProps) {
 
         <div class="grid w-full gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)] md:items-start">
           <div>
+            <h2 class="mb-6 text-sm font-medium uppercase tracking-[0.28em] text-white/45">
+              Work Experience
+            </h2>
             <a
               href={workExperience[0].companyUrl}
               class="block text-xl font-medium text-white transition-colors hover:text-white/80 sm:text-2xl"

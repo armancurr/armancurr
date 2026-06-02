@@ -53,7 +53,7 @@ export function Project2(props: InteractiveProps) {
                 <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm4,104a12,12,0,1,1,12-12A12,12,0,0,1,132,128Zm20-36a12,12,0,1,1,12,12A12,12,0,0,1,152,92Zm20,52a12,12,0,1,1,12-12A12,12,0,0,1,172,144Z" />
               </svg>
               <CaretRight class="text-white/40" size={18} weight="fill" />
-              <h3 class="font-diner text-4xl leading-none sm:text-5xl">{project.title}</h3>
+              <h2 class="font-diner text-4xl leading-none sm:text-5xl">{project.title}</h2>
             </div>
             <p class="mt-10 text-lg leading-relaxed text-white/75 sm:text-xl" style="text-align: justify">
               {project.description}
