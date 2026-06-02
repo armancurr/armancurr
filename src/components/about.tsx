@@ -29,12 +29,9 @@ export function About(props: InteractiveProps) {
         </span>
 
         <div class="mx-auto max-w-xl">
-            <h2 class="mb-6 text-3xl font-medium tracking-[-0.03em] text-white sm:text-4xl">
-              About Arman
-            </h2>
             <p class="text-lg leading-relaxed text-white/80 sm:text-xl" style="text-align: justify">
               I'm Arman Kar, a software developer focused on building clear, practical interfaces at
-              the application layer where humans meet software. I work across frontend, backend, AI tooling, and product engineering. View my work on{" "}
+              the application layer where humans meet software. View my work on{" "}
               <a
                 href="https://github.com/armancurr"
                 class="inline-flex items-center gap-1 transition-colors hover:text-white"

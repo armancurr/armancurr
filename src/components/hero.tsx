@@ -17,7 +17,7 @@ export function Hero() {
         style={sidePatternStyle}
       />
 
-      <div class="relative mx-auto w-full max-w-6xl overflow-hidden border-x border-t border-neutral-900 bg-black">
+      <div class="relative mx-auto w-full max-w-6xl cursor-crosshair overflow-hidden border-x border-t border-neutral-900 bg-black">
         <span
           aria-hidden="true"
           class="pointer-events-none absolute left-0 top-0 z-10"
@@ -99,19 +99,8 @@ export function Hero() {
           <rect width="100%" height="100%" filter="url(#n2)" />
         </svg>
 
-        <div class="relative z-10 grid h-[min(66vw,660px)] min-h-[360px] content-end px-8 py-12 sm:px-12 md:px-16">
-          <div class="max-w-3xl">
-            <p class="mb-4 text-sm font-medium uppercase tracking-[0.28em] text-white/55">
-              Software Developer
-            </p>
-            <h1 class="text-5xl font-semibold tracking-[-0.05em] text-white sm:text-7xl md:text-8xl">
-              Arman Kar
-            </h1>
-            <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/75 sm:text-xl">
-              Full-stack engineer building practical interfaces, AI tools, and open source projects with a focus on clear product flows and reliable software.
-            </p>
-          </div>
-        </div>
+        <h1 class="sr-only">Arman Kar, Software Developer</h1>
+        <div class="h-[min(66vw,660px)] min-h-[360px]" />
       </div>
     </section>
   );
