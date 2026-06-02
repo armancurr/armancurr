@@ -17,7 +17,7 @@ import { NotFoundPage } from "./pages/not-found";
 import { TweaksPage } from "./pages/tweaks";
 
 const soundPresetStorageKey = "site:sound-preset";
-const compactPlayerStorageKey = "site:compact-player-enabled";
+const musicPlayerStorageKey = "site:music-player-enabled";
 const selectedMidiTrackStorageKey = "site:selected-midi-track";
 const batteryStatusStorageKey = "site:battery-status-enabled";
 const cpuStatusStorageKey = "site:cpu-status-enabled";
@@ -63,17 +63,17 @@ function getStoredMidiTrackUrl(): string {
 }
 
 export default function App() {
-  const initialCompactPlayerEnabled = getStoredBoolean(compactPlayerStorageKey);
+  const initialMusicPlayerEnabled = getStoredBoolean(musicPlayerStorageKey);
   const [selectedPreset, setSelectedPreset] =
     createSignal<SoundPreset>(getStoredSoundPreset());
-  const [isCompactPlayerEnabled, setIsCompactPlayerEnabled] = createSignal(
-    initialCompactPlayerEnabled,
+  const [isMusicPlayerEnabled, setIsMusicPlayerEnabled] = createSignal(
+    initialMusicPlayerEnabled,
   );
   const [isBatteryStatusEnabled, setIsBatteryStatusEnabled] = createSignal(
-    !initialCompactPlayerEnabled && getStoredBoolean(batteryStatusStorageKey),
+    !initialMusicPlayerEnabled && getStoredBoolean(batteryStatusStorageKey),
   );
   const [isCpuStatusEnabled, setIsCpuStatusEnabled] = createSignal(
-    !initialCompactPlayerEnabled && getStoredBoolean(cpuStatusStorageKey),
+    !initialMusicPlayerEnabled && getStoredBoolean(cpuStatusStorageKey),
   );
   const [isFullscreenPanelsEnabled, setIsFullscreenPanelsEnabled] = createSignal(
     getStoredBoolean(fullscreenPanelsStorageKey),
@@ -82,7 +82,7 @@ export default function App() {
   const [isMidiPlaying, setIsMidiPlaying] = createSignal(false);
   const [playbackTick, setPlaybackTick] = createSignal(Date.now());
   const route = getRoute(window.location.pathname);
-  const isCompactPlayerInHeader = () => isCompactPlayerEnabled();
+  const isMusicPlayerInHeader = () => isMusicPlayerEnabled();
 
   onMount(() => {
     const primeAudio = () => {
@@ -102,7 +102,7 @@ export default function App() {
         target?.tagName === "SELECT" ||
         target?.isContentEditable;
 
-      if (!isCompactPlayerEnabled() || isTyping || event.code !== "Space") return;
+      if (!isMusicPlayerEnabled() || isTyping || event.code !== "Space") return;
 
       event.preventDefault();
       handleMidiToggle(activeMidiUrl() ?? getMidiUrl(midiTracks[0]));
@@ -172,11 +172,11 @@ export default function App() {
     });
   };
 
-  const handleCompactPlayerToggle = () => {
-    const nextValue = !isCompactPlayerEnabled();
+  const handleMusicPlayerToggle = () => {
+    const nextValue = !isMusicPlayerEnabled();
 
-    setIsCompactPlayerEnabled(nextValue);
-    window.localStorage.setItem(compactPlayerStorageKey, String(nextValue));
+    setIsMusicPlayerEnabled(nextValue);
+    window.localStorage.setItem(musicPlayerStorageKey, String(nextValue));
     if (nextValue) {
       setIsBatteryStatusEnabled(false);
       setIsCpuStatusEnabled(false);
@@ -192,8 +192,8 @@ export default function App() {
     setIsBatteryStatusEnabled(nextValue);
     window.localStorage.setItem(batteryStatusStorageKey, String(nextValue));
     if (nextValue) {
-      setIsCompactPlayerEnabled(false);
-      window.localStorage.setItem(compactPlayerStorageKey, "false");
+      setIsMusicPlayerEnabled(false);
+      window.localStorage.setItem(musicPlayerStorageKey, "false");
     }
     haptics.click();
   };
@@ -204,8 +204,8 @@ export default function App() {
     setIsCpuStatusEnabled(nextValue);
     window.localStorage.setItem(cpuStatusStorageKey, String(nextValue));
     if (nextValue) {
-      setIsCompactPlayerEnabled(false);
-      window.localStorage.setItem(compactPlayerStorageKey, "false");
+      setIsMusicPlayerEnabled(false);
+      window.localStorage.setItem(musicPlayerStorageKey, "false");
     }
     haptics.click();
   };
@@ -222,17 +222,15 @@ export default function App() {
     return (
       <TweaksPage
         isBatteryStatusEnabled={isBatteryStatusEnabled}
-        isCompactPlayerEnabled={isCompactPlayerEnabled}
+        isMusicPlayerEnabled={isMusicPlayerEnabled}
         isCpuStatusEnabled={isCpuStatusEnabled}
         isFullscreenPanelsEnabled={isFullscreenPanelsEnabled}
         onBatteryStatusToggle={handleBatteryStatusToggle}
-        onCompactPlayerToggle={handleCompactPlayerToggle}
+        onMusicPlayerToggle={handleMusicPlayerToggle}
         onCpuStatusToggle={handleCpuStatusToggle}
         onFullscreenPanelsToggle={handleFullscreenPanelsToggle}
         onMidiTrackSelect={handleMidiTrackSelect}
-        onPresetSelect={handlePresetSelect}
         selectedMidiTrackUrl={activeMidiUrl}
-        selectedPreset={selectedPreset}
       />
     );
   }
@@ -245,7 +243,7 @@ export default function App() {
     <HomePage
       activeTrackUrl={activeMidiUrl}
       isBatteryStatusEnabled={isBatteryStatusEnabled}
-      isCompactPlayerInHeader={isCompactPlayerInHeader}
+      isMusicPlayerInHeader={isMusicPlayerInHeader}
       isCpuStatusEnabled={isCpuStatusEnabled}
       isFullscreenPanelsEnabled={isFullscreenPanelsEnabled}
       isMidiPlaying={isMidiPlaying}

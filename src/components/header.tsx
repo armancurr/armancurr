@@ -1,6 +1,6 @@
 import { For, Show, type Accessor } from "solid-js";
 
-import { CompactPlayer } from "./compact-player";
+import { MusicPlayer } from "./music-player";
 import { createBatteryStatus } from "../lib/use-battery-status";
 import { getCpuStatus } from "../lib/use-cpu-status";
 import type { MidiPlaybackSnapshot } from "../lib/use-sound";
@@ -24,7 +24,7 @@ function HeaderCorners() {
 
 type HeaderProps = {
   activeTrackUrl: Accessor<string | null>;
-  isCompactPlayerEnabled: Accessor<boolean>;
+  isMusicPlayerEnabled: Accessor<boolean>;
   isBatteryStatusEnabled: Accessor<boolean>;
   isCpuStatusEnabled: Accessor<boolean>;
   isPlaying: Accessor<boolean>;
@@ -61,7 +61,7 @@ export function Header(props: HeaderProps) {
         <HeaderCorners />
 
         <Show
-          when={props.isCompactPlayerEnabled()}
+          when={props.isMusicPlayerEnabled()}
           fallback={
             <Show
               when={batteryStatus()}
@@ -95,7 +95,7 @@ export function Header(props: HeaderProps) {
             </Show>
           }
         >
-          <CompactPlayer
+          <MusicPlayer
             activeTrackUrl={props.activeTrackUrl}
             isPlaying={props.isPlaying}
             midiPlayback={props.midiPlayback}

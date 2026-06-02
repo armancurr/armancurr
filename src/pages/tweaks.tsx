@@ -2,17 +2,14 @@ import type { Accessor } from "solid-js";
 
 import { getMidiUrl, midiTracks } from "../config/midi-tracks";
 import { PageFrame } from "../components/page-frame";
-import type { SoundPreset } from "../lib/use-sound";
 
 interface TweaksPageProps {
-  selectedPreset: Accessor<SoundPreset>;
   selectedMidiTrackUrl: Accessor<string | null>;
-  isCompactPlayerEnabled: Accessor<boolean>;
+  isMusicPlayerEnabled: Accessor<boolean>;
   isBatteryStatusEnabled: Accessor<boolean>;
   isCpuStatusEnabled: Accessor<boolean>;
   isFullscreenPanelsEnabled: Accessor<boolean>;
-  onPresetSelect: (preset: SoundPreset) => void;
-  onCompactPlayerToggle: () => void;
+  onMusicPlayerToggle: () => void;
   onBatteryStatusToggle: () => void;
   onCpuStatusToggle: () => void;
   onFullscreenPanelsToggle: () => void;
@@ -23,39 +20,10 @@ export function TweaksPage(props: TweaksPageProps) {
   return (
     <PageFrame>
       <div class="flex flex-1 flex-col">
-        {/* <div class="grid items-center gap-8 lg:grid-cols-[360px_1fr] lg:gap-16">
-          <SettingHeading
-            title="Sound selection"
-            description="Pick the sound used for clicks and hovers."
-          />
-          <div class="grid w-full max-w-2xl grid-cols-6 gap-x-6 gap-y-4 justify-self-end sm:gap-x-8">
-            {presetOptions.map(({ preset, icon: Icon, label }) => {
-              const selected = () => props.selectedPreset() === preset;
-
-              return (
-                <button
-                  type="button"
-                  aria-label={label}
-                  aria-pressed={selected()}
-                  title={label}
-                  class={`inline-flex h-12 w-12 items-center justify-center rounded-sm transition-colors ${
-                    selected()
-                      ? "bg-white/[0.14] text-white"
-                      : "text-white/45 hover:bg-white/[0.06] hover:text-white/80"
-                  }`}
-                  onPointerDown={() => props.onPresetSelect(preset)}
-                >
-                  <Icon size={20} weight="regular" />
-                </button>
-              );
-            })}
-          </div>
-        </div> */}
-
         <div class="grid flex-1 gap-px bg-white/[0.06] lg:grid-cols-2">
           <div class="flex flex-col bg-black">
             {[
-              { title: "Show the compact music player", enabled: props.isCompactPlayerEnabled, onToggle: props.onCompactPlayerToggle },
+              { title: "Show the music player", enabled: props.isMusicPlayerEnabled, onToggle: props.onMusicPlayerToggle },
               { title: "Show battery level (Google Chrome only)", enabled: props.isBatteryStatusEnabled, onToggle: props.onBatteryStatusToggle },
               { title: "Show CPU status (not in Google Chrome)", enabled: props.isCpuStatusEnabled, onToggle: props.onCpuStatusToggle },
               { title: "Enable sections to go fullscreen", enabled: props.isFullscreenPanelsEnabled, onToggle: props.onFullscreenPanelsToggle },

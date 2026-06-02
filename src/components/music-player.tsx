@@ -5,13 +5,13 @@ import type { MidiPlaybackSnapshot } from "../lib/use-sound";
 
 const progressSegments = Array.from({ length: 36 });
 
-type CompactPlayerProps = {
+type MusicPlayerProps = {
   activeTrackUrl: Accessor<string | null>;
   isPlaying: Accessor<boolean>;
   midiPlayback: Accessor<MidiPlaybackSnapshot | null>;
 };
 
-export function CompactPlayer(props: CompactPlayerProps) {
+export function MusicPlayer(props: MusicPlayerProps) {
   const currentTrack = () => {
     return (
       midiTracks.find((track) => getMidiUrl(track) === props.activeTrackUrl()) ??
