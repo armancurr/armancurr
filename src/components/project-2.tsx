@@ -10,21 +10,10 @@ type InteractiveProps = {
 };
 
 const project = {
-  title: "Research Agent",
+  title: "Pazman",
   href: "https://github.com/armancurr/research-agent",
   description:
     "A research-focused agent project for exploring, synthesizing, and automating knowledge work.",
-  icon: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="32"
-      height="32"
-      fill="#ffffff"
-      viewBox="0 0 256 256"
-    >
-      <path d="M128,24h0A104,104,0,1,0,232,128,104.12,104.12,0,0,0,128,24Zm87.62,96H175.79C174,83.49,159.94,57.67,148.41,42.4A88.19,88.19,0,0,1,215.63,120ZM96.23,136h63.54c-2.31,41.61-22.23,67.11-31.77,77C118.45,203.1,98.54,177.6,96.23,136Zm0-16C98.54,78.39,118.46,52.89,128,43c9.55,9.93,29.46,35.43,31.77,77Zm52.18,93.6c11.53-15.27,25.56-41.09,27.38-77.6h39.84A88.19,88.19,0,0,1,148.41,213.6Z" />
-    </svg>
-  ),
 };
 
 export function Project2(props: InteractiveProps) {
@@ -49,16 +38,24 @@ export function Project2(props: InteractiveProps) {
         <div class="mx-auto max-w-xl">
           <a
             href={project.href}
-            class="block"
+            class="block transition-opacity hover:opacity-80"
             rel="noreferrer"
             target="_blank"
           >
             <div class="flex items-center gap-2 text-white">
-              {project.icon}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                fill="#ffffff"
+                viewBox="0 0 256 256"
+              >
+                <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm4,104a12,12,0,1,1,12-12A12,12,0,0,1,132,128Zm20-36a12,12,0,1,1,12,12A12,12,0,0,1,152,92Zm20,52a12,12,0,1,1,12-12A12,12,0,0,1,172,144Z" />
+              </svg>
               <CaretRight class="text-white/40" size={18} weight="fill" />
-              <h3 class="text-xl font-medium sm:text-2xl">{project.title}</h3>
+              <h3 class="font-diner text-4xl leading-none sm:text-5xl">{project.title}</h3>
             </div>
-            <p class="mt-6 text-lg leading-relaxed text-white/75 sm:text-xl" style="text-align: justify">
+            <p class="mt-10 text-lg leading-relaxed text-white/75 sm:text-xl" style="text-align: justify">
               {project.description}
             </p>
           </a>

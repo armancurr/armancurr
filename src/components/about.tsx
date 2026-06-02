@@ -28,9 +28,7 @@ export function About(props: InteractiveProps) {
           <span class="absolute right-[-1px] top-[-8px] h-4 w-px bg-neutral-400" />
         </span>
 
-        <div class="grid w-full gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)] md:items-start">
-          <h2 class="text-xl font-medium text-white sm:text-2xl">About</h2>
-          <div class="max-w-xl md:ml-auto">
+        <div class="mx-auto max-w-xl">
             <p class="text-lg leading-relaxed text-white/80 sm:text-xl" style="text-align: justify">
               I'm Arman, a developer focused on building clear, practical interfaces at
               the application layer where humans meet software. View my work on{" "}
@@ -62,7 +60,6 @@ export function About(props: InteractiveProps) {
               </a>
               .
             </p>
-          </div>
         </div>
       </FullscreenPanel>
     </section>

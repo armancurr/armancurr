@@ -43,12 +43,12 @@ export function HomePage(props: HomePageProps) {
         onHover={props.onHover}
         onPress={props.onPress}
       />
-      <Project2
+      <Project1
         isFullscreenEnabled={props.isFullscreenPanelsEnabled}
         onHover={props.onHover}
         onPress={props.onPress}
       />
-      <Project1
+      <Project2
         isFullscreenEnabled={props.isFullscreenPanelsEnabled}
         onHover={props.onHover}
         onPress={props.onPress}
