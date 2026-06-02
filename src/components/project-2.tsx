@@ -33,7 +33,7 @@ export function Project2(props: InteractiveProps) {
       <FullscreenPanel
         id="project-2"
         isFullscreenEnabled={props.isFullscreenEnabled}
-        class="relative mx-auto grid w-full max-w-6xl content-center border-x border-b border-neutral-900 px-6 py-14 hover:bg-neutral-900/50 sm:px-8 md:h-[min(66vw,660px)] md:min-h-[360px] md:px-10 md:py-0"
+        class="relative mx-auto grid w-full max-w-6xl content-center border-x border-b border-neutral-900 px-8 py-14 hover:bg-neutral-900/50 sm:px-12 md:h-[min(66vw,660px)] md:min-h-[360px] md:px-16 md:py-0"
         onPointerEnter={props.onHover}
         onPointerDown={props.onPress}
       >
@@ -46,7 +46,7 @@ export function Project2(props: InteractiveProps) {
           <span class="absolute bottom-[-1px] right-[-1px] h-px w-2 bg-neutral-400" />
           <span class="absolute bottom-[-8px] right-[-1px] h-4 w-px bg-neutral-400" />
         </span>
-        <div class="mx-auto max-w-2xl">
+        <div class="mx-auto max-w-xl">
           <a
             href={project.href}
             class="block"

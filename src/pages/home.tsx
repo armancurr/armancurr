@@ -12,7 +12,6 @@ import type { MidiPlaybackSnapshot } from "../lib/use-sound";
 interface HomePageProps {
   activeTrackUrl: Accessor<string | null>;
   isBatteryStatusEnabled: Accessor<boolean>;
-  isCompactPlayerInFooter: Accessor<boolean>;
   isCompactPlayerInHeader: Accessor<boolean>;
   isCpuStatusEnabled: Accessor<boolean>;
   isFullscreenPanelsEnabled: Accessor<boolean>;
@@ -55,10 +54,6 @@ export function HomePage(props: HomePageProps) {
         onPress={props.onPress}
       />
       <Footer
-        activeTrackUrl={props.activeTrackUrl}
-        isCompactPlayerEnabled={props.isCompactPlayerInFooter}
-        isPlaying={props.isMidiPlaying}
-        midiPlayback={props.midiPlayback}
       />
     </div>
   );

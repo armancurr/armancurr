@@ -49,12 +49,12 @@ export function Project1(props: InteractiveProps) {
       <FullscreenPanel
         id="project-1"
         isFullscreenEnabled={props.isFullscreenEnabled}
-        class="relative mx-auto grid w-full max-w-6xl content-center border-x border-b border-neutral-900 bg-black px-6 py-14 hover:bg-neutral-950 sm:px-8 md:h-[min(66vw,660px)] md:min-h-[360px] md:px-10 md:py-0"
+        class="relative mx-auto grid w-full max-w-6xl content-center border-x border-b border-neutral-900 bg-black px-8 py-14 hover:bg-neutral-950 sm:px-12 md:h-[min(66vw,660px)] md:min-h-[360px] md:px-16 md:py-0"
         onPointerEnter={props.onHover}
         onPointerDown={props.onPress}
       >
         <span aria-hidden="true" class="pointer-events-none absolute bottom-[-1px] left-1/2 h-px w-screen -translate-x-1/2 bg-neutral-900" />
-        <div class="mx-auto max-w-2xl">
+        <div class="mx-auto max-w-xl">
           <a
             href={project.href}
             class="block"

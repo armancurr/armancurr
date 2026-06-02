@@ -14,7 +14,7 @@ export function About(props: InteractiveProps) {
       <FullscreenPanel
         id="about"
         isFullscreenEnabled={props.isFullscreenEnabled}
-        class="relative mx-auto grid w-full max-w-6xl content-center border-x border-t border-neutral-900 px-6 py-14 hover:bg-neutral-900/50 sm:px-8 md:h-[min(66vw,660px)] md:min-h-[360px] md:px-10 md:py-0"
+        class="relative mx-auto grid w-full max-w-6xl content-center border-x border-t border-neutral-900 px-8 py-14 hover:bg-neutral-900/50 sm:px-12 md:h-[min(66vw,660px)] md:min-h-[360px] md:px-16 md:py-0"
         onPointerEnter={props.onHover}
         onPointerDown={props.onPress}
       >
@@ -28,7 +28,9 @@ export function About(props: InteractiveProps) {
           <span class="absolute right-[-1px] top-[-8px] h-4 w-px bg-neutral-400" />
         </span>
 
-        <div class="mx-auto max-w-2xl text-center">
+        <div class="grid w-full gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)] md:items-start">
+          <h2 class="text-xl font-medium text-white sm:text-2xl">About</h2>
+          <div class="max-w-xl md:ml-auto">
             <p class="text-lg leading-relaxed text-white/80 sm:text-xl" style="text-align: justify">
               I'm Arman, a developer focused on building clear, practical interfaces at
               the application layer where humans meet software. View my work on{" "}
@@ -60,6 +62,7 @@ export function About(props: InteractiveProps) {
               </a>
               .
             </p>
+          </div>
         </div>
       </FullscreenPanel>
     </section>
