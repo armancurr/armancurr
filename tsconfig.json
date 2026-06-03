@@ -12,6 +12,9 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "noEmit": true,
+    "skipLibCheck": true,
+    "incremental": true,
+    "tsBuildInfoFile": "tsconfig.tsbuildinfo",
 
     // Type Checking & Safety
     "strict": true,

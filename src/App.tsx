@@ -60,7 +60,9 @@ function getStoredMidiTrackUrl(): string {
 
   const storedUrl = window.localStorage.getItem(selectedMidiTrackStorageKey);
 
-  return midiTracks.some((track) => getMidiUrl(track) === storedUrl) ? storedUrl : fallbackUrl;
+  return storedUrl && midiTracks.some((track) => getMidiUrl(track) === storedUrl)
+    ? storedUrl
+    : fallbackUrl;
 }
 
 export default function App() {

@@ -5,6 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "prepare": "husky",
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
@@ -13,7 +14,8 @@
     "lint:fix": "oxlint --fix",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
-    "check": "bun run lint && bun run fmt:check && bun run build"
+    "typecheck": "tsc --noEmit",
+    "check": "bun run lint && bun run fmt:check && bun run typecheck"
   },
   "dependencies": {
     "mathjs": "^15.2.0",
@@ -22,6 +24,9 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.0",
+    "@types/node": "^25.9.1",
+    "@types/react": "^19.2.16",
+    "husky": "^9.1.7",
     "oxfmt": "^0.53.0",
     "oxlint": "^1.68.0",
     "solid-devtools": "^0.34.5",
