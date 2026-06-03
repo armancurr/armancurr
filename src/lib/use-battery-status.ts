@@ -18,9 +18,7 @@ type BatteryStatus = {
 };
 
 function isGoogleChrome(nav: NavigatorWithBattery) {
-  return nav.userAgentData?.brands?.some(
-    ({ brand }) => brand === "Google Chrome",
-  ) ?? false;
+  return nav.userAgentData?.brands?.some(({ brand }) => brand === "Google Chrome") ?? false;
 }
 
 export function createBatteryStatus(segmentCount: number) {

@@ -14,13 +14,10 @@ type MusicPlayerProps = {
 export function MusicPlayer(props: MusicPlayerProps) {
   const currentTrack = () => {
     return (
-      midiTracks.find((track) => getMidiUrl(track) === props.activeTrackUrl()) ??
-      midiTracks[0]
+      midiTracks.find((track) => getMidiUrl(track) === props.activeTrackUrl()) ?? midiTracks[0]
     );
   };
   const currentTrackUrl = () => getMidiUrl(currentTrack());
-  const isCurrentTrackPlaying = () =>
-    props.activeTrackUrl() === currentTrackUrl() && props.isPlaying();
   const progressRatio = () => {
     const playback = props.midiPlayback();
 
@@ -41,17 +38,16 @@ export function MusicPlayer(props: MusicPlayerProps) {
 
   return (
     <div class="h-full w-full">
-      <div
+      <output
         aria-label={`Playback progress ${Math.round(progressRatio() * 100)} percent`}
         class="relative h-full"
-        role="status"
       >
         <div aria-hidden="true" class="grid h-full grid-cols-36">
           <For each={progressSegments}>
             {(_, index) => <div class={progressCellClass(index())} />}
           </For>
         </div>
-      </div>
+      </output>
     </div>
   );
 }

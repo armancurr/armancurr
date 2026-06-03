@@ -32,24 +32,11 @@ export function HomePage(props: HomePageProps) {
         midiPlayback={props.midiPlayback}
       />
       <Hero />
-      <About
-        isFullscreenEnabled={props.isFullscreenPanelsEnabled}
-        onPress={props.onPress}
-      />
-      <Work
-        isFullscreenEnabled={props.isFullscreenPanelsEnabled}
-        onPress={props.onPress}
-      />
-      <Project1
-        isFullscreenEnabled={props.isFullscreenPanelsEnabled}
-        onPress={props.onPress}
-      />
-      <Project2
-        isFullscreenEnabled={props.isFullscreenPanelsEnabled}
-        onPress={props.onPress}
-      />
-      <Footer
-      />
+      <About isFullscreenEnabled={props.isFullscreenPanelsEnabled} onPress={props.onPress} />
+      <Work isFullscreenEnabled={props.isFullscreenPanelsEnabled} onPress={props.onPress} />
+      <Project1 isFullscreenEnabled={props.isFullscreenPanelsEnabled} onPress={props.onPress} />
+      <Project2 isFullscreenEnabled={props.isFullscreenPanelsEnabled} onPress={props.onPress} />
+      <Footer />
     </div>
   );
 }

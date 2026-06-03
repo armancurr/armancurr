@@ -232,11 +232,7 @@ function parseMidi(arrayBuffer: ArrayBuffer): ParsedMidiSong {
   return { ticksPerBeat, tempos, notes };
 }
 
-function midiTicksToSeconds(
-  ticks: number,
-  ticksPerBeat: number,
-  tempos: TempoEvent[],
-): number {
+function midiTicksToSeconds(ticks: number, ticksPerBeat: number, tempos: TempoEvent[]): number {
   let seconds = 0;
   let previousTicks = 0;
   let tempo = tempos[0]?.microsecondsPerBeat ?? 500000;
@@ -334,8 +330,7 @@ function getCtx(): AudioContext | null {
 
   const AudioContextCtor =
     window.AudioContext ||
-    (window as typeof window & { webkitAudioContext?: typeof AudioContext })
-      .webkitAudioContext;
+    (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
 
   if (!AudioContextCtor) return null;
   if (!ctx) ctx = new AudioContextCtor();
@@ -410,10 +405,7 @@ function scheduleTone(options: ScheduledToneOptions): boolean {
 
   gainNode.gain.setValueAtTime(0.0001, now);
   gainNode.gain.linearRampToValueAtTime(gain, now + attack);
-  gainNode.gain.exponentialRampToValueAtTime(
-    Math.max(gain * 0.6, 0.0001),
-    releaseStart,
-  );
+  gainNode.gain.exponentialRampToValueAtTime(Math.max(gain * 0.6, 0.0001), releaseStart);
   gainNode.gain.exponentialRampToValueAtTime(0.0001, now + durationSec);
 
   oscillator.connect(gainNode);
@@ -491,7 +483,9 @@ export function getMidiPlaybackSnapshot(): MidiPlaybackSnapshot | null {
   };
 }
 
-function getPresetVoice(preset: SoundPreset): Pick<ToneOptions, "type" | "gain" | "attack" | "release" | "detune"> {
+function getPresetVoice(
+  preset: SoundPreset,
+): Pick<ToneOptions, "type" | "gain" | "attack" | "release" | "detune"> {
   switch (preset) {
     case "Glass Tick":
     case "Bright Ping":
@@ -534,16 +528,8 @@ export async function playMidiFile(
   let scheduled = false;
 
   for (const note of song.notes) {
-    const noteStart = midiTicksToSeconds(
-      note.startTicks,
-      song.ticksPerBeat,
-      song.tempos,
-    );
-    const noteEnd = midiTicksToSeconds(
-      note.endTicks,
-      song.ticksPerBeat,
-      song.tempos,
-    );
+    const noteStart = midiTicksToSeconds(note.startTicks, song.ticksPerBeat, song.tempos);
+    const noteEnd = midiTicksToSeconds(note.endTicks, song.ticksPerBeat, song.tempos);
     if (noteEnd <= offsetSeconds) continue;
 
     const startTime = startOffset + Math.max(noteStart - offsetSeconds, 0);
@@ -604,11 +590,7 @@ export async function playMidiFile(
 function pauseMidiPlayback(): boolean {
   const context = getCtx();
 
-  if (
-    !context ||
-    !currentMidiPlayback ||
-    currentMidiPlayback.status !== "playing"
-  ) {
+  if (!context || !currentMidiPlayback || currentMidiPlayback.status !== "playing") {
     return false;
   }
 
@@ -629,10 +611,7 @@ export async function toggleMidiFile(
   url: string,
   preset: SoundPreset,
 ): Promise<"playing" | "paused" | "failed"> {
-  if (
-    currentMidiPlayback?.url === url &&
-    currentMidiPlayback.status === "playing"
-  ) {
+  if (currentMidiPlayback?.url === url && currentMidiPlayback.status === "playing") {
     return pauseMidiPlayback() ? "paused" : "failed";
   }
 
@@ -774,10 +753,7 @@ export function playLensScrollClick(options: LensScrollClickOptions): boolean {
     const toothGain = context.createGain();
 
     tooth.type = "sine";
-    tooth.frequency.setValueAtTime(
-      settings.tone + intensity * 80 + directionOffset * 22,
-      now,
-    );
+    tooth.frequency.setValueAtTime(settings.tone + intensity * 80 + directionOffset * 22, now);
     tooth.frequency.exponentialRampToValueAtTime(
       Math.max(settings.tone + intensity * 60 - directionOffset * 18, 80),
       endTime,

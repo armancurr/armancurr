@@ -1,5 +1,13 @@
 import { ArrowsInSimple, ArrowsOutSimple } from "phosphor-solid";
-import { Show, type Accessor, type JSX, createEffect, createSignal, onCleanup, onMount } from "solid-js";
+import {
+  Show,
+  type Accessor,
+  type JSX,
+  createEffect,
+  createSignal,
+  onCleanup,
+  onMount,
+} from "solid-js";
 
 type FullscreenPanelProps = {
   id?: string;
@@ -10,12 +18,14 @@ type FullscreenPanelProps = {
 };
 
 export function FullscreenPanel(props: FullscreenPanelProps) {
-  let panel!: HTMLDivElement;
+  let panel: HTMLDivElement | undefined;
   const [isFullscreen, setIsFullscreen] = createSignal(false);
   const isFullscreenEnabled = () => props.isFullscreenEnabled?.() ?? false;
 
   const toggleFullscreen = async (event: MouseEvent) => {
     event.stopPropagation();
+
+    if (!panel) return;
 
     if (document.fullscreenElement === panel) {
       await document.exitFullscreen();
@@ -38,14 +48,16 @@ export function FullscreenPanel(props: FullscreenPanelProps) {
   });
 
   createEffect(() => {
-    if (!isFullscreenEnabled() && document.fullscreenElement === panel) {
+    if (panel && !isFullscreenEnabled() && document.fullscreenElement === panel) {
       void document.exitFullscreen();
     }
   });
 
   return (
     <div
-      ref={panel}
+      ref={(element) => {
+        panel = element;
+      }}
       id={props.id}
       class={`${props.class} group fullscreen-panel`}
       onPointerDown={props.onPointerDown}
@@ -55,7 +67,7 @@ export function FullscreenPanel(props: FullscreenPanelProps) {
           type="button"
           aria-pressed={isFullscreen()}
           aria-label={isFullscreen() ? "Exit fullscreen" : "Enter fullscreen"}
-          class="absolute right-4 top-4 z-20 cursor-pointer p-1 text-white/70 opacity-0 transition-opacity hover:text-white group-hover:opacity-100 focus-visible:opacity-100"
+          class="absolute top-4 right-4 z-20 cursor-pointer p-1 text-white/70 opacity-0 transition-opacity group-hover:opacity-100 hover:text-white focus-visible:opacity-100"
           onClick={toggleFullscreen}
           onPointerDown={(event) => event.stopPropagation()}
         >

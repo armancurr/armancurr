@@ -6,7 +6,6 @@ import {
   isAudioReady,
   getMidiPlaybackSnapshot,
   playLensScrollClick,
-  playPresetSound,
   soundPresetLabels,
   toggleMidiFile,
   type MidiPlaybackSnapshot,
@@ -61,18 +60,13 @@ function getStoredMidiTrackUrl(): string {
 
   const storedUrl = window.localStorage.getItem(selectedMidiTrackStorageKey);
 
-  return midiTracks.some((track) => getMidiUrl(track) === storedUrl)
-    ? storedUrl
-    : fallbackUrl;
+  return midiTracks.some((track) => getMidiUrl(track) === storedUrl) ? storedUrl : fallbackUrl;
 }
 
 export default function App() {
   const initialMusicPlayerEnabled = getStoredBoolean(musicPlayerStorageKey);
-  const [selectedPreset, setSelectedPreset] =
-    createSignal<SoundPreset>(getStoredSoundPreset());
-  const [isMusicPlayerEnabled, setIsMusicPlayerEnabled] = createSignal(
-    initialMusicPlayerEnabled,
-  );
+  const [selectedPreset] = createSignal<SoundPreset>(getStoredSoundPreset());
+  const [isMusicPlayerEnabled, setIsMusicPlayerEnabled] = createSignal(initialMusicPlayerEnabled);
   const [isBatteryStatusEnabled, setIsBatteryStatusEnabled] = createSignal(
     !initialMusicPlayerEnabled && getStoredBoolean(batteryStatusStorageKey),
   );
@@ -171,8 +165,6 @@ export default function App() {
     return getMidiPlaybackSnapshot();
   };
 
-  const playSelectedPreset = () => playPresetSound(selectedPreset());
-
   const handlePress = () => {
     void unlockAudio().then((ready) => {
       if (ready) playLensScrollClick({ direction: 1, intensity: 0.7 });
@@ -196,15 +188,6 @@ export default function App() {
     setActiveMidiUrl(url);
     window.localStorage.setItem(selectedMidiTrackStorageKey, url);
     haptics.click();
-  };
-
-  const handlePresetSelect = (preset: SoundPreset) => {
-    setSelectedPreset(preset);
-    window.localStorage.setItem(soundPresetStorageKey, preset);
-
-    void unlockAudio().then((ready) => {
-      if (ready) playSelectedPreset();
-    });
   };
 
   const handleMusicPlayerToggle = () => {

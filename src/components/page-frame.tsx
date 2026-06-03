@@ -25,25 +25,37 @@ export function PageFrame(props: PageFrameProps) {
         />
 
         <div class="relative mx-auto flex w-full max-w-6xl flex-col border-x border-y border-neutral-900 bg-black md:min-h-[660px]">
-          <span aria-hidden="true" class="pointer-events-none absolute left-1/2 top-[-1px] h-px w-screen -translate-x-1/2 bg-neutral-900" />
-          <span aria-hidden="true" class="pointer-events-none absolute bottom-[-1px] left-1/2 h-px w-screen -translate-x-1/2 bg-neutral-900" />
-          <span aria-hidden="true" class="pointer-events-none absolute left-[-1px] top-1/2 h-screen w-px -translate-y-1/2 bg-neutral-900" />
-          <span aria-hidden="true" class="pointer-events-none absolute right-[-1px] top-1/2 h-screen w-px -translate-y-1/2 bg-neutral-900" />
-          <span aria-hidden="true" class="pointer-events-none absolute left-0 top-0 z-10">
-            <span class="absolute left-[-1px] top-[-1px] h-px w-2 bg-neutral-400" />
-            <span class="absolute left-[-1px] top-[-8px] h-4 w-px bg-neutral-400" />
+          <span
+            aria-hidden="true"
+            class="pointer-events-none absolute top-[-1px] left-1/2 h-px w-screen -translate-x-1/2 bg-neutral-900"
+          />
+          <span
+            aria-hidden="true"
+            class="pointer-events-none absolute bottom-[-1px] left-1/2 h-px w-screen -translate-x-1/2 bg-neutral-900"
+          />
+          <span
+            aria-hidden="true"
+            class="pointer-events-none absolute top-1/2 left-[-1px] h-screen w-px -translate-y-1/2 bg-neutral-900"
+          />
+          <span
+            aria-hidden="true"
+            class="pointer-events-none absolute top-1/2 right-[-1px] h-screen w-px -translate-y-1/2 bg-neutral-900"
+          />
+          <span aria-hidden="true" class="pointer-events-none absolute top-0 left-0 z-10">
+            <span class="absolute top-[-1px] left-[-1px] h-px w-2 bg-neutral-400" />
+            <span class="absolute top-[-8px] left-[-1px] h-4 w-px bg-neutral-400" />
           </span>
-          <span aria-hidden="true" class="pointer-events-none absolute right-0 top-0 z-10">
-            <span class="absolute right-[-1px] top-[-1px] h-px w-2 bg-neutral-400" />
-            <span class="absolute right-[-1px] top-[-8px] h-4 w-px bg-neutral-400" />
+          <span aria-hidden="true" class="pointer-events-none absolute top-0 right-0 z-10">
+            <span class="absolute top-[-1px] right-[-1px] h-px w-2 bg-neutral-400" />
+            <span class="absolute top-[-8px] right-[-1px] h-4 w-px bg-neutral-400" />
           </span>
           <span aria-hidden="true" class="pointer-events-none absolute bottom-0 left-0 z-10">
             <span class="absolute bottom-[-1px] left-[-1px] h-px w-2 bg-neutral-400" />
             <span class="absolute bottom-[-8px] left-[-1px] h-4 w-px bg-neutral-400" />
           </span>
-          <span aria-hidden="true" class="pointer-events-none absolute bottom-0 right-0 z-10">
-            <span class="absolute bottom-[-1px] right-[-1px] h-px w-2 bg-neutral-400" />
-            <span class="absolute bottom-[-8px] right-[-1px] h-4 w-px bg-neutral-400" />
+          <span aria-hidden="true" class="pointer-events-none absolute right-0 bottom-0 z-10">
+            <span class="absolute right-[-1px] bottom-[-1px] h-px w-2 bg-neutral-400" />
+            <span class="absolute right-[-1px] bottom-[-8px] h-4 w-px bg-neutral-400" />
           </span>
 
           {props.children}

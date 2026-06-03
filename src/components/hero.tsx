@@ -18,15 +18,12 @@ export function Hero() {
       />
 
       <div class="relative mx-auto w-full max-w-6xl cursor-crosshair overflow-hidden border-x border-t border-neutral-900 bg-black">
-        <span
-          aria-hidden="true"
-          class="pointer-events-none absolute left-0 top-0 z-10"
-        >
-          <span class="absolute left-[-1px] top-[-1px] h-px w-2 bg-neutral-400" />
-          <span class="absolute left-[-1px] top-[-8px] h-4 w-px bg-neutral-400" />
+        <span aria-hidden="true" class="pointer-events-none absolute top-0 left-0 z-10">
+          <span class="absolute top-[-1px] left-[-1px] h-px w-2 bg-neutral-400" />
+          <span class="absolute top-[-8px] left-[-1px] h-4 w-px bg-neutral-400" />
         </span>
         <div
-          class="absolute left-1/2 top-1/2 rounded-full blur-[24px]"
+          class="absolute top-1/2 left-1/2 rounded-full blur-[24px]"
           style={{
             width: "min(90vw, 980px)",
             height: "min(90vw, 980px)",
@@ -37,7 +34,7 @@ export function Hero() {
           }}
         />
         <div
-          class="absolute left-1/2 top-1/2 rounded-full blur-[20px]"
+          class="absolute top-1/2 left-1/2 rounded-full blur-[20px]"
           style={{
             width: "min(72vw, 760px)",
             height: "min(72vw, 760px)",
@@ -48,7 +45,7 @@ export function Hero() {
           }}
         />
         <div
-          class="absolute left-1/2 top-1/2 rounded-full blur-[16px]"
+          class="absolute top-1/2 left-1/2 rounded-full blur-[16px]"
           style={{
             width: "min(50vw, 520px)",
             height: "min(50vw, 520px)",
@@ -59,19 +56,18 @@ export function Hero() {
           }}
         />
         <div
-          class="absolute left-1/2 top-1/2 rounded-full blur-[12px]"
+          class="absolute top-1/2 left-1/2 rounded-full blur-[12px]"
           style={{
             width: "min(24vw, 220px)",
             height: "min(24vw, 220px)",
-            background:
-              "radial-gradient(circle, #000 36%, rgba(0,0,0,0.72) 60%, transparent 80%)",
+            background: "radial-gradient(circle, #000 36%, rgba(0,0,0,0.72) 60%, transparent 80%)",
             transform: "translate(-50%, -50%)",
           }}
         />
 
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_75%_75%_at_50%_50%,transparent_48%,rgba(0,0,0,0.8)_76%,#000_90%)]" />
 
-        <svg class="pointer-events-none absolute inset-0 h-full w-full mix-blend-overlay opacity-[0.36]">
+        <svg class="pointer-events-none absolute inset-0 h-full w-full opacity-[0.36] mix-blend-overlay">
           <filter id="n1">
             <feTurbulence
               type="fractalNoise"
@@ -79,15 +75,12 @@ export function Hero() {
               numOctaves="1"
               stitchTiles="stitch"
             />
-            <feColorMatrix
-              type="matrix"
-              values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 8 -3"
-            />
+            <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 8 -3" />
           </filter>
           <rect width="100%" height="100%" filter="url(#n1)" />
         </svg>
 
-        <svg class="pointer-events-none absolute inset-0 h-full w-full mix-blend-screen opacity-[0.08]">
+        <svg class="pointer-events-none absolute inset-0 h-full w-full opacity-[0.08] mix-blend-screen">
           <filter id="n2">
             <feTurbulence
               type="fractalNoise"
