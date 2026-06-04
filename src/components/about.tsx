@@ -33,31 +33,47 @@ export function About(props: InteractiveProps) {
           <h2 class="text-foreground text-left text-xl font-semibold sm:text-2xl">What I do?</h2>
           <p class="mt-10 text-left text-lg leading-relaxed text-[var(--text-subtle)] sm:text-xl md:text-justify">
             I'm Arman Kar, a software developer focused on building clear, practical interfaces at
-            the application layer where humans meet software. View my work on{" "}
+            the application layer where humans meet software. Most of my work is on the frontend,
+            shaping how products behave rather than just how they look.
+          </p>
+          <p class="mt-6 text-left text-lg leading-relaxed text-[var(--text-subtle)] sm:text-xl md:text-justify">
+            Here are my socials. View my work on{" "}
             <a
               href="https://github.com/armancurr"
-              class="hover:text-foreground inline-flex items-center gap-1 transition-colors"
+              class="hover:text-foreground inline-flex items-baseline gap-1.5 font-semibold transition-colors"
               rel="noreferrer"
               target="_blank"
             >
+              <span
+                aria-hidden="true"
+                class="inline-block size-[0.9em] shrink-0 translate-y-[0.08em] bg-current [mask:url('/github.svg')_center/contain_no-repeat]"
+              />
               GitHub
             </a>
             , follow me on{" "}
             <a
               href="https://twitter.com/rrucnamra"
-              class="hover:text-foreground inline-flex items-center gap-1 transition-colors"
+              class="hover:text-foreground inline-flex items-baseline gap-1.5 font-semibold transition-colors"
               rel="noreferrer"
               target="_blank"
             >
+              <span
+                aria-hidden="true"
+                class="inline-block size-[0.95em] shrink-0 translate-y-[0.1em] bg-current [mask:url('/twitter.svg')_center/contain_no-repeat]"
+              />
               Twitter
             </a>
-            , or connect with me on{" "}
+            , connect on{" "}
             <a
-              href="https://www.linkedin.com/in/armancurr"
-              class="hover:text-foreground inline-flex items-center gap-1 transition-colors"
+              href="https://www.linkedin.com/in/armancurr/"
+              class="hover:text-foreground inline-flex items-baseline gap-1.5 font-semibold transition-colors"
               rel="noreferrer"
               target="_blank"
             >
+              <span
+                aria-hidden="true"
+                class="inline-block size-[0.95em] shrink-0 translate-y-[0.1em] bg-current [mask:url('/linkedin.svg')_center/contain_no-repeat]"
+              />
               LinkedIn
             </a>
             .
