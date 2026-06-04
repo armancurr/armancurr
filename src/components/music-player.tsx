@@ -30,8 +30,8 @@ export function MusicPlayer(props: MusicPlayerProps) {
   const litSegments = () => Math.round(progressRatio() * progressSegments.length);
   const progressCellClass = (index: number) => {
     const isWithinProgress = index < litSegments();
-    const borderClass = index > 0 ? "border-l border-neutral-900" : "";
-    const fillClass = isWithinProgress ? "bg-neutral-900/50" : "bg-transparent";
+    const borderClass = index > 0 ? "border-l border-border" : "";
+    const fillClass = isWithinProgress ? "bg-[var(--meter-fill)]" : "bg-transparent";
 
     return `${fillClass} ${borderClass}`;
   };

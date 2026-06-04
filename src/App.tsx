@@ -1,4 +1,4 @@
-import { createSignal, onCleanup, onMount } from "solid-js";
+import { createEffect, createSignal, onCleanup, onMount } from "solid-js";
 
 import { getMidiUrl, midiTracks } from "./config/midi-tracks";
 import { haptics } from "./lib/use-haptics";
@@ -23,6 +23,8 @@ const batteryStatusStorageKey = "site:battery-status-enabled";
 const cpuStatusStorageKey = "site:cpu-status-enabled";
 const fullscreenPanelsStorageKey = "site:fullscreen-panels-enabled";
 const scrollSoundEnabledStorageKey = "site:scroll-sound-enabled";
+const googleSansCodeStorageKey = "site:google-sans-code-enabled";
+const darkModeStorageKey = "site:dark-mode-enabled";
 const scrollLensClickDistance = 96;
 const scrollLensClickMinInterval = 58;
 
@@ -81,11 +83,25 @@ export default function App() {
   const [isScrollSoundEnabled, setIsScrollSoundEnabled] = createSignal(
     getStoredBoolean(scrollSoundEnabledStorageKey),
   );
+  const [isGoogleSansCodeEnabled, setIsGoogleSansCodeEnabled] = createSignal(
+    getStoredBoolean(googleSansCodeStorageKey),
+  );
+  const [isDarkModeEnabled, setIsDarkModeEnabled] = createSignal(
+    getStoredBoolean(darkModeStorageKey),
+  );
   const [activeMidiUrl, setActiveMidiUrl] = createSignal<string | null>(getStoredMidiTrackUrl());
   const [isMidiPlaying, setIsMidiPlaying] = createSignal(false);
   const [playbackTick, setPlaybackTick] = createSignal(Date.now());
   const route = getRoute(window.location.pathname);
   const isMusicPlayerInHeader = () => isMusicPlayerEnabled();
+
+  createEffect(() => {
+    document.documentElement.classList.toggle("font-google-sans-code", isGoogleSansCodeEnabled());
+  });
+
+  createEffect(() => {
+    document.documentElement.classList.toggle("light", !isDarkModeEnabled());
+  });
 
   onMount(() => {
     let wheelSinceClick = 0;
@@ -251,6 +267,22 @@ export default function App() {
     haptics.click();
   };
 
+  const handleGoogleSansCodeToggle = () => {
+    const nextValue = !isGoogleSansCodeEnabled();
+
+    setIsGoogleSansCodeEnabled(nextValue);
+    window.localStorage.setItem(googleSansCodeStorageKey, String(nextValue));
+    haptics.click();
+  };
+
+  const handleDarkModeToggle = () => {
+    const nextValue = !isDarkModeEnabled();
+
+    setIsDarkModeEnabled(nextValue);
+    window.localStorage.setItem(darkModeStorageKey, String(nextValue));
+    haptics.click();
+  };
+
   if (route === "tweaks") {
     return (
       <TweaksPage
@@ -258,11 +290,15 @@ export default function App() {
         isMusicPlayerEnabled={isMusicPlayerEnabled}
         isCpuStatusEnabled={isCpuStatusEnabled}
         isFullscreenPanelsEnabled={isFullscreenPanelsEnabled}
+        isGoogleSansCodeEnabled={isGoogleSansCodeEnabled}
+        isDarkModeEnabled={isDarkModeEnabled}
         isScrollSoundEnabled={isScrollSoundEnabled}
         onBatteryStatusToggle={handleBatteryStatusToggle}
         onMusicPlayerToggle={handleMusicPlayerToggle}
         onCpuStatusToggle={handleCpuStatusToggle}
         onFullscreenPanelsToggle={handleFullscreenPanelsToggle}
+        onGoogleSansCodeToggle={handleGoogleSansCodeToggle}
+        onDarkModeToggle={handleDarkModeToggle}
         onScrollSoundToggle={handleScrollSoundToggle}
         onMidiTrackSelect={handleMidiTrackSelect}
         selectedMidiTrackUrl={activeMidiUrl}

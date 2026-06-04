@@ -67,7 +67,7 @@ export function FullscreenPanel(props: FullscreenPanelProps) {
           type="button"
           aria-pressed={isFullscreen()}
           aria-label={isFullscreen() ? "Exit fullscreen" : "Enter fullscreen"}
-          class="absolute top-4 right-4 z-20 cursor-pointer p-1 text-white/70 opacity-0 transition-opacity group-hover:opacity-100 hover:text-white focus-visible:opacity-100"
+          class="hover:text-foreground absolute top-4 right-4 z-20 cursor-pointer p-1 text-[var(--text-subtle)] opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100"
           onClick={toggleFullscreen}
           onPointerDown={(event) => event.stopPropagation()}
         >

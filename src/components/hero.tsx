@@ -1,26 +1,12 @@
 export function Hero() {
-  const sidePatternStyle = {
-    "--s": "150px",
-    "--c1": "#000",
-    "--c2": "#0a0a0a",
-    "--_g":
-      "var(--c1) 0% 5%, var(--c2) 6% 15%, var(--c1) 16% 25%, var(--c2) 26% 35%, var(--c1) 36% 45%, var(--c2) 46% 55%, var(--c1) 56% 65%, var(--c2) 66% 75%, var(--c1) 76% 85%, var(--c2) 86% 95%, #0000 96%",
-    background:
-      "radial-gradient(50% 50% at 100% 0, var(--_g)), radial-gradient(50% 50% at 0 100%, var(--_g)), radial-gradient(50% 50%, var(--_g)), radial-gradient(50% 50%, var(--_g)) calc(var(--s) / 2) calc(var(--s) / 2), var(--c1)",
-    "background-size": "var(--s) var(--s)",
-  };
-
   return (
     <section class="relative w-full">
-      <div
-        class="pointer-events-none absolute inset-y-0 left-1/2 w-screen -translate-x-1/2"
-        style={sidePatternStyle}
-      />
+      <div class="site-pattern pointer-events-none absolute inset-y-0 left-1/2 w-screen -translate-x-1/2" />
 
-      <div class="relative mx-auto w-full max-w-6xl cursor-crosshair overflow-hidden border-x border-t border-neutral-900 bg-black">
+      <div class="border-border bg-background relative mx-auto w-full max-w-6xl cursor-crosshair overflow-hidden border-x border-t">
         <span aria-hidden="true" class="pointer-events-none absolute top-0 left-0 z-10">
-          <span class="absolute top-[-1px] left-[-1px] h-px w-2 bg-neutral-400" />
-          <span class="absolute top-[-8px] left-[-1px] h-4 w-px bg-neutral-400" />
+          <span class="absolute top-[-1px] left-[-1px] h-px w-2 bg-[var(--corner)]" />
+          <span class="absolute top-[-8px] left-[-1px] h-4 w-px bg-[var(--corner)]" />
         </span>
         <div
           class="absolute top-1/2 left-1/2 rounded-full blur-[24px]"
@@ -28,7 +14,7 @@ export function Hero() {
             width: "min(90vw, 980px)",
             height: "min(90vw, 980px)",
             background:
-              "radial-gradient(circle, transparent 41%, rgba(201,24,120,0.88) 55%, rgba(138,16,160,0.7) 64%, rgba(0,0,0,0) 75%)",
+              "radial-gradient(circle, transparent 41%, var(--hero-ring-outer) 55%, var(--hero-ring-outer-soft) 64%, transparent 75%)",
             transform: "translate(-50%, -50%)",
             opacity: 0.72,
           }}
@@ -39,7 +25,7 @@ export function Hero() {
             width: "min(72vw, 760px)",
             height: "min(72vw, 760px)",
             background:
-              "radial-gradient(circle, transparent 31%, rgba(38,64,220,0.92) 47%, rgba(80,48,200,0.76) 57%, rgba(0,0,0,0) 67%)",
+              "radial-gradient(circle, transparent 31%, var(--hero-ring-middle) 47%, var(--hero-ring-middle-soft) 57%, transparent 67%)",
             transform: "translate(-50%, -50%)",
             opacity: 0.8,
           }}
@@ -50,7 +36,7 @@ export function Hero() {
             width: "min(50vw, 520px)",
             height: "min(50vw, 520px)",
             background:
-              "radial-gradient(circle, transparent 20%, rgba(0,200,168,0.9) 36%, rgba(0,168,204,0.76) 47%, rgba(0,0,0,0) 58%)",
+              "radial-gradient(circle, transparent 20%, var(--hero-ring-inner) 36%, var(--hero-ring-inner-soft) 47%, transparent 58%)",
             transform: "translate(-50%, -50%)",
             opacity: 0.78,
           }}
@@ -60,12 +46,19 @@ export function Hero() {
           style={{
             width: "min(24vw, 220px)",
             height: "min(24vw, 220px)",
-            background: "radial-gradient(circle, #000 36%, rgba(0,0,0,0.72) 60%, transparent 80%)",
+            background:
+              "radial-gradient(circle, var(--hero-core) 36%, color-mix(in oklab, var(--hero-core) 72%, transparent) 60%, transparent 80%)",
             transform: "translate(-50%, -50%)",
           }}
         />
 
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_75%_75%_at_50%_50%,transparent_48%,rgba(0,0,0,0.8)_76%,#000_90%)]" />
+        <div
+          class="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 75% 75% at 50% 50%, transparent 48%, var(--hero-vignette) 76%, var(--hero-core) 90%)",
+          }}
+        />
 
         <svg class="pointer-events-none absolute inset-0 h-full w-full opacity-[0.36] mix-blend-overlay">
           <filter id="n1">

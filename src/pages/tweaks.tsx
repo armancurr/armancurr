@@ -9,11 +9,15 @@ interface TweaksPageProps {
   isBatteryStatusEnabled: Accessor<boolean>;
   isCpuStatusEnabled: Accessor<boolean>;
   isFullscreenPanelsEnabled: Accessor<boolean>;
+  isGoogleSansCodeEnabled: Accessor<boolean>;
+  isDarkModeEnabled: Accessor<boolean>;
   isScrollSoundEnabled: Accessor<boolean>;
   onMusicPlayerToggle: () => void;
   onBatteryStatusToggle: () => void;
   onCpuStatusToggle: () => void;
   onFullscreenPanelsToggle: () => void;
+  onGoogleSansCodeToggle: () => void;
+  onDarkModeToggle: () => void;
   onScrollSoundToggle: () => void;
   onMidiTrackSelect: (url: string) => void;
 }
@@ -22,9 +26,14 @@ export function TweaksPage(props: TweaksPageProps) {
   return (
     <PageFrame>
       <div class="flex flex-1 flex-col">
-        <div class="grid flex-1 gap-px bg-white/[0.06] lg:grid-cols-2">
-          <div class="flex flex-col bg-black">
+        <div class="grid flex-1 gap-px bg-[var(--grid-surface)] lg:grid-cols-2">
+          <div class="bg-card flex flex-col">
             {[
+              {
+                title: "Use dark mode",
+                enabled: props.isDarkModeEnabled,
+                onToggle: props.onDarkModeToggle,
+              },
               {
                 title: "Show the music player",
                 enabled: props.isMusicPlayerEnabled,
@@ -50,11 +59,16 @@ export function TweaksPage(props: TweaksPageProps) {
                 enabled: props.isScrollSoundEnabled,
                 onToggle: props.onScrollSoundToggle,
               },
+              {
+                title: "Switch to monospaced font",
+                enabled: props.isGoogleSansCodeEnabled,
+                onToggle: props.onGoogleSansCodeToggle,
+              },
             ].map((tile) => (
               <SettingTile {...tile} />
             ))}
           </div>
-          <div class="flex flex-col bg-black">
+          <div class="bg-card flex flex-col">
             {midiTracks.map((track) => {
               const url = getMidiUrl(track);
               const selected = () => props.selectedMidiTrackUrl() === url;
@@ -64,13 +78,13 @@ export function TweaksPage(props: TweaksPageProps) {
                   type="button"
                   aria-pressed={selected()}
                   onClick={() => props.onMidiTrackSelect(url)}
-                  class={`flex h-14 items-center border-b border-white/[0.06] bg-black px-6 text-left transition-colors sm:px-8 ${
+                  class={`bg-card flex h-14 items-center border-b border-[var(--grid-surface)] px-6 text-left transition-colors sm:px-8 ${
                     selected()
-                      ? "bg-white/[0.04] text-white"
-                      : "text-white/50 hover:bg-white/[0.06] hover:text-white"
+                      ? "text-card-foreground bg-[var(--selected-surface)]"
+                      : "hover:text-card-foreground text-[var(--text-muted)] hover:bg-[var(--hover-surface)]"
                   }`}
                 >
-                  <span class="text-sm leading-snug font-light tracking-wide sm:text-base">
+                  <span class="text-sm leading-snug font-normal tracking-wide sm:text-base">
                     {track.title}
                   </span>
                 </button>
@@ -94,12 +108,12 @@ function SettingTile(props: SettingTileProps) {
     <button
       type="button"
       onClick={props.onToggle}
-      class={`flex h-14 items-center justify-between gap-6 border-b border-white/[0.06] px-6 text-left transition-colors sm:px-8 ${
-        props.enabled() ? "bg-white/[0.04]" : "bg-black"
-      } hover:bg-white/[0.06]`}
+      class={`flex h-14 items-center justify-between gap-6 border-b border-[var(--grid-surface)] px-6 text-left transition-colors sm:px-8 ${
+        props.enabled() ? "bg-[var(--selected-surface)]" : "bg-card"
+      } hover:bg-[var(--hover-surface)]`}
     >
       <p
-        class={`text-sm leading-snug font-light tracking-wide transition-colors sm:text-base ${props.enabled() ? "text-white" : "text-white/50"}`}
+        class={`text-sm leading-snug font-normal tracking-wide transition-colors sm:text-base ${props.enabled() ? "text-card-foreground" : "text-[var(--text-muted)]"}`}
       >
         {props.title}
       </p>

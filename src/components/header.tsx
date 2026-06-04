@@ -11,12 +11,12 @@ function HeaderCorners() {
   return (
     <>
       <span aria-hidden="true" class="pointer-events-none absolute bottom-0 left-0 z-10">
-        <span class="absolute bottom-[-1px] left-[-1px] h-px w-2 bg-neutral-400" />
-        <span class="absolute bottom-[-8px] left-[-1px] h-4 w-px bg-neutral-400" />
+        <span class="absolute bottom-[-1px] left-[-1px] h-px w-2 bg-[var(--corner)]" />
+        <span class="absolute bottom-[-8px] left-[-1px] h-4 w-px bg-[var(--corner)]" />
       </span>
       <span aria-hidden="true" class="pointer-events-none absolute right-0 bottom-0 z-10">
-        <span class="absolute right-[-1px] bottom-[-1px] h-px w-2 bg-neutral-400" />
-        <span class="absolute right-[-1px] bottom-[-8px] h-4 w-px bg-neutral-400" />
+        <span class="absolute right-[-1px] bottom-[-1px] h-px w-2 bg-[var(--corner)]" />
+        <span class="absolute right-[-1px] bottom-[-8px] h-4 w-px bg-[var(--corner)]" />
       </span>
     </>
   );
@@ -37,28 +37,29 @@ export function Header(props: HeaderProps) {
   const batteryStatus = () => (props.isBatteryStatusEnabled() ? battery.status() : undefined);
 
   const cpuCellClass = (index: number) => {
-    const borderClass = index > 0 ? "border-l border-neutral-900" : "";
-    return `${index < cpu.litSegments ? "bg-neutral-900/50" : "bg-transparent"} ${borderClass}`;
+    const borderClass = index > 0 ? "border-l border-border" : "";
+    return `${index < cpu.litSegments ? "bg-[var(--meter-fill)]" : "bg-transparent"} ${borderClass}`;
   };
 
   const batteryCellClass = (index: number) => {
     const isWithinLevel = index < battery.litSegments();
     const isChargingActive = battery.isCharging() && index < battery.chargingSegments();
-    const borderClass = index > 0 ? "border-l border-neutral-900" : "";
+    const borderClass = index > 0 ? "border-l border-border" : "";
 
     if (!isWithinLevel) return `bg-transparent ${borderClass}`;
 
-    const fillClass = isChargingActive || !battery.isCharging() ? "bg-neutral-900/50" : "bg-black";
+    const fillClass =
+      isChargingActive || !battery.isCharging() ? "bg-[var(--meter-fill)]" : "bg-card";
 
     return `${fillClass} ${borderClass}`;
   };
 
   return (
     <header class="relative z-10 w-full">
-      <div class="relative mx-auto h-[max(6rem,calc((100vh-660px)/2))] w-full max-w-6xl overflow-visible border-x border-neutral-900 sm:h-[max(8rem,calc((100vh-660px)/2))]">
+      <div class="border-border relative mx-auto h-[max(6rem,calc((100vh-660px)/2))] w-full max-w-6xl overflow-visible border-x sm:h-[max(8rem,calc((100vh-660px)/2))]">
         <span
           aria-hidden="true"
-          class="pointer-events-none absolute bottom-[-1px] left-1/2 h-px w-screen -translate-x-1/2 bg-neutral-900"
+          class="bg-border pointer-events-none absolute bottom-[-1px] left-1/2 h-px w-screen -translate-x-1/2"
         />
         <HeaderCorners />
 
