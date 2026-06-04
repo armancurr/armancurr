@@ -12,7 +12,7 @@ const project = {
   title: "Townbase",
   href: "https://github.com/armancurr/townbase",
   description:
-    "An open source local community platform for neighborhoods, towns, and shared civic spaces.",
+    "Turn your internet identity into a town: links, profiles, and personal landmarks in one place.",
 };
 
 export function Project1(props: InteractiveProps) {
@@ -46,12 +46,9 @@ export function Project1(props: InteractiveProps) {
             <div class="text-foreground flex items-center gap-2">
               <CatIcon size={32} color="currentColor" weight="fill" />
               <CaretRight class="text-[var(--text-muted)]" size={18} weight="fill" />
-              <h2 class="text-xl leading-none font-medium sm:text-2xl">Townbase</h2>
+              <h2 class="text-xl leading-none font-semibold sm:text-2xl">Townbase</h2>
             </div>
-            <p
-              class="mt-10 text-lg leading-relaxed text-[var(--text-subtle)] sm:text-xl"
-              style="text-align: justify"
-            >
+            <p class="mt-10 text-left text-lg leading-relaxed text-[var(--text-subtle)] sm:text-xl md:text-justify">
               {project.description}
             </p>
           </a>

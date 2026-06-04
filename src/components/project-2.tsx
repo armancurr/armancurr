@@ -10,9 +10,9 @@ type InteractiveProps = {
 
 const project = {
   title: "Pazman",
-  href: "https://github.com/armancurr/research-agent",
+  href: "https://github.com/armancurr/pazman",
   description:
-    "A research-focused agent project for exploring, synthesizing, and automating knowledge work.",
+    "A local-first password manager you can host yourself, built for owning your vault without ceremony.",
 };
 
 export function Project2(props: InteractiveProps) {
@@ -56,12 +56,9 @@ export function Project2(props: InteractiveProps) {
                 <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm4,104a12,12,0,1,1,12-12A12,12,0,0,1,132,128Zm20-36a12,12,0,1,1,12,12A12,12,0,0,1,152,92Zm20,52a12,12,0,1,1,12-12A12,12,0,0,1,172,144Z" />
               </svg>
               <CaretRight class="text-[var(--text-muted)]" size={18} weight="fill" />
-              <h2 class="text-xl leading-none font-medium sm:text-2xl">{project.title}</h2>
+              <h2 class="text-xl leading-none font-semibold sm:text-2xl">{project.title}</h2>
             </div>
-            <p
-              class="mt-10 text-lg leading-relaxed text-[var(--text-subtle)] sm:text-xl"
-              style="text-align: justify"
-            >
+            <p class="mt-10 text-left text-lg leading-relaxed text-[var(--text-subtle)] sm:text-xl md:text-justify">
               {project.description}
             </p>
           </a>

@@ -58,7 +58,7 @@ export function Work(props: InteractiveProps) {
         <div class="mx-auto w-full max-w-xl">
           {workExperience.map((job) => (
             <div>
-              <h3 class="text-foreground text-left text-xl font-medium sm:text-2xl">{job.title}</h3>
+              <h3 class="text-foreground text-left text-xl font-semibold sm:text-2xl">{job.title}</h3>
               <div class="mt-4 flex flex-wrap items-center gap-2 text-sm text-[var(--text-muted)]">
                 <a
                   href={job.companyUrl}
@@ -71,10 +71,7 @@ export function Work(props: InteractiveProps) {
                 <CaretRight class="text-[var(--text-muted)]" size={14} weight="fill" />
                 <span>{job.period}</span>
               </div>
-              <p
-                class="mt-10 text-lg leading-relaxed text-[var(--text-subtle)] sm:text-xl"
-                style="text-align: justify"
-              >
+              <p class="mt-10 text-left text-lg leading-relaxed text-[var(--text-subtle)] sm:text-xl md:text-justify">
                 {job.description}
               </p>
             </div>

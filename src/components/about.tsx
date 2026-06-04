@@ -30,11 +30,8 @@ export function About(props: InteractiveProps) {
         </span>
 
         <div class="mx-auto max-w-xl">
-          <h2 class="text-foreground text-left text-xl font-medium sm:text-2xl">What I do?</h2>
-          <p
-            class="mt-10 text-lg leading-relaxed text-[var(--text-subtle)] sm:text-xl"
-            style="text-align: justify"
-          >
+          <h2 class="text-foreground text-left text-xl font-semibold sm:text-2xl">What I do?</h2>
+          <p class="mt-10 text-left text-lg leading-relaxed text-[var(--text-subtle)] sm:text-xl md:text-justify">
             I'm Arman Kar, a software developer focused on building clear, practical interfaces at
             the application layer where humans meet software. View my work on{" "}
             <a
