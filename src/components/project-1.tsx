@@ -48,7 +48,7 @@ export function Project1(props: InteractiveProps) {
               <CaretRight class="text-[var(--text-muted)]" size={18} weight="fill" />
               <h2 class="text-xl leading-none font-semibold sm:text-2xl">Townbase</h2>
             </div>
-            <p class="mt-10 text-left text-lg leading-relaxed text-[var(--text-subtle)] sm:text-xl md:text-justify">
+            <p class="mt-6 text-left text-lg leading-relaxed text-[var(--text-subtle)] sm:text-xl md:text-justify">
               {project.description}
             </p>
           </a>
