@@ -12,7 +12,7 @@ const project = {
   title: "Pazman",
   href: "https://github.com/armancurr/pazman",
   description:
-    "A local-first password manager you can host yourself, built for owning your vault without ceremony.",
+    "A local-first password manager you can host yourself, built for owning your vault across devices.",
 };
 
 export function Project2(props: InteractiveProps) {

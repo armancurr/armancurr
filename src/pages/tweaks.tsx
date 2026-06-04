@@ -27,7 +27,7 @@ export function TweaksPage(props: TweaksPageProps) {
     <PageFrame>
       <div class="flex flex-1 flex-col">
         <div class="grid flex-1 gap-px bg-[var(--grid-surface)] lg:grid-cols-2">
-          <div class="bg-card flex flex-col">
+          <div class="bg-background flex flex-col">
             {[
               {
                 title: "Use dark mode",
@@ -68,7 +68,7 @@ export function TweaksPage(props: TweaksPageProps) {
               <SettingTile {...tile} />
             ))}
           </div>
-          <div class="bg-card flex flex-col">
+          <div class="bg-background flex flex-col">
             {midiTracks.map((track) => {
               const url = getMidiUrl(track);
               const selected = () => props.selectedMidiTrackUrl() === url;
@@ -78,7 +78,7 @@ export function TweaksPage(props: TweaksPageProps) {
                   type="button"
                   aria-pressed={selected()}
                   onClick={() => props.onMidiTrackSelect(url)}
-                  class={`bg-card flex h-14 items-center border-b border-[var(--grid-surface)] px-6 text-left transition-colors sm:px-8 ${
+                  class={`bg-background flex h-14 items-center border-b border-[var(--grid-surface)] px-6 text-left transition-colors sm:px-8 ${
                     selected()
                       ? "text-card-foreground bg-[var(--selected-surface)]"
                       : "hover:text-card-foreground text-[var(--text-muted)] hover:bg-[var(--hover-surface)]"
@@ -109,7 +109,7 @@ function SettingTile(props: SettingTileProps) {
       type="button"
       onClick={props.onToggle}
       class={`flex h-14 items-center justify-between gap-6 border-b border-[var(--grid-surface)] px-6 text-left transition-colors sm:px-8 ${
-        props.enabled() ? "bg-[var(--selected-surface)]" : "bg-card"
+        props.enabled() ? "bg-[var(--selected-surface)]" : "bg-background"
       } hover:bg-[var(--hover-surface)]`}
     >
       <p

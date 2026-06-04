@@ -58,7 +58,9 @@ export function Work(props: InteractiveProps) {
         <div class="mx-auto w-full max-w-xl">
           {workExperience.map((job) => (
             <div>
-              <h3 class="text-foreground text-left text-xl font-semibold sm:text-2xl">{job.title}</h3>
+              <h3 class="text-foreground text-left text-xl font-semibold sm:text-2xl">
+                {job.title}
+              </h3>
               <div class="mt-4 flex flex-wrap items-center gap-2 text-sm text-[var(--text-muted)]">
                 <a
                   href={job.companyUrl}

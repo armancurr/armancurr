@@ -12,7 +12,7 @@ const project = {
   title: "Townbase",
   href: "https://github.com/armancurr/townbase",
   description:
-    "Turn your internet identity into a town: links, profiles, and personal landmarks in one place.",
+    "Turn your internet identity into a town with profiles, links, and personal landmarks in one place.",
 };
 
 export function Project1(props: InteractiveProps) {
