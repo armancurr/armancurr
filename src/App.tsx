@@ -1,6 +1,7 @@
 import { createEffect, createSignal, onCleanup, onMount } from "solid-js";
 
 import { getMidiUrl, midiTracks } from "./config/midi-tracks";
+import { getProjectBySlug, type ProjectConfig } from "./config/projects";
 import { haptics } from "./lib/use-haptics";
 import {
   isAudioReady,
@@ -14,6 +15,7 @@ import {
 } from "./lib/use-sound";
 import { HomePage } from "./pages/home";
 import { NotFoundPage } from "./pages/not-found";
+import { ProjectRepoPage } from "./pages/project-repo";
 import { TweaksPage } from "./pages/tweaks";
 
 const soundPresetStorageKey = "site:sound-preset";
@@ -22,19 +24,32 @@ const selectedMidiTrackStorageKey = "site:selected-midi-track";
 const batteryStatusStorageKey = "site:battery-status-enabled";
 const cpuStatusStorageKey = "site:cpu-status-enabled";
 const fullscreenPanelsStorageKey = "site:fullscreen-panels-enabled";
+const projectRepoPagesStorageKey = "site:project-repo-pages-enabled";
 const scrollSoundEnabledStorageKey = "site:scroll-sound-enabled";
 const googleSansCodeStorageKey = "site:google-sans-code-enabled";
 const darkModeStorageKey = "site:dark-mode-enabled";
 const scrollLensClickDistance = 96;
 const scrollLensClickMinInterval = 58;
 
-type AppRoute = "home" | "tweaks" | "not-found";
+type AppRoute =
+  | { name: "home" }
+  | { name: "tweaks" }
+  | { name: "project"; project: ProjectConfig }
+  | { name: "not-found" };
 
 function getRoute(pathname: string): AppRoute {
-  if (pathname === "/") return "home";
-  if (pathname === "/tweaks") return "tweaks";
+  if (pathname === "/") return { name: "home" };
+  if (pathname === "/tweaks") return { name: "tweaks" };
 
-  return "not-found";
+  const projectMatch = pathname.match(/^\/projects\/([^/]+)$/);
+
+  if (projectMatch) {
+    const project = getProjectBySlug(projectMatch[1]);
+
+    if (project) return { name: "project", project };
+  }
+
+  return { name: "not-found" };
 }
 
 function getStoredSoundPreset(): SoundPreset {
@@ -79,6 +94,9 @@ export default function App() {
   );
   const [isFullscreenPanelsEnabled, setIsFullscreenPanelsEnabled] = createSignal(
     getStoredBoolean(fullscreenPanelsStorageKey),
+  );
+  const [isProjectRepoPagesEnabled, setIsProjectRepoPagesEnabled] = createSignal(
+    getStoredBoolean(projectRepoPagesStorageKey),
   );
   const [isScrollSoundEnabled, setIsScrollSoundEnabled] = createSignal(
     getStoredBoolean(scrollSoundEnabledStorageKey),
@@ -143,7 +161,7 @@ export default function App() {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.ctrlKey && !event.altKey && !event.metaKey && event.code === "Comma") {
         event.preventDefault();
-        window.location.href = route === "tweaks" ? "/" : "/tweaks";
+        window.location.href = route.name === "tweaks" ? "/" : "/tweaks";
         return;
       }
 
@@ -254,6 +272,14 @@ export default function App() {
     haptics.click();
   };
 
+  const handleProjectRepoPagesToggle = () => {
+    const nextValue = !isProjectRepoPagesEnabled();
+
+    setIsProjectRepoPagesEnabled(nextValue);
+    window.localStorage.setItem(projectRepoPagesStorageKey, String(nextValue));
+    haptics.click();
+  };
+
   const handleScrollSoundToggle = () => {
     const nextValue = !isScrollSoundEnabled();
 
@@ -283,13 +309,14 @@ export default function App() {
     haptics.click();
   };
 
-  if (route === "tweaks") {
+  if (route.name === "tweaks") {
     return (
       <TweaksPage
         isBatteryStatusEnabled={isBatteryStatusEnabled}
         isMusicPlayerEnabled={isMusicPlayerEnabled}
         isCpuStatusEnabled={isCpuStatusEnabled}
         isFullscreenPanelsEnabled={isFullscreenPanelsEnabled}
+        isProjectRepoPagesEnabled={isProjectRepoPagesEnabled}
         isGoogleSansCodeEnabled={isGoogleSansCodeEnabled}
         isDarkModeEnabled={isDarkModeEnabled}
         isScrollSoundEnabled={isScrollSoundEnabled}
@@ -297,6 +324,7 @@ export default function App() {
         onMusicPlayerToggle={handleMusicPlayerToggle}
         onCpuStatusToggle={handleCpuStatusToggle}
         onFullscreenPanelsToggle={handleFullscreenPanelsToggle}
+        onProjectRepoPagesToggle={handleProjectRepoPagesToggle}
         onGoogleSansCodeToggle={handleGoogleSansCodeToggle}
         onDarkModeToggle={handleDarkModeToggle}
         onScrollSoundToggle={handleScrollSoundToggle}
@@ -306,7 +334,11 @@ export default function App() {
     );
   }
 
-  if (route === "not-found") {
+  if (route.name === "project") {
+    return <ProjectRepoPage project={route.project} />;
+  }
+
+  if (route.name === "not-found") {
     return <NotFoundPage />;
   }
 
@@ -317,6 +349,7 @@ export default function App() {
       isMusicPlayerInHeader={isMusicPlayerInHeader}
       isCpuStatusEnabled={isCpuStatusEnabled}
       isFullscreenPanelsEnabled={isFullscreenPanelsEnabled}
+      isProjectRepoPagesEnabled={isProjectRepoPagesEnabled}
       isMidiPlaying={isMidiPlaying}
       midiPlayback={midiPlayback}
       onPress={handlePress}

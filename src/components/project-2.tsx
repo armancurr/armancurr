@@ -1,16 +1,17 @@
 import { CaretRight } from "phosphor-solid";
 import type { Accessor } from "solid-js";
 
+import { getProjectBySlug } from "../config/projects";
 import { FullscreenPanel } from "./fullscreen-panel";
 
 type InteractiveProps = {
   isFullscreenEnabled: Accessor<boolean>;
+  isProjectRepoPagesEnabled: Accessor<boolean>;
   onPress: () => void;
 };
 
 const project = {
-  title: "Pazman",
-  href: "https://github.com/armancurr/pazman",
+  ...getProjectBySlug("pazman")!,
   description:
     "A local-first password manager you can host yourself, built for owning your vault across devices.",
 };
@@ -40,10 +41,12 @@ export function Project2(props: InteractiveProps) {
         </span>
         <div class="mx-auto max-w-xl">
           <a
-            href={project.href}
+            href={
+              props.isProjectRepoPagesEnabled() ? `/projects/${project.slug}` : project.githubUrl
+            }
             class="block transition-opacity hover:opacity-80"
             rel="noreferrer"
-            target="_blank"
+            target={props.isProjectRepoPagesEnabled() ? undefined : "_blank"}
           >
             <div class="text-foreground flex items-center gap-2">
               <svg
@@ -56,7 +59,7 @@ export function Project2(props: InteractiveProps) {
                 <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm4,104a12,12,0,1,1,12-12A12,12,0,0,1,132,128Zm20-36a12,12,0,1,1,12,12A12,12,0,0,1,152,92Zm20,52a12,12,0,1,1,12-12A12,12,0,0,1,172,144Z" />
               </svg>
               <CaretRight class="text-[var(--text-muted)]" size={18} weight="fill" />
-              <h2 class="text-xl leading-none font-semibold sm:text-2xl">{project.title}</h2>
+              <h2 class="text-xl leading-none font-semibold sm:text-2xl">{project.name}</h2>
             </div>
             <p class="mt-6 text-left text-lg leading-relaxed text-[var(--text-subtle)] sm:text-xl md:text-justify">
               {project.description}

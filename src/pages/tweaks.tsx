@@ -9,6 +9,7 @@ interface TweaksPageProps {
   isBatteryStatusEnabled: Accessor<boolean>;
   isCpuStatusEnabled: Accessor<boolean>;
   isFullscreenPanelsEnabled: Accessor<boolean>;
+  isProjectRepoPagesEnabled: Accessor<boolean>;
   isGoogleSansCodeEnabled: Accessor<boolean>;
   isDarkModeEnabled: Accessor<boolean>;
   isScrollSoundEnabled: Accessor<boolean>;
@@ -16,6 +17,7 @@ interface TweaksPageProps {
   onBatteryStatusToggle: () => void;
   onCpuStatusToggle: () => void;
   onFullscreenPanelsToggle: () => void;
+  onProjectRepoPagesToggle: () => void;
   onGoogleSansCodeToggle: () => void;
   onDarkModeToggle: () => void;
   onScrollSoundToggle: () => void;
@@ -35,6 +37,11 @@ export function TweaksPage(props: TweaksPageProps) {
                 onToggle: props.onDarkModeToggle,
               },
               {
+                title: "Switch to monospaced font",
+                enabled: props.isGoogleSansCodeEnabled,
+                onToggle: props.onGoogleSansCodeToggle,
+              },
+              {
                 title: "Show the music player",
                 enabled: props.isMusicPlayerEnabled,
                 onToggle: props.onMusicPlayerToggle,
@@ -50,19 +57,19 @@ export function TweaksPage(props: TweaksPageProps) {
                 onToggle: props.onCpuStatusToggle,
               },
               {
-                title: "Enable sections to go fullscreen",
-                enabled: props.isFullscreenPanelsEnabled,
-                onToggle: props.onFullscreenPanelsToggle,
-              },
-              {
                 title: "Enable sound on scroll",
                 enabled: props.isScrollSoundEnabled,
                 onToggle: props.onScrollSoundToggle,
               },
               {
-                title: "Switch to monospaced font",
-                enabled: props.isGoogleSansCodeEnabled,
-                onToggle: props.onGoogleSansCodeToggle,
+                title: "Enable sections to go fullscreen",
+                enabled: props.isFullscreenPanelsEnabled,
+                onToggle: props.onFullscreenPanelsToggle,
+              },
+              {
+                title: "Enable custom project pages",
+                enabled: props.isProjectRepoPagesEnabled,
+                onToggle: props.onProjectRepoPagesToggle,
               },
             ].map((tile) => (
               <SettingTile {...tile} />

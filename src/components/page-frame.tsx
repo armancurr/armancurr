@@ -2,9 +2,22 @@ import type { JSX } from "solid-js";
 
 interface PageFrameProps {
   children: JSX.Element;
+  clean?: boolean;
 }
 
 export function PageFrame(props: PageFrameProps) {
+  if (props.clean) {
+    return (
+      <main class="bg-background text-foreground relative flex min-h-screen items-center px-4 py-20 sm:px-6 sm:py-28">
+        <section class="relative w-full">
+          <div class="bg-background relative mx-auto flex w-full max-w-4xl flex-col md:min-h-[660px]">
+            {props.children}
+          </div>
+        </section>
+      </main>
+    );
+  }
+
   return (
     <main class="bg-background text-foreground relative flex min-h-screen items-center px-4 py-20 sm:px-6 sm:py-28">
       <section class="relative w-full">

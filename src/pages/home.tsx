@@ -15,6 +15,7 @@ interface HomePageProps {
   isMusicPlayerInHeader: Accessor<boolean>;
   isCpuStatusEnabled: Accessor<boolean>;
   isFullscreenPanelsEnabled: Accessor<boolean>;
+  isProjectRepoPagesEnabled: Accessor<boolean>;
   isMidiPlaying: Accessor<boolean>;
   midiPlayback: Accessor<MidiPlaybackSnapshot | null>;
   onPress: () => void;
@@ -34,8 +35,16 @@ export function HomePage(props: HomePageProps) {
       <Hero />
       <About isFullscreenEnabled={props.isFullscreenPanelsEnabled} onPress={props.onPress} />
       <Work isFullscreenEnabled={props.isFullscreenPanelsEnabled} onPress={props.onPress} />
-      <Project1 isFullscreenEnabled={props.isFullscreenPanelsEnabled} onPress={props.onPress} />
-      <Project2 isFullscreenEnabled={props.isFullscreenPanelsEnabled} onPress={props.onPress} />
+      <Project1
+        isFullscreenEnabled={props.isFullscreenPanelsEnabled}
+        isProjectRepoPagesEnabled={props.isProjectRepoPagesEnabled}
+        onPress={props.onPress}
+      />
+      <Project2
+        isFullscreenEnabled={props.isFullscreenPanelsEnabled}
+        isProjectRepoPagesEnabled={props.isProjectRepoPagesEnabled}
+        onPress={props.onPress}
+      />
       <Footer />
     </div>
   );

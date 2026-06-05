@@ -1,16 +1,17 @@
 import { CaretRight, Cat as CatIcon } from "phosphor-solid";
 import type { Accessor } from "solid-js";
 
+import { getProjectBySlug } from "../config/projects";
 import { FullscreenPanel } from "./fullscreen-panel";
 
 type InteractiveProps = {
   isFullscreenEnabled: Accessor<boolean>;
+  isProjectRepoPagesEnabled: Accessor<boolean>;
   onPress: () => void;
 };
 
 const project = {
-  title: "Townbase",
-  href: "https://github.com/armancurr/townbase",
+  ...getProjectBySlug("townbase")!,
   description:
     "Turn your internet identity into a town with profiles, links, and personal landmarks in one place.",
 };
@@ -38,15 +39,17 @@ export function Project1(props: InteractiveProps) {
         </span>
         <div class="mx-auto max-w-xl">
           <a
-            href={project.href}
+            href={
+              props.isProjectRepoPagesEnabled() ? `/projects/${project.slug}` : project.githubUrl
+            }
             class="block transition-opacity hover:opacity-80"
             rel="noreferrer"
-            target="_blank"
+            target={props.isProjectRepoPagesEnabled() ? undefined : "_blank"}
           >
             <div class="text-foreground flex items-center gap-2">
               <CatIcon size={32} color="currentColor" weight="fill" />
               <CaretRight class="text-[var(--text-muted)]" size={18} weight="fill" />
-              <h2 class="text-xl leading-none font-semibold sm:text-2xl">Townbase</h2>
+              <h2 class="text-xl leading-none font-semibold sm:text-2xl">{project.name}</h2>
             </div>
             <p class="mt-6 text-left text-lg leading-relaxed text-[var(--text-subtle)] sm:text-xl md:text-justify">
               {project.description}
