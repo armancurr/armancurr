@@ -94,8 +94,8 @@ export function ProjectRepoPage(props: ProjectRepoPageProps) {
   };
 
   return (
-    <PageFrame clean>
-      <div class="flex min-h-[660px] flex-col">
+    <PageFrame>
+      <div class="flex h-[min(660px,calc(100vh-10rem))] min-h-[420px] flex-col overflow-hidden sm:h-[min(660px,calc(100vh-14rem))]">
         <Show
           when={state() === "ready"}
           fallback={<RepoFallback state={state()} error={error()} />}
@@ -107,34 +107,36 @@ export function ProjectRepoPage(props: ProjectRepoPageProps) {
                 <CaretRight class="text-[var(--text-muted)]" size={18} weight="fill" />
                 <h1 class="text-xl leading-none font-semibold sm:text-2xl">{props.project.name}</h1>
               </div>
-              <div class="min-w-0">
-                <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm leading-relaxed text-[var(--text-subtle)] sm:text-base">
+              <div class="mt-3 flex min-w-0 flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+                <div class="min-w-0 text-sm leading-relaxed text-[var(--text-subtle)] sm:text-base">
                   <p>{repo()?.description || "Live repository data from GitHub."}</p>
                 </div>
+                <nav class="flex shrink-0 gap-1 sm:-mt-1" aria-label="Repository links">
+                  <a
+                    href={`https://${props.project.slug}.vercel.app`}
+                    class="hover:text-foreground px-4 py-2 text-sm text-[var(--text-muted)]"
+                    rel="noreferrer"
+                    target="_blank"
+                    aria-label={`Open ${props.project.name} live site`}
+                  >
+                    <GlobeSimpleIcon size={18} weight="fill" />
+                  </a>
+                  <TabButton
+                    active={activeTab() === "commits"}
+                    onClick={() => setActiveTab("commits")}
+                  >
+                    <GitCommitIcon size={18} weight="fill" />
+                  </TabButton>
+                  <TabButton active={false} disabled onClick={() => undefined}>
+                    <GitPullRequestIcon size={18} weight="fill" />
+                  </TabButton>
+                </nav>
               </div>
             </div>
           </header>
 
-          <nav class="flex gap-1 px-5 py-2 sm:px-7">
-            <a
-              href={`https://${props.project.slug}.vercel.app`}
-              class="hover:text-foreground px-4 py-2 text-sm text-[var(--text-muted)]"
-              rel="noreferrer"
-              target="_blank"
-              aria-label={`Open ${props.project.name} live site`}
-            >
-              <GlobeSimpleIcon size={18} weight="fill" />
-            </a>
-            <TabButton active={activeTab() === "commits"} onClick={() => setActiveTab("commits")}>
-              <GitCommitIcon size={18} weight="fill" />
-            </TabButton>
-            <TabButton active={false} disabled onClick={() => undefined}>
-              <GitPullRequestIcon size={18} weight="fill" />
-            </TabButton>
-          </nav>
-
-          <main class="grid min-h-0 flex-1 grid-cols-1 gap-y-8 lg:grid-cols-[360px_minmax(0,1fr)] lg:gap-y-0">
-            <aside class="max-h-[360px] overflow-auto lg:max-h-none">
+          <main class="grid min-h-0 flex-1 grid-cols-1 gap-y-8 overflow-hidden lg:grid-cols-[360px_minmax(0,1fr)] lg:gap-x-16 lg:gap-y-0 xl:gap-x-24">
+            <aside class="min-h-0 overflow-auto">
               <div class="px-3 pt-4 pb-2 sm:px-5">
                 <h2 class="px-2 pb-3 text-xs font-medium tracking-wide text-[var(--text-muted)] uppercase">
                   Files
@@ -152,7 +154,7 @@ export function ProjectRepoPage(props: ProjectRepoPageProps) {
               </div>
             </aside>
 
-            <section class="min-w-0">
+            <section class="min-h-0 min-w-0 overflow-auto">
               <Show when={activeTab() === "commits"}>
                 <CommitsView commits={commits()} />
               </Show>
