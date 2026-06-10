@@ -7,17 +7,11 @@ interface TweaksPageProps {
   selectedMidiTrackUrl: Accessor<string | null>;
   isMusicPlayerEnabled: Accessor<boolean>;
   isBatteryStatusEnabled: Accessor<boolean>;
-  isCpuStatusEnabled: Accessor<boolean>;
-  isFullscreenPanelsEnabled: Accessor<boolean>;
-  isProjectRepoPagesEnabled: Accessor<boolean>;
   isGoogleSansCodeEnabled: Accessor<boolean>;
   isDarkModeEnabled: Accessor<boolean>;
   isScrollSoundEnabled: Accessor<boolean>;
   onMusicPlayerToggle: () => void;
   onBatteryStatusToggle: () => void;
-  onCpuStatusToggle: () => void;
-  onFullscreenPanelsToggle: () => void;
-  onProjectRepoPagesToggle: () => void;
   onGoogleSansCodeToggle: () => void;
   onDarkModeToggle: () => void;
   onScrollSoundToggle: () => void;
@@ -52,24 +46,9 @@ export function TweaksPage(props: TweaksPageProps) {
                 onToggle: props.onBatteryStatusToggle,
               },
               {
-                title: "Show CPU status (not in Google Chrome)",
-                enabled: props.isCpuStatusEnabled,
-                onToggle: props.onCpuStatusToggle,
-              },
-              {
                 title: "Enable sound on scroll",
                 enabled: props.isScrollSoundEnabled,
                 onToggle: props.onScrollSoundToggle,
-              },
-              {
-                title: "Enable sections to go fullscreen",
-                enabled: props.isFullscreenPanelsEnabled,
-                onToggle: props.onFullscreenPanelsToggle,
-              },
-              {
-                title: "Enable custom project pages",
-                enabled: props.isProjectRepoPagesEnabled,
-                onToggle: props.onProjectRepoPagesToggle,
               },
             ].map((tile) => (
               <SettingTile {...tile} />

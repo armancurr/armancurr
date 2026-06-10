@@ -13,9 +13,6 @@ interface HomePageProps {
   activeTrackUrl: Accessor<string | null>;
   isBatteryStatusEnabled: Accessor<boolean>;
   isMusicPlayerInHeader: Accessor<boolean>;
-  isCpuStatusEnabled: Accessor<boolean>;
-  isFullscreenPanelsEnabled: Accessor<boolean>;
-  isProjectRepoPagesEnabled: Accessor<boolean>;
   isMidiPlaying: Accessor<boolean>;
   midiPlayback: Accessor<MidiPlaybackSnapshot | null>;
   onPress: () => void;
@@ -27,24 +24,15 @@ export function HomePage(props: HomePageProps) {
       <Header
         isBatteryStatusEnabled={props.isBatteryStatusEnabled}
         isMusicPlayerEnabled={props.isMusicPlayerInHeader}
-        isCpuStatusEnabled={props.isCpuStatusEnabled}
         activeTrackUrl={props.activeTrackUrl}
         isPlaying={props.isMidiPlaying}
         midiPlayback={props.midiPlayback}
       />
       <Hero />
-      <About isFullscreenEnabled={props.isFullscreenPanelsEnabled} onPress={props.onPress} />
-      <Work isFullscreenEnabled={props.isFullscreenPanelsEnabled} onPress={props.onPress} />
-      <Project1
-        isFullscreenEnabled={props.isFullscreenPanelsEnabled}
-        isProjectRepoPagesEnabled={props.isProjectRepoPagesEnabled}
-        onPress={props.onPress}
-      />
-      <Project2
-        isFullscreenEnabled={props.isFullscreenPanelsEnabled}
-        isProjectRepoPagesEnabled={props.isProjectRepoPagesEnabled}
-        onPress={props.onPress}
-      />
+      <About onPress={props.onPress} />
+      <Work onPress={props.onPress} />
+      <Project1 onPress={props.onPress} />
+      <Project2 onPress={props.onPress} />
       <Footer />
     </div>
   );

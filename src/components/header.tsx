@@ -1,7 +1,6 @@
 import { For, Show, type Accessor } from "solid-js";
 
 import { createBatteryStatus } from "../lib/use-battery-status";
-import { getCpuStatus } from "../lib/use-cpu-status";
 import type { MidiPlaybackSnapshot } from "../lib/use-sound";
 import { MusicPlayer } from "./music-player";
 
@@ -26,20 +25,13 @@ type HeaderProps = {
   activeTrackUrl: Accessor<string | null>;
   isMusicPlayerEnabled: Accessor<boolean>;
   isBatteryStatusEnabled: Accessor<boolean>;
-  isCpuStatusEnabled: Accessor<boolean>;
   isPlaying: Accessor<boolean>;
   midiPlayback: Accessor<MidiPlaybackSnapshot | null>;
 };
 
 export function Header(props: HeaderProps) {
   const battery = createBatteryStatus(batterySegments.length);
-  const cpu = getCpuStatus(batterySegments.length);
   const batteryStatus = () => (props.isBatteryStatusEnabled() ? battery.status() : undefined);
-
-  const cpuCellClass = (index: number) => {
-    const borderClass = index > 0 ? "border-l border-border" : "";
-    return `${index < cpu.litSegments ? "bg-[var(--meter-fill)]" : "bg-transparent"} ${borderClass}`;
-  };
 
   const batteryCellClass = (index: number) => {
     const isWithinLevel = index < battery.litSegments();
@@ -66,20 +58,7 @@ export function Header(props: HeaderProps) {
         <Show
           when={props.isMusicPlayerEnabled()}
           fallback={
-            <Show
-              when={batteryStatus()}
-              fallback={
-                <Show when={props.isCpuStatusEnabled()}>
-                  <output aria-label={`${cpu.cores}-core processor`} class="relative h-full">
-                    <div aria-hidden="true" class="grid h-full grid-cols-36">
-                      <For each={batterySegments}>
-                        {(_, index) => <div class={cpuCellClass(index())} />}
-                      </For>
-                    </div>
-                  </output>
-                </Show>
-              }
-            >
+            <Show when={batteryStatus()}>
               <output
                 aria-label={`Device battery ${battery.level()} percent${battery.isCharging() ? ", charging" : ""}`}
                 class="relative h-full"

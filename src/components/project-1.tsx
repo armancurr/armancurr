@@ -1,12 +1,11 @@
-import { CaretRight, Cat as CatIcon } from "phosphor-solid";
-import type { Accessor } from "solid-js";
+import { useQuery } from "@tanstack/solid-query";
+import { CaretRight, Cat as CatIcon, GitCommit as GitCommitIcon } from "phosphor-solid";
+import { For, Show } from "solid-js";
 
 import { getProjectBySlug } from "../config/projects";
-import { FullscreenPanel } from "./fullscreen-panel";
+import { fetchCommits, githubCacheTimes, githubQueryKeys } from "../lib/github";
 
 type InteractiveProps = {
-  isFullscreenEnabled: Accessor<boolean>;
-  isProjectRepoPagesEnabled: Accessor<boolean>;
   onPress: () => void;
 };
 
@@ -17,11 +16,17 @@ const project = {
 };
 
 export function Project1(props: InteractiveProps) {
+  const commitsQuery = useQuery(() => ({
+    queryKey: githubQueryKeys.commits(project, project.branch),
+    queryFn: ({ signal }) => fetchCommits(project, project.branch, signal),
+    staleTime: githubCacheTimes.commits,
+  }));
+  const commits = () => commitsQuery.data?.slice(0, 6) ?? [];
+
   return (
     <section class="relative w-full">
-      <FullscreenPanel
+      <div
         id="project-1"
-        isFullscreenEnabled={props.isFullscreenEnabled}
         class="border-border bg-background relative mx-auto grid w-full max-w-6xl content-center border-x border-b px-8 py-14 sm:px-12 md:h-[min(66vw,660px)] md:min-h-[360px] md:px-16 md:py-0"
         onPointerDown={props.onPress}
       >
@@ -38,25 +43,49 @@ export function Project1(props: InteractiveProps) {
           <span class="absolute right-[-1px] bottom-[-8px] h-4 w-px bg-[var(--corner)]" />
         </span>
         <div class="mx-auto max-w-xl">
-          <a
-            href={
-              props.isProjectRepoPagesEnabled() ? `/projects/${project.slug}` : project.githubUrl
-            }
-            class="block transition-opacity hover:opacity-80"
-            rel="noreferrer"
-            target={props.isProjectRepoPagesEnabled() ? undefined : "_blank"}
-          >
-            <div class="text-foreground flex items-center gap-2">
-              <CatIcon size={32} color="currentColor" weight="fill" />
-              <CaretRight class="text-[var(--text-muted)]" size={18} weight="fill" />
-              <h2 class="text-xl leading-none font-semibold sm:text-2xl">{project.name}</h2>
+          <div>
+            <div>
+              <a
+                href={project.githubUrl}
+                class="text-foreground flex w-fit items-center gap-2 hover:text-[var(--text-subtle)]"
+                rel="noreferrer"
+                target="_blank"
+                aria-label={`Open ${project.name} repository on GitHub`}
+              >
+                <CatIcon size={32} color="currentColor" weight="fill" />
+                <CaretRight class="text-[var(--text-muted)]" size={18} weight="fill" />
+                <h2 class="text-xl leading-none font-semibold sm:text-2xl">{project.name}</h2>
+              </a>
+              <p class="mt-6 text-left text-lg leading-relaxed text-[var(--text-subtle)] sm:text-xl md:text-justify">
+                {project.description}
+              </p>
             </div>
-            <p class="mt-6 text-left text-lg leading-relaxed text-[var(--text-subtle)] sm:text-xl md:text-justify">
-              {project.description}
-            </p>
-          </a>
+            <Show when={commits().length}>
+              <div class="mt-8 overflow-hidden sm:mt-10">
+                <div class="space-y-2">
+                  <For each={commits()}>
+                    {(commit) => (
+                      <a
+                        href={commit.html_url}
+                        class="group hover:text-foreground grid min-w-0 grid-cols-[16px_minmax(0,1fr)] items-center gap-2 text-sm text-[var(--text-subtle)]"
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        <GitCommitIcon
+                          class="group-hover:text-foreground text-[var(--text-muted)]"
+                          size={15}
+                          weight="fill"
+                        />
+                        <span class="truncate">{commit.commit.message.split("\n")[0]}</span>
+                      </a>
+                    )}
+                  </For>
+                </div>
+              </div>
+            </Show>
+          </div>
         </div>
-      </FullscreenPanel>
+      </div>
     </section>
   );
 }

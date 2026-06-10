@@ -1,10 +1,6 @@
 import { CaretRight } from "phosphor-solid";
-import type { Accessor } from "solid-js";
-
-import { FullscreenPanel } from "./fullscreen-panel";
 
 type InteractiveProps = {
-  isFullscreenEnabled: Accessor<boolean>;
   onPress: () => void;
 };
 
@@ -24,9 +20,8 @@ export function Work(props: InteractiveProps) {
     <section class="relative w-full">
       <div class="site-pattern pointer-events-none absolute inset-y-0 left-1/2 w-screen -translate-x-1/2" />
 
-      <FullscreenPanel
+      <div
         id="work"
-        isFullscreenEnabled={props.isFullscreenEnabled}
         class="border-border bg-background relative mx-auto grid w-full max-w-6xl content-center border-x border-y px-8 py-14 sm:px-12 md:h-[min(66vw,660px)] md:min-h-[360px] md:px-16 md:py-0"
         onPointerDown={props.onPress}
       >
@@ -79,7 +74,7 @@ export function Work(props: InteractiveProps) {
             </div>
           ))}
         </div>
-      </FullscreenPanel>
+      </div>
     </section>
   );
 }

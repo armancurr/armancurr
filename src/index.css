@@ -242,26 +242,3 @@ body::-webkit-scrollbar {
     var(--pattern-c1);
   background-size: var(--s) var(--s);
 }
-
-.fullscreen-panel:fullscreen {
-  box-sizing: border-box;
-  width: 100vw;
-  height: 100vh;
-  max-width: none;
-  min-height: 100vh;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background: var(--background);
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.fullscreen-panel:fullscreen::-webkit-scrollbar {
-  display: none;
-}
-
-.fullscreen-panel:fullscreen::backdrop {
-  background:
-    radial-gradient(circle at 50% 50%, var(--selected-surface), transparent 42%),
-    color-mix(in oklab, var(--background) 94%, transparent);
-}

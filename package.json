@@ -18,6 +18,7 @@
     "check": "bun run lint && bun run fmt:check && bun run typecheck"
   },
   "dependencies": {
+    "@tanstack/solid-query": "^5.101.0",
     "mathjs": "^15.2.0",
     "phosphor-solid": "^1.1.5",
     "solid-js": "^1.9.13"

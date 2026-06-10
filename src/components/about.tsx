@@ -1,18 +1,12 @@
-import type { Accessor } from "solid-js";
-
-import { FullscreenPanel } from "./fullscreen-panel";
-
 type InteractiveProps = {
-  isFullscreenEnabled: Accessor<boolean>;
   onPress: () => void;
 };
 
 export function About(props: InteractiveProps) {
   return (
     <section class="w-full">
-      <FullscreenPanel
+      <div
         id="about"
-        isFullscreenEnabled={props.isFullscreenEnabled}
         class="border-border bg-background relative mx-auto grid w-full max-w-6xl content-center border-x border-t px-8 py-14 sm:px-12 md:h-[min(66vw,660px)] md:min-h-[360px] md:px-16 md:py-0"
         onPointerDown={props.onPress}
       >
@@ -79,7 +73,7 @@ export function About(props: InteractiveProps) {
             .
           </p>
         </div>
-      </FullscreenPanel>
+      </div>
     </section>
   );
 }

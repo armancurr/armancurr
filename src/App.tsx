@@ -1,7 +1,6 @@
 import { createEffect, createSignal, onCleanup, onMount } from "solid-js";
 
 import { getMidiUrl, midiTracks } from "./config/midi-tracks";
-import { getProjectBySlug, type ProjectConfig } from "./config/projects";
 import { haptics } from "./lib/use-haptics";
 import {
   isAudioReady,
@@ -15,39 +14,23 @@ import {
 } from "./lib/use-sound";
 import { HomePage } from "./pages/home";
 import { NotFoundPage } from "./pages/not-found";
-import { ProjectRepoPage } from "./pages/project-repo";
 import { TweaksPage } from "./pages/tweaks";
 
 const soundPresetStorageKey = "site:sound-preset";
 const musicPlayerStorageKey = "site:music-player-enabled";
 const selectedMidiTrackStorageKey = "site:selected-midi-track";
 const batteryStatusStorageKey = "site:battery-status-enabled";
-const cpuStatusStorageKey = "site:cpu-status-enabled";
-const fullscreenPanelsStorageKey = "site:fullscreen-panels-enabled";
-const projectRepoPagesStorageKey = "site:project-repo-pages-enabled";
 const scrollSoundEnabledStorageKey = "site:scroll-sound-enabled";
 const googleSansCodeStorageKey = "site:google-sans-code-enabled";
 const darkModeStorageKey = "site:dark-mode-enabled";
 const scrollLensClickDistance = 96;
 const scrollLensClickMinInterval = 58;
 
-type AppRoute =
-  | { name: "home" }
-  | { name: "tweaks" }
-  | { name: "project"; project: ProjectConfig }
-  | { name: "not-found" };
+type AppRoute = { name: "home" } | { name: "tweaks" } | { name: "not-found" };
 
 function getRoute(pathname: string): AppRoute {
   if (pathname === "/") return { name: "home" };
   if (pathname === "/tweaks") return { name: "tweaks" };
-
-  const projectMatch = pathname.match(/^\/projects\/([^/]+)$/);
-
-  if (projectMatch) {
-    const project = getProjectBySlug(projectMatch[1]);
-
-    if (project) return { name: "project", project };
-  }
 
   return { name: "not-found" };
 }
@@ -88,15 +71,6 @@ export default function App() {
   const [isMusicPlayerEnabled, setIsMusicPlayerEnabled] = createSignal(initialMusicPlayerEnabled);
   const [isBatteryStatusEnabled, setIsBatteryStatusEnabled] = createSignal(
     !initialMusicPlayerEnabled && getStoredBoolean(batteryStatusStorageKey),
-  );
-  const [isCpuStatusEnabled, setIsCpuStatusEnabled] = createSignal(
-    !initialMusicPlayerEnabled && getStoredBoolean(cpuStatusStorageKey),
-  );
-  const [isFullscreenPanelsEnabled, setIsFullscreenPanelsEnabled] = createSignal(
-    getStoredBoolean(fullscreenPanelsStorageKey),
-  );
-  const [isProjectRepoPagesEnabled, setIsProjectRepoPagesEnabled] = createSignal(
-    getStoredBoolean(projectRepoPagesStorageKey),
   );
   const [isScrollSoundEnabled, setIsScrollSoundEnabled] = createSignal(
     getStoredBoolean(scrollSoundEnabledStorageKey),
@@ -233,9 +207,7 @@ export default function App() {
     window.localStorage.setItem(musicPlayerStorageKey, String(nextValue));
     if (nextValue) {
       setIsBatteryStatusEnabled(false);
-      setIsCpuStatusEnabled(false);
       window.localStorage.setItem(batteryStatusStorageKey, "false");
-      window.localStorage.setItem(cpuStatusStorageKey, "false");
     }
     haptics.click();
   };
@@ -249,34 +221,6 @@ export default function App() {
       setIsMusicPlayerEnabled(false);
       window.localStorage.setItem(musicPlayerStorageKey, "false");
     }
-    haptics.click();
-  };
-
-  const handleCpuStatusToggle = () => {
-    const nextValue = !isCpuStatusEnabled();
-
-    setIsCpuStatusEnabled(nextValue);
-    window.localStorage.setItem(cpuStatusStorageKey, String(nextValue));
-    if (nextValue) {
-      setIsMusicPlayerEnabled(false);
-      window.localStorage.setItem(musicPlayerStorageKey, "false");
-    }
-    haptics.click();
-  };
-
-  const handleFullscreenPanelsToggle = () => {
-    const nextValue = !isFullscreenPanelsEnabled();
-
-    setIsFullscreenPanelsEnabled(nextValue);
-    window.localStorage.setItem(fullscreenPanelsStorageKey, String(nextValue));
-    haptics.click();
-  };
-
-  const handleProjectRepoPagesToggle = () => {
-    const nextValue = !isProjectRepoPagesEnabled();
-
-    setIsProjectRepoPagesEnabled(nextValue);
-    window.localStorage.setItem(projectRepoPagesStorageKey, String(nextValue));
     haptics.click();
   };
 
@@ -314,17 +258,11 @@ export default function App() {
       <TweaksPage
         isBatteryStatusEnabled={isBatteryStatusEnabled}
         isMusicPlayerEnabled={isMusicPlayerEnabled}
-        isCpuStatusEnabled={isCpuStatusEnabled}
-        isFullscreenPanelsEnabled={isFullscreenPanelsEnabled}
-        isProjectRepoPagesEnabled={isProjectRepoPagesEnabled}
         isGoogleSansCodeEnabled={isGoogleSansCodeEnabled}
         isDarkModeEnabled={isDarkModeEnabled}
         isScrollSoundEnabled={isScrollSoundEnabled}
         onBatteryStatusToggle={handleBatteryStatusToggle}
         onMusicPlayerToggle={handleMusicPlayerToggle}
-        onCpuStatusToggle={handleCpuStatusToggle}
-        onFullscreenPanelsToggle={handleFullscreenPanelsToggle}
-        onProjectRepoPagesToggle={handleProjectRepoPagesToggle}
         onGoogleSansCodeToggle={handleGoogleSansCodeToggle}
         onDarkModeToggle={handleDarkModeToggle}
         onScrollSoundToggle={handleScrollSoundToggle}
@@ -332,10 +270,6 @@ export default function App() {
         selectedMidiTrackUrl={activeMidiUrl}
       />
     );
-  }
-
-  if (route.name === "project") {
-    return <ProjectRepoPage project={route.project} />;
   }
 
   if (route.name === "not-found") {
@@ -347,9 +281,6 @@ export default function App() {
       activeTrackUrl={activeMidiUrl}
       isBatteryStatusEnabled={isBatteryStatusEnabled}
       isMusicPlayerInHeader={isMusicPlayerInHeader}
-      isCpuStatusEnabled={isCpuStatusEnabled}
-      isFullscreenPanelsEnabled={isFullscreenPanelsEnabled}
-      isProjectRepoPagesEnabled={isProjectRepoPagesEnabled}
       isMidiPlaying={isMidiPlaying}
       midiPlayback={midiPlayback}
       onPress={handlePress}
