@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/solid-query";
-import { CaretRight, Cat as CatIcon, GitCommit as GitCommitIcon } from "phosphor-solid";
+import { CaretRight, GitCommit as GitCommitIcon } from "phosphor-solid";
 import { For, Show } from "solid-js";
 
 import { getProjectBySlug } from "../config/projects";
@@ -10,10 +10,25 @@ type InteractiveProps = {
 };
 
 const project = {
-  ...getProjectBySlug("townbase")!,
+  ...getProjectBySlug("bystanderland")!,
   description:
-    "Turn your internet identity into a town with profiles, links, and personal landmarks in one place.",
+    "An interactive web project about presence, observation, and the small systems that make a place feel alive.",
 };
+
+function ShovelIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 256 256"
+      fill="currentColor"
+    >
+      <path d="M245.66,69.66a8,8,0,0,1-11.32,0L216,51.31l-71,71L133.66,111l71-71L186.34,21.66a8,8,0,0,1,11.32-11.32l48,48A8,8,0,0,1,245.66,69.66ZM88,176a8,8,0,0,1-5.66-13.66L133.66,111,99.31,76.68a16,16,0,0,0-22.62,0l-56,56A15.89,15.89,0,0,0,16,144v80a16,16,0,0,0,16,16h80a15.86,15.86,0,0,0,11.31-4.69l56-56a16,16,0,0,0,0-22.62L145,122.34,93.66,173.66A8,8,0,0,1,88,176Z" />
+    </svg>
+  );
+}
 
 export function Project1(props: InteractiveProps) {
   const commitsQuery = useQuery(() => ({
@@ -21,7 +36,7 @@ export function Project1(props: InteractiveProps) {
     queryFn: ({ signal }) => fetchCommits(project, project.branch, signal),
     staleTime: githubCacheTimes.commits,
   }));
-  const commits = () => commitsQuery.data?.slice(0, 6) ?? [];
+  const commits = () => commitsQuery.data?.slice(0, 4) ?? [];
 
   return (
     <section class="relative w-full">
@@ -52,7 +67,7 @@ export function Project1(props: InteractiveProps) {
                 target="_blank"
                 aria-label={`Open ${project.name} repository on GitHub`}
               >
-                <CatIcon size={32} color="currentColor" weight="fill" />
+                <ShovelIcon />
                 <CaretRight class="text-[var(--text-muted)]" size={18} weight="fill" />
                 <h2 class="text-xl leading-none font-semibold sm:text-2xl">{project.name}</h2>
               </a>
@@ -67,7 +82,7 @@ export function Project1(props: InteractiveProps) {
                     {(commit) => (
                       <a
                         href={commit.html_url}
-                        class="group hover:text-foreground grid min-w-0 grid-cols-[16px_minmax(0,1fr)] items-center gap-2 text-sm text-[var(--text-subtle)]"
+                        class="group hover:text-foreground grid min-w-0 grid-cols-[16px_minmax(0,1fr)] items-center gap-2 text-base text-[var(--text-subtle)]"
                         rel="noreferrer"
                         target="_blank"
                       >

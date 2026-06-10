@@ -26,7 +26,7 @@ export function About(props: InteractiveProps) {
         <div class="mx-auto max-w-xl">
           <h2 class="text-foreground text-left text-xl font-semibold sm:text-2xl">What I do?</h2>
           <p class="mt-6 text-left text-lg leading-relaxed text-[var(--text-subtle)] sm:text-xl md:text-justify">
-            I'm Arman Kar, a software developer focused on building clear, practical interfaces at
+            I'm Arman Kar, a software developer. I thrive on building clear, practical interfaces at
             the application layer where humans meet software. Most of my work is on the frontend,
             shaping how products behave rather than just how they look.
           </p>

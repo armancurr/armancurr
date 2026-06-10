@@ -6,16 +6,16 @@ For each project, store only this:
 
 ```ts
 {
-  slug: "pazman",
-  name: "Pazman",
+  slug: "bystanderland",
+  name: "Bystanderland",
   owner: "your-github-username",
-  repo: "pazman",
+  repo: "bystanderland",
   branch: "main",
   defaultFile: "README.md"
 }
 ```
 
-Same for `townbase`.
+Same for `bloomsite`.
 
 ---
 
@@ -178,7 +178,7 @@ Latest commits
 ## 3. Page loading flow
 
 ```txt
-User opens /projects/pazman
+User opens /projects/bystanderland
 
 1. Read local project config
 2. Fetch repo metadata
@@ -248,7 +248,7 @@ Logic:
 
 ```txt
 Frontend calls your own endpoint:
-GET /api/github/repo?project=pazman
+GET /api/github/repo?project=bystanderland
 
 Your backend calls GitHub with token:
 Authorization: Bearer GITHUB_TOKEN
@@ -271,11 +271,11 @@ file content: 10–30 minutes
 What the page should actually do:
 
 ```txt
-/projects/pazman
-shows real Pazman GitHub repo data
+/projects/bystanderland
+shows real Bystanderland GitHub repo data
 
-/projects/townbase
-shows real Townbase GitHub repo data
+/projects/bloomsite
+shows real Bloomsite GitHub repo data
 
 File explorer is real
 README is real
