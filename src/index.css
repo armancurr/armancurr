@@ -2,6 +2,8 @@
 @import "tailwindcss";
 
 :root {
+  /* Dark only: black surfaces, white ink, near-black rules. */
+  color-scheme: dark;
   --background: #000;
   --foreground: #fff;
   --card: #000;
@@ -10,30 +12,30 @@
   --popover-foreground: #fff;
   --primary: #fff;
   --primary-foreground: #000;
-  --secondary: rgb(23, 23, 23);
+  --secondary: #000;
   --secondary-foreground: #fff;
-  --muted: rgb(23, 23, 23);
-  --muted-foreground: rgb(255 255 255 / 0.5);
-  --accent: rgb(255 255 255 / 0.06);
+  --muted: #000;
+  --muted-foreground: #fff;
+  --accent: #000;
   --accent-foreground: #fff;
-  --destructive: oklch(0.389 0.1264 25.2711);
-  --destructive-foreground: oklch(0.9619 0 0);
-  --border: rgb(23, 23, 23);
-  --input: rgb(23, 23, 23);
-  --ring: rgb(163, 163, 163);
-  --chart-1: oklch(0.6755 0.0759 195.5043);
-  --chart-2: oklch(0.5518 0.1268 313.5842);
-  --chart-3: oklch(0.5711 0.1189 341.1449);
-  --chart-4: oklch(0.6524 0.0752 83.8957);
-  --chart-5: oklch(0.5548 0.1006 20.8071);
+  --destructive: oklch(0.4708 0.1367 24.0033);
+  --destructive-foreground: oklch(1 0 0);
+  --border: #262626;
+  --input: #000;
+  --ring: #fff;
+  --chart-1: #d3dad9;
+  --chart-2: #715a5a;
+  --chart-3: #44444e;
+  --chart-4: #37353e;
+  --chart-5: #d3dad9;
   --sidebar: #000;
   --sidebar-foreground: #fff;
   --sidebar-primary: #fff;
   --sidebar-primary-foreground: #000;
-  --sidebar-accent: rgb(23, 23, 23);
+  --sidebar-accent: #000;
   --sidebar-accent-foreground: #fff;
-  --sidebar-border: rgb(23, 23, 23);
-  --sidebar-ring: rgb(163, 163, 163);
+  --sidebar-border: #262626;
+  --sidebar-ring: #fff;
   --font-sans: "Manrope", sans-serif;
   --font-mono: "Google Sans Code", monospace;
   --font-serif: Georgia, serif;
@@ -54,94 +56,43 @@
   --shadow-2xl: 4px 4px 0px 0px hsl(0 0% 0% / 1.25);
   --tracking-normal: 0.02em;
   --spacing: 0.25rem;
-  --text-muted: rgb(255 255 255 / 0.5);
-  --text-subtle: rgb(255 255 255 / 0.75);
-  --hover-surface: rgb(255 255 255 / 0.06);
-  --selected-surface: rgb(255 255 255 / 0.04);
-  --grid-surface: rgb(255 255 255 / 0.06);
-  --meter-fill: rgb(23 23 23 / 0.5);
-  --corner: rgb(163, 163, 163);
-  --pattern-c1: #000;
-  --pattern-c2: #0a0a0a;
-  --hero-core: #000;
-  --hero-vignette: rgba(0, 0, 0, 0.8);
-  --hero-ring-outer: rgba(201, 24, 120, 0.88);
-  --hero-ring-outer-soft: rgba(138, 16, 160, 0.7);
-  --hero-ring-middle: rgba(38, 64, 220, 0.92);
-  --hero-ring-middle-soft: rgba(80, 48, 200, 0.76);
-  --hero-ring-inner: rgba(0, 200, 168, 0.9);
-  --hero-ring-inner-soft: rgba(0, 168, 204, 0.76);
+  --text-muted: #fff;
+  --text-subtle: #fff;
+  --hover-surface: #000;
+  --selected-surface: #000;
+  --grid-surface: #fff;
+  --meter-fill: #fff;
+  --corner: #262626;
+  --rail-pattern-1: #000;
+  --rail-pattern-2: #000;
+  --frame-max: 64rem; /* keep in sync with the frame's max-w-5xl */
+
+  /*
+   * Frame bands. A centre section is --section-h tall, so the top/bottom bands
+   * take the leftover half-viewport each: that is --band-size. The side panels
+   * are then pinned to the SAME measure (--band) and the frame widens to fill
+   * whatever is left (--frame-w), so every band around the frame is identical.
+   * Below 64rem there is no room for panels, so --band stays 0 and the frame
+   * runs edge to edge; above it the panel is capped so the frame keeps 48rem.
+   */
+  --band-floor: 6rem;
+  --section-h: min(66vw, 660px);
+  --band-size: max(var(--band-floor), (100vh - var(--section-h)) / 2);
+  --band: 0px;
+  --frame-w: calc(100vw - 2 * var(--band));
+  --gutter: max(0px, (100vw - var(--frame-max)) / 2);
 }
 
-html.light {
-  --background: oklch(0.8893 0.0052 106.5041);
-  --foreground: oklch(0.2697 0 0);
-  --card: oklch(0.8517 0.007 106.5464);
-  --card-foreground: oklch(0.2156 0 0);
-  --popover: oklch(0.8893 0.0052 106.5041);
-  --popover-foreground: oklch(0.2697 0 0);
-  --primary: oklch(0.3211 0 0);
-  --primary-foreground: oklch(0.9635 0.0017 106.4309);
-  --secondary: oklch(0.5132 0.0198 229.3153);
-  --secondary-foreground: oklch(0.9635 0.0017 106.4309);
-  --muted: oklch(0.8087 0.0035 106.4781);
-  --muted-foreground: oklch(0.5103 0 0);
-  --accent: oklch(0.6242 0.0496 75.929);
-  --accent-foreground: oklch(0.2202 0.0049 106.7921);
-  --destructive: oklch(0.4708 0.1367 24.0033);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.683 0 0);
-  --input: oklch(0.8136 0.0088 106.5934);
-  --ring: oklch(0.3211 0 0);
-  --chart-1: oklch(0.4184 0 0);
-  --chart-2: oklch(0.5602 0.0322 229.6681);
-  --chart-3: oklch(0.5721 0.0346 76.194);
-  --chart-4: oklch(0.5271 0.0265 173.0338);
-  --chart-5: oklch(0.5456 0.0198 314.6507);
-  --sidebar: oklch(0.8668 0.0062 106.529);
-  --sidebar-foreground: oklch(0.3211 0 0);
-  --sidebar-primary: oklch(0.3211 0 0);
-  --sidebar-primary-foreground: oklch(0.9635 0.0017 106.4309);
-  --sidebar-accent: oklch(0.8136 0.0088 106.5934);
-  --sidebar-accent-foreground: oklch(0.2156 0 0);
-  --sidebar-border: oklch(0.7652 0 0);
-  --sidebar-ring: oklch(0.3211 0 0);
-  --font-sans: "Manrope", sans-serif;
-  --font-serif: Georgia, serif;
-  --radius: 0rem;
-  --shadow-x: 4px;
-  --shadow-y: 4px;
-  --shadow-blur: 0px;
-  --shadow-spread: 0px;
-  --shadow-opacity: 0.5;
-  --shadow-color: rgba(0, 0, 0, 0.2);
-  --shadow-2xs: 4px 4px 0px 0px hsl(0 0% 0% / 0.25);
-  --shadow-xs: 4px 4px 0px 0px hsl(0 0% 0% / 0.25);
-  --shadow-sm: 4px 4px 0px 0px hsl(0 0% 0% / 0.5), 4px 1px 2px -1px hsl(0 0% 0% / 0.5);
-  --shadow: 4px 4px 0px 0px hsl(0 0% 0% / 0.5), 4px 1px 2px -1px hsl(0 0% 0% / 0.5);
-  --shadow-md: 4px 4px 0px 0px hsl(0 0% 0% / 0.5), 4px 2px 4px -1px hsl(0 0% 0% / 0.5);
-  --shadow-lg: 4px 4px 0px 0px hsl(0 0% 0% / 0.5), 4px 4px 6px -1px hsl(0 0% 0% / 0.5);
-  --shadow-xl: 4px 4px 0px 0px hsl(0 0% 0% / 0.5), 4px 8px 10px -1px hsl(0 0% 0% / 0.5);
-  --shadow-2xl: 4px 4px 0px 0px hsl(0 0% 0% / 1.25);
-  --tracking-normal: 0.02em;
-  --spacing: 0.25rem;
-  --text-muted: oklch(0.5103 0 0);
-  --text-subtle: oklch(0.3211 0 0 / 0.78);
-  --hover-surface: oklch(0.8087 0.0035 106.4781);
-  --selected-surface: oklch(0.8136 0.0088 106.5934);
-  --grid-surface: oklch(0.683 0 0 / 0.38);
-  --meter-fill: oklch(0.5132 0.0198 229.3153 / 0.22);
-  --corner: oklch(0.3211 0 0);
-  --pattern-c1: oklch(0.8893 0.0052 106.5041);
-  --pattern-c2: oklch(0.8517 0.007 106.5464);
-  --hero-core: oklch(0.8893 0.0052 106.5041);
-  --hero-vignette: oklch(0.8893 0.0052 106.5041 / 0.72);
-  --hero-ring-outer: rgb(181 91 54 / 0.68);
-  --hero-ring-outer-soft: rgb(207 127 80 / 0.46);
-  --hero-ring-middle: rgb(43 88 115 / 0.64);
-  --hero-ring-middle-soft: rgb(76 128 143 / 0.42);
-  --hero-ring-inner: rgb(105 139 54 / 0.62);
-  --hero-ring-inner-soft: rgb(147 171 75 / 0.4);
+@media (width >= 40rem) {
+  :root {
+    --band-floor: 8rem;
+  }
+}
+
+@media (width >= 64rem) {
+  :root {
+    --band: min(var(--band-size), (100vw - 48rem) / 2);
+  }
 }
 
 @theme inline {
@@ -217,23 +168,36 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+.rail-pattern {
+  --cols: 3; /* L-shape tiles across the rail */
+  --rows: 6; /* L-shape tiles down the rail */
+  --c1: var(--rail-pattern-1);
+  --c2: var(--rail-pattern-2);
+
+  /* space between the frame edge and the viewport edge */
+  --rail-space: var(--gutter);
+  /* tile width divides the rail exactly, so no partial column is left over */
+  --s: calc(var(--rail-space) / var(--cols));
+
+  width: var(--rail-space);
+  height: 100%;
+
+  /*
+   * Rows divide the rail height exactly via a percentage background-size, so no
+   * partial row is left over either. The second layer has to sit 3/4 of a tile
+   * lower; as a background-position percentage p that offset is p*(H - H/rows),
+   * which solves to 75% / (rows - 1) regardless of the actual height.
+   */
+  --_g: at calc(100% / 3) 25%, #0000 75%,;
+  --_y: calc(75% / (var(--rows) - 1));
+  background:
+    conic-gradient(var(--_g) var(--c1) 0),
+    conic-gradient(var(--_g) var(--c2) 0) 0 var(--_y),
+    repeating-conic-gradient(at calc(200% / 3), var(--c1) 0 25%, var(--c2) 0 50%);
+  background-size: var(--s) calc(100% / var(--rows));
+}
+
 ::selection {
   background: var(--primary);
   color: var(--primary-foreground);
-}
-
-.site-pattern {
-  --s: 150px;
-  --_g:
-    var(--pattern-c1) 0% 5%, var(--pattern-c2) 6% 15%, var(--pattern-c1) 16% 25%,
-    var(--pattern-c2) 26% 35%, var(--pattern-c1) 36% 45%, var(--pattern-c2) 46% 55%,
-    var(--pattern-c1) 56% 65%, var(--pattern-c2) 66% 75%, var(--pattern-c1) 76% 85%,
-    var(--pattern-c2) 86% 95%, #0000 96%;
-  background:
-    radial-gradient(50% 50% at 100% 0, var(--_g)),
-    radial-gradient(50% 50% at 0 100%, var(--_g)),
-    radial-gradient(50% 50%, var(--_g)),
-    radial-gradient(50% 50%, var(--_g)) calc(var(--s) / 2) calc(var(--s) / 2),
-    var(--pattern-c1);
-  background-size: var(--s) var(--s);
 }
