@@ -1,123 +1,34 @@
-import { createEffect, createSignal, onCleanup, onMount } from "solid-js";
+import { onCleanup, onMount } from "solid-js";
 
-import { midiTrackUrl } from "./config/midi-tracks";
 import { haptics } from "./lib/use-haptics";
-import {
-  getMidiPlaybackSnapshot,
-  playLensClick,
-  soundPresetLabels,
-  toggleMidiFile,
-  type MidiPlaybackSnapshot,
-  type SoundPreset,
-  unlockAudio,
-} from "./lib/use-sound";
+import { playLensClick, unlockAudio } from "./lib/use-sound";
 import { HomePage } from "./pages/home";
 import { NotFoundPage } from "./pages/not-found";
-import { TweaksPage } from "./pages/tweaks";
 
-const soundPresetStorageKey = "site:sound-preset";
-const musicPlayerStorageKey = "site:music-player-enabled";
-const darkModeStorageKey = "site:dark-mode-enabled";
-const previousDarkModeStorageKey = "site:stealth-mode-enabled";
-
-type AppRoute = { name: "home" } | { name: "tweaks" } | { name: "not-found" };
+type AppRoute = { name: "home" } | { name: "not-found" };
 
 function getRoute(pathname: string): AppRoute {
   if (pathname === "/") return { name: "home" };
-  if (pathname === "/tweaks") return { name: "tweaks" };
 
   return { name: "not-found" };
 }
 
-function getStoredSoundPreset(): SoundPreset {
-  if (typeof window === "undefined") return "Soft Tap";
-
-  const storedPreset = window.localStorage.getItem(soundPresetStorageKey);
-
-  if (soundPresetLabels.includes(storedPreset as SoundPreset)) {
-    return storedPreset as SoundPreset;
-  }
-
-  return "Soft Tap";
-}
-
-function getStoredBoolean(key: string): boolean {
-  if (typeof window === "undefined") return false;
-
-  return window.localStorage.getItem(key) === "true";
-}
-
-function getStoredDarkMode(): boolean {
-  if (typeof window === "undefined") return false;
-
-  return (
-    (window.localStorage.getItem(darkModeStorageKey) ??
-      window.localStorage.getItem(previousDarkModeStorageKey)) === "true"
-  );
-}
-
 export default function App() {
-  const usesMacCommandKey =
-    typeof navigator !== "undefined" && navigator.platform.toUpperCase().startsWith("MAC");
-  const initialMusicPlayerEnabled = getStoredBoolean(musicPlayerStorageKey);
-  const [selectedPreset] = createSignal<SoundPreset>(getStoredSoundPreset());
-  const [isMusicPlayerEnabled, setIsMusicPlayerEnabled] = createSignal(initialMusicPlayerEnabled);
-  const [isDarkModeEnabled, setIsDarkModeEnabled] = createSignal(getStoredDarkMode());
-  const [playbackTick, setPlaybackTick] = createSignal(Date.now());
   const route = getRoute(window.location.pathname);
-  const isMusicPlayerInHeader = () => isMusicPlayerEnabled();
-
-  createEffect(() => {
-    document.documentElement.classList.toggle("dark", isDarkModeEnabled());
-  });
 
   onMount(() => {
     const primeAudio = () => {
       void unlockAudio();
     };
-    const handleKeyDown = (event: KeyboardEvent) => {
-      const hasTweaksModifier = usesMacCommandKey
-        ? event.metaKey && !event.ctrlKey
-        : event.ctrlKey && !event.metaKey;
-
-      if (hasTweaksModifier && !event.altKey && event.code === "Comma") {
-        event.preventDefault();
-        window.location.href = route.name === "tweaks" ? "/" : "/tweaks";
-        return;
-      }
-
-      const target = event.target as HTMLElement | null;
-      const isTyping =
-        target?.tagName === "INPUT" ||
-        target?.tagName === "TEXTAREA" ||
-        target?.tagName === "SELECT" ||
-        target?.isContentEditable;
-
-      if (!isMusicPlayerEnabled() || isTyping || event.code !== "Space") return;
-
-      event.preventDefault();
-      handleMidiToggle();
-    };
 
     window.addEventListener("pointerdown", primeAudio, { capture: true });
     window.addEventListener("keydown", primeAudio, { capture: true });
-    window.addEventListener("keydown", handleKeyDown);
 
-    const progressInterval = window.setInterval(() => {
-      setPlaybackTick(Date.now());
-    }, 250);
     onCleanup(() => {
       window.removeEventListener("pointerdown", primeAudio, { capture: true });
       window.removeEventListener("keydown", primeAudio, { capture: true });
-      window.removeEventListener("keydown", handleKeyDown);
-      window.clearInterval(progressInterval);
     });
   });
-
-  const midiPlayback = (): MidiPlaybackSnapshot | null => {
-    playbackTick();
-    return getMidiPlaybackSnapshot();
-  };
 
   const handlePress = () => {
     void unlockAudio().then((ready) => {
@@ -127,48 +38,9 @@ export default function App() {
     haptics.click();
   };
 
-  const handleMidiToggle = () => {
-    void toggleMidiFile(midiTrackUrl, selectedPreset());
-
-    haptics.click();
-  };
-
-  const handleMusicPlayerToggle = () => {
-    const nextValue = !isMusicPlayerEnabled();
-
-    setIsMusicPlayerEnabled(nextValue);
-    window.localStorage.setItem(musicPlayerStorageKey, String(nextValue));
-    haptics.click();
-  };
-
-  const handleDarkModeToggle = () => {
-    const nextValue = !isDarkModeEnabled();
-
-    setIsDarkModeEnabled(nextValue);
-    window.localStorage.setItem(darkModeStorageKey, String(nextValue));
-    haptics.click();
-  };
-
-  if (route.name === "tweaks") {
-    return (
-      <TweaksPage
-        isDarkModeEnabled={isDarkModeEnabled}
-        isMusicPlayerEnabled={isMusicPlayerEnabled}
-        onDarkModeToggle={handleDarkModeToggle}
-        onMusicPlayerToggle={handleMusicPlayerToggle}
-      />
-    );
-  }
-
   if (route.name === "not-found") {
-    return <NotFoundPage shortcutLabel={usesMacCommandKey ? "⌘+," : "Ctrl+,"} />;
+    return <NotFoundPage />;
   }
 
-  return (
-    <HomePage
-      isMusicPlayerInHeader={isMusicPlayerInHeader}
-      midiPlayback={midiPlayback}
-      onPress={handlePress}
-    />
-  );
+  return <HomePage onPress={handlePress} />;
 }

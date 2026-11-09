@@ -1,7 +1,4 @@
-import { Show, type Accessor } from "solid-js";
-
-import type { MidiPlaybackSnapshot } from "../lib/use-sound";
-import { MusicPlayer } from "./music-player";
+import { CellBand } from "./cell-band";
 
 function HeaderCorners() {
   return (
@@ -18,12 +15,7 @@ function HeaderCorners() {
   );
 }
 
-type HeaderProps = {
-  isMusicPlayerEnabled: Accessor<boolean>;
-  midiPlayback: Accessor<MidiPlaybackSnapshot | null>;
-};
-
-export function Header(props: HeaderProps) {
+export function Header() {
   return (
     <header class="section-tone-header relative z-10 w-full">
       <div class="border-border relative mx-auto h-[var(--band-size)] w-full max-w-[var(--frame-w)] overflow-visible border-x">
@@ -33,9 +25,7 @@ export function Header(props: HeaderProps) {
         />
         <HeaderCorners />
 
-        <Show when={props.isMusicPlayerEnabled()}>
-          <MusicPlayer midiPlayback={props.midiPlayback} />
-        </Show>
+        <CellBand />
       </div>
     </header>
   );

@@ -2,38 +2,40 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f4ebd3;
-  --foreground: #555879;
-  --card: #ded3c4;
-  --card-foreground: #555879;
-  --popover: #f4ebd3;
-  --popover-foreground: #555879;
-  --primary: #555879;
-  --primary-foreground: #555879;
-  --secondary: #98a1bc;
-  --secondary-foreground: #555879;
-  --muted: #ded3c4;
-  --muted-foreground: #555879;
-  --accent: #98a1bc;
-  --accent-foreground: #555879;
-  --destructive: oklch(0.389 0.1264 25.2711);
-  --destructive-foreground: #555879;
-  --border: #000;
-  --input: #ded3c4;
-  --ring: #555879;
-  --chart-1: #555879;
-  --chart-2: #98a1bc;
-  --chart-3: #ded3c4;
-  --chart-4: #555879;
-  --chart-5: #f4ebd3;
-  --sidebar: #ded3c4;
-  --sidebar-foreground: #555879;
-  --sidebar-primary: #555879;
-  --sidebar-primary-foreground: #555879;
-  --sidebar-accent: #98a1bc;
-  --sidebar-accent-foreground: #555879;
-  --sidebar-border: #98a1bc;
-  --sidebar-ring: #555879;
+  /* Dark only: black surfaces, white ink, near-black rules. */
+  color-scheme: dark;
+  --background: #000;
+  --foreground: #fff;
+  --card: #000;
+  --card-foreground: #fff;
+  --popover: #000;
+  --popover-foreground: #fff;
+  --primary: #fff;
+  --primary-foreground: #000;
+  --secondary: #000;
+  --secondary-foreground: #fff;
+  --muted: #000;
+  --muted-foreground: #fff;
+  --accent: #000;
+  --accent-foreground: #fff;
+  --destructive: oklch(0.4708 0.1367 24.0033);
+  --destructive-foreground: oklch(1 0 0);
+  --border: #262626;
+  --input: #000;
+  --ring: #fff;
+  --chart-1: #d3dad9;
+  --chart-2: #715a5a;
+  --chart-3: #44444e;
+  --chart-4: #37353e;
+  --chart-5: #d3dad9;
+  --sidebar: #000;
+  --sidebar-foreground: #fff;
+  --sidebar-primary: #fff;
+  --sidebar-primary-foreground: #000;
+  --sidebar-accent: #000;
+  --sidebar-accent-foreground: #fff;
+  --sidebar-border: #262626;
+  --sidebar-ring: #fff;
   --font-sans: "Manrope", sans-serif;
   --font-mono: "Google Sans Code", monospace;
   --font-serif: Georgia, serif;
@@ -54,20 +56,15 @@
   --shadow-2xl: 4px 4px 0px 0px hsl(0 0% 0% / 1.25);
   --tracking-normal: 0.02em;
   --spacing: 0.25rem;
-  --text-muted: #555879;
-  --text-subtle: #555879;
-  --hover-surface: #ded3c4;
-  --selected-surface: rgb(152 161 188 / 0.42);
-  --grid-surface: rgb(152 161 188 / 0.68);
-  --meter-fill: rgb(85 88 121 / 0.24);
-  --corner: var(--border);
-  --rail-pattern-1: var(--background);
-  --rail-pattern-2: #ded3c4;
-  --section-1: #6439ff;
-  --section-2: #4f75ff;
-  --section-3: #28a0ee;
-  --section-4: #00ccdd;
-  --section-5: #7cf5ff;
+  --text-muted: #fff;
+  --text-subtle: #fff;
+  --hover-surface: #000;
+  --selected-surface: #000;
+  --grid-surface: #fff;
+  --meter-fill: #fff;
+  --corner: #262626;
+  --rail-pattern-1: #000;
+  --rail-pattern-2: #000;
   --frame-max: 64rem; /* keep in sync with the frame's max-w-5xl */
 
   /*
@@ -96,203 +93,6 @@
   :root {
     --band: min(var(--band-size), (100vw - 48rem) / 2);
   }
-}
-
-html.dark {
-  --background: #37353e;
-  --foreground: #d3dad9;
-  --card: #37353e;
-  --card-foreground: #d3dad9;
-  --popover: #37353e;
-  --popover-foreground: #d3dad9;
-  --primary: #d3dad9;
-  --primary-foreground: #37353e;
-  --secondary: #715a5a;
-  --secondary-foreground: #d3dad9;
-  --muted: #44444e;
-  --muted-foreground: rgb(211 218 217 / 0.72);
-  --accent: #715a5a;
-  --accent-foreground: #d3dad9;
-  --destructive: oklch(0.4708 0.1367 24.0033);
-  --destructive-foreground: oklch(1 0 0);
-  --border: #000;
-  --input: #44444e;
-  --ring: #d3dad9;
-  --chart-1: #d3dad9;
-  --chart-2: #715a5a;
-  --chart-3: #44444e;
-  --chart-4: #37353e;
-  --chart-5: #d3dad9;
-  --sidebar: #37353e;
-  --sidebar-foreground: #d3dad9;
-  --sidebar-primary: #d3dad9;
-  --sidebar-primary-foreground: #37353e;
-  --sidebar-accent: #715a5a;
-  --sidebar-accent-foreground: #d3dad9;
-  --sidebar-border: #44444e;
-  --sidebar-ring: #d3dad9;
-  --font-sans: "Manrope", sans-serif;
-  --font-serif: Georgia, serif;
-  --radius: 0rem;
-  --shadow-x: 4px;
-  --shadow-y: 4px;
-  --shadow-blur: 0px;
-  --shadow-spread: 0px;
-  --shadow-opacity: 0.5;
-  --shadow-color: rgba(0, 0, 0, 0.2);
-  --shadow-2xs: 4px 4px 0px 0px hsl(0 0% 0% / 0.25);
-  --shadow-xs: 4px 4px 0px 0px hsl(0 0% 0% / 0.25);
-  --shadow-sm: 4px 4px 0px 0px hsl(0 0% 0% / 0.5), 4px 1px 2px -1px hsl(0 0% 0% / 0.5);
-  --shadow: 4px 4px 0px 0px hsl(0 0% 0% / 0.5), 4px 1px 2px -1px hsl(0 0% 0% / 0.5);
-  --shadow-md: 4px 4px 0px 0px hsl(0 0% 0% / 0.5), 4px 2px 4px -1px hsl(0 0% 0% / 0.5);
-  --shadow-lg: 4px 4px 0px 0px hsl(0 0% 0% / 0.5), 4px 4px 6px -1px hsl(0 0% 0% / 0.5);
-  --shadow-xl: 4px 4px 0px 0px hsl(0 0% 0% / 0.5), 4px 8px 10px -1px hsl(0 0% 0% / 0.5);
-  --shadow-2xl: 4px 4px 0px 0px hsl(0 0% 0% / 1.25);
-  --tracking-normal: 0.02em;
-  --spacing: 0.25rem;
-  --text-muted: rgb(211 218 217 / 0.72);
-  --text-subtle: rgb(211 218 217 / 0.88);
-  --hover-surface: #44444e;
-  --selected-surface: rgb(113 90 90 / 0.48);
-  --grid-surface: rgb(68 68 78 / 0.9);
-  --meter-fill: rgb(113 90 90 / 0.58);
-  --corner: var(--border);
-  --rail-pattern-1: var(--background);
-  --rail-pattern-2: #44444e;
-}
-
-/* Each home band owns its center surface and the pattern rails beside it. */
-.section-tone-header {
-  --section-color: var(--section-1);
-}
-
-.section-tone-about {
-  --section-color: var(--section-2);
-}
-
-.section-tone-work {
-  --section-color: var(--section-3);
-}
-
-.section-tone-project {
-  --section-color: var(--section-4);
-}
-
-.section-tone-footer {
-  --section-color: var(--section-5);
-}
-
-/* Light mode (default): one surface tone, one ink tone for text and rules. */
-.section-tone-header,
-.section-tone-about,
-.section-tone-work,
-.section-tone-project,
-.section-tone-footer {
-  --background: #d3dad9;
-  --foreground: #37353e;
-  --primary: #37353e;
-  --primary-foreground: #d3dad9;
-  --text-muted: #37353e;
-  --text-subtle: #37353e;
-  --border: #37353e;
-  --corner: #37353e;
-  --rail-pattern-1: #d3dad9;
-  --rail-pattern-2: #d3dad9;
-
-  background: #d3dad9;
-}
-
-html.dark .section-tone-header,
-html.dark .section-tone-about,
-html.dark .section-tone-work,
-html.dark .section-tone-project,
-html.dark .section-tone-footer {
-  --background: #000;
-  --foreground: #fff;
-  --primary: #fff;
-  --primary-foreground: #000;
-  --text-muted: #fff;
-  --text-subtle: #fff;
-  --border: #262626;
-  --corner: #262626;
-  --rail-pattern-1: #000;
-  --rail-pattern-2: #000;
-
-  background: #000;
-}
-
-:root {
-  --background: #d3dad9;
-  --foreground: #37353e;
-  --card: #d3dad9;
-  --card-foreground: #37353e;
-  --popover: #d3dad9;
-  --popover-foreground: #37353e;
-  --primary: #37353e;
-  --primary-foreground: #d3dad9;
-  --secondary: #d3dad9;
-  --secondary-foreground: #37353e;
-  --muted: #d3dad9;
-  --muted-foreground: #37353e;
-  --accent: #d3dad9;
-  --accent-foreground: #37353e;
-  --border: #37353e;
-  --input: #d3dad9;
-  --ring: #37353e;
-  --sidebar: #d3dad9;
-  --sidebar-foreground: #37353e;
-  --sidebar-primary: #37353e;
-  --sidebar-primary-foreground: #d3dad9;
-  --sidebar-accent: #d3dad9;
-  --sidebar-accent-foreground: #37353e;
-  --sidebar-border: #37353e;
-  --sidebar-ring: #37353e;
-  --text-muted: #37353e;
-  --text-subtle: #37353e;
-  --hover-surface: #d3dad9;
-  --selected-surface: #d3dad9;
-  --grid-surface: #37353e;
-  --meter-fill: #37353e;
-  --corner: #37353e;
-  --rail-pattern-1: #d3dad9;
-  --rail-pattern-2: #d3dad9;
-}
-
-html.dark {
-  --background: #000;
-  --foreground: #fff;
-  --card: #000;
-  --card-foreground: #fff;
-  --popover: #000;
-  --popover-foreground: #fff;
-  --primary: #fff;
-  --primary-foreground: #000;
-  --secondary: #000;
-  --secondary-foreground: #fff;
-  --muted: #000;
-  --muted-foreground: #fff;
-  --accent: #000;
-  --accent-foreground: #fff;
-  --border: #262626;
-  --input: #000;
-  --ring: #fff;
-  --sidebar: #000;
-  --sidebar-foreground: #fff;
-  --sidebar-primary: #fff;
-  --sidebar-primary-foreground: #000;
-  --sidebar-accent: #000;
-  --sidebar-accent-foreground: #fff;
-  --sidebar-border: #262626;
-  --sidebar-ring: #fff;
-  --text-muted: #fff;
-  --text-subtle: #fff;
-  --hover-surface: #000;
-  --selected-surface: #000;
-  --grid-surface: #fff;
-  --meter-fill: #fff;
-  --corner: #262626;
-  --rail-pattern-1: #000;
-  --rail-pattern-2: #000;
 }
 
 @theme inline {
