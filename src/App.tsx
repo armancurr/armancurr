@@ -1,6 +1,7 @@
-import { HomePage } from "./pages/home";
-import { NotFoundPage } from "./pages/not-found";
-
 export default function App() {
-  return window.location.pathname === "/" ? <HomePage /> : <NotFoundPage />;
+  return (
+    <main class="flex min-h-svh items-center justify-center">
+      <h1 class="text-base font-normal tracking-wide">Coming soon</h1>
+    </main>
+  );
 }
