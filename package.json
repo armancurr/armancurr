@@ -16,11 +16,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@tanstack/solid-query": "^5.101.0",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
-    "mathjs": "^15.2.0",
-    "phosphor-solid": "^1.1.5",
     "solid-js": "^1.9.13"
   },
   "devDependencies": {
